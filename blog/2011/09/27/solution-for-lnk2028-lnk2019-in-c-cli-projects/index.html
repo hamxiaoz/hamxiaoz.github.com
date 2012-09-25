@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        
+        hamxiaoz - Solution for LNK2028 & LNK2019 in C++/CLI projects
+        
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />    
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/pictonic.css" />
+    <link rel="alternate" type="application/atom+xml" href="http://hamxiaoz.com/feed/" />
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/js/html5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/js/jquery-1.6.4.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-28910606-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+  </script>
+</head>
+<body>
+
+    <aside>
+        <a href="/" class="logo">hamxiaoz</a>
+        <p class="slogan">Stay thirsty, my friends.</p>
+        
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog/archives/">Archives</a></li>
+            </ul>
+        </nav>
+		
+        <p><input type="text" id="search" placeholder="Search" /></p>
+
+        <p>© 2005-2012 hamxiaoz</p>
+        <p><a class="aside-a" href="/feed/rss.xml"><span class="icon-rss"></span></a></p>
+    </aside>
+
+    <section class="main">
+        <div class="post">
+    <time datetime="2011-09-27" pubdate="">Sep 27, 2011</time>
+    <h1>Solution for LNK2028 & LNK2019 in C++/CLI projects</h1>
+    <p>Short version:<br /><strong>link to your lib file.</strong></p>
+
+
+<p>&#13;</p>
+
+<p><br />Long version:<br />A recent project I'm working on requires me to make a plugin for a native C++ application. So I need to create a dll that exposes C functions thru dllexport. As a .Net guy, I've my business model and UI written in .Net and a C++/CLI project serves as a glue project between .net and the native C++ application. The solution looks like this:</p>
+
+
+<p>&#13;</p>
+
+<p><br />- plugin.dll (C++/CLI, used by native C++ application, depends on businesslogic.dll)<br />- businesslogic.dll (C++/CLI, contains a native C++ class that will get called by plugin.dll)<br />- ui.dll (C#, used by businesslogic.dll)</p>
+
+
+<p>&#13;</p>
+
+<p><br />After coding everything, I find out that all dll compiles fine except pluging.dll: it complains about LINK2028 &amp; LNK2019. I know the linker error usually tells me that something is missing its definition. But I'm still scratching my head because A: I have the header file included and B: I have the dll added to the project reference. In .net the project should build fine. But it turns out that since businesslogic.dll is a mixed dll, to use with plugin.dll, I should also link to the businesslogic.lib file.<br /><br />It took me about 30 minutes to figure out that I need to link to the lib file of my own C++/CLI project. I know, I'm not that familiar with native programming. Anyway, if you google "LNK2028" you'll find a lot of questions asked, either with no answer or answers doesn't make sence. So I'd like to share this post with everyone, hopefully can save someone's time. (especially .net programmer)<br /><br />BTW: <a href="http://stackoverflow.com/questions/5683710/wstring-lpcwstr-in-shellexecute-give-me-error-lnk2028-lnk2019">here </a>is a similar error with the same solution.</p>
+
+
+<p></p>
+
+    <p class="meta">
+        
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dev/'>dev</a>
+  
+</span>
+
+
+    </p>
+    <footer>
+    <p class="pagination">
+      
+        <a class="prev-a" href="/blog/2011/09/26/7" title="Previous Post: 7">&laquo; 7</a>
+      
+      
+        <a class="next-a" href="/blog/2011/09/29/canon" title="Next Post: Canon">Canon &raquo;</a>
+      
+    </p>
+    </footer>
+    
+        <div class="sharing">
+            
+            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://hamxiaoz.github.com/blog/2011/09/27/solution-for-lnk2028-lnk2019-in-c-cli-projects" data-via="" data-counturl="http://hamxiaoz.github.com/blog/2011/09/27/solution-for-lnk2028-lnk2019-in-c-cli-projects" >Tweet</a>
+            <script type="text/javascript">
+                (function(){
+                 var twitterWidgets = document.createElement('script');
+                 twitterWidgets.type = 'text/javascript';
+                 twitterWidgets.async = true;
+                 twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+                 document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+                 })();
+            </script>
+        
+        
+        <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+        <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+                </script>
+        
+        </div>
+    
+    
+      <section>
+        <div id="disqus_thread" aria-live="polite">
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+      </section>
+      
+      
+      <script type="text/javascript">
+        var disqus_shortname = 'hamxiaozgithubcom';
+        
+        
+        var disqus_script = 'count.js';
+        
+        (function () {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+         }());
+    </script>
+    
+
+</div>
+
+    </section>
+  
+</body>
+</html>

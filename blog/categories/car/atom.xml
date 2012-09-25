@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: car | ]]></title>
+  <link href="http://hamxiaoz.github.com/blog/categories/car/atom.xml" rel="self"/>
+  <link href="http://hamxiaoz.github.com/"/>
+  <updated>2012-09-24T19:20:49-07:00</updated>
+  <id>http://hamxiaoz.github.com/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Scary drive]]></title>
+    <link href="http://hamxiaoz.github.com/blog/2011/09/30/i-was-left-turn-on-a-green-light-i-yield-till"/>
+    <updated>2011-09-30T13:32:41-07:00</updated>
+    <id>http://hamxiaoz.github.com/blog/2011/09/30/i-was-left-turn-on-a-green-light-i-yield-till</id>
+    <content type="html"><![CDATA[<p>I was left turn on a green light, I yield till light turned yellow, probably almost red, and then did a crazy speedy turn. Why? Because there was a f**ker trying to run a red light and drove over speed. It was scary.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The daily driving]]></title>
+    <link href="http://hamxiaoz.github.com/blog/2011/09/16/the-daily-driving"/>
+    <updated>2011-09-16T18:25:48-07:00</updated>
+    <id>http://hamxiaoz.github.com/blog/2011/09/16/the-daily-driving</id>
+    <content type="html"><![CDATA[<p>I realized why my car had only 18.5 mpg... because the car maker is totally advertising correctly: "city 18 and highway 28". And I'm mostly driving locally.</p>
+
+
+<p>&#13;
+&#13;</p>
+
+<p>These two days I saw 2 Nissan Leaf on the road. "Zero emission" is cool, but the look of the car is really not my style. What's the best looking electric car out there? BMW Active E, for sure.</p>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+</feed>

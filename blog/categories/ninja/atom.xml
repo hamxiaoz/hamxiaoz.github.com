@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ninja | ]]></title>
+  <link href="http://hamxiaoz.github.com/blog/categories/ninja/atom.xml" rel="self"/>
+  <link href="http://hamxiaoz.github.com/"/>
+  <updated>2012-09-24T19:20:49-07:00</updated>
+  <id>http://hamxiaoz.github.com/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[<p>A real ninja will have a real ninja notebook...</p>]]></title>
+    <link href="http://hamxiaoz.github.com/blog/2011/09/22/a-real-ninja-will-have-a-real-ninja-notebook"/>
+    <updated>2011-09-22T21:47:53-07:00</updated>
+    <id>http://hamxiaoz.github.com/blog/2011/09/22/a-real-ninja-will-have-a-real-ninja-notebook</id>
+    <content type="html"><![CDATA[<p><img src="http://25.media.tumblr.com/tumblr_lrylbtpL3R1r2leoqo1_1280.jpg" alt="&lt;p&gt;A real ninja will have a real ninja notebook...&lt;/p&gt; " /></p>
+]]></content>
+  </entry>
+  
+</feed>
