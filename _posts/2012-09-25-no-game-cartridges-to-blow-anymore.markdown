@@ -3,7 +3,7 @@ layout: post
 title: "no game cartridges to blow anymore"
 date: 2012-09-25 22:03
 comments: true
-categories: 
+categories: [feelings]
 ---
 Today [this post](http://www.mentalfloss.com/blogs/archives/142550) made hackernews top 10. I guess it has to do with the fact that a lot of readers have the experience of blowing into the Nintendo cartridges before.
 
