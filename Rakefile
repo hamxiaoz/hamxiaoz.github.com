@@ -49,9 +49,8 @@ end
 
 desc "Generate jekyll site"
 task :generate do
-  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   puts "## Generating Site with Jekyll"
-  system "compass compile --css-dir #{source_dir}/stylesheets"
+  #system "compass compile --css-dir #{source_dir}/stylesheets"
   system "jekyll"
 end
 
@@ -156,15 +155,20 @@ end
 
 desc "Default deploy task"
 task :deploy do
-  #Rake::Task[:generate].execute
+  system "jekyll"
 
-  #Rake::Task[:copydot].invoke("_site", "_deploy")
-  #Rake::Task["#{deploy_default}"].execute
-    
-  #(Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
-  #Rake::Task[:copydot].invoke(public_dir, deploy_dir)
   puts "copy files to _deploy folder"
   cp_r "_site/.", "_deploy"
+  cd "_deploy" do
+    system "git add ."
+    system "git add -u"
+    puts "\n## Commiting: Site updated at #{Time.now.utc}"
+    message = "Site updated at #{Time.now.utc}"
+    system "git commit -m \"#{message}\""
+    #system "git push origin #{deploy_branch} --force"
+    system "git push"
+    puts "\n## Github Pages deploy complete"
+  end
 end
 
 desc "copy dot files for deployment"
