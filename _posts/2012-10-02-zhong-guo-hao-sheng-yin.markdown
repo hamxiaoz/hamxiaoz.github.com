@@ -25,3 +25,8 @@ PS 3，附 我们的好声音:
 {% img https://rwtgyg.sn2.livefilestore.com/y1mIrhja0N48KWE-yzAaO7etFgjo2Nwc6WVl2SRiT4Z4zEHY0XSqsMTmtTsn6ctlMzcXyFMI1ZCkv6sqt1EUcCLLlSda00WzSeoWrkSCSMQVA7DHtkOdv0lsw/IMG_0199%20hua.jpg?psid=1 hua %}
 {% img https://rwtgyg.sn2.livefilestore.com/y1mCh8cssfXZoMpKcOF94LDksiGWxX_NFAYPfGQUcbwhaESaemlNIdLaotzYY3u3fpQzdfGIqrsmEjxnKiFEvfgq7R573CVSjuONOv1bIv92_VeD6ybvq1Jgg/DSC08295%20guo.jpg?psid=1 guo %}
 {% img https://rwtgyg.sn2.livefilestore.com/y1mCw7Xe2QxKAnROvCc0D9USvXlPsEi02BgWjFakDbsYb7CdEi5-2Kn02f3Gu5kj_DSdp7XgclU1mkREO4QMluS2EKmBpFfsLR2M5F9-SpwTx5RCjZ84Ii0_w/IMG_0245%20me.jpg?psid=1 me %}
+
+PS Vita, 附两条还不错的评论，来自贴吧，你可以选择“只看楼主”  
+- [从四位导师的性格曲线和人生阅历解析组内PK的深层含义](http://tieba.baidu.com/p/1854379416?see_lz=1)  
+- [队员晋级机会完全评述，以及讨论一些误解](http://tieba.baidu.com/p/1751587621?see_lz=1&pn=1)
+
