@@ -1,0 +1,31 @@
+---
+layout: post
+title: "Gift Exchange 2012"
+date: 2012-12-22 11:54
+comments: true
+categories: [happy life]
+---
+这是我准备的礼物，能猜到是什么么？
+<div>
+        <table class="gift">
+            <tr>
+                <td>
+                    <img class="gift" src="/images/blog/gift.png" alt="gift picture">
+                </td>
+                <td>
+                    <p class="gift">
+                    可以开， 可以关， 也可以响<br>
+                    可以救你于危难，也可以防患于未然<br>
+                    可以把你变大，也可以让你变硬<br>
+                    可以天天陪着你 <br>
+                    也可以在角落里等着你<br>
+                    我不是充气苍井空<br>
+                    也不是蓝色小药丸<br>
+                    我有一根管，我是<span class="gift-name">_____</span><br>
+                    <br>
+                    PS: 使用过度，后果自负<br>
+                    </p>
+                </td>
+            </tr>
+        </table>
+</div>
