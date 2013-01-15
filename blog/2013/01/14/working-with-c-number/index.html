@@ -3,7 +3,7 @@
 <head>
     <title>
         
-        hamxiaoz - Gift Exchange 2012
+        hamxiaoz - Working with C#, C++/CLI and Managed C++
         
     </title>
     <meta charset="utf-8" />
@@ -51,33 +51,33 @@
 
     <section class="main">
         <div class="post">
-    <time datetime="2012-12-22" pubdate="">Dec 22, 2012</time>
-    <h1>Gift Exchange 2012</h1>
-    <p>这是我准备的礼物，能猜到是什么么？</p>
+    <time datetime="2013-01-14" pubdate="">Jan 14, 2013</time>
+    <h1>Working with C#, C++/CLI and Managed C++</h1>
+    <p>Recently I spent nearly 2 months working on a windows project mixing different languages such as C#, C++/CLI, Managed C++. Here is what I feel:</p>
 
-<div>
-        <table class="gift">
-            <tr>
-                <td>
-                    <img class="gift" src="/images/blog/gift.png" alt="gift picture">
-                </td>
-                <td>
-                    <p class="gift">
-                    可以开， 可以关， 也可以响<br>
-                    可以救你于危难，也可以防患于未然<br>
-                    可以把你变大，也可以让你变硬<br>
-                    可以天天陪着你 <br>
-                    也可以在角落里等着你<br>
-                    我不是充气苍井空<br>
-                    也不是蓝色小药丸<br>
-                    我有一根管，我是<span class="gift-name">_____</span><br>
-                    <br>
-                    PS: 使用过度，后果自负<br>
-                    </p>
-                </td>
-            </tr>
-        </table>
-</div>
+<ul>
+<li><p>Writing in C# is more fun and efficient (developing time, not execution time). You can use automatic property, anonymous function with lambda expression and LINQ. The code is more concise and expressive.</p></li>
+<li><p>C++/CLI is really great to mix native type and managed type together. But sometimes it takes too much brain energy (or think about) to jump between the two worlds. Also, I don&rsquo;t really like way that the generated UI code is in the same file as the header file, it makes the header file a really mess! Anyway, here are some useful resources/tips I can share:</p>
+
+<ul>
+<li><a href="http://manski.net/2011/04/19/cpp-cli-cheat-sheet/">C++/CLI Cheat Sheet</a></li>
+<li><a href="http://www.amazon.com/CLI-Action-Manning-Nishant-Sivakumar/dp/1932394818">C++/CLI in Action</a></li>
+<li><a href="http://www.ecma-international.org/publications/standards/Ecma-372.htm">Standard ECMA-372: C++/CLI Language Specification</a></li>
+<li>For C# developers, don&rsquo;t forget that you can and you should use C++ Interop instead P/Invoke. It provides better performance.</li>
+</ul>
+</li>
+<li><p>Managed C++: I&rsquo;m really happy Microsoft has deprecated them. It&rsquo;s the predecessor of C++/CLI and has all those weird syntax: __gc, __box and confusing symbols: * for both native and managed type. Coding between it and C++/CLI is really a brain f**k. At a point, I have to convert one project from Managed C++ to C++/CLI to really gets speed up. The conversion process is not as slow as I thought, largely due to the power of VIM (there is a nice Visual Studio extension <a href="http://www.viemu.com/">ViEmu</a>) and some regex magic.</p></li>
+</ul>
+
+
+<p>For new applications, I&rsquo;d suggest the following stack:</p>
+
+<ul>
+<li><p>(If necessary) use C++/CLI to interop with native C++ libraries and provide core functionality for the program.</p></li>
+<li><p>Use C# to code the UI part.</p></li>
+<li><p>Code the application&rsquo;s core part first, make it work <em>without</em> any GUI: it seperates the business logic and makes the code more testable.</p></li>
+<li><p>Use data binding, don&rsquo;t code too much event handler in your GUI.</p></li>
+</ul>
 
 
     <p class="meta">
@@ -85,7 +85,7 @@
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/happy-life/'>happy life</a>
+    <a class='category' href='/blog/categories/dev/'>dev</a>
   
 </span>
 
@@ -94,17 +94,15 @@
     <footer>
     <p class="pagination">
       
-        <a class="prev-a" href="/blog/2012/10/02/zhong-guo-hao-sheng-yin" title="Previous Post: 中国好声音">&laquo; 中国好声音</a>
+        <a class="prev-a" href="/blog/2012/12/22/gift-exchange-2012" title="Previous Post: Gift Exchange 2012">&laquo; Gift Exchange 2012</a>
       
-      
-        <a class="next-a" href="/blog/2013/01/14/working-with-c-number" title="Next Post: Working with C#, C++/CLI and Managed C++">Working with C#, C++/CLI and Managed C++ &raquo;</a>
       
     </p>
     </footer>
     
         <div class="sharing">
             
-            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://hamxiaoz.github.com/blog/2012/12/22/gift-exchange-2012" data-via="" data-counturl="http://hamxiaoz.github.com/blog/2012/12/22/gift-exchange-2012" >Tweet</a>
+            <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://hamxiaoz.github.com/blog/2013/01/14/working-with-c-number" data-via="" data-counturl="http://hamxiaoz.github.com/blog/2013/01/14/working-with-c-number" >Tweet</a>
             <script type="text/javascript">
                 (function(){
                  var twitterWidgets = document.createElement('script');
@@ -141,8 +139,8 @@
         
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://hamxiaoz.github.com/blog/2012/12/22/gift-exchange-2012';
-        var disqus_url = 'http://hamxiaoz.github.com/blog/2012/12/22/gift-exchange-2012';
+        var disqus_identifier = 'http://hamxiaoz.github.com/blog/2013/01/14/working-with-c-number';
+        var disqus_url = 'http://hamxiaoz.github.com/blog/2013/01/14/working-with-c-number';
         var disqus_script = 'embed.js';
         
         (function () {

@@ -4,13 +4,49 @@
  <title>hamxiaoz</title>
  <link href="http://hamxiaoz.com/feed" rel="self"/>
  <link href="http://hamxiaoz.com/"/>
- <updated>2013-01-04T20:21:59-08:00</updated>
+ <updated>2013-01-14T23:16:27-08:00</updated>
  <id>http://hamxiaoz.com/</id>
  <author>
      <name>hamxiaoz</name>
     <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Working with C#, C++/CLI and Managed C++</title>
+   
+     <link href="http://hamxiaoz.com/blog/2013/01/14/working-with-c-number" />
+   
+   <updated>2013-01-14T23:07:00-08:00</updated>
+   <id>http://hamxiaoz.com/blog/2013/01/14/working-with-c-number</id>
+   <content type="html">&lt;p&gt;Recently I spent nearly 2 months working on a windows project mixing different languages such as C#, C++/CLI, Managed C++. Here is what I feel:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Writing in C# is more fun and efficient (developing time, not execution time). You can use automatic property, anonymous function with lambda expression and LINQ. The code is more concise and expressive.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;C++/CLI is really great to mix native type and managed type together. But sometimes it takes too much brain energy (or think about) to jump between the two worlds. Also, I don&amp;rsquo;t really like way that the generated UI code is in the same file as the header file, it makes the header file a really mess! Anyway, here are some useful resources/tips I can share:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://manski.net/2011/04/19/cpp-cli-cheat-sheet/&quot;&gt;C++/CLI Cheat Sheet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.amazon.com/CLI-Action-Manning-Nishant-Sivakumar/dp/1932394818&quot;&gt;C++/CLI in Action&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.ecma-international.org/publications/standards/Ecma-372.htm&quot;&gt;Standard ECMA-372: C++/CLI Language Specification&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;For C# developers, don&amp;rsquo;t forget that you can and you should use C++ Interop instead P/Invoke. It provides better performance.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Managed C++: I&amp;rsquo;m really happy Microsoft has deprecated them. It&amp;rsquo;s the predecessor of C++/CLI and has all those weird syntax: __gc, __box and confusing symbols: * for both native and managed type. Coding between it and C++/CLI is really a brain f**k. At a point, I have to convert one project from Managed C++ to C++/CLI to really gets speed up. The conversion process is not as slow as I thought, largely due to the power of VIM (there is a nice Visual Studio extension &lt;a href=&quot;http://www.viemu.com/&quot;&gt;ViEmu&lt;/a&gt;) and some regex magic.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;For new applications, I&amp;rsquo;d suggest the following stack:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;(If necessary) use C++/CLI to interop with native C++ libraries and provide core functionality for the program.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Use C# to code the UI part.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Code the application&amp;rsquo;s core part first, make it work &lt;em&gt;without&lt;/em&gt; any GUI: it seperates the business logic and makes the code more testable.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Use data binding, don&amp;rsquo;t code too much event handler in your GUI.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Gift Exchange 2012</title>

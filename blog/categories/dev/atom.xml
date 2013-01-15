@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | ]]></title>
   <link href="http://hamxiaoz.github.com/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://hamxiaoz.github.com/"/>
-  <updated>2013-01-04T20:21:59-08:00</updated>
+  <updated>2013-01-14T23:16:27-08:00</updated>
   <id>http://hamxiaoz.github.com/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Working with C#, C++/CLI and Managed C++]]></title>
+    <link href="http://hamxiaoz.github.com/blog/2013/01/14/working-with-c-number"/>
+    <updated>2013-01-14T23:07:00-08:00</updated>
+    <id>http://hamxiaoz.github.com/blog/2013/01/14/working-with-c-number</id>
+    <content type="html"><![CDATA[<p>Recently I spent nearly 2 months working on a windows project mixing different languages such as C#, C++/CLI, Managed C++. Here is what I feel:</p>
+
+<ul>
+<li><p>Writing in C# is more fun and efficient (developing time, not execution time). You can use automatic property, anonymous function with lambda expression and LINQ. The code is more concise and expressive.</p></li>
+<li><p>C++/CLI is really great to mix native type and managed type together. But sometimes it takes too much brain energy (or think about) to jump between the two worlds. Also, I don&rsquo;t really like way that the generated UI code is in the same file as the header file, it makes the header file a really mess! Anyway, here are some useful resources/tips I can share:</p>
+
+<ul>
+<li><a href="http://manski.net/2011/04/19/cpp-cli-cheat-sheet/">C++/CLI Cheat Sheet</a></li>
+<li><a href="http://www.amazon.com/CLI-Action-Manning-Nishant-Sivakumar/dp/1932394818">C++/CLI in Action</a></li>
+<li><a href="http://www.ecma-international.org/publications/standards/Ecma-372.htm">Standard ECMA-372: C++/CLI Language Specification</a></li>
+<li>For C# developers, don&rsquo;t forget that you can and you should use C++ Interop instead P/Invoke. It provides better performance.</li>
+</ul>
+</li>
+<li><p>Managed C++: I&rsquo;m really happy Microsoft has deprecated them. It&rsquo;s the predecessor of C++/CLI and has all those weird syntax: __gc, __box and confusing symbols: * for both native and managed type. Coding between it and C++/CLI is really a brain f**k. At a point, I have to convert one project from Managed C++ to C++/CLI to really gets speed up. The conversion process is not as slow as I thought, largely due to the power of VIM (there is a nice Visual Studio extension <a href="http://www.viemu.com/">ViEmu</a>) and some regex magic.</p></li>
+</ul>
+
+
+<p>For new applications, I&rsquo;d suggest the following stack:</p>
+
+<ul>
+<li><p>(If necessary) use C++/CLI to interop with native C++ libraries and provide core functionality for the program.</p></li>
+<li><p>Use C# to code the UI part.</p></li>
+<li><p>Code the application&rsquo;s core part first, make it work <em>without</em> any GUI: it seperates the business logic and makes the code more testable.</p></li>
+<li><p>Use data binding, don&rsquo;t code too much event handler in your GUI.</p></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Solution for LNK2028 & LNK2019 in C++/CLI projects]]></title>
