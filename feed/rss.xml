@@ -4,13 +4,42 @@
  <title>hamxiaoz</title>
  <link href="http://hamxiaoz.com/feed" rel="self"/>
  <link href="http://hamxiaoz.com/"/>
- <updated>2013-01-14T23:16:27-08:00</updated>
+ <updated>2013-01-16T22:01:11-08:00</updated>
  <id>http://hamxiaoz.com/</id>
  <author>
      <name>hamxiaoz</name>
     <email></email>
  </author>
 
+ 
+ <entry>
+   <title>The Joy of Coding</title>
+   
+     <link href="http://hamxiaoz.com/blog/2013/01/16/the-joy-of-coding" />
+   
+   <updated>2013-01-16T21:44:00-08:00</updated>
+   <id>http://hamxiaoz.com/blog/2013/01/16/the-joy-of-coding</id>
+   <content type="html">&lt;p&gt;So you had a project.&lt;/p&gt;
+
+&lt;p&gt;You scratched your head a couple of days and came up a really nice and robust design.&lt;/p&gt;
+
+&lt;p&gt;&amp;ldquo;The design solves the problems now and it should be able to handle future changes.&amp;rdquo; You thought that.&lt;/p&gt;
+
+&lt;p&gt;You finished the project, it worked and everyone was happy.&lt;/p&gt;
+
+&lt;p&gt;Two years later, the &amp;lsquo;future&amp;rsquo; has came.&lt;/p&gt;
+
+&lt;p&gt;Now you have a new requirement, and you find out that the thing that your code relies on is changed.&lt;/p&gt;
+
+&lt;p&gt;Will it break your code?&lt;/p&gt;
+
+&lt;p&gt;It turns out the code you wrote can handle the new requirement, with very little changes.&lt;/p&gt;
+
+&lt;p&gt;You &amp;lsquo;saved&amp;rsquo; the future.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s the joy of coding.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Working with C#, C++/CLI and Managed C++</title>

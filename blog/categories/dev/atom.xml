@@ -4,7 +4,7 @@
   <title><![CDATA[Category: dev | ]]></title>
   <link href="http://hamxiaoz.github.com/blog/categories/dev/atom.xml" rel="self"/>
   <link href="http://hamxiaoz.github.com/"/>
-  <updated>2013-01-14T23:16:27-08:00</updated>
+  <updated>2013-01-16T22:01:11-08:00</updated>
   <id>http://hamxiaoz.github.com/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The Joy of Coding]]></title>
+    <link href="http://hamxiaoz.github.com/blog/2013/01/16/the-joy-of-coding"/>
+    <updated>2013-01-16T21:44:00-08:00</updated>
+    <id>http://hamxiaoz.github.com/blog/2013/01/16/the-joy-of-coding</id>
+    <content type="html"><![CDATA[<p>So you had a project.</p>
+
+<p>You scratched your head a couple of days and came up a really nice and robust design.</p>
+
+<p>&ldquo;The design solves the problems now and it should be able to handle future changes.&rdquo; You thought that.</p>
+
+<p>You finished the project, it worked and everyone was happy.</p>
+
+<p>Two years later, the &lsquo;future&rsquo; has came.</p>
+
+<p>Now you have a new requirement, and you find out that the thing that your code relies on is changed.</p>
+
+<p>Will it break your code?</p>
+
+<p>It turns out the code you wrote can handle the new requirement, with very little changes.</p>
+
+<p>You &lsquo;saved&rsquo; the future.</p>
+
+<p>That&rsquo;s the joy of coding.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Working with C#, C++/CLI and Managed C++]]></title>
@@ -214,15 +241,6 @@ alert(<span>"done, time to hit submit."</span>);&#13;
 
 
 <p></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[<p>Windows 8, I'm coming!</p>]]></title>
-    <link href="http://hamxiaoz.github.com/blog/2011/09/13/windows-8-im-coming"/>
-    <updated>2011-09-13T18:45:12-07:00</updated>
-    <id>http://hamxiaoz.github.com/blog/2011/09/13/windows-8-im-coming</id>
-    <content type="html"><![CDATA[<p><img src="http://25.media.tumblr.com/tumblr_lrhovchfN01r2leoqo1_1280.png" alt="&lt;p&gt;Windows 8, I'm coming!&lt;/p&gt; " /></p>
 ]]></content>
   </entry>
   
