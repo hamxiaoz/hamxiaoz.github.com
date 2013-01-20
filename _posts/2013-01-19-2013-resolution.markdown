@@ -1,0 +1,26 @@
+---
+layout: post
+title: "2013 Resolution"
+date: 2013-01-19 22:42
+comments: true
+categories: [feelings]
+---
+I guess it's not too late for 2013, so here are my 2013 resolution and principles:
+
+- **Read books, not news**.  
+    "The news media are, for the most part, the bringers of bad news", and bad news is negative.
+
+- **Build things**.  
+    Hack and make.
+
+- **Stay fit**.  
+    Trying to be a <u>brogrammer</u>.
+
+- **Stay ~~late~~**.  
+    No one thinks waking up too early is bad, but everyone suggests not staying up too late.
+
+- **Better at English**.  
+    Improve the ability to communicate.
+
+- **Learn singing**.  
+    Why not?
