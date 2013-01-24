@@ -4,13 +4,44 @@
  <title>hamxiaoz</title>
  <link href="http://hamxiaoz.com/feed" rel="self"/>
  <link href="http://hamxiaoz.com/"/>
- <updated>2013-01-20T00:06:41-08:00</updated>
+ <updated>2013-01-23T21:21:02-08:00</updated>
  <id>http://hamxiaoz.com/</id>
  <author>
      <name>hamxiaoz</name>
     <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Stand Out - Make Emails Readable</title>
+   
+     <link href="http://hamxiaoz.com/blog/2013/01/23/stand-out-make-emails-readable" />
+   
+   <updated>2013-01-23T20:32:00-08:00</updated>
+   <id>http://hamxiaoz.com/blog/2013/01/23/stand-out-make-emails-readable</id>
+   <content type="html">&lt;p&gt;You must have received emails like this, can you quickly find out what&amp;rsquo;s the latest reply here?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/blog/StandOut-before.png&quot; alt=&quot;email text before stand out&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;I cannot read it. So I build a little tool to help me.&lt;/p&gt;
+
+&lt;p&gt;Enter &lt;a href=&quot;http://hamxiaoz.com/StandOut/&quot; target=&quot;_blank&quot;&gt;&amp;ldquo;Stand Out&amp;rdquo;&lt;/a&gt;, a web app to make the important information stands out in the email.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s really easy to use: just paste the email content into the &amp;ldquo;input&amp;rdquo; box and you get a nice result on the right.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/blog/StandOut-after.png&quot; alt=&quot;email text before stand out&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;Why building such an &amp;ldquo;useless&amp;rdquo; thing?&lt;/p&gt;
+
+&lt;p&gt;On the other day I was receiving with emails flooded with &amp;ldquo;&gt;&quot;s and &amp;rdquo;&gt;&gt;&amp;ldquo;s. It was a long discussion and people are replying each other. Normally Outlook handles the format nicely if everyone is using the same email format, but it fails when participants use different email formats: such as pure text and rich format text. The email server automatically generates &amp;rdquo;&gt;&amp;ldquo;s and &amp;rdquo;&gt;&gt;&amp;ldquo;s to distinguish old and new replies, but unfortunately the result is not really human readable.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;I believe computers/programs should make Haman&amp;rsquo;s life easier.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;So I made this.&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s also interesting to mention that there are other computer programs (like &lt;a href=&quot;http://www.dsoft.com.tr/stripmail/&quot; target=&quot;_blank&quot;&gt;StripMail&lt;/a&gt;) doing this. But it&amp;rsquo;s 2013 now, who wants to download and install an exe?&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>2013 Resolution</title>
