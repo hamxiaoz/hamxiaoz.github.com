@@ -1,0 +1,13 @@
+---
+layout: post
+title: "2013 V. Day Gift"
+date: 2013-02-13 20:51
+comments: true
+categories: [happy life]
+---
+Poor man's Valentine's day gift for my wife.  
+
+See it <a href="http://hamxiaoz.com/2013VDayGift/" target="_blank">here</a>  
+
+Made with JQeury, RMagick and love.  
+Inspired by a <a href="/images/blog/nissan-poster.jpg" target="_blank">Nissan dealer poster</a> :)
