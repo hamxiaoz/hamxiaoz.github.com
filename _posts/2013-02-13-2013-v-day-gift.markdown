@@ -9,5 +9,5 @@ Poor man's Valentine's day gift for my wife.
 
 See it <a href="http://hamxiaoz.com/2013VDayGift/" target="_blank">here</a>  
 
-Made with JQeury, RMagick and love.  
+Made with JQuery, RMagick and love.  
 Inspired by a <a href="/images/blog/nissan-poster.jpg" target="_blank">Nissan dealer poster</a> :)
