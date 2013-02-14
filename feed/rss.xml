@@ -4,13 +4,29 @@
  <title>hamxiaoz</title>
  <link href="http://hamxiaoz.com/feed" rel="self"/>
  <link href="http://hamxiaoz.com/"/>
- <updated>2013-01-23T21:21:02-08:00</updated>
+ <updated>2013-02-13T21:24:00-08:00</updated>
  <id>http://hamxiaoz.com/</id>
  <author>
      <name>hamxiaoz</name>
     <email></email>
  </author>
 
+ 
+ <entry>
+   <title>2013 V. Day Gift</title>
+   
+     <link href="http://hamxiaoz.com/blog/2013/02/13/2013-v-day-gift" />
+   
+   <updated>2013-02-13T20:51:00-08:00</updated>
+   <id>http://hamxiaoz.com/blog/2013/02/13/2013-v-day-gift</id>
+   <content type="html">&lt;p&gt;Poor man&amp;rsquo;s Valentine&amp;rsquo;s day gift for my wife.&lt;/p&gt;
+
+&lt;p&gt;See it &lt;a href=&quot;http://hamxiaoz.com/2013VDayGift/&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Made with JQeury, RMagick and love.&lt;br/&gt;
+Inspired by a &lt;a href=&quot;/images/blog/nissan-poster.jpg&quot; target=&quot;_blank&quot;&gt;Nissan dealer poster&lt;/a&gt; :)&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Stand Out - Make Emails Readable</title>
