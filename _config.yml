@@ -14,12 +14,10 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: zurassic
-email: your-email@domain.com
+email: andrew@zurassic.com
 description: Andrew Zheng's personal website
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-# twitter_username: jekyllrb
-# github_username:  jekyll
 
 # Markdown settings: http://kramdown.gettalong.org/parser/gfm.html
 markdown: kramdown
@@ -35,7 +33,6 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - TODO.md
-
 
 # http://jekyllrb.com/docs/configuration/
 defaults:
