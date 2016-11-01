@@ -1,0 +1,98 @@
+---
+layout: default
+park_link: /park
+---
+
+<div class="ui grid hero">
+  <div class="sixteen wide mobile ten wide tablet ten wide computer column">
+    <div class="description">
+      <h3 class="ui header hello">Hello, I'm Andrew Zheng</h3>
+      <p>I like to solve problems, often this involves <strong>software</strong> and <strong> UX design</strong>.</p>
+      <p>I have a passion for crafting beautiful products, </p>
+      <p>I strive for
+        <span class="simplicity"
+              data-position="bottom left"
+              data-tooltip="&quot;Simplicity is the ultimate sophistication.&quot; - Leonardo da Vinci"
+              data-inverted="" "">
+          simplicity
+        </span>, and
+      </p>
+      <p><code class="code-gu">I.enjoy((idea)=&gt; product);</code></p>
+    </div>
+  </div>
+  <div class="sixteen wide mobile six wide tablet six wide computer column">
+    <img class="ui image" src="/assets/images/hero.png">
+    <div class="stamp">
+      {% include contact.html %}
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h4 class="ui tiny header" id="portfolio">Portfolio
+    <a class="ui small label" href="/portfolio">{{ site.data.portfolio | size }}</a>
+  </h4>
+  <div class="ui four stackable cards">
+    {% assign portfolio_cards = site.data.portfolio | where:"display": "card" %}
+    {% assign portfolio_lists = site.data.portfolio | where:"display": "list" %}
+
+    {% for portfolio in portfolio_cards %}
+      {% include image-card.html data=portfolio %}
+    {% endfor %}
+
+    {% include list-card.html list=portfolio_lists more_link="/portfolio" %}
+  </div>
+</div>
+
+<div class="section">
+  <h4 class="ui tiny header" id="projects">
+    Projects
+    <a class="ui small label" href="/projects">{{ site.data.projects | size }}</a>
+  </h4>
+  <div class="ui four stackable cards">
+    {% assign project_cards = site.data.projects | where:"display": "card" %}
+    {% assign project_lists = site.data.projects | where:"display": "list" %}
+
+    {% for project in project_cards %}
+      {% include image-card.html data=project %}
+    {% endfor %}
+
+    {% include list-card.html list=project_lists more_link="/projects" %}
+  </div>
+</div>
+
+<div class="section">
+  <h4 class="ui tiny header" id="io">
+    I/O
+  </h4>
+  <div class="ui four stackable cards">
+    {% include image-card.html data=site.data.card-book %}
+    {% include list-card.html
+       list=site.data.medium
+       title_link="https://medium.com/@hamxiaoz"
+       title="English Writings on Medium"
+       meta="<i class='medium icon'></i>"
+    %}
+    {% include image-card.html data=site.data.card-blog %}
+    <!--{% include dummy-text-card.html title="shang wu" %}-->
+    {% include image-card.html data=site.data.card-photography %}
+  </div>
+</div>
+
+<div class="section">
+  <h4 class="ui tiny header" id="quotes">
+    Quotes I Like
+  </h4>
+  <div class="ui one stackable cards">
+    {% include quote-card.html data=site.data.quotes.first %}
+  </div>
+</div>
+
+<div class="section">
+  <h4 class="ui tiny header" id="omt">
+    One More Thing
+  </h4>
+  <div class="ui center aligned row">
+    <quote>"Can you find any hidden pages on my site?"</quote>
+  </div>
+</div>

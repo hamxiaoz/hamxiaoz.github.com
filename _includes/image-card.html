@@ -1,0 +1,18 @@
+<a class="ui card" href="{{ include.data.link }}">
+  <div class="ui image">
+    {% if include.data.image %}
+      <img src="{{ include.data.image }}">
+    {% else %}
+      <img src="{{ site.data.cloud | sample}}">
+    {% endif %}
+  </div>
+  <div class="center aligned content">
+    <div class="ui tiny header">{{ include.data.title }}</div>
+    <div class="meta">{{ include.data.meta }}</div>
+  </div>
+  {% if include.data.tags %}
+    <div class="extra content">
+      <span class="date">{{ include.data.tags | inspect }}</span>
+    </div>
+  {% endif %}
+</a>

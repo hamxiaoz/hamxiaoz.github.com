@@ -1,0 +1,215 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+// Our variables
+// $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+// $base-font-size:   16px;
+// $base-font-weight: 400;
+// $small-font-size:  $base-font-size * 0.875;
+// $base-line-height: 1.5;
+
+// $spacing-unit:     30px;
+
+// $text-color:       #111;
+// $background-color: #fdfdfd;
+// $brand-color:      #2a7ae2;
+
+// $grey-color:       #828282;
+// $grey-color-light: lighten($grey-color, 40%);
+// $grey-color-dark:  darken($grey-color, 25%);
+
+// // Width of the content area
+// $content-width:    800px;
+
+// $on-palm:          600px;
+// $on-laptop:        800px;
+
+// Minima also includes a mixin for defining media queries.
+// Use media queries like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+
+// Import partials from the `minima` theme.
+// @import "minima";
+
+$bg-color: #f5f5f5;
+$nav-height: 50px;
+
+$background-gray: #fefefe;
+$gray: #777;
+$gray2: #999;
+$black: #343434;
+$black2: #212121;
+
+$canvas-color: #F5F4F0;
+$canvas-shadow: #D4D4D5;
+$china-red: #882A1B;
+$china-red-darker:#6A1D0A;
+$china-red-light: rgba(147, 34, 16, 0.67);
+$china-brown: rgba(216, 187, 148, 0.47);
+
+
+/* Faded out hr */
+hr.soften {
+  height: 1px;
+  // margin: 30px 0;
+  background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+  border: 0;
+}
+
+// Customization
+
+body {
+  background-color: $bg-color;
+  color: $gray;
+}
+
+header {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  min-height: 2em;
+}
+
+footer {
+  margin-top: 3em;
+}
+
+// override a
+a {
+  color: $china-red-light;
+
+  &:hover {
+    color: $china-red;
+  }
+}
+
+.ui.card>.extra a:not(.ui):hover, .ui.cards>.card>.extra a:not(.ui):hover {
+  color: $china-red;
+}
+
+.ui.card>.content>a.header:hover, .ui.cards>.card>.content>a.header:hover {
+  color: $china-red;
+}
+
+.section {
+  padding-top: 5em;
+
+  > .header {
+    margin-bottom: 2em;
+  }
+
+}
+
+.hero {
+  background-color: $canvas-color;
+  padding-bottom: 3em;
+  box-shadow: 1px 6px 19px 4px $canvas-shadow;
+  -moz-box-shadow: 1px 6px 19px 4px $canvas-shadow;
+  box-shadow: 1px 6px 19px 4px $canvas-shadow;
+
+  // Offset on larger screen than tablet
+  @media only screen and (min-width: 768px) {
+    .description {
+      position: absolute;
+      left: 4em;
+      bottom: 4em;
+
+      .hello {
+        margin-bottom: 2em;
+      }
+    }
+  }
+}
+
+.canvas {
+  background-color: $canvas-color !important;
+}
+
+.stamp {
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+}
+
+.simplicity {
+  text-decoration: underline;
+}
+
+.code-gu {
+  color: $china-red;
+  background-color: $china-brown;
+}
+
+.small.logo {
+  max-height: 28px;
+}
+
+.large.logo {
+  max-height: 36px;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.notification {
+  margin-bottom: 2em;
+}
+
+.small {
+  font-size: 0.85em;
+
+  i.icon {
+    font-size: 0.85em;
+  }
+}
+
+.hidden.icon {
+  color: $bg-color !important;
+}
+
+i.china-red-light.icon {
+  color: $china-red-light !important;
+
+  &:hover {
+    z-index: 5;
+    -webkit-transform: translateX(3px);
+    -ms-transform: translateX(3px);
+    transform: translateX(3px);
+  }
+}
+
+// Blog post
+.post-content {
+  img {
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Dotted hr */
+  hr {
+    margin: 2em 0;
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+  }
+}
+
+.category-intro {
+  margin-top: 3em;
+}

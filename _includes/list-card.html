@@ -1,0 +1,23 @@
+<div class="ui card">
+  <div class="content canvas">
+    <ul class="ui list">
+      {% for data in include.list limit: 4 %}
+        <li>
+          <div class="ui tiny header">
+            <a href="{{ data.link }}">{{ data.title }}</a>
+            <div class="meta sub header">{{ data.meta }}</div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="extra content center aligned">
+    {% if include.title %}
+      <a class="ui tiny header" href="{{ include.title_link }}"> {{ include.title }}</a>
+      <div class="meta">{{ include.meta }}</div>
+    {% endif %}
+    {% if include.more_link %}
+      <a href="{{ include.more_link }}"> {{ include.more_text | default: "More..." }}</a>
+    {% endif %}
+  </div>
+</div>

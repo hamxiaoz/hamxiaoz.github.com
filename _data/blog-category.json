@@ -1,0 +1,21 @@
+{
+  "蓝人女王传": {
+    "click": "更多故事请猛击",
+    "description": "这是一个喜欢蓝色的(湖)蓝人和一个王姓奇女子的故事.",
+    "id": "lrnwz",
+    "link": "/blog#lrnwz"
+  },
+  "ùzhi青年": {
+    "click": "更多故事请慎点",
+    "description": "这是一个ùzhi青年在探索和学习的故事. '<em>I know nothing</em>', that’s what he said.",
+    "id": "u4zhiqn",
+    "link": "/blog#u4zhiqn"
+  },
+  "Gift Exchange": {
+    "click": "历年Gift Exchange请往这里看",
+    "description": "你猜你猜你猜猜猜",
+    "id": "giftexchange",
+    "link": "/blog#giftexchange"
+  }
+
+}

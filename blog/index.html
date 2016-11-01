@@ -1,0 +1,68 @@
+---
+layout: default
+page_title: Blog
+close_to_link: /
+---
+
+<div class="ui container">
+
+  <div class="ui fluid image">
+    <a class="ui right corner label" href="{{ "/feed.xml" | relative_url }}">
+      <i class="rss icon"></i>
+    </a>
+    <img src="/assets/images/blog-cover.png">
+  </div>
+
+  <div class="section">
+    <h4 class="ui tiny header" id="recent">
+      Recent
+    </h4>
+    <div class="ui three column grid">
+      {% for post in site.posts limit: 6 %}
+        <div class="column">
+          {% include post-link.html post=post %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% for category in site.data.blog-category %}
+    {% assign category_name = category[0] %}
+    {% assign category_data = category[1] %}
+    <div class="section">
+      <h4 class="ui tiny header" id="{{ category_data.id }}">
+        {{ category_name }}
+        <span class="ui small label">{{ category_data.description }}</span>
+      </h4>
+      <div class="ui three column grid">
+        {% for post in site.posts %}
+          {% if post.category == category_name %}
+            <div class="column">
+              {% include post-link.html post=post %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+
+  <h4 class="ui disabled horizontal divider header">
+    All
+  </h4>
+
+  <div class="ui three column grid">
+    {% for post in site.posts %}
+      {% capture this_year %}{{ post.date | date: "%Y" }}{% endcapture %}
+      {% unless year == this_year %}
+        {% assign year = this_year %}
+        <h4 class="ui tiny header sixteen wide column" id="{{ year }}">
+          {{ year }}
+        </h4>
+      {% endunless %}
+      <div class="column">
+        {% include post-link.html post=post %}
+      </div>
+    {% endfor %}
+  </div>
+
+</div>

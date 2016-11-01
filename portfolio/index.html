@@ -1,0 +1,17 @@
+---
+layout: default
+page_title: Portfolio
+close_to_link: /#portfolio
+---
+
+<div class="ui center aligned notification container">
+
+  <div class="ui label">More to come. Stay thirsty, my friends.</div>
+
+</div>
+
+<div class="ui four stackable cards">
+  {% for portfolio in site.data.portfolio %}
+    {% include image-card.html data=portfolio %}
+  {% endfor %}
+</div>

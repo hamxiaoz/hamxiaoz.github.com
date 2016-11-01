@@ -1,0 +1,18 @@
+<header class="ui container center aligned">
+  {% unless page.hide_logo %}
+    <a href="{{ page.logo_link }}" class="float-left">
+      <img class="small logo" src="{{ page.logo_image }}"/>
+    </a>
+  {% endunless %}
+  <span class="ui header">{{ page.page_title }}</span>
+  <span class="float-right">
+    {% if page.close_to_link %}
+      <a href="{{ page.close_to_link }}"><i class="large close icon"></i></a>
+    {% endif %}
+
+    {% if page.park_link %}
+      <a href="{{ page.park_link }}"><i class="large hidden grid layout icon"></i></a>
+    {% endif %}
+    <a href="/test" class="right floated">test</a>
+  </span>
+</header>

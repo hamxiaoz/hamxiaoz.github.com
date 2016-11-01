@@ -1,0 +1,70 @@
+---
+layout: post
+title: 2014 Gift Exchange
+category: "Gift Exchange"
+close_to_link: /blog#giftexchange
+---
+
+每年圣诞前夕, 我们一群朋友都会玩White Elephant. 规则就是每人准备一个礼物, 然后大家在不知情的情况下挑选, 随后每个礼物还有3次被换的机会. 这个游戏好玩之处就在于没拆包装之前, 你是真心不知道礼物是什么, 包装特别大的礼物可能很差; 没人想要开的礼物可能很好.
+
+我每年都会为自己准备的礼物, 做一个简短的介绍.
+
+今年的礼物介绍, 是一个视频:
+
+<iframe id="youku" style="width: 96%;" src="http://cache.tv.qq.com/qqplayerout.swf?vid=u0177wn2t86" width="640" height="360" allowfullscreen="allowfullscreen"></iframe>
+
+看不见的点这里: 
+
+[http://v.qq.com/page/u/8/6/u0177wn2t86.html](http://v.qq.com/page/u/8/6/u0177wn2t86.html)
+
+
+
+
+答案请往下翻300页
+
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓  
+↓ 
+
+
+答案就是一张Xbox Live**包年**卡 + 一本叫做"被爱的感觉"的漫画.
+
+![](https://s3-us-west-1.amazonaws.com/blog.zurassic.com/2016/Feb/xbox-1454795564736.jpg)
+![](https://s3-us-west-1.amazonaws.com/blog.zurassic.com/2016/Feb/being_loved-1454795569128.jpeg)
+
+别问我, 我也没看过那本. 少女系漫画我只看过"尼罗河的女儿", 而且还只是一册而已.
+
+感谢老婆和女儿声优支持. 小女才4个月不到, 每天除了吃,睡,就是哭. 开头的哭声就是她的.
+
+视频致敬了今年最爱看的网剧: "万万没想到". 我特别喜欢它每集前面的广告, 简短有力, 这才是广告应有的形式.
+

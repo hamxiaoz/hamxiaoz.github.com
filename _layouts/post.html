@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <!-- full width header  -->
+
+  <div class="ui text container">
+
+    <div class="center aligned ui header">
+      <h1 itemprop="name headline">{{ page.title | escape }}</h1>
+      <div class="sub header">
+        <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%F" }}</time>
+      </div>
+    </div>
+
+    <div class="post-content" itemprop="articleBody">
+      {{ content }}
+    </div>
+
+    {% if page.category %}
+      {% assign category_name = page.category %}
+      {% assign category = site.data.blog-category[category_name] %}
+      {% if category %}
+        <div class="center aligned ui text container category-intro">
+          <h4 class="ui horizontal divider disabled header">{{ category.click }}</h4>
+          <a href="{{ category.link }}">{{ category_name }}</a>
+          <p>{{ category.description }}</p>
+        </div>
+      {% endif %}
+    {% endif %}
+
+    {% if site.disqus.shortname %}
+      {% include disqus_comments.html %}
+    {% endif %}
+  </div>
+</article>
