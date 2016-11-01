@@ -11,7 +11,7 @@ Why I choose Jawbone Up over Nike Fuelband and Fitbit Flex?
 
 - I want a sleep tracker. Both Jawbone Up and Fitbit Flex have a tie in the second round.
 
-- I want an vibrating alarm so when I get up [early](http://hamxiaoz.com/blog/2013/01/19/2013-resolution/) I won't wake up my beloved one. They both have it. Still deciding...
+- I want an vibrating alarm so when I get up [early](http://hamxiaoz.github.io/blog/2013-resolution/) I won't wake up my beloved one. They both have it. Still deciding...
 
 - I want an idle alarm so I get notified if I sit for too long. Also, it's nice to use it as ['pomodoro'](http://www.pomodorotechnique.comments/) timer (I set it to 45 minutes at work). Now the winer is:
 

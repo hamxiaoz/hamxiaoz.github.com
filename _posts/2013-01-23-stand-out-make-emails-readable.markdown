@@ -11,7 +11,7 @@ You must have received emails like this, can you quickly find out what's the lat
 
 I cannot read it. So I build a little tool to help me. 
 
-Enter <a href="http://hamxiaoz.com/StandOut/" target="_blank">"Stand Out"</a>, a web app to make the important information stands out in the email.  
+Enter <a href="http://hamxiaoz.github.io/StandOut/" target="_blank">"Stand Out"</a>, a web app to make the important information stands out in the email.  
 
 It's really easy to use: just paste the email content into the "input" box and you get a nice result on the right.  
 
