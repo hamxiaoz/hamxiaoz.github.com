@@ -54,9 +54,6 @@ Posts:
   {% endfor %}
 </ul>
 
-<a href="{% link _posts/2016-10-21-welcome-to-jekyll.md %}">Post</a>
-<a href="{% post_url  2016-10-21-welcome-to-jekyll %}">Post</a>
-
 You can find the source code for the Jekyll new theme at:
 {% include icon-github.html username="jekyll" %} /
 [minima](https://github.com/jekyll/minima)
