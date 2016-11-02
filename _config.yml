@@ -18,6 +18,7 @@ email: andrew@zurassic.com
 description: Andrew Zheng's personal website
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+google_analytics: UA-69462353-1
 
 # Markdown settings: http://kramdown.gettalong.org/parser/gfm.html
 markdown: kramdown
