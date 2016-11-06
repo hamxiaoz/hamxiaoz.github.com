@@ -218,13 +218,11 @@ blockquote {
   box-sizing: border-box;
   margin: 1.75em 0 1.75em -2.2em;
   padding: 0 0 0 1.75em;
-  border-left: #4A4A4A 0.4em solid;
 
+  border-left: #4A4A4A 0.4em solid;
   &.alt {
     border-left: #f2711c 0.4em solid;
   }
 
-  p {
-    font-style: italic;
-  }
+  font-style: italic;
 }
