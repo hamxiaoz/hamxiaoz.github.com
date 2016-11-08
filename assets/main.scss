@@ -230,3 +230,22 @@ blockquote {
 
   font-style: italic;
 }
+
+.quote-container {
+  padding: 6em 0 6em 0 !important;
+
+  transition:all 0.3s ease;
+  &.loading {
+    transform: scale(0.1);
+  }
+
+  .quote-text {
+    quotes: """ """ "'" "'";
+    &:before {
+      content: open-quote;
+    }
+    &:after {
+      content: close-quote;
+    }
+  }
+}

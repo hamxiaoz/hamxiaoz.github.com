@@ -1,0 +1,67 @@
+<div class="ui card">
+  <div class="center aligned content canvas">
+    <div class="ui middle aligned grid quote-container">
+      <div class="row">
+        <div class="column">
+          <div class="ui small header quote-text">{{ include.data.text }}</div>
+          <div class="meta quote-author">{{ include.data.author }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--{% if include.data.links or include.data.thoughts %}
+    <div class="content">
+      <div>{{ include.data.thoughts }}</div>
+      {% if include.data.links %}
+        <ul class="ui list">
+          {% for data in include.data.links %}
+            <li>
+              <div class="ui tiny header">
+                <a href="{{ data.link }}">{{ data.title }}</a>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  {% endif %}-->
+  <div class="ui bottom attached basic button random-quote">
+    <i class="refresh icon"></i>
+  </div>
+</div>
+<script>
+function setLoading(loading) {
+  if (loading) {
+    $('.random-quote, .quote-container').addClass('loading');
+  } else {
+    $('.random-quote, .quote-container').removeClass('loading');
+  }
+}
+function randomQuote() {
+  setLoading(true);
+
+  var id = parseInt($('.quote-container').attr('data-quote-id'));
+  console.log(id);
+  $.getJSON('assets/data/quotes.json', function(quotes) {
+    function getIndex() {
+      return Math.floor(Math.random() * quotes.length);
+    }
+    var i = getIndex();
+    console.log(i);
+    console.log(id === i);
+    while(id === i) {
+      console.log('same');
+      i = getIndex();
+    }
+
+    var quote = quotes[i];
+    $('.quote-container').attr('data-quote-id', i);
+    $('.quote-text').text(quote.text);
+    $('.quote-author').text(quote.author);
+
+    setTimeout(setLoading.bind(null, false), 500);
+  });
+}
+$('.random-quote').on('click', randomQuote);
+$(document).ready(randomQuote);
+</script>
