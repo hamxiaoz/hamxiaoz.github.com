@@ -41,16 +41,12 @@ function randomQuote() {
   setLoading(true);
 
   var id = parseInt($('.quote-container').attr('data-quote-id'));
-  console.log(id);
   $.getJSON('assets/data/quotes.json', function(quotes) {
     function getIndex() {
       return Math.floor(Math.random() * quotes.length);
     }
     var i = getIndex();
-    console.log(i);
-    console.log(id === i);
     while(id === i) {
-      console.log('same');
       i = getIndex();
     }
 
