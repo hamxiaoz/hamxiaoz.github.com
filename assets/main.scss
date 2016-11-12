@@ -130,6 +130,10 @@ a {
   float: right;
 }
 
+.center-text {
+  text-align: center;
+}
+
 .notification {
   margin-bottom: 2em;
 }
@@ -215,5 +219,24 @@ blockquote {
     &:after {
       content: close-quote;
     }
+  }
+}
+
+/* ann */
+.ann {
+  .page-header-container {
+    margin-bottom: 3em;
+  }
+  
+  .vote-header {
+    color: white;
+    position: absolute;
+    top: 18%;
+    @media only screen and (max-width: 768px) {
+      top: 12%;
+    }
+    left: 50%;
+    white-space: nowrap;
+    transform: translate(-50%, -20%)
   }
 }

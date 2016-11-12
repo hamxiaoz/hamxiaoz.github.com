@@ -7,34 +7,7 @@ park_link: /park
 
 <div class="ui three stackable cards">
 
-  <div class="ui centered link card">
-    <div class="image">
-      <img src="/assets/images/ann/firstyear-preview.jpg">
-    </div>
-    <div class="center aligned content">
-      <a class="ui header">2015年度最佳新人影像奖</a>
-      <div class="meta">
-        "等你来投票哦"
-      </div>
-    </div>
-    <div class="extra content">
-      <span class="date">2015/08/15</span>
-    </div>
-  </div>
-
-  <div class="ui centered link card">
-    <div class="image">
-      <img src="/assets/images/ann/origami-preview.png">
-    </div>
-    <div class="center aligned content">
-      <a class="ui header">大同小异带安安</a>
-      <div class="meta">
-        A photo experiment
-      </div>
-    </div>
-    <div class="extra content">
-      <span class="date">2014/10/12</span>
-    </div>
-  </div>
-
+  {% include image-card.html data=site.data.card-ann-vote-2015 %}
+  {% include image-card.html data=site.data.card-ann-origami %}
+  
 </div>

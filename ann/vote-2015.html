@@ -1,0 +1,78 @@
+---
+layout: default
+logo_link: /ann
+logo_image: /assets/images/ann.png
+close_to_link: /ann
+---
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nanogallery/5.10.3/css/themes/light/nanogallery_light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nanogallery/5.10.3/jquery.nanogallery.min.js"></script>
+<script>
+$(document).ready(function () {
+  var items = [];
+  function getPictures(items, prefix, title) {
+    for(var i = 1; i <= 12; i++) {
+      items.push({
+        src: prefix + i +'.jpg',
+        srct: prefix + i + '-thumbnail.jpg',
+        title: title + i
+      });
+    }
+  }
+  getPictures(items, 'G', "Mom's choice ");
+  getPictures(items, 'Z', "Dad's choice ");
+  $("#nanoGallery3").nanoGallery({
+    itemsBaseURL: 'https://s3-us-west-1.amazonaws.com/blog.zurassic.com/ann/vote-2015',
+    items: items,
+
+    colorScheme: 'none',
+    theme: 'light',
+
+    thumbnailWidth: 'auto',
+    thumbnailHeight: 200,
+    thumbnailHoverEffect: 'borderLighter,imageScaleIn80',
+    thumbnailGutterWidth: 0,
+    thumbnailGutterHeight: 0,
+    thumbnailLabel: {
+      display: false
+    },
+    viewerToolbar: {
+      autoMinimize: 1920 // minimized toolbar if view width is smaller than this value
+    }
+  });
+});
+</script>
+
+<div class="ann">
+  <img class="ui fluid image" src="https://s3-us-west-1.amazonaws.com/blog.zurassic.com/ann/vote-2015/header-bg.jpg">
+  <h1 class="ui header vote-header">2015年度最佳新人影像奖</h1>
+
+  <div class="center-text section">
+    <p>各位亲, 又到了一年一度的颁奖时刻!</p>
+    <p>本年度最佳新人影像奖到底花落谁家?</p>
+    <p>一切由您决定.</p>
+    <blockquote>
+      我们的规则是: 每人可以挑选至多3张照片投票. 票选最多的照片当选. 届时会抽取幸运观众一名, 神秘奖品, 等你来拿哟.
+    </blockquote>
+    <p>入围的有</p>
+  </div>
+
+  <div class="section">
+    <div id="nanoGallery3">
+    </div>
+  </div>
+
+  <div class="section ui text container">
+    <div class="ui orange message center-text">这位英雄, 投票已经结束, 我们明年后会有期👊</div>
+    <form class="ui form">
+      <div class="disabled field">
+        <label>这位英雄, 请先留名再投票</label>
+        <input type="text" placeholder="请问阁下是?">
+      </div>
+      <button class="ui disabled button" type="submit">
+        嗯, 就是它们了
+        <span class="ui small label">(0)</span>
+      </button>
+    </form>
+  </div>
+</div>
