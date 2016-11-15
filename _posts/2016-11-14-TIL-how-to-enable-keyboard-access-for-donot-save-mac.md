@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "TIL: How to enable keyboard access for \"Don't save\" on Mac?"
+title:  "TIL: [Mac] How to enable keyboard access for \"Don't save\" on Mac?"
 ---
 
 When closing an unsaved file in a code editor, for example Sublime or VS Code, you will see this dialog:
