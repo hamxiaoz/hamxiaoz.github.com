@@ -3,7 +3,7 @@ layout: post
 title:  "TIL: How to enable keyboard access for \"Don't save\" on Mac?"
 ---
 
-When closing a unsaved file in a code editor, for example Sublime or VS Code, you will see this dialog:
+When closing an unsaved file in a code editor, for example Sublime or VS Code, you will see this dialog:
 
 ![](https://s3-us-west-1.amazonaws.com/blog.zurassic.com/dontsave.png)
 
