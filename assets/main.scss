@@ -202,12 +202,12 @@ i.china-red-light.icon {
 
 blockquote {
   box-sizing: border-box;
-  margin: 1.75em 0 1.75em -1.2em;
-  padding: 0 0 0 1.75em;
+  margin: 1.75em 0 1.75em 0em;
+  padding: 0 0 0 0.75em;
 
-  border-left: #4A4A4A 0.4em solid;
+  border-left: #4A4A4A 0.2em solid;
   &.alt {
-    border-left: #f2711c 0.4em solid;
+    border-left: #f2711c 0.2em solid;
   }
 
   font-style: italic;
