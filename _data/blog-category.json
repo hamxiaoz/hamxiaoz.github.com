@@ -11,11 +11,16 @@
     "id": "u4zhiqn",
     "link": "/blog#u4zhiqn"
   },
+  "MM": {
+    "click": "以往分享请点击这里",
+    "description": "Music Monday (MM), 每周一分享一首好音乐",
+    "id": "mm",
+    "link": "/blog#mm"
+  },
   "Gift Exchange": {
     "click": "历年Gift Exchange请往这里看",
     "description": "你猜你猜你猜猜猜",
     "id": "giftexchange",
     "link": "/blog#giftexchange"
   }
-
 }
