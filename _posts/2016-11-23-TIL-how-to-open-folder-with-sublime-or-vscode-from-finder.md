@@ -7,7 +7,7 @@ title:  "TIL: [Dev] How to open folder with Sublime or VS Code from Finder?"
 
 You have three options:
 
-1. Opne inside the app: first open the Sublime Or VS Code, then use the `File -> Open` menu
+1. First open the Sublime Or VS Code, then use the `File -> Open` menu
 2. Right click to use `Services` (in case you have services setup)
 3. Click on the toolbar icon to open.
 
