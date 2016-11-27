@@ -6,8 +6,7 @@ park_link: /park
 ---
 
 <div class="ui three stackable cards">
-
-  {% include image-card.html data=site.data.card-ann-vote-2015 %}
-  {% include image-card.html data=site.data.card-ann-origami %}
-  
+  {% for project in site.data.projects-ann %}
+    {% include image-card.html data=project %}
+  {% endfor %}
 </div>
