@@ -36,6 +36,13 @@
   },
   {
     "display": "list",
+    "title": "Bella's ABC",
+    "meta": "A fun HTML5 project",
+    "image": "/assets/images/abc-thumbnail.png",
+    "link": "/ann/abc"
+  },
+  {
+    "display": "list",
     "title": "Business Card Design",
     "meta": "How to present me in a 7 square inches card?",
     "image": "/assets/images/business-card-thumbnail.png",
