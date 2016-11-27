@@ -11,8 +11,8 @@ close_to_link: /ann
 
 <script>
 $(document).ready(function() {
-  var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
-  var abc = ['a', 'b', 'c'];
+  var ALPHABET = "abcdefghijklmnopqrstuvwxyz".split("");
+  var ABC = ['a', 'b', 'c'];
   var BOARD_SELECTOR = '#board';
   var PLAYING_EFFECTS = [
     'hvr-buzz', 'hvr-pulse', 'hvr-wobble-horizontal',
@@ -36,7 +36,7 @@ $(document).ready(function() {
         objects[char].sound.play();
         objects[char].played = true;
 
-        if (isOneOf(abc, char) && allPlayed(abc)) {
+        if (isOneOf(ABC, char) && allPlayed(ABC)) {
           enableAll();
         }
       }
@@ -57,20 +57,20 @@ $(document).ready(function() {
   }
 
   function init() {
-    alphabet.forEach(function(char) {
+    ALPHABET.forEach(function(char) {
       // only abc are initially enabled
       objects[char] = {
         sound: createSound(char),
-        button: $(createButton(char, isOneOf(abc, char))), 
+        button: $(createButton(char, isOneOf(ABC, char))), 
         played: false,
-        enabled: isOneOf(abc, char) 
+        enabled: isOneOf(ABC, char) 
       };
     });
   }
 
   function setupKeys() {
     var listener = new window.keypress.Listener();
-    listener.register_many(_.map(alphabet, function(char) {
+    listener.register_many(_.map(ALPHABET, function(char) {
       return {
         "keys": char,
         "is_exclusive": true,
@@ -83,7 +83,7 @@ $(document).ready(function() {
   }
 
   function enableAll() {
-    alphabet.forEach(function(char) {
+    ALPHABET.forEach(function(char) {
       objects[char].enabled = true;
       objects[char].button.removeClass('disabled');
     });
@@ -100,7 +100,7 @@ $(document).ready(function() {
   }
 
   function toggleCapital(capital) {
-    alphabet.forEach(function(char) {
+    ALPHABET.forEach(function(char) {
       objects[char].button.text(capital ? char.toUpperCase() : char.toLowerCase());
     });
   }
@@ -111,7 +111,7 @@ $(document).ready(function() {
 
   init();
   setupKeys();
-  addToDOM(BOARD_SELECTOR, _.map(alphabet, function(char) {
+  addToDOM(BOARD_SELECTOR, _.map(ALPHABET, function(char) {
     return objects[char].button;
   }));
 
@@ -652,14 +652,27 @@ $(document).ready(function() {
 </style>
 
 
-<div class="center-text">
-  <h1 class="ui header title">
+<div class="title">
+  <h1 class="ui header center-text">
     Bella's ABC
-    <div class="sub header">
-      <a href="#" target="_blank">What's this?</a>
-    </div>
+    <i class="sub header">2016.11.27</i>
   </h1>
 
+  <p>
+    This is a little fun project done with my daughter Bella. She is still learning speaking abc and sometimes I use iPhone to record her voice.
+    She likes to hear her own voice and one day I thought I could turn her voices into a fun project. 
+  </p>
+  <p>
+    I drafted the first version on <a href="http://codepen.io/hamxiaoz/pen/grXzXA" target="_blank">CodePen</a> and it's not really touch friendly. So I iterated to version two (the one you see) with the following features:
+    <ul>
+      <li>Keyboard and touch support</li>
+      <li>Random button and toggle capital button to obfuscate the game. (You know kids have a very good memory, if you ask them where is 'a', they will tell by its position instead of its shape)</li>
+      <li>Voice by daughter, code by father with <i class="heart icon"></i>.</li>
+    </ul>
+  </p>
+</div>
+
+<div class="center-text">
   <button class="ui compact labeled icon basic button" id="random">
     <i class="refresh icon"></i>
     Random
