@@ -15,6 +15,12 @@
 
   <script src="{{ "/assets/vendor/jquery-1.12.4.min.js" | relative_url }}"></script>
   <script src="{{ "/assets/vendor/semantic.min.js" | relative_url }}"></script>
+  <script src="{{ "/assets/vendor/fastclick.js" | relative_url }}"></script>
+  <script>
+    $(function() {
+      FastClick.attach(document.body);
+    });
+  </script>
 
   {% if jekyll.environment == 'production' and site.google_analytics %}
   {% include google-analytics.html %}
