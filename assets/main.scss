@@ -161,15 +161,23 @@ i.china-red-light.icon {
   }
 }
 
+@mixin img-with-border {
+  margin: 1.5em auto !important;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border: 10px solid white;
+  box-shadow: 0 0 0 1px #D4D4D5,0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.15);
+}
+
+img.with-border {
+  @include img-with-border;
+}
+
 // Blog post
 .post-content {
   img {
-    margin: 1.5em auto !important;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border: 10px solid white;
-    box-shadow: 0 0 0 1px #D4D4D5,0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.15);
+    @include img-with-border;
   }
 
   figcaption {
