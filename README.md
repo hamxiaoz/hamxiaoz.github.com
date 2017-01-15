@@ -1,6 +1,7 @@
 ## Dev
 /test: test page
 
+To run: `bundle exec jekyll serve`
 
 ## CSS (semantic-ui)
 I customized the default css font to make it look pretty on Chinesee.
