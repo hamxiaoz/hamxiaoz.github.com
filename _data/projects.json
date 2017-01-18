@@ -15,6 +15,13 @@
   },
   {
     "display": "card",
+    "title": "Bella's ABC",
+    "meta": "A fun HTML5 project",
+    "image": "/assets/images/abc-thumbnail.png",
+    "link": "/ann/abc"
+  },
+  {
+    "display": "list",
     "title": "Clickable Thunder Text (一键迅雷文)",
     "meta": "An chrome extension, 1k user.",
     "image": "/assets/images/project-thunder-link.png",
@@ -33,13 +40,6 @@
     "meta": "How do you read a email with '>'s and '>>'s?",
     "image": "/assets/images/project-stand-out.png",
     "link": "http://hamxiaoz.github.io/StandOut/"
-  },
-  {
-    "display": "list",
-    "title": "Bella's ABC",
-    "meta": "A fun HTML5 project",
-    "image": "/assets/images/abc-thumbnail.png",
-    "link": "/ann/abc"
   },
   {
     "display": "list",

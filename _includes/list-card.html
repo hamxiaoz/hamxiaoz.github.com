@@ -17,7 +17,7 @@
       <div class="meta">{{ include.meta }}</div>
     {% endif %}
     {% if include.more_link %}
-      <a href="{{ include.more_link }}"> {{ include.more_text | default: "More..." }}</a>
+      <a href="{{ include.more_link }}"> {{ include.more_text | default: "More" }} <i class="angle right icon"></i></a>
     {% endif %}
   </div>
 </div>
