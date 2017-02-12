@@ -4,6 +4,8 @@ close_to_link: /
 layout: default
 ---
 
+<img src="/assets/images/wtf-read.jpg" style="margin: 1.5em auto !important; max-width: 100%; height: auto; display: block;"> 
+
 ## 2017
 1. **杉山育人笔记** _2017/01_
 2. **像间谍一样思考** _2017/01_
