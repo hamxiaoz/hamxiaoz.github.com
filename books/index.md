@@ -27,6 +27,8 @@ layout: default
   - 我觉得这本书不是讲什么技巧, 而是培养了自己一种更正面的心态.
 10. **Functional-Light JavaScript** [2017/03]
   - 这算一本 Functional Programming (FP)入门的书. FP是什么? 在我看来, 就是一种能让程序员更容易理解程序的一种编程方法.
+11. **Professor Frisby's Mostly Adequate Guide to Functional Programming** [2017/03]
+  - 看了上面那本, 这本书前半部分可以不看了, 反正后半部分有也看不懂. 不过也算是知道了原来HM除了是一个品牌之外还是一种type signature. Ramda.js每个函数下面都是这样的signature.
 
 ## 2016
 1. **三体 全3部** [2016/04]
