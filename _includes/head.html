@@ -16,9 +16,19 @@
   <script src="{{ "/assets/vendor/jquery-1.12.4.min.js" | relative_url }}"></script>
   <script src="{{ "/assets/vendor/semantic.min.js" | relative_url }}"></script>
   <script src="{{ "/assets/vendor/fastclick.js" | relative_url }}"></script>
+  <script src="{{ "/assets/vendor/jquery.address.min.js" | relative_url }}"></script>
   <script>
     $(function() {
       FastClick.attach(document.body);
+      $('.site-tab .item').tab({
+        history: true,
+        historyType: 'hash',
+        onVisible: function(tabPath){
+          if (window.ga) {
+            ga('send', 'pageview', tabPath);
+          }
+        }
+      });
     });
   </script>
 

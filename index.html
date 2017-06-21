@@ -9,7 +9,7 @@ park_link: /park
       <h3 class="ui header hello">Hello, I'm Andrew Zheng</h3>
       <p>I am a <a href="https://medium.com/@hamxiaoz/what-is-full-stack-c8c06e3c4f13#.sydn5rkcp" target="_blank">full stack developer</a> with 9 years experience of building web apps and Windows programs.</p>
       <p>I like to solve problems, often this involves <strong>software</strong> and <strong> UX design</strong>.</p>
-      <p>I believe that 
+      <p>I believe that
         <span class="more-details"
               data-position="bottom left"
               data-tooltip="&quot;Problem-solving leaders have one thing in common: a faith that there's always a better way.&quot; - Gerald M. Weinberg, Becoming a Technical Leader"
@@ -24,9 +24,21 @@ park_link: /park
               data-tooltip="&quot;Simplicity is the ultimate sophistication.&quot; - Leonardo da Vinci"
               data-inverted="">
           simplicity
-        </span>, and
+        </span>, and <code class="code-gu">I.enjoy((idea)=&gt; product);</code>
       </p>
-      <p><code class="code-gu">I.enjoy((idea)=&gt; product);</code></p>
+
+      <div class="ui horizontal link list">
+        <a class="item" href="/books"><i class='book icon'></i>Reading</a>
+        <a class="item" href="https://medium.com/zurassic" target="_blank"><i class='medium icon'></i>Medium</a>
+        <a class="item" href="/blog"><i class="write icon"></i>Blog: 有风自南</a>
+        <a class="item" href="https://www.flickr.com/photos/80054600@N02/" target="_blank"><i class="camera retro icon"></i>Photo</a>
+        <a class="item">
+          <span data-position="bottom left"
+                data-tooltip="&quot;Can you find any hidden pages on my site?&quot;">
+            <i class="help icon"></i>
+          </span>
+        </a>
+      </div>
     </div>
   </div>
   <div class="sixteen wide mobile six wide tablet six wide computer column">
@@ -37,66 +49,53 @@ park_link: /park
   </div>
 </div>
 
-<div class="section">
-  <h4 class="ui tiny header" id="portfolio">Portfolio
-    <a class="ui small label" href="/portfolio">{{ site.data.portfolio | size }}</a>
-  </h4>
+<div class="ui center aligned container site-tab">
+  <div class="ui compact menu">
+    <a class="item active" data-tab="portfolio">Portfolio</a>
+    <a class="item" data-tab="projects">Projects</a>
+    <a class="item" data-tab="resume">Resume</a>
+  </div>
+</div>
+
+<div class="ui tab active" data-tab="portfolio">
   <div class="ui four stackable cards">
-    {% assign portfolio_cards = site.data.portfolio | where:"display": "card" %}
-    {% assign portfolio_lists = site.data.portfolio | where:"display": "list" %}
+    {% assign portfolio_cards = site.data.portfolio %}
 
     {% for portfolio in portfolio_cards %}
       {% include image-card.html data=portfolio %}
     {% endfor %}
-
-    {% include list-card.html list=portfolio_lists more_link="/portfolio" %}
   </div>
 </div>
 
-<div class="section">
-  <h4 class="ui tiny header" id="projects">
-    Projects
-    <a class="ui small label" href="/projects">{{ site.data.projects | size }}</a>
-  </h4>
+<div class="ui tab" data-tab="projects">
   <div class="ui four stackable cards">
-    {% assign project_cards = site.data.projects | where:"display": "card" %}
-    {% assign project_lists = site.data.projects | where:"display": "list" %}
+    {% assign project_cards = site.data.projects %}
 
     {% for project in project_cards %}
       {% include image-card.html data=project %}
     {% endfor %}
+  </div>
 
-    {% include list-card.html list=project_lists more_link="/projects" %}
+  <div class="section">
+    <h4 class="ui tiny header" id="quotes">
+      Random Quotes
+    </h4>
+    <div class="ui one stackable cards">
+      {% include random-quote-card.html %}
+    </div>
   </div>
 </div>
 
-<div class="section">
-  <h4 class="ui tiny header" id="io">
-    I/O
-  </h4>
-  <div class="ui four stackable cards">
-    {% include image-card.html data=site.data.card-book %}
-    {% include image-card.html data=site.data.card-medium %}
-    {% include image-card.html data=site.data.card-blog %}
-    <!--{% include dummy-text-card.html title="shang wu" %}-->
-    {% include image-card.html data=site.data.card-photography %}
-  </div>
-</div>
+<div class="ui tab" data-tab="resume">
+  <div class="ui center aligned notification container">
+    <div class="ui label">Coming soon. Stay thirsty, my friends.</div>
 
-<div class="section">
-  <h4 class="ui tiny header" id="quotes">
-    Quotes I Like
-  </h4>
-  <div class="ui one stackable cards">
-    {% include random-quote-card.html %}
-  </div>
-</div>
-
-<div class="section">
-  <h4 class="ui tiny header" id="omt">
-    One More Thing
-  </h4>
-  <div class="ui center aligned row">
-    <quote>"Can you find any hidden pages on my site?"</quote>
-  </div>
+    <div class='pixels-photo'>
+      <p>
+        <img src='https://drscdn.500px.org/photo/216626791/m%3D900/dad8d8dd0f8da06f9d1134863d1e0f44' alt='Boat by Andrew Zheng on 500px.com'>
+      </p>
+      <a href='https://500px.com/photo/216626791/boat-by-andrew-zheng' alt='Boat by Andrew Zheng on 500px.com'></a>
+    </div>
+    <script type='text/javascript' src='https://500px.com/embed.js'></script>
+    </div>
 </div>

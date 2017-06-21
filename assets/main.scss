@@ -48,6 +48,15 @@ footer {
   margin-top: 3em;
 }
 
+.site-tab {
+  margin-top: 3em;
+  margin-bottom: 2em;
+
+  .ui.menu {
+    background-color: $canvas-color;
+  }
+}
+
 // override a
 a {
   color: $china-red-light;
@@ -250,7 +259,7 @@ blockquote {
   .page-header-container {
     margin-bottom: 3em;
   }
-  
+
   .vote-header {
     color: white;
     position: absolute;
