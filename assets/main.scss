@@ -57,6 +57,13 @@ footer {
   }
 }
 
+.in-tab-section {
+  margin-top: 1.5em;
+  > .header {
+    margin-bottom: 2em;
+  }
+}
+
 // override a
 a {
   color: $china-red-light;
@@ -74,13 +81,20 @@ a {
   color: $china-red;
 }
 
+.in-tab-section {
+  margin-top: 1.5em;
+  > .header {
+    margin-bottom: 1.5em;
+  }
+}
+
+
 .section {
   padding-top: 5em;
 
   > .header {
     margin-bottom: 2em;
   }
-
 }
 
 .hero {

@@ -57,16 +57,47 @@ park_link: /park
   </div>
 </div>
 
+<!--portfolio tab-->
 <div class="ui tab active" data-tab="portfolio">
-  <div class="ui four stackable cards">
-    {% assign portfolio_cards = site.data.portfolio %}
-
-    {% for portfolio in portfolio_cards %}
-      {% include image-card.html data=portfolio %}
-    {% endfor %}
+  <div class="in-tab-section">
+    <h4 class="ui tiny header" id="overview">Overview</h4>
+    <div class="ui four stackable cards">
+      {% assign portfolio_cards = site.data.portfolio | where: "category": "overview" %}
+      {% for portfolio in portfolio_cards %}
+        {% include image-card.html data=portfolio %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="in-tab-section">
+    <h4 class="ui tiny header" id="web">Web</h4>
+    <div class="ui four stackable cards">
+      {% assign portfolio_cards = site.data.portfolio | where: "category": "web" %}
+      {% for portfolio in portfolio_cards %}
+        {% include image-card.html data=portfolio %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="in-tab-section">
+    <h4 class="ui tiny header" id="desktop">Desktop</h4>
+    <div class="ui four stackable cards">
+      {% assign portfolio_cards = site.data.portfolio | where: "category": "desktop" %}
+      {% for portfolio in portfolio_cards %}
+        {% include image-card.html data=portfolio %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="in-tab-section">
+    <h4 class="ui tiny header" id="ux">UX Design</h4>
+    <div class="ui four stackable cards">
+      {% assign portfolio_cards = site.data.portfolio | where: "category": "ux" %}
+      {% for portfolio in portfolio_cards %}
+        {% include image-card.html data=portfolio %}
+      {% endfor %}
+    </div>
   </div>
 </div>
 
+<!--projects tab-->
 <div class="ui tab" data-tab="projects">
   <div class="ui four stackable cards">
     {% assign project_cards = site.data.projects %}
@@ -76,16 +107,15 @@ park_link: /park
     {% endfor %}
   </div>
 
-  <div class="section">
-    <h4 class="ui tiny header" id="quotes">
-      Random Quotes
-    </h4>
+  <div class="in-tab-section">
+    <h4 class="ui tiny header" id="quotes">Random Quotes</h4>
     <div class="ui one stackable cards">
       {% include random-quote-card.html %}
     </div>
   </div>
 </div>
 
+<!--resume tab-->
 <div class="ui tab" data-tab="resume">
   <div class="ui center aligned notification container">
     <div class="ui label">Coming soon. Stay thirsty, my friends.</div>
