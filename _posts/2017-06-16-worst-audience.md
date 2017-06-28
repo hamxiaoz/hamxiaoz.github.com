@@ -13,7 +13,10 @@ close_to_link: /blog#lrnwz
 
 墙内用户请点[这里](https://v.xiaokaxiu.com/v/Lu2pyVMuPY0B7VELgYfadAAKqKZBMx19.html)
 
-要是几年前, 唱这么烂我是不会放出来的.
+
+在这样的观众面前, 任何的演唱技巧都是多余的. 何况, 我也没什么演唱技巧.
+
+不过要是几年前, 唱这么烂我是不会放出来的.
 
 但是近年来, 我对自己的要求越来越低了.
 
