@@ -1,97 +1,120 @@
 [
   {
-    "category": "overview",
     "title": "Overview",
-    "meta": "Portfolio showcase on Medium",
-    "image": "/assets/images/portfolio-overview.png",
-    "link": "https://medium.com/@hamxiaoz/portfolio-tempalte-a2a149d0ba7a#.c2b5wxy64"
+    "hash": "overview",
+    "data": [
+      {
+        "category": "overview",
+        "title": "Overview",
+        "meta": "Portfolio showcase on Medium",
+        "image": "/assets/images/portfolio-overview.png",
+        "link": "https://medium.com/@hamxiaoz/portfolio-tempalte-a2a149d0ba7a#.c2b5wxy64"
+      },
+      {
+        "category": "overview",
+        "title": "Freelance",
+        "meta": "Full stack development since 2013",
+        "image": "/assets/images/portfolio-freelance.png",
+        "link": "https://medium.com/@hamxiaoz/portfolio-freelance-d17f943c5368#.59a4kkcrq"
+      },
+      {
+        "category": "overview",
+        "title": "Hackathon Experience",
+        "meta": "Why I Like and What I Learned from Hackathons?",
+        "image": "/assets/images/portfolio-hackathon.png",
+        "link": "https://medium.com/zurassic/what-i-learned-from-hackathons-in-adp-7ab1b03b2476"
+      },
+      {
+        "category": "overview",
+        "title": "UX Design",
+        "meta": "What I’ve learned from a UX design bootcamp",
+        "image": "/assets/images/portfolio-ux.png",
+        "link": "https://medium.com/@hamxiaoz/what-i-v-learned-from-a-ux-design-bootcamp-9bbac8755a4a#.uvjivldfz"
+      }
+    ]
   },
+
   {
-    "category": "overview",
-    "title": "Freelance",
-    "meta": "Full stack development since 2013",
-    "image": "/assets/images/portfolio-freelance.png",
-    "link": "https://medium.com/@hamxiaoz/portfolio-freelance-d17f943c5368#.59a4kkcrq"
+    "title": "Web",
+    "hash": "web",
+    "data": [
+      {
+        "category": "web",
+        "title": "CMServer",
+        "meta": "How a chrome extension evolved to a web app",
+        "image": "/assets/images/portfolio-cmserver.png",
+        "link": "https://medium.com/p/6ca6ecc660ac"
+      },
+      {
+        "category": "web",
+        "title": "CMTool",
+        "meta": "A desktop program built with web technologies",
+        "image": "/assets/images/portfolio-cmtool.png",
+        "link": "https://medium.com/p/d7f81175571a"
+      },
+      {
+        "category": "web",
+        "title": "Software Release/Updates Server",
+        "meta": "A modern solution for software release/updates",
+        "image": "/assets/images/portfolio-release-server.png",
+        "link": "https://medium.com/@hamxiaoz/portfolio-software-release-updates-server-887dfd74b3b7#.50czowv0j"
+      },
+      {
+        "category": "web",
+        "title": "Software Updater",
+        "meta": "The best interface is no interface",
+        "image": "/assets/images/portfolio-software-update.png",
+        "link": "https://medium.com/@hamxiaoz/portfolio-software-updater-c535ce9998c6#.ovkfijwi3"
+      }
+    ]
   },
+
   {
-    "category": "overview",
-    "title": "Hackathon Experience",
-    "meta": "Why I Like and What I Learned from Hackathons?",
-    "image": "/assets/images/portfolio-hackathon.png",
-    "link": "https://medium.com/zurassic/what-i-learned-from-hackathons-in-adp-7ab1b03b2476"
+    "title": "Desktop",
+    "hash": "desktop",
+    "data": [
+      {
+        "category": "desktop",
+        "title": "Atom Syntax Highlight Package",
+        "meta": "How do we improve 'Engineer Experience'?",
+        "image": "/assets/images/portfolio-atom-syntax.png",
+        "link": "https://medium.com/@hamxiaoz/portfolio-atom-syntax-highlight-package-2926a62bfd50#.1j2dy4w07"
+      },
+      {
+        "category": "desktop",
+        "title": "InfinityTuner Wizard",
+        "meta": "The state-of-the-art ECU deserves a state-of-the-art program",
+        "image": "/assets/images/portfolio-infinity-tuner.png",
+        "link": "https://medium.com/p/152596e910bb"
+      },
+      {
+        "category": "desktop",
+        "title": "AQ-1 Data Logger Software",
+        "meta": "\"The software is straight forward, easy to setup and use\"",
+        "image": "/assets/images/portfolio-aq1.png",
+        "link": "https://medium.com/p/ef1a13a6bdc6"
+      }
+    ]
   },
+
   {
-    "category": "overview",
     "title": "UX Design",
-    "meta": "What I’ve learned from a UX design bootcamp",
-    "image": "/assets/images/portfolio-ux.png",
-    "link": "https://medium.com/@hamxiaoz/what-i-v-learned-from-a-ux-design-bootcamp-9bbac8755a4a#.uvjivldfz"
-  },
-
-  {
-    "category": "web",
-    "title": "CMServer",
-    "meta": "How a chrome extension evolved to a web app",
-    "image": "/assets/images/portfolio-cmserver.png",
-    "link": "https://medium.com/p/6ca6ecc660ac"
-  },
-  {
-    "category": "web",
-    "title": "CMTool",
-    "meta": "A desktop program built with web technologies",
-    "image": "/assets/images/portfolio-cmtool.png",
-    "link": "https://medium.com/p/d7f81175571a"
-  },
-  {
-    "category": "web",
-    "title": "Software Release/Updates Server",
-    "meta": "A modern solution for software release/updates",
-    "image": "/assets/images/portfolio-release-server.png",
-    "link": "https://medium.com/@hamxiaoz/portfolio-software-release-updates-server-887dfd74b3b7#.50czowv0j"
-  },
-  {
-    "category": "web",
-    "title": "Software Updater",
-    "meta": "The best interface is no interface",
-    "image": "/assets/images/portfolio-software-update.png",
-    "link": "https://medium.com/@hamxiaoz/portfolio-software-updater-c535ce9998c6#.ovkfijwi3"
-  },
-
-  {
-    "category": "desktop",
-    "title": "Atom Syntax Highlight Package",
-    "meta": "How do we improve 'Engineer Experience'?",
-    "image": "/assets/images/portfolio-atom-syntax.png",
-    "link": "https://medium.com/@hamxiaoz/portfolio-atom-syntax-highlight-package-2926a62bfd50#.1j2dy4w07"
-  },
-  {
-    "category": "desktop",
-    "title": "InfinityTuner Wizard",
-    "meta": "The state-of-the-art ECU deserves a state-of-the-art program",
-    "image": "/assets/images/portfolio-infinity-tuner.png",
-    "link": "https://medium.com/p/152596e910bb"
-  },
-  {
-    "category": "desktop",
-    "title": "AQ-1 Data Logger Software",
-    "meta": "\"The software is straight forward, easy to setup and use\"",
-    "image": "/assets/images/portfolio-aq1.png",
-    "link": "https://medium.com/p/ef1a13a6bdc6"
-  },
-
-  {
-    "category": "ux",
-    "title": "ATT.com Redesign",
-    "meta": "How can we simplify the process of shopping wireless plan?",
-    "image": "/assets/images/portfolio-att.png",
-    "link": "https://goo.gl/OX2Z8X"
-  },
-  {
-    "category": "ux",
-    "title": "OneMessageID Usability Test",
-    "meta": "How to help this startup to verify their MVP?",
-    "image": "/assets/images/portfolio-onemessageid.png",
-    "link": "https://goo.gl/y5kwVT"
+    "hash": "ux",
+    "data": [
+      {
+        "category": "ux",
+        "title": "ATT.com Redesign",
+        "meta": "How can we simplify the process of shopping wireless plan?",
+        "image": "/assets/images/portfolio-att.png",
+        "link": "https://goo.gl/OX2Z8X"
+      },
+      {
+        "category": "ux",
+        "title": "OneMessageID Usability Test",
+        "meta": "How to help this startup to verify their MVP?",
+        "image": "/assets/images/portfolio-onemessageid.png",
+        "link": "https://goo.gl/y5kwVT"
+      }
+    ]
   }
-
 ]

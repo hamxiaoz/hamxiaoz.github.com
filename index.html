@@ -59,42 +59,17 @@ park_link: /park
 
 <!--portfolio tab-->
 <div class="ui tab active" data-tab="portfolio">
-  <div class="in-tab-section">
-    <h4 class="ui tiny header" id="overview">Overview</h4>
-    <div class="ui four stackable cards">
-      {% assign portfolio_cards = site.data.portfolio | where: "category": "overview" %}
-      {% for portfolio in portfolio_cards %}
-        {% include image-card.html data=portfolio %}
-      {% endfor %}
+  {% for portfolio_meta in site.data.portfolio %}
+    <div class="in-tab-section">
+      <h4 class="ui tiny header" id="{{ portfolio_meta.hash }}">{{ portfolio_meta.title }}</h4>
+      <div class="ui four stackable cards">
+        {% assign portfolio_cards = portfolio_meta.data %}
+        {% for portfolio in portfolio_cards %}
+          {% include image-card.html data=portfolio %}
+        {% endfor %}
+      </div>
     </div>
-  </div>
-  <div class="in-tab-section">
-    <h4 class="ui tiny header" id="web">Web</h4>
-    <div class="ui four stackable cards">
-      {% assign portfolio_cards = site.data.portfolio | where: "category": "web" %}
-      {% for portfolio in portfolio_cards %}
-        {% include image-card.html data=portfolio %}
-      {% endfor %}
-    </div>
-  </div>
-  <div class="in-tab-section">
-    <h4 class="ui tiny header" id="desktop">Desktop</h4>
-    <div class="ui four stackable cards">
-      {% assign portfolio_cards = site.data.portfolio | where: "category": "desktop" %}
-      {% for portfolio in portfolio_cards %}
-        {% include image-card.html data=portfolio %}
-      {% endfor %}
-    </div>
-  </div>
-  <div class="in-tab-section">
-    <h4 class="ui tiny header" id="ux">UX Design</h4>
-    <div class="ui four stackable cards">
-      {% assign portfolio_cards = site.data.portfolio | where: "category": "ux" %}
-      {% for portfolio in portfolio_cards %}
-        {% include image-card.html data=portfolio %}
-      {% endfor %}
-    </div>
-  </div>
+  {% endfor %}
 </div>
 
 <!--projects tab-->
