@@ -1,79 +1,84 @@
-[
-  {
-    "display": "card",
-    "title": "Development notes",
-    "meta": "Published by GitBook",
-    "image": "/assets/images/project-wordcloud.png",
-    "link": "https://hamxiaoz.gitbooks.io/full-stack-notes/content/"
-  },
-  {
-    "display": "card",
-    "title": "Monokai Slate",
-    "meta": "Atom theme, 17k downloads",
-    "image": "/assets/images/project-atom-monokai-slate.png",
-    "link": "https://atom.io/themes/monokai-slate"
-  },
-  {
-    "display": "card",
-    "title": "Bella's ABC",
-    "meta": "A fun HTML5 project",
-    "image": "/assets/images/abc-thumbnail.png",
-    "link": "/ann/abc"
-  },
-  {
-    "display": "list",
-    "title": "Clickable Thunder Text (一键迅雷文)",
-    "meta": "An chrome extension, 1k user.",
-    "image": "/assets/images/project-thunder-link.png",
-    "link": "https://chrome.google.com/webstore/detail/clickable-thunder-text/mgciapkphbohginhaojfflbjlbojhknh"
-  },
-  {
-    "display": "list",
-    "title": "FreshStart Export Viewer",
-    "meta": "Convert FreshStart (Chrome extension) JSON export to links",
-    "image": "/assets/images/project-fresh-start.png",
-    "link": "http://codepen.io/hamxiaoz/pen/zGQzep"
-  },
-  {
-    "display": "list",
-    "title": "Stand Out (make the email reply readable)",
-    "meta": "How do you read a email with '>'s and '>>'s?",
-    "image": "/assets/images/project-stand-out.png",
-    "link": "http://hamxiaoz.github.io/StandOut/"
-  },
-  {
-    "display": "list",
-    "title": "Business Card Design",
-    "meta": "How to present me in a 7 square inches card?",
-    "image": "/assets/images/business-card-thumbnail.png",
-    "link": "/assets/images/Andrew-namecard.png"
-  },
-  {
-    "display": "list",
-    "title": "Poor man’s Valentine’s day gift (2013)",
-    "meta": "Made with JQuery, RMagick and love.",
-    "image": "/assets/images/2013-vday-thumbnail.png",
-    "link": "http://hamxiaoz.github.io/2013VDayGift/"
-  },
-  {
-    "display": "list",
-    "title": "华人事业互助会2014圣诞贺卡",
-    "image": "/assets/images/hu-thumbnail.png",
-    "link": "http://hamxiaoz.github.io/hu-2014/"
-  },
-  {
-    "display": "list",
-    "title": "Beijing Air PM2.5",
-    "meta": "<div class='ui label'>Fix pending</div>",
-    "link": "http://hamxiaoz.github.io/BeijingAir/",
-    "_notes": "This needs to be fixed as twitter is no longer using v1 api :("
-  },
-  {
-    "display": "list",
-    "title": "All My Code Commits (2011-2015)",
-    "meta": "A Github style heatmap",
-    "link": "#",
-    "_notes": "A look back of all my code commits from 2011. Extracted svn and git logs and built the github style heatmap"
-  }
+{
+  "all": [
+    {
+      "title": "Development notes",
+      "meta": "Published by GitBook",
+      "image": "/assets/images/project-wordcloud.png",
+      "link": "https://hamxiaoz.gitbooks.io/full-stack-notes/content/"
+    },
+    {
+      "title": "Monokai Slate",
+      "meta": "Atom theme, 17k downloads",
+      "image": "/assets/images/project-atom-monokai-slate.png",
+      "link": "https://atom.io/themes/monokai-slate"
+    },
+    {
+      "title": "Bella's ABC",
+      "meta": "A fun HTML5 project",
+      "image": "/assets/images/abc-thumbnail.png",
+      "link": "/ann/abc"
+    },
+    {
+      "title": "Clickable Thunder Text (一键迅雷文)",
+      "meta": "An chrome extension, 1k user.",
+      "image": "/assets/images/project-thunder-link.png",
+      "link": "https://chrome.google.com/webstore/detail/clickable-thunder-text/mgciapkphbohginhaojfflbjlbojhknh"
+    },
+    {
+      "title": "FreshStart Export Viewer",
+      "meta": "Convert FreshStart (Chrome extension) JSON export to links",
+      "image": "/assets/images/project-fresh-start.png",
+      "link": "http://codepen.io/hamxiaoz/pen/zGQzep"
+    },
+    {
+      "title": "Stand Out (make the email reply readable)",
+      "meta": "How do you read a email with '>'s and '>>'s?",
+      "image": "/assets/images/project-stand-out.png",
+      "link": "http://hamxiaoz.github.io/StandOut/"
+    },
+    {
+      "title": "Business Card Design",
+      "meta": "How to present me in a 7 square inches card?",
+      "image": "/assets/images/business-card-thumbnail.png",
+      "link": "/assets/images/Andrew-namecard.png"
+    },
+    {
+      "title": "Poor man’s Valentine’s day gift (2013)",
+      "meta": "Made with JQuery, RMagick and love.",
+      "image": "/assets/images/2013-vday-thumbnail.png",
+      "link": "http://hamxiaoz.github.io/2013VDayGift/"
+    },
+    {
+      "title": "华人事业互助会2014圣诞贺卡",
+      "image": "/assets/images/hu-thumbnail.png",
+      "link": "http://hamxiaoz.github.io/hu-2014/"
+    },
+    {
+      "title": "Beijing Air PM2.5",
+      "meta": "<div class='ui label'>Fix pending</div>",
+      "link": "http://hamxiaoz.github.io/BeijingAir/",
+      "_notes": "This needs to be fixed as twitter is no longer using v1 api :("
+    },
+    {
+      "title": "All My Code Commits (2011-2015)",
+      "meta": "A Github style heatmap",
+      "link": "#",
+      "_notes": "A look back of all my code commits from 2011. Extracted svn and git logs and built the github style heatmap"
+    }
+  ],
 
-]
+  "longTerm": [
+    {
+      "title": "Weekly Project",
+      "meta": "New picture from my locker screen and home screen every Monday.",
+      "image": "/assets/images/sharelock-thumbnail.png",
+      "link": "#"
+    },
+    {
+      "title": "Yearly Project",
+      "meta": "Made White elephant trailer, every year since 2012.",
+      "image": "/assets/images/white-elephant-thumbnail.png",
+      "link": "/blog/#giftexchange"
+    }
+  ]
+}

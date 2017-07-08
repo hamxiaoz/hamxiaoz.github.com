@@ -75,15 +75,22 @@ park_link: /park
 <!--projects tab-->
 <div class="ui tab" data-tab="projects">
   <div class="ui four stackable cards">
-    {% assign project_cards = site.data.projects %}
-
-    {% for project in project_cards %}
+    {% for project in site.data.projects.all %}
       {% include image-card.html data=project %}
     {% endfor %}
   </div>
 
   <div class="in-tab-section">
-    <h4 class="ui tiny header" id="quotes">Random Quotes</h4>
+    <h4 class="ui tiny header" id="long">Long Term Projects</h4>
+    <div class="ui four stackable cards">
+      {% for project in site.data.projects.longTerm %}
+        {% include image-card.html data=project %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="in-tab-section">
+    <h4 class="ui tiny header" id="quotes">Quotes</h4>
     <div class="ui one stackable cards">
       {% include random-quote-card.html %}
     </div>
