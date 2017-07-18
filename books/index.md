@@ -10,8 +10,10 @@ layout: default
 - 苏东坡传
 - 茶书
 - Eloquent JavaScript
-- The 7 Habits of Highly Effective People
+- How Google Works
 - The Little Book of Productivity 
+- The 7 Habits of Highly Effective People
+
 
 ## 2017
 1. [2017/01] **杉山育人笔记**  
