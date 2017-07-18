@@ -10,10 +10,8 @@ layout: default
 - 苏东坡传
 - 茶书
 - Eloquent JavaScript
-- 好妈妈1, 2
-- 精力管理
 - The 7 Habits of Highly Effective People
-
+- The Little Book of Productivity 
 
 ## 2017
 1. [2017/01] **杉山育人笔记**  
