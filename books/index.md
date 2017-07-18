@@ -6,6 +6,15 @@ layout: default
 
 <img src="/assets/images/wtf-read.jpg" style="margin: 1.5em auto !important; max-width: 100%; height: auto; display: block;">
 
+## WIP
+- 苏东坡传
+- 茶书
+- Eloquent JavaScript
+- 好妈妈1, 2
+- 精力管理
+- The 7 Habits of Highly Effective People
+
+
 ## 2017
 1. **杉山育人笔记** [2017/01]
   - 连着看了几本日本人写的职场书. 这本算不错的. 作者有三十多年经验. 一般经验多的作者写的书故事较多, 引人入胜，道理深入浅出。
@@ -23,12 +32,16 @@ layout: default
   - 画家阿城的小说. 说的是一个以棋入道的故事. 什么是道? 所谓一沙一世界，棋里有乾坤。
 8. **技术领导之路（中英文对照） : 全面解决问题的途径** [2017/02]
   - 看的温伯格大师的另一本书. 书里提出的 MOI 模型以及沟通的模型都很赞. 一如既往的好书.
-9. **人性的弱点** [2017/02]
+9. **How to Win Friends and Influence People | 人性的弱点** [2017/02]
   - 我觉得这本书不是讲什么技巧, 而是培养了自己一种更正面的心态.
 10. **Functional-Light JavaScript** [2017/03]
   - 这算一本 Functional Programming (FP)入门的书. FP是什么? 在我看来, 就是一种能让程序员更容易理解程序的一种编程方法.
 11. **Professor Frisby's Mostly Adequate Guide to Functional Programming** [2017/03]
   - 看了上面那本, 这本书前半部分可以不看了, 反正后半部分有也看不懂. 不过也算是知道了原来HM除了是一个品牌之外还是一种type signature. Ramda.js每个函数下面都是这样的signature.
+12. **The 10X Rule: The Only Difference Between Success and Failure** [2017/06]
+13. **The 4-Hour Workweek** by Timothy Ferriss [2017/06]
+14. **Learn More, Study Less** by Scott Young [2017/07]
+14. **Grit** by Angela Duckworth [2017/07]
 
 ## 2016
 1. **三体 全3部** [2016/04]
