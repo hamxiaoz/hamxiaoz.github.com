@@ -34,14 +34,17 @@ layout: default
     看的温伯格大师的另一本书. 书里提出的 MOI 模型以及沟通的模型都很赞. 一如既往的好书.
 9. [2017/02] **How to Win Friends and Influence People | 人性的弱点**  
     我觉得这本书不是讲什么技巧, 而是培养了自己一种更正面的心态.
-10. [2017/03] **Functional-Light JavaScript**  
+10. [2017/03] **最重要事， 只有一件**  
+    最重要的事只有一件，所以时刻记得维持优先级集中精力做重要的那一件事。书中前半段将why，描述的一般，我觉得例子有点牵强。后半段讲how，各种方法论还是有可取之处。  
+    要点 = 二八原则 +  以终为始 + 谨记目标 + 连点成线 + 形成多米洛效应。而你自己，就是那第一个多米洛骨牌。
+11. [2017/03] **Functional-Light JavaScript**   
     这算一本 Functional Programming (FP)入门的书. FP是什么? 在我看来, 就是一种能让程序员更容易理解程序的一种编程方法.
-11. [2017/03] **Professor Frisby's Mostly Adequate Guide to Functional Programming**  
+12. [2017/03] **Professor Frisby's Mostly Adequate Guide to Functional Programming**  
     看了上面那本, 这本书前半部分可以不看了, 反正后半部分有也看不懂. 不过也算是知道了原来HM除了是一个品牌之外还是一种type signature. Ramda.js每个函数下面都是这样的signature.
-12. [2017/06] **The 10X Rule: The Only Difference Between Success and Failure** 
-13. [2017/06] **The 4-Hour Workweek** by Timothy Ferriss 
-14. [2017/07] **Learn More, Study Less** by Scott Young 
-14. [2017/07] **Grit** by Angela Duckworth 
+13. [2017/06] **The 10X Rule: The Only Difference Between Success and Failure** 
+14. [2017/06] **The 4-Hour Workweek** by Timothy Ferriss 
+15. [2017/07] **Learn More, Study Less** by Scott Young 
+16. [2017/07] **Grit** by Angela Duckworth 
 
 
 ## 2016
