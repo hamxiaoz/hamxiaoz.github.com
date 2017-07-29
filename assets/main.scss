@@ -48,6 +48,12 @@ footer {
   margin-top: 3em;
 }
 
+#recaptcha-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .site-tab {
   margin-top: 3em;
   margin-bottom: 2em;

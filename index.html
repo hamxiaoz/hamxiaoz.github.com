@@ -100,14 +100,29 @@ park_link: /park
 <!--resume tab-->
 <div class="ui tab" data-tab="resume">
   <div class="ui center aligned notification container">
-    <div class="ui label">Coming soon. Stay thirsty, my friends.</div>
+    <script type="text/javascript">
+      function recaptchaSolved(response) {
+        const div = document.querySelector('#resume-container');
+        div.style.display = 'block';
+        const recaptcha = document.querySelector('#g-recaptcha');
+        recaptcha.style.display = 'none';
+      }
+      var onRecaptchaLoadCallback = function() {
+        grecaptcha.render('g-recaptcha', {
+          'sitekey' : '6Lf07yoUAAAAACMsMMnoIpgttW0AOFqgEWoczhYQ',
+          'callback': 'recaptchaSolved'
+        });
+      };
+    </script>
 
-    <div class='pixels-photo'>
-      <p>
-        <img src='https://drscdn.500px.org/photo/216626791/m%3D900/dad8d8dd0f8da06f9d1134863d1e0f44' alt='Boat by Andrew Zheng on 500px.com'>
-      </p>
-      <a href='https://500px.com/photo/216626791/boat-by-andrew-zheng' alt='Boat by Andrew Zheng on 500px.com'></a>
+    <div id="recaptcha-container">
+      <div id="g-recaptcha"></div>
+      <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoadCallback&render=explicit"
+          async defer>
+      </script>
     </div>
-    <script type='text/javascript' src='https://500px.com/embed.js'></script>
+
+    <div id="resume-container" style="display: none">
+      <div class="ui label">Coming soon. Stay thirsty, my friends.</div>
     </div>
 </div>
