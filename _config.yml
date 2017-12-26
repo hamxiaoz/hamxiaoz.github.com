@@ -33,7 +33,7 @@ kramdown:
 # Build settings
 # theme: minima
 permalink: /blog/:categories/:title.html
-gems:
+plugins:
   - jekyll-feed
 exclude:
   - Gemfile
