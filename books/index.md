@@ -13,7 +13,23 @@ layout: default
 - How Google Works
 - The Little Book of Productivity 
 - The 7 Habits of Highly Effective People
+- 摩托车与禅
+- 我编程，我快乐
+- 红墙黄瓦
+- 小强升职记
+- 培养高情商的孩子：让孩子受益一生的情绪管理法
+- 医学的真相
+- 人类简史
+- Principles
+- 精力管理
 
+Good Reads + 豆瓣 + 多看 + 微信
+
+## 2018
+1. [2018/01] **小王子**
+1. [2018/02] **被讨厌的勇气**
+金字塔原理
+Man's Search for Meaning
 
 ## 2017
 1. [2017/01] **杉山育人笔记**  
@@ -45,6 +61,12 @@ layout: default
 14. [2017/06] **The 4-Hour Workweek** by Timothy Ferriss 
 15. [2017/07] **Learn More, Study Less** by Scott Young 
 16. [2017/07] **Grit** by Angela Duckworth 
+17. [2017/08] **万历十五年** by 王仁宇
+18. [2017/09] **斯科特扬思维习惯高效全能套系** by Scott Young
+19. [2017/09] **长安十二时辰** by 马伯庸
+20. [2017/09] **叔本华的智慧** by 叔本华
+21. [2017/10] **名家讲唐诗** by 叔本华
+22. [2017/10] **走到人生边上：自问自答** by 杨绛
 
 
 ## 2016
