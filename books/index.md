@@ -6,30 +6,11 @@ layout: default
 
 <img src="/assets/images/wtf-read.jpg" style="margin: 1.5em auto !important; max-width: 100%; height: auto; display: block;">
 
-## WIP
-- 苏东坡传
-- 茶书
-- Eloquent JavaScript
-- How Google Works
-- The Little Book of Productivity 
-- The 7 Habits of Highly Effective People
-- 摩托车与禅
-- 我编程，我快乐
-- 红墙黄瓦
-- 小强升职记
-- 培养高情商的孩子：让孩子受益一生的情绪管理法
-- 医学的真相
-- 人类简史
-- Principles
-- 精力管理
-
-Good Reads + 豆瓣 + 多看 + 微信
-
 ## 2018
-1. [2018/01] **小王子**
-1. [2018/02] **被讨厌的勇气**
-金字塔原理
-Man's Search for Meaning
+1. [2018/01] **小王子** by 圣埃克苏佩里
+2. [2018/01] **活出生命的意义** by 维克多·弗兰克
+3. [2018/02] **被讨厌的勇气** by 岸见一郎/古贺史健
+4. [2018/02] **金字塔原理** by Barbara Minto
 
 ## 2017
 1. [2017/01] **杉山育人笔记**  
@@ -59,14 +40,14 @@ Man's Search for Meaning
     看了上面那本, 这本书前半部分可以不看了, 反正后半部分有也看不懂. 不过也算是知道了原来HM除了是一个品牌之外还是一种type signature. Ramda.js每个函数下面都是这样的signature.
 13. [2017/06] **The 10X Rule: The Only Difference Between Success and Failure** 
 14. [2017/06] **The 4-Hour Workweek** by Timothy Ferriss 
-15. [2017/07] **Learn More, Study Less** by Scott Young 
+15. [2017/06] **Learn More, Study Less** by Scott Young 
 16. [2017/07] **Grit** by Angela Duckworth 
-17. [2017/08] **万历十五年** by 王仁宇
-18. [2017/09] **斯科特扬思维习惯高效全能套系** by Scott Young
+17. [2017/07] **茶书** by 冈仓天心
+18. [2017/08] **万历十五年** by 王仁宇
 19. [2017/09] **长安十二时辰** by 马伯庸
 20. [2017/09] **叔本华的智慧** by 叔本华
 21. [2017/10] **名家讲唐诗** by 叔本华
-22. [2017/10] **走到人生边上：自问自答** by 杨绛
+22. [2017/11] **走到人生边上：自问自答** by 杨绛
 
 
 ## 2016
