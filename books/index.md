@@ -6,6 +6,10 @@ layout: default
 
 <img src="/assets/images/wtf-read.jpg" style="margin: 1.5em auto !important; max-width: 100%; height: auto; display: block;">
 
+- [在读](https://book.douban.com/people/zurassic/do)
+- [豆瓣](https://book.douban.com/people/zurassic/)
+- [GoodReads](https://www.goodreads.com/user/show/54696617-andrew-zheng)
+
 ## 2018
 1. [2018/01] **小王子** by 圣埃克苏佩里
 2. [2018/01] **活出生命的意义** by 维克多·弗兰克
