@@ -29,6 +29,13 @@
           }
         }
       });
+
+      $('.trackable').on('click', function() {
+        var context = $(this).attr('data-ga');
+        if (window.ga) {
+          ga('send', 'pageview', context);
+        }
+      });
     });
   </script>
 
