@@ -1,0 +1,49 @@
+[
+  {
+    "title": "Overview",
+    "hash": "overview",
+    "data": [
+      {
+        "title": "12 Weeks UX Design Bootcamp",
+        "meta": "What I’ve learned from a UX design bootcamp",
+        "image": "/assets/images/portfolio-ux.png",
+        "link": "https://medium.com/@hamxiaoz/what-i-v-learned-from-a-ux-design-bootcamp-9bbac8755a4a#.uvjivldfz"
+      },
+      {
+        "title": "Monokai Slate",
+        "meta": "Atom theme, 28k downloads",
+        "image": "/assets/images/project-atom-monokai-slate.png",
+        "link": "https://atom.io/themes/monokai-slate"
+      },
+      {
+        "title": "ATT.com Redesign",
+        "meta": "How can we simplify the process of shopping wireless plan?",
+        "image": "/assets/images/portfolio-att.png",
+        "link": "https://goo.gl/OX2Z8X"
+      },
+      {
+        "title": "OneMessageID Usability Test",
+        "meta": "How to help this startup to verify their MVP?",
+        "image": "/assets/images/portfolio-onemessageid.png",
+        "link": "https://goo.gl/y5kwVT"
+      },
+      {
+        "title": "Business Card Design",
+        "meta": "How to present me in a 7 square inches card?",
+        "image": "/assets/images/business-card-thumbnail.png",
+        "link": "/assets/images/Andrew-namecard.png"
+      },
+      {
+        "title": "Poor man’s Valentine’s day gift (2013)",
+        "meta": "Made with JQuery, RMagick and love.",
+        "image": "/assets/images/2013-vday-thumbnail.png",
+        "link": "http://hamxiaoz.github.io/2013VDayGift/"
+      },
+      {
+        "title": "华人事业互助会2014圣诞贺卡",
+        "image": "/assets/images/hu-thumbnail.png",
+        "link": "http://hamxiaoz.github.io/hu-2014/"
+      }
+    ]
+  }
+]

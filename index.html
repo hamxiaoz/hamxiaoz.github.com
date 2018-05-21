@@ -7,7 +7,7 @@ park_link: /park
   <div class="sixteen wide mobile ten wide tablet ten wide computer column">
     <div class="description">
       <h3 class="ui header hello">Hello, I'm Andrew Zheng</h3>
-      <p>I am a <a href="https://medium.com/@hamxiaoz/what-is-full-stack-c8c06e3c4f13#.sydn5rkcp" target="_blank">full stack developer</a> with 9 years experience of building web apps and Windows programs.</p>
+      <p>A <a href="https://medium.com/@hamxiaoz/what-is-full-stack-c8c06e3c4f13#.sydn5rkcp" target="_blank">full stack developer</a> with 10 years experience of building web apps and Windows programs.</p>
       <p>I like to solve problems, often this involves <strong>software</strong> and <strong> UX design</strong>.</p>
       <p>I believe that
         <span class="more-details"
@@ -51,28 +51,147 @@ park_link: /park
 
 <div class="ui center aligned container site-tab">
   <div class="ui compact menu">
-    <a class="item active" data-tab="portfolio">Portfolio</a>
+    <a class="item active" data-tab="recent">Recent<div class="floating ui red tiny label">new</div></a>
+    <a class="item" data-tab="professional">Work</a>
     <a class="item" data-tab="projects">Projects</a>
+    <a class="item" data-tab="design">Design</a>
     <a class="item" data-tab="resume">Resume</a>
   </div>
 </div>
 
-<!--portfolio tab-->
-<div class="ui tab active" data-tab="portfolio">
-  {% for portfolio_meta in site.data.portfolio %}
-    <div class="in-tab-section">
-      <h4 class="ui tiny header" id="{{ portfolio_meta.hash }}">{{ portfolio_meta.title }}</h4>
-      <div class="ui four stackable cards">
-        {% assign portfolio_cards = portfolio_meta.data %}
-        {% for portfolio in portfolio_cards %}
-          {% include image-card.html data=portfolio %}
-        {% endfor %}
-      </div>
-    </div>
-  {% endfor %}
+<!--recent tab-->
+<div class="ui tab active" data-tab="recent">
+  <h4 class="ui tiny header">Writing</h4>
+  <ul>
+    <li>
+      <a class="trackable" data-ga="medium-FP-in-JS" href="https://medium.com/@hamxiaoz/functional-programming-in-typescript-javascript-d9d79663bc4" target="_blank">
+        Functional programming in TypeScript/JavaScript
+      </a>
+      <p>
+          A collection of my writings to thinking in functional programming with TypeScript/JavaScript.
+      </p>
+    </li>
+    <li>
+      <a class="trackable" data-ga="medium-vscode" href="https://medium.com/@hamxiaoz/know-your-editor-visual-studio-code-a2613b7cf24" target="_blank">
+          Know your editor: Visual Studio Code
+      </a>
+      <p>
+        Visual Sudio Code is now my favourite code editor. I shared a collection of tips on Medium.com
+      </p>
+    </li>
+  </ul>
 </div>
 
-<!--projects tab-->
+
+<!--professional tab-->
+<div class="ui tab" data-tab="professional">
+  <h4 class="ui tiny header"><i class="orange trophy icon"></i>Awards</h4>
+  <ul>
+    <li>
+       Dale Carnegie Course®: highest achivement award in 30 people class plus a breakthrough award.
+    </li>
+    <li>
+      ADP API Hackathon: "Smart use of API" award (ADP Marketplace API + Google Assistant + API.AI)
+      <a class="trackable" data-ga="hackathon-api-award" href="https://medium.com/zurassic/what-i-learned-from-hackathons-in-adp-7ab1b03b2476" target="_blank">
+        What I learned?
+      </a>
+    </li>
+    <li>
+      ADP UX Hackathon: 1st place (Vue.js + D3.js + Electron)
+      <a class="trackable" data-ga="hackathon-ux-1st" href="https://medium.com/zurassic/what-i-learned-from-hackathons-in-adp-7ab1b03b2476" target="_blank">
+        What I learned?
+      </a>
+    </li>
+  </ul>
+
+  <h4 class="ui tiny header">Delivered</h4>
+  <ul>
+    <li>
+       ADP Paycard Experience in <a class="trackable" data-ga="adp-mobile-app" href="https://itunes.apple.com/us/app/adp-mobile-solutions/id444553167?mt=8" target="_blank">ADP Mobile App</a>, built on Angular.
+       <p>
+          #1 Free Business App in App Store, 13 Million Registered User.
+       </p>
+    </li>
+    <li>
+      CMServer: internal configuration management web app, built on Meteor.js.
+      <p>
+        Read more: 
+        <a class="trackable" data-ga="cmserver" href="https://medium.com/p/6ca6ecc660ac" target="_blank">
+          How a chrome extension evolved to a web app
+        </a>
+      </p>
+    </li>
+    <li>
+      CMTool: electron app built on React.js with Occlusion Culling and in-app code editor.
+      <p>
+        Read more: 
+        <a class="trackable" data-ga="cmtool" href="https://medium.com/p/d7f81175571a" target="_blank">
+          Design and tech highlights
+        </a>
+      </p>
+    </li>
+    <li>
+      InfinityTuner Wizard: custom JSON and JavaScript based DSL, asynchronous UI and heavy use of SQLite3 database.
+      <p>
+        Read more: 
+        <a class="trackable" data-ga="infinitytuner" href="https://medium.com/p/152596e910bb" target="_blank">
+          The state-of-the-art ECU deserves a state-of-the-art program.
+        </a>
+      </p>
+    </li>
+    <li>
+      AQ-1 Data Logger Software: real time data view in custom list view control and high performance custom USB driver.
+      <p>
+        Read more: 
+        <a class="trackable" data-ga="aq-1" href="https://medium.com/p/ef1a13a6bdc6" target="_blank">
+          "The software is straight forward, easy to setup and use."
+        </a>
+      </p>
+    </li>
+    <li>
+       AEMTuner: best real-time engine tuning software, written in C++ and C#.
+       <p>
+        Read more: 
+        <a class="trackable" data-ga="aemtuner" href="https://www.youtube.com/watch?v=bkGrq8ACyR8" target="_blank">
+          Top 10 features, 75k view.
+        </a>
+       </p>
+    </li>
+    <li>
+      Custom syntax highlight package for Atom editor.
+      <p>
+        Read more: 
+        <a class="trackable" data-ga="atom-syntax-highlight" href="https://medium.com/@hamxiaoz/portfolio-atom-syntax-highlight-package-2926a62bfd50#.1j2dy4w07" target="_blank">
+          How do we improve "Engineer Experience"?
+        </a>
+      </p>
+    </li>
+    <li>
+      Software release/updates server with windows client software updates checker.
+      <p>
+        Read more: 
+        <a class="trackable" data-ga="release-update-server" href="https://medium.com/@hamxiaoz/portfolio-software-release-updates-server-887dfd74b3b7#.50czowv0j" target="_blank">
+          A modern solution for software release/updates
+        </a> and
+        <a class="trackable" data-ga="release-update-client" href="https://medium.com/@hamxiaoz/portfolio-software-updater-c535ce9998c6#.ovkfijwi3" target="_blank">
+          The best interface is no interface
+        </a>
+      </p>
+    </li>
+  </ul>
+
+  <h4 class="ui tiny header">Freelance since 2013</h4>
+  <ul>
+    <li>
+      Full Stack JavaScript Freelance since 2013. Stack includes: Meteor.js, MongoDB, AWS S3, Paypal payment API etc. 
+      <p>
+        Read more: <a class="trackable" data-ga="freelance" href="https://medium.com/@hamxiaoz/portfolio-freelance-d17f943c5368" target="_blank">here.</a></p>
+      </p>
+    </li>
+  </ul>
+</div>
+
+<!--side projects tab-->
 <div class="ui tab" data-tab="projects">
   <div class="ui four stackable cards">
     {% for project in site.data.projects.all %}
@@ -81,9 +200,9 @@ park_link: /park
   </div>
 
   <div class="in-tab-section">
-    <h4 class="ui tiny header" id="long">Long Term Projects</h4>
+    <h4 class="ui tiny header" id="long">Photo/Video Projects</h4>
     <div class="ui four stackable cards">
-      {% for project in site.data.projects.longTerm %}
+      {% for project in site.data.projects.family %}
         {% include image-card.html data=project %}
       {% endfor %}
     </div>
@@ -96,6 +215,19 @@ park_link: /park
     </div>
   </div>
 </div>
+
+<!--design tab-->
+<div class="ui tab" data-tab="design">
+  {% for portfolio_meta in site.data.design %}
+    <div class="ui four stackable cards">
+      {% assign design_cards = portfolio_meta.data %}
+      {% for card in design_cards %}
+        {% include image-card.html data=card %}
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+
 
 <!--resume tab-->
 <div class="ui tab" data-tab="resume">
@@ -123,6 +255,6 @@ park_link: /park
     </div>
 
     <div id="resume-container" style="display: none">
-      <div class="ui label">Coming soon. Stay thirsty, my friends.</div>
+      <div class="ui label">A rich format version of resume is coming soon. At the meantime, please email me for the latest copy of my resume. Stay thirsty, my friends.</div>
     </div>
 </div>

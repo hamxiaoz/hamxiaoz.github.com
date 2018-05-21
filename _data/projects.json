@@ -14,7 +14,7 @@
     },
     {
       "title": "Bella's ABC",
-      "meta": "A fun HTML5 project",
+      "meta": "A fun HTML5 Audio project",
       "image": "/assets/images/abc-thumbnail.png",
       "link": "/ann/abc"
     },
@@ -37,23 +37,6 @@
       "link": "http://hamxiaoz.github.io/StandOut/"
     },
     {
-      "title": "Business Card Design",
-      "meta": "How to present me in a 7 square inches card?",
-      "image": "/assets/images/business-card-thumbnail.png",
-      "link": "/assets/images/Andrew-namecard.png"
-    },
-    {
-      "title": "Poor man’s Valentine’s day gift (2013)",
-      "meta": "Made with JQuery, RMagick and love.",
-      "image": "/assets/images/2013-vday-thumbnail.png",
-      "link": "http://hamxiaoz.github.io/2013VDayGift/"
-    },
-    {
-      "title": "华人事业互助会2014圣诞贺卡",
-      "image": "/assets/images/hu-thumbnail.png",
-      "link": "http://hamxiaoz.github.io/hu-2014/"
-    },
-    {
       "title": "Beijing Air PM2.5",
       "meta": "<div class='ui label'>Fix pending</div>",
       "link": "http://hamxiaoz.github.io/BeijingAir/",
@@ -67,7 +50,7 @@
     }
   ],
 
-  "longTerm": [
+  "family": [
     {
       "title": "Weekly Project",
       "meta": "New picture from my locker screen and home screen every Monday.",

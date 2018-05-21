@@ -32,6 +32,7 @@
 
       $('.trackable').on('click', function() {
         var context = $(this).attr('data-ga');
+        console.log(context);
         if (window.ga) {
           ga('send', 'pageview', context);
         }
