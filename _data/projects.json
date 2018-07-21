@@ -1,10 +1,10 @@
 {
   "all": [
     {
-      "title": "Development notes",
+      "title": "Full Stack Notes (GitBook)",
       "meta": "Published by GitBook",
       "image": "/assets/images/project-wordcloud.png",
-      "link": "https://hamxiaoz.gitbooks.io/full-stack-notes/content/"
+      "link": "https://zurassic.gitbook.io/full-stack-notes/"
     },
     {
       "title": "Monokai Slate",
