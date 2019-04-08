@@ -1,10 +1,10 @@
 {
   "all": [
     {
-      "title": "Full Stack Notes (GitBook)",
-      "meta": "Published by GitBook",
+      "title": "10x Developer (gitbook)",
+      "meta": "Full stack notes, tools and productivity tips",
       "image": "/assets/images/project-wordcloud.png",
-      "link": "https://zurassic.gitbook.io/full-stack-notes/"
+      "link": "https://zurassic.gitbook.io/10x-developer/"
     },
     {
       "title": "Monokai Slate",
