@@ -1,0 +1,320 @@
+/* layout.css — replaces semantic.min.css (530 KB → ~6 KB)
+   Covers only the Semantic UI classes actually used on zurassic.com */
+
+/* ── Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ── Containers ─────────────────────────────────────────────────────────── */
+.ui.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.ui.text.container {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+/* ── Alignment helpers ──────────────────────────────────────────────────── */
+.center.aligned,
+.ui.center.aligned {
+  text-align: center;
+}
+
+/* ── Typography ─────────────────────────────────────────────────────────── */
+.ui.header {
+  font-weight: 700;
+  color: #343434;
+  margin: 0.5em 0 0.25em;
+}
+
+.ui.header .sub.header,
+.sub.header {
+  display: block;
+  font-size: 0.85em;
+  font-weight: 400;
+  color: #777;
+  margin-top: 0.4em;
+}
+
+.ui.tiny.header  { font-size: 0.9em;  text-transform: uppercase; letter-spacing: 0.06em; color: #555; }
+.ui.small.header { font-size: 1.05em; }
+
+/* Divider with centred label */
+.ui.horizontal.divider.header,
+.ui.disabled.horizontal.divider.header {
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  color: #aaa;
+  font-size: 0.85em;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 2em 0 1em;
+}
+.ui.horizontal.divider.header::before,
+.ui.horizontal.divider.header::after,
+.ui.disabled.horizontal.divider.header::before,
+.ui.disabled.horizontal.divider.header::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid #d4d4d5;
+}
+
+/* ── Labels / badges ────────────────────────────────────────────────────── */
+.ui.label {
+  display: inline-block;
+  padding: 0.3em 0.65em;
+  background: #e8e8e8;
+  color: #555;
+  border-radius: 3px;
+  font-size: 0.8em;
+  vertical-align: middle;
+}
+
+.ui.small.label  { font-size: 0.7em; }
+
+.ui.red.label,
+.floating.ui.red.tiny.label {
+  background: #db2828;
+  color: #fff;
+}
+
+/* "new" floating badge on menu items */
+.floating.ui.red.tiny.label {
+  position: absolute;
+  top: -0.6em;
+  right: -0.6em;
+  padding: 0.2em 0.5em;
+  font-size: 0.6em;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+/* ── Grid (hero two-column layout only) ─────────────────────────────────── */
+.ui.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Hero: left col ~62.5%, right ~37.5% */
+.ui.grid.hero > .column:first-child { flex: 0 0 62.5%; max-width: 62.5%; }
+.ui.grid.hero > .column:last-child  { flex: 0 0 37.5%; max-width: 37.5%; }
+
+@media (max-width: 767px) {
+  .ui.grid.hero > .column:first-child,
+  .ui.grid.hero > .column:last-child {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* middle-aligned (used by quote container) */
+.ui.middle.aligned.grid {
+  align-items: center;
+  justify-content: center;
+}
+
+/* Three-column grid (blog post lists) */
+.ui.three.column.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5em 1.5em;
+}
+
+@media (max-width: 767px) {
+  .ui.three.column.grid { grid-template-columns: 1fr; }
+}
+
+/* Year-header that spans full width inside three-column grid */
+.ui.three.column.grid .ui.tiny.header.sixteen.wide.column {
+  grid-column: 1 / -1;
+  margin-top: 1.5em;
+}
+
+/* ── Images ─────────────────────────────────────────────────────────────── */
+.ui.image img,
+.ui.image { max-width: 100%; height: auto; display: block; }
+
+.ui.fluid.image,
+.ui.fluid.image img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
+/* ── Cards ──────────────────────────────────────────────────────────────── */
+.ui.cards {
+  display: grid;
+  gap: 1em;
+}
+
+.ui.four.stackable.cards  { grid-template-columns: repeat(4, 1fr); }
+.ui.one.stackable.cards   { grid-template-columns: 1fr; }
+
+@media (max-width: 991px) {
+  .ui.four.stackable.cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767px) {
+  .ui.four.stackable.cards,
+  .ui.one.stackable.cards  { grid-template-columns: 1fr; }
+}
+
+.ui.card,
+a.ui.card {
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.18);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ui.card:hover,
+a.ui.card:hover { box-shadow: 0 3px 8px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.20); }
+
+.ui.card .content,
+.ui.card .center.aligned.content {
+  padding: 0.85em 1em;
+  flex: 1;
+}
+
+.ui.card .center.aligned.content { text-align: center; }
+
+/* canvas background used on quote card */
+.ui.card .center.aligned.content.canvas,
+.canvas { background-color: #F5F4F0; }
+
+.ui.card .header     { font-weight: 700; margin-bottom: 0.2em; }
+.ui.card .meta       { color: #777; font-size: 0.85em; }
+.ui.card .description { margin-top: 0.4em; font-size: 0.9em; }
+
+.ui.card .extra.content {
+  padding: 0.65em 1em;
+  border-top: 1px solid rgba(0,0,0,.08);
+  font-size: 0.8em;
+  color: #777;
+}
+
+/* Corner label (RSS icon on blog cover image) */
+.ui.right.corner.label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-top: 2.5em solid rgba(0,0,0,.25);
+  border-left: 2.5em solid transparent;
+  color: #fff;
+}
+.ui.right.corner.label i.icon {
+  position: absolute;
+  top: -2.2em;
+  right: 0.3em;
+  font-size: 0.8em;
+}
+
+/* ── Menu / Tab bar ─────────────────────────────────────────────────────── */
+.ui.menu {
+  display: flex;
+  border: 1px solid #d4d4d5;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.ui.compact.menu { display: inline-flex; }
+
+.ui.menu .item {
+  display: flex;
+  align-items: center;
+  padding: 0.75em 1.1em;
+  cursor: pointer;
+  color: #555;
+  text-decoration: none;
+  white-space: nowrap;
+  border-right: 1px solid #d4d4d5;
+  position: relative;
+  transition: background 0.12s;
+}
+.ui.menu .item:last-child { border-right: none; }
+.ui.menu .item:hover      { background: rgba(0,0,0,.04); }
+.ui.menu .item.active     { background: rgba(0,0,0,.07); font-weight: 600; color: #343434; }
+
+/* ── Tab panels ─────────────────────────────────────────────────────────── */
+.ui.tab         { display: none; }
+.ui.tab.active  { display: block; }
+
+/* ── Lists ──────────────────────────────────────────────────────────────── */
+.ui.list,
+.ui.link.list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.ui.link.list .item { margin-bottom: 0.5em; }
+
+.ui.horizontal.link.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25em 0.5em;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.ui.horizontal.link.list .item {
+  padding: 0.3em 0.7em;
+  border-radius: 3px;
+}
+
+.ui.horizontal.link.list .item:hover { background: rgba(0,0,0,.05); }
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+.ui.button {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  border: 1px solid #d4d4d5;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  color: #555;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.12s;
+}
+.ui.button:hover { background: #f5f5f5; }
+
+/* Bottom-attached "Refresh quote" button */
+.ui.bottom.attached.basic.button {
+  display: block;
+  width: 100%;
+  border: none;
+  border-top: 1px solid rgba(0,0,0,.08);
+  border-radius: 0;
+  padding: 0.75em;
+  background: #fff;
+  cursor: pointer;
+  text-align: center;
+  color: #555;
+  transition: background 0.12s;
+}
+.ui.bottom.attached.basic.button:hover { background: #f9f9f9; }
+
+/* ── Notification ───────────────────────────────────────────────────────── */
+.ui.center.aligned.notification.container { text-align: center; }
+
+/* ── Quote container ────────────────────────────────────────────────────── */
+.ui.middle.aligned.grid.quote-container {
+  width: 100%;
+  min-height: 160px;
+}
