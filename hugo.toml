@@ -15,6 +15,9 @@ title = "zurassic"
 [permalinks]
   posts = "/blog/:slug.html"
 
+[frontmatter]
+  date = [":filename", ":default"]
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
