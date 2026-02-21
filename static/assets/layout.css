@@ -234,8 +234,9 @@ a.ui.card:hover { box-shadow: 0 3px 8px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.2
   display: flex;
   border: 1px solid #d4d4d5;
   border-radius: 4px;
-  overflow: hidden;
   background: #fff;
+  /* no overflow:hidden — the floating "new" badge on menu items
+     must be able to bleed outside the menu's bounding box */
 }
 
 .ui.compact.menu { display: inline-flex; }
@@ -268,7 +269,8 @@ a.ui.card:hover { box-shadow: 0 3px 8px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.2
   margin: 0;
 }
 
-.ui.link.list .item { margin-bottom: 0.5em; }
+/* <a> tags are inline by default; force block so items stack vertically */
+.ui.link.list .item { display: block; margin-bottom: 0.5em; }
 
 .ui.horizontal.link.list {
   display: flex;
