@@ -1,0 +1,50 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ if .IsPage }}{{ .Title | htmlEscape }} | {{ end }}{{ .Site.Title | htmlEscape }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+  <link rel="stylesheet" href="{{ "/assets/vendor/semantic.min.css" | relURL }}">
+  {{ $css := resources.Get "main.scss" | toCSS }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  <link rel="stylesheet" href="{{ "/assets/syntax.css" | relURL }}">
+
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{ with .OutputFormats.Get "RSS" }}
+    <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title | htmlEscape }}" href="{{ .Permalink }}">
+  {{ end }}
+
+  <script src="{{ "/assets/vendor/jquery-1.12.4.min.js" | relURL }}"></script>
+  <script src="{{ "/assets/vendor/semantic.min.js" | relURL }}"></script>
+  <script src="{{ "/assets/vendor/fastclick.js" | relURL }}"></script>
+  <script src="{{ "/assets/vendor/jquery.address.min.js" | relURL }}"></script>
+  <script>
+    $(function() {
+      FastClick.attach(document.body);
+      $('.site-tab .item').tab({
+        history: true,
+        historyType: 'hash',
+        onVisible: function(tabPath){
+          if (window.ga) {
+            ga('send', 'pageview', tabPath);
+          }
+        }
+      });
+
+      $('.trackable').on('click', function() {
+        var context = $(this).attr('data-ga');
+        if (window.ga) {
+          ga('send', 'pageview', context);
+        }
+      });
+    });
+  </script>
+
+  {{ if hugo.IsProduction }}
+    {{ with .Site.Params.googleAnalytics }}
+      {{ partial "google-analytics.html" $ }}
+    {{ end }}
+  {{ end }}
+</head>

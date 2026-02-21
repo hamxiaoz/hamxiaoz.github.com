@@ -1,0 +1,35 @@
+{{ define "main" }}
+<article itemscope itemtype="http://schema.org/BlogPosting">
+
+  <div class="ui text container">
+
+    <div class="center aligned ui header">
+      <h1 itemprop="name headline">{{ .Title | htmlEscape }}</h1>
+      <div class="sub header">
+        <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" itemprop="datePublished">{{ .Date.Format "2006-01-02" }}</time>
+      </div>
+    </div>
+
+    <div class="post-content" itemprop="articleBody">
+      {{ .Content }}
+    </div>
+
+    {{ with .Params.category }}
+      {{ $catName := . }}
+      {{ $cat := index (index $.Site.Data "blogcategory") $catName }}
+      {{ with $cat }}
+        <div class="center aligned ui text container category-intro">
+          <h4 class="ui horizontal divider disabled header">{{ .click }}</h4>
+          <a href="{{ .link }}">{{ $catName }}</a>
+          <p>{{ .description | safeHTML }}</p>
+        </div>
+      {{ end }}
+    {{ end }}
+
+    {{ if .Site.Params.disqus.shortname }}
+      {{ partial "disqus.html" . }}
+    {{ end }}
+
+  </div>
+</article>
+{{ end }}

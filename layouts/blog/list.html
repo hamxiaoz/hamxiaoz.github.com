@@ -1,0 +1,62 @@
+{{ define "main" }}
+<div class="ui container">
+
+  <div class="ui fluid image">
+    <a class="ui right corner label" href="{{ .Site.BaseURL }}posts/index.xml">
+      <i class="rss icon"></i>
+    </a>
+    <img src="/assets/images/blog-cover.png">
+  </div>
+
+  <div class="section">
+    <h4 class="ui tiny header" id="recent">
+      Recent
+    </h4>
+    <div class="ui three column grid">
+      {{ range first 6 (where .Site.RegularPages "Section" "posts") }}
+        <div class="column">
+          {{ partial "post-link.html" . }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+
+  {{ range $catName, $catData := (index .Site.Data "blogcategory") }}
+    <div class="section">
+      <h4 class="ui tiny header" id="{{ $catData.id }}">
+        {{ $catName }}
+        <span class="ui small label">{{ $catData.description | safeHTML }}</span>
+      </h4>
+      <div class="ui three column grid">
+        {{ range where (where $.Site.RegularPages "Section" "posts") ".Params.category" $catName }}
+          <div class="column">
+            {{ partial "post-link.html" . }}
+          </div>
+        {{ end }}
+      </div>
+    </div>
+  {{ end }}
+
+  <h4 class="ui disabled horizontal divider header">
+    All
+    <span class="ui small label">({{ len (where .Site.RegularPages "Section" "posts") }})</span>
+  </h4>
+
+  <div class="ui three column grid">
+    {{ $currentYear := "" }}
+    {{ range where .Site.RegularPages "Section" "posts" }}
+      {{ $thisYear := .Date.Format "2006" }}
+      {{ if ne $currentYear $thisYear }}
+        {{ $currentYear = $thisYear }}
+        <h4 class="ui tiny header sixteen wide column" id="{{ $thisYear }}">
+          {{ $thisYear }}
+        </h4>
+      {{ end }}
+      <div class="column">
+        {{ partial "post-link.html" . }}
+      </div>
+    {{ end }}
+  </div>
+
+</div>
+{{ end }}

@@ -1,0 +1,29 @@
+baseURL = "https://zurassic.com/"
+languageCode = "en-us"
+title = "zurassic"
+
+[params]
+  email = "andrew@zurassic.com"
+  description = "Andrew Zheng's personal website"
+  googleAnalytics = "UA-69462353-1"
+  logoLink = "/"
+  logoImage = "/assets/images/zhi.png"
+
+[params.disqus]
+  shortname = "hamxiaozgithubcom"
+
+[permalinks]
+  posts = "/blog/:slug.html"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # Allow raw HTML in Markdown — needed for legacy posts with <iframe>, <div>, etc.
+      unsafe = true
+  [markup.highlight]
+    style = "monokai"
+    noClasses = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]

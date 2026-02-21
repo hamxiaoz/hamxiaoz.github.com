@@ -1,0 +1,23 @@
+{{/* Expects a dict: (dict "data" $item "site" $.Site) */}}
+{{ $data := .data }}
+{{ $site := .site }}
+<a class="ui card trackable" data-ga="{{ $data.title }}" href="{{ $data.link }}" target="_blank">
+  <div class="ui image">
+    {{ if $data.image }}
+      <img src="{{ $data.image }}">
+    {{ else }}
+      {{ $cloud := $site.Data.cloud }}
+      {{ $img := index (shuffle $cloud) 0 }}
+      <img src="{{ $img }}">
+    {{ end }}
+  </div>
+  <div class="center aligned content">
+    <div class="ui tiny header">{{ $data.title }}</div>
+    <div class="meta">{{ $data.meta }}</div>
+  </div>
+  {{ if $data.tags }}
+    <div class="extra content">
+      <span class="date">{{ $data.tags }}</span>
+    </div>
+  {{ end }}
+</a>

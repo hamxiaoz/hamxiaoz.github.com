@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="ui container">
+  <h1 class="ui header">{{ .Title }}</h1>
+  <div class="ui three column grid">
+    {{ range .Pages }}
+      <div class="column">
+        {{ partial "post-link.html" . }}
+      </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}
