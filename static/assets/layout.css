@@ -104,6 +104,13 @@
   flex-wrap: wrap;
 }
 
+/* Columns need position:relative so that absolutely-positioned children
+   (.description at bottom:4em left:4em and .stamp at bottom:1em right:1em
+   from main.scss) stay anchored inside their column, not the viewport. */
+.ui.grid > .column {
+  position: relative;
+}
+
 /* Hero: left col ~62.5%, right ~37.5% */
 .ui.grid.hero > .column:first-child { flex: 0 0 62.5%; max-width: 62.5%; }
 .ui.grid.hero > .column:last-child  { flex: 0 0 37.5%; max-width: 37.5%; }
