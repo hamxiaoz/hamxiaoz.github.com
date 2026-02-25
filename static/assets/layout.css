@@ -164,13 +164,16 @@
 }
 
 .ui.four.stackable.cards  { grid-template-columns: repeat(4, 1fr); }
+.ui.three.stackable.cards { grid-template-columns: repeat(3, 1fr); }
 .ui.one.stackable.cards   { grid-template-columns: 1fr; }
 
 @media (max-width: 991px) {
-  .ui.four.stackable.cards { grid-template-columns: repeat(2, 1fr); }
+  .ui.four.stackable.cards  { grid-template-columns: repeat(2, 1fr); }
+  .ui.three.stackable.cards { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 767px) {
   .ui.four.stackable.cards,
+  .ui.three.stackable.cards,
   .ui.one.stackable.cards  { grid-template-columns: 1fr; }
 }
 
@@ -326,4 +329,25 @@ a.ui.card:hover { box-shadow: 0 3px 8px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.2
 .ui.middle.aligned.grid.quote-container {
   width: 100%;
   min-height: 160px;
+}
+
+/* ── Horizontal list (park page icon row) ───────────────────────────────── */
+.ui.horizontal.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5em;
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* ── Six-column grid (ann/abc button board) ─────────────────────────────── */
+.ui.six.column.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.5em;
+}
+@media (max-width: 767px) {
+  .ui.six.column.grid { grid-template-columns: repeat(4, 1fr); }
 }

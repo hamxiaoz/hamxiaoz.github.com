@@ -1,0 +1,7 @@
+{{ define "main" }}
+<div class="ui three stackable cards">
+  {{ range (index .Site.Data "projectsann") }}
+    {{ partial "image-card.html" (dict "data" . "site" $.Site) }}
+  {{ end }}
+</div>
+{{ end }}
