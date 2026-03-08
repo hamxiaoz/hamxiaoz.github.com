@@ -284,13 +284,16 @@ a.ui.card:hover { box-shadow: 0 3px 8px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.2
   margin: 0;
 }
 
-.ui.horizontal.link.list .item {
+.ui.horizontal.link.list .item,
+.ui.horizontal.link.list a.item {
   padding: 0.3em 0.7em;
   border-radius: 3px;
+  color: rgba(0,0,0,.4);
+  transition: .1s color ease;
 }
 
-.ui.horizontal.link.list .item:hover { background: rgba(0,0,0,.05); }
-
+.ui.horizontal.link.list .item:hover,
+.ui.horizontal.link.list a.item:hover { background: rgba(0,0,0,.05); }
 /* ── Buttons ────────────────────────────────────────────────────────────── */
 .ui.button {
   display: inline-block;

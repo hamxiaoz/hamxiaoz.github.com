@@ -6,7 +6,7 @@ layout: post
 
 
 
-title: "\"Xbox\" is a MS Word"
+title: '"Xbox" is a MS Word'
 
 ---
 <div id="msgcns!5F971C000415D85F!172" class="bvMsg">

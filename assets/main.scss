@@ -33,6 +33,7 @@ hr.soften {
 body {
   background-color: $bg-color;
   color: $gray;
+  font-family: Lato, 'Helvetica Neue', "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 header {
@@ -80,6 +81,11 @@ a {
   &:hover {
     color: $china-red;
   }
+}
+
+.ui.horizontal.link.list a.item,
+.ui.horizontal.link.list a.item i {
+  color: rgba(0,0,0,.4);
 }
 
 .ui.card>.extra a:not(.ui):hover, .ui.cards>.card>.extra a:not(.ui):hover {

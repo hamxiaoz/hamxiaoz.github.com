@@ -6,9 +6,12 @@
   <title>{{ if .IsPage }}{{ .Title | htmlEscape }} | {{ end }}{{ .Site.Title | htmlEscape }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
   <link rel="stylesheet" href="/assets/icons.css">
   <link rel="stylesheet" href="/assets/layout.css">
-  {{ $css := resources.Get "main.scss" | toCSS }}
+  {{ $css := resources.Get "main.scss" | toCSS | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
   <link rel="stylesheet" href="/assets/syntax.css">
 
