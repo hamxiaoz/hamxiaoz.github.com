@@ -1,0 +1,46 @@
+{{/*
+  Shared project card — used in Work, Side Projects, and home teasers.
+  Params:
+    .page  — the Hugo page (.Params, .Title, .RelPermalink, etc.)
+    .index — 1-based position (for numbered cards in zurassic theme)
+    .style — "dark" | "light" (default light)
+*/}}
+{{ $p := .page }}
+{{ $idx := .index | default 1 }}
+{{ $style := .style | default "light" }}
+<article class="project-card project-card--{{ $style }} reveal">
+  {{/* Number badge (zurassic theme) or company/status badge */}}
+  <div class="card-meta-row">
+    {{ with $p.Params.company }}
+      <span class="card-badge card-badge--company">@ {{ . }}</span>
+    {{ else }}{{ with $p.Params.status }}
+      <span class="card-badge card-badge--status card-badge--{{ . }}">{{ . }}</span>
+    {{ end }}{{ end }}
+    <span class="card-number">{{ printf "%02d" $idx }}</span>
+  </div>
+
+  <div class="card-body">
+    <h3 class="card-title">{{ $p.Title }}</h3>
+    {{ with $p.Params.role }}<p class="card-role">{{ . }}</p>{{ end }}
+    <p class="card-desc">{{ $p.Params.description | default $p.Summary }}</p>
+    {{ with $p.Params.tags }}
+    <div class="card-tags">
+      {{ range . }}<span class="card-tag">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+  </div>
+
+  <div class="card-actions">
+    {{ with $p.Params.live_url }}
+      <a href="{{ . }}" class="card-action card-action--primary" target="_blank" rel="noopener noreferrer">Launch ›</a>
+    {{ end }}
+    {{ with $p.Params.article_url }}
+      <a href="{{ . }}" class="card-action card-action--secondary" target="_blank" rel="noopener noreferrer">Read more ›</a>
+    {{ else }}
+      <a href="{{ $p.RelPermalink }}" class="card-action card-action--secondary">Learn more ›</a>
+    {{ end }}
+  </div>
+
+  {{/* Gradient orb decoration (Apple dark cards) */}}
+  <div class="card-orb" aria-hidden="true"></div>
+</article>

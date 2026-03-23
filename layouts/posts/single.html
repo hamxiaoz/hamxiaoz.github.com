@@ -16,7 +16,7 @@
 
     {{ with .Params.category }}
       {{ $catName := . }}
-      {{ $cat := index (index $.Site.Data "blogcategory") $catName }}
+      {{ $cat := index (where $.Site.Data.blogcategory "name" $catName) 0 }}
       {{ with $cat }}
         <div class="center aligned ui text container category-intro">
           <h4 class="ui horizontal divider disabled header">{{ .click }}</h4>

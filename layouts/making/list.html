@@ -1,0 +1,86 @@
+{{ define "main" }}
+{{ $photos := where .RegularPages ".Params.medium" "photo" }}
+{{ $music  := where .RegularPages ".Params.medium" "music" }}
+{{ $video  := where .RegularPages ".Params.medium" "video" }}
+{{ $art    := where .RegularPages ".Params.medium" "art" }}
+
+<section class="portfolio-section section-page section-making reveal-section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <h1 class="section-title">Making.</h1>
+      <p class="section-subtitle">{{ .Description | default "Photography, music, and video." }}</p>
+    </div>
+
+    {{ if $photos }}
+    <div class="making-subsection reveal">
+      <h2 class="making-sub-title">Photography</h2>
+      <div class="photo-grid photo-grid--full">
+        {{ range $photos }}
+        <a href="{{ .RelPermalink }}" class="photo-item">
+          {{ with .Params.image }}
+            <img src="{{ . }}" alt="{{ $.Title }}">
+          {{ else }}
+            <div class="photo-placeholder"></div>
+          {{ end }}
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ if $music }}
+    <div class="making-subsection reveal">
+      <h2 class="making-sub-title">Music</h2>
+      <div class="items-list">
+        {{ range $music }}{{ partial "list-item.html" . }}{{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ if $video }}
+    <div class="making-subsection reveal">
+      <h2 class="making-sub-title">Video</h2>
+      <div class="items-list">
+        {{ range $video }}{{ partial "list-item.html" . }}{{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ $artSection := .Site.GetPage "making/art" }}
+    {{ if or $art $artSection }}
+    <div class="making-subsection reveal">
+      <h2 class="making-sub-title">Art</h2>
+      {{ if $art }}
+      <div class="photo-grid photo-grid--full">
+        {{ range $art }}
+        <a href="{{ with .Params.live_url }}{{ . }}{{ else }}{{ $.RelPermalink }}{{ end }}" class="photo-item">
+          {{ with .Params.image }}
+            <img src="{{ . }}" alt="{{ $.Title }}">
+          {{ else }}
+            <div class="photo-placeholder"></div>
+          {{ end }}
+        </a>
+        {{ end }}
+      </div>
+      {{ else }}
+      <p class="making-empty">{{ with $artSection }}{{ .Description }}{{ end }}</p>
+      {{ end }}
+    </div>
+    {{ end }}
+
+  </div>
+</section>
+
+<script>
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+</script>
+{{ end }}

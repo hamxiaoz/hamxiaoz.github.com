@@ -3,11 +3,11 @@
 
   {{ partial "head.html" . }}
 
-  <body>
+  <body class="theme-{{ .Site.Params.theme | default "zurassic" }}{{ if .IsHome }} page-home{{ end }}">
 
-    {{ partial "header.html" . }}
+    {{ partial "nav.html" . }}
 
-    <main class="ui container">
+    <main>
       {{ block "main" . }}{{ end }}
     </main>
 

@@ -113,11 +113,7 @@ a {
 }
 
 .hero {
-  background-color: $canvas-color;
   padding-bottom: 3em;
-  box-shadow: 1px 6px 19px 4px $canvas-shadow;
-  -moz-box-shadow: 1px 6px 19px 4px $canvas-shadow;
-  box-shadow: 1px 6px 19px 4px $canvas-shadow;
 
   // Offset on larger screen than tablet
   @media only screen and (min-width: 768px) {

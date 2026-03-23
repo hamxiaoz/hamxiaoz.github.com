@@ -6,3 +6,4 @@ TODO.md
 public/
 resources/
 .hugo_build.lock
+.gstack/

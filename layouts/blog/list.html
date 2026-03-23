@@ -1,62 +1,149 @@
 {{ define "main" }}
-<div class="ui container">
+{{ $posts := where .Site.RegularPages "Section" "posts" }}
 
-  <div class="ui fluid image">
-    <a class="ui right corner label" href="{{ .Site.BaseURL }}posts/index.xml">
-      <i class="rss icon"></i>
+<div class="page-blog">
+<div class="blog-hero">
+  <img src="/assets/images/blog-cover.png" alt="">
+</div>
+
+<div id="blog-nav-sentinel" style="height:1px;pointer-events:none;"></div>
+<nav class="blog-section-nav" id="blog-section-nav">
+  <div class="blog-section-nav-inner">
+    <a href="#recent" class="blog-nav-pill" data-section="recent">
+      最近 <span class="blog-nav-count">6</span>
     </a>
-    <img src="/assets/images/blog-cover.png">
+    {{ range $.Site.Data.blogcategory }}
+      {{ $catPosts := where $posts "Params.category" .name }}
+      {{ if $catPosts }}
+        <a href="#{{ .id }}" class="blog-nav-pill" data-section="{{ .id }}">
+          {{ .name }} <span class="blog-nav-count">{{ len $catPosts }}</span>
+        </a>
+      {{ end }}
+    {{ end }}
+    <a href="#all" class="blog-nav-pill" data-section="all">
+      全部 <span class="blog-nav-count">{{ len $posts }}</span>
+    </a>
   </div>
+</nav>
 
-  <div class="section">
-    <h4 class="ui tiny header" id="recent">
-      Recent
-    </h4>
-    <div class="ui three column grid">
-      {{ range first 6 (where .Site.RegularPages "Section" "posts") }}
-        <div class="column">
-          {{ partial "post-link.html" . }}
-        </div>
+<section class="portfolio-section section-page" id="recent">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <h1 class="section-title section-title--cn">最近</h1>
+    </div>
+    <div class="blog-list">
+      {{ range first 6 ($posts.ByDate.Reverse) }}
+        <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
+          <span class="blog-list-title">{{ .Title }}</span>
+          <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
+        </a>
       {{ end }}
     </div>
   </div>
+</section>
 
-  {{ range $catName, $catData := (index .Site.Data "blogcategory") }}
-    <div class="section">
-      <h4 class="ui tiny header" id="{{ $catData.id }}">
-        {{ $catName }}
-        <span class="ui small label">{{ $catData.description | safeHTML }}</span>
-      </h4>
-      <div class="ui three column grid">
-        {{ range where (where $.Site.RegularPages "Section" "posts") ".Params.category" $catName }}
-          <div class="column">
-            {{ partial "post-link.html" . }}
-          </div>
+{{ range $.Site.Data.blogcategory }}
+  {{ $meta := . }}
+  {{ $catPosts := where $posts "Params.category" $meta.name }}
+  {{ if $catPosts }}
+  <section class="portfolio-section section-page" id="{{ $meta.id }}">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title section-title--cn">{{ $meta.name }}</h2>
+        {{ with $meta.description }}
+          <p class="section-subtitle section-subtitle--cn">{{ . | safeHTML }}</p>
+        {{ end }}
+      </div>
+      <div class="blog-list">
+        {{ range $catPosts.ByDate.Reverse }}
+          <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
+            <span class="blog-list-title">{{ .Title }}</span>
+            <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
+          </a>
         {{ end }}
       </div>
     </div>
+  </section>
   {{ end }}
+{{ end }}
 
-  <h4 class="ui disabled horizontal divider header">
-    All
-    <span class="ui small label">({{ len (where .Site.RegularPages "Section" "posts") }})</span>
-  </h4>
-
-  <div class="ui three column grid">
+<section class="portfolio-section section-page" id="all">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <h2 class="section-title section-title--cn">全部</h2>
+    </div>
     {{ $currentYear := "" }}
-    {{ range where .Site.RegularPages "Section" "posts" }}
+    {{ range $posts.ByDate.Reverse }}
       {{ $thisYear := .Date.Format "2006" }}
       {{ if ne $currentYear $thisYear }}
+        {{ if $currentYear }}</div>{{ end }}
+        <h3 class="list-year-header reveal">{{ $thisYear }}</h3>
+        <div class="blog-list">
         {{ $currentYear = $thisYear }}
-        <h4 class="ui tiny header sixteen wide column" id="{{ $thisYear }}">
-          {{ $thisYear }}
-        </h4>
       {{ end }}
-      <div class="column">
-        {{ partial "post-link.html" . }}
-      </div>
+      <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
+        <span class="blog-list-title">{{ .Title }}</span>
+        <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
+      </a>
     {{ end }}
+    {{ if $currentYear }}</div>{{ end }}
   </div>
+</section>
+</div><!-- /.page-blog -->
 
-</div>
+<script>
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+
+// Blog section nav: sticky border + active pill + smooth scroll with offset
+(function() {
+  var nav = document.getElementById('blog-section-nav');
+  var sentinel = document.getElementById('blog-nav-sentinel');
+  if (nav && sentinel) {
+    new IntersectionObserver(function(entries) {
+      nav.classList.toggle('is-stuck', !entries[0].isIntersecting);
+    }).observe(sentinel);
+  }
+
+  var pills = document.querySelectorAll('.blog-nav-pill');
+  var sections = document.querySelectorAll('.portfolio-section[id]');
+  if (!pills.length || !sections.length) return;
+
+  function setActive(id) {
+    pills.forEach(function(p) {
+      p.classList.toggle('active', p.dataset.section === id);
+    });
+  }
+
+  function updateActive() {
+    var offset = 120;
+    var current = sections[0] && sections[0].id;
+    sections.forEach(function(s) {
+      if (s.getBoundingClientRect().top <= offset) current = s.id;
+    });
+    if (current) setActive(current);
+  }
+  updateActive();
+  window.addEventListener('scroll', updateActive, { passive: true });
+
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function(e) {
+      var target = document.getElementById(pill.dataset.section);
+      if (!target) return;
+      e.preventDefault();
+      var offset = 110;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+})();
+</script>
 {{ end }}

@@ -108,11 +108,22 @@
     loadQuote();
   }
 
+  /* ── Portfolio nav scroll effect ────────────────────────────────────────
+     Adds .scrolled class to .site-nav when page is scrolled > 50px */
+  function initNavScroll() {
+    var nav = document.getElementById('site-nav');
+    if (!nav) return;
+    function update() { nav.classList.toggle('scrolled', window.scrollY > 50); }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
+
   /* ── Init ───────────────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     initTabs();
     initTracking();
     initQuoteWidget();
+    initNavScroll();
   });
 
 }());

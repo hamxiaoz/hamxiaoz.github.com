@@ -1,24 +1,16 @@
 {{ define "main" }}
-<section class="portfolio-section section-page reveal-section">
+<section class="portfolio-section section-page section-writing reveal-section">
   <div class="section-inner">
     <div class="section-header reveal">
-      <h1 class="section-title">{{ .Title }}.</h1>
-      <p class="section-subtitle">{{ .Description }}</p>
+      <h1 class="section-title">Writing.</h1>
+      <p class="section-subtitle">{{ .Description | default "On leadership, engineering, and the spaces in between." }}</p>
+      <a href="/writing/reading/" class="section-sub-link">Reading →</a>
     </div>
-
-    {{ if eq .Params.display "cards" }}
-    <div class="items-grid">
-      {{ range $i, $p := .Pages.ByWeight }}
-        {{ partial "project-card.html" (dict "page" $p "index" (add $i 1) "style" "dark") }}
-      {{ end }}
-    </div>
-    {{ else }}
     <div class="items-list">
       {{ range .Pages.ByDate.Reverse }}
         {{ partial "list-item.html" . }}
       {{ end }}
     </div>
-    {{ end }}
   </div>
 </section>
 

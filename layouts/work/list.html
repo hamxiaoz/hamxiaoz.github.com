@@ -2,23 +2,14 @@
 <section class="portfolio-section section-page reveal-section">
   <div class="section-inner">
     <div class="section-header reveal">
-      <h1 class="section-title">{{ .Title }}.</h1>
-      <p class="section-subtitle">{{ .Description }}</p>
+      <h1 class="section-title">Work.</h1>
+      <p class="section-subtitle">{{ .Description | default "Shipped products and professional projects." }}</p>
     </div>
-
-    {{ if eq .Params.display "cards" }}
     <div class="items-grid">
       {{ range $i, $p := .Pages.ByWeight }}
         {{ partial "project-card.html" (dict "page" $p "index" (add $i 1) "style" "dark") }}
       {{ end }}
     </div>
-    {{ else }}
-    <div class="items-list">
-      {{ range .Pages.ByDate.Reverse }}
-        {{ partial "list-item.html" . }}
-      {{ end }}
-    </div>
-    {{ end }}
   </div>
 </section>
 

@@ -8,12 +8,35 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
+
+  <!-- All theme fonts (loaded together so ?theme= switching works without reload) -->
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lato:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Legacy CSS (blog, ann, books pages) -->
   <link rel="stylesheet" href="/assets/icons.css">
   <link rel="stylesheet" href="/assets/layout.css">
   {{ $css := resources.Get "main.scss" | toCSS | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
   <link rel="stylesheet" href="/assets/syntax.css">
+
+  <!-- Portfolio theme CSS (id allows JS to swap it via ?theme= param) -->
+  <link rel="stylesheet" href="/css/base.css">
+  {{ $theme := .Site.Params.theme | default "zurassic" }}
+  <link id="theme-css" rel="stylesheet" href="/css/{{ $theme }}.css">
+
+  <!-- Theme switcher: reads ?theme=apple|te|zurassic and swaps CSS + body class -->
+  <script>
+    (function() {
+      var allowed = { apple: 1, te: 1, zurassic: 1 };
+      var param = new URLSearchParams(window.location.search).get('theme');
+      if (param && allowed[param]) {
+        document.getElementById('theme-css').href = '/css/' + param + '.css';
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.className = document.body.className.replace(/theme-\w+/, 'theme-' + param);
+        });
+      }
+    })();
+  </script>
 
   <link rel="canonical" href="{{ .Permalink }}">
   {{ with .OutputFormats.Get "RSS" }}
