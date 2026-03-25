@@ -13,7 +13,7 @@ title = "zurassic"
   theme = "zurassic"
   name = "Andrew Zheng"
   bio = "<strong>I make things.</strong> Software, teams, ventures, photographs, articles, and the occasional espresso — if it starts as an idea and ends as something real, I'm in.<br><br>I've shipped products to 13 million users, launched 0-to-1 ventures at BCG Digital Ventures, and built engineering teams from scratch numerous times.  I strive for <i>simplicity</i>, and I believe the best product come from people who can't stop tinkering.<br><br>Currently working as Director of Engineering at Insulet, where I'm turning diabetes data into something doctors and patients actually want to use."
-  avatar = "/assets/images/hero.png"
+  avatar = "/assets/images/hero.gif"
 
 [params.social]
   github   = "https://github.com/hamxiaoz"

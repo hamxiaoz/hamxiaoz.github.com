@@ -151,7 +151,6 @@
   color: var(--t-text-mid);
   text-decoration: none;
   padding: 6px 14px;
-  border-radius: 100px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   transition: all 0.2s;
@@ -940,8 +939,9 @@
   align-items: center;
   gap: 6px;
   padding: 5px 14px;
-  border-radius: 100px;
-  border: 1px solid var(--t-border);
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid transparent;
   background: transparent;
   color: var(--t-text-mid);
   font-family: var(--t-font-cn);
@@ -953,12 +953,11 @@
 }
 .theme-zurassic .blog-nav-pill:hover {
   color: var(--t-text);
-  border-color: var(--t-border-strong);
+  border-bottom-color: var(--t-border-strong);
 }
 .theme-zurassic .blog-nav-pill.active {
-  background: var(--t-text);
-  color: var(--t-text-light);
-  border-color: var(--t-text);
+  color: var(--t-accent);
+  border-bottom-color: var(--t-accent);
 }
 
 .theme-zurassic .blog-nav-count {
@@ -968,7 +967,7 @@
   transition: color 0.15s;
 }
 .theme-zurassic .blog-nav-pill:hover .blog-nav-count { color: var(--t-text-mid); }
-.theme-zurassic .blog-nav-pill.active .blog-nav-count { color: rgba(255,255,255,0.6); }
+.theme-zurassic .blog-nav-pill.active .blog-nav-count { color: var(--t-accent); opacity: 0.7; }
 
 @media (max-width: 768px) {
   .theme-zurassic .blog-section-nav-inner { padding: 0 16px; }
