@@ -51,6 +51,20 @@ No S3 upload, no full URLs — just drop the image in the folder and reference i
 
 Categories are defined in `data/blogcategory.json`. The `category:` field in front matter must match a key in that file exactly.
 
+## Images
+
+### Post images → page bundle
+Put images alongside the post's `index.md` (see "Post with images" above). Reference by filename only — no path needed.
+
+### Site UI images → static folder
+Hero, logo, portfolio thumbnails, and other site-wide images go in:
+
+```
+static/assets/images/
+```
+
+Reference them in templates or `hugo.toml` with the absolute URL path `/assets/images/filename.ext`.
+
 ## Structure
 
 ```
