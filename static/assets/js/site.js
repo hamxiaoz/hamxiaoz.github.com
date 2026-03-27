@@ -118,12 +118,24 @@
     window.addEventListener('scroll', update, { passive: true });
   }
 
+  /* ── Park easter egg ────────────────────────────────────────────────────
+     Double-click the nav logo to navigate to /park */
+  function initParkEasterEgg() {
+    var logo = document.querySelector('.nav-logo');
+    if (!logo) return;
+    logo.addEventListener('dblclick', function (e) {
+      e.preventDefault();
+      window.location.href = '/park';
+    });
+  }
+
   /* ── Init ───────────────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     initTabs();
     initTracking();
     initQuoteWidget();
     initNavScroll();
+    initParkEasterEgg();
   });
 
 }());

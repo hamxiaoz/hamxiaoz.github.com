@@ -5,6 +5,7 @@
     <a href="/" class="nav-logo">
       <img src="/assets/images/zurassic.png" alt="{{ .Site.Params.name | default .Site.Title }}">
     </a>
+    {{ if not .Params.hide_nav_links }}
     <div class="nav-links">
       <a href="/work/" class="nav-link{{ if eq $section "work" }} active{{ end }}">Work</a>
       <a href="/writing/" class="nav-link{{ if eq $section "writing" }} active{{ end }}">Writing</a>
@@ -12,5 +13,6 @@
       <a href="/making/" class="nav-link{{ if eq $section "making" }} active{{ end }}">Making</a>
       <a href="/blog/" class="nav-link nav-link-cn{{ if $blogSection }} active{{ end }}">博客</a>
     </div>
+    {{ end }}
   </div>
 </nav>

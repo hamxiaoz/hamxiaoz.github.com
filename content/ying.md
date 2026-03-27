@@ -2,6 +2,7 @@
 title: "Ying"
 page_title: ""
 close_to_link: /park
+hide_nav_links: true
 ---
 
 To the best mom in the world:

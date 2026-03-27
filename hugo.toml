@@ -19,12 +19,12 @@ title = "zurassic"
   github   = "https://github.com/hamxiaoz"
   linkedin = "https://linkedin.com/in/andrewzheng"
   medium   = "https://medium.com/@zurassic"
-  x        = "https://x.com/zurassic"
+  x        = "https://x.com/hamxiaoz"
   email    = "mailto:andrew@zurassic.com"
 
 [params.social_secondary]
   codepen       = "https://codepen.io/hamxiaoz"
-  stackoverflow = "https://stackoverflow.com/users/1897488"
+  stackoverflow = "https://stackoverflow.com/users/166286"
 
 [params.disqus]
   shortname = "hamxiaozgithubcom"
