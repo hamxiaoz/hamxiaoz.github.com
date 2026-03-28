@@ -1,7 +1,5 @@
 {{ define "main" }}
-<article itemscope itemtype="http://schema.org/BlogPosting">
-
-  <div class="ui text container">
+<article class="page-content page-content--prose" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="center aligned ui header">
       <h1 itemprop="name headline">{{ .Title | htmlEscape }}</h1>
@@ -18,7 +16,7 @@
       {{ $catName := . }}
       {{ $cat := index (where $.Site.Data.blogcategory "name" $catName) 0 }}
       {{ with $cat }}
-        <div class="center aligned ui text container category-intro">
+        <div class="center aligned category-intro">
           <h4 class="ui horizontal divider disabled header">{{ .click }}</h4>
           <a href="{{ .link }}">{{ $catName }}</a>
           <p>{{ .description | safeHTML }}</p>
@@ -26,10 +24,5 @@
       {{ end }}
     {{ end }}
 
-    {{ if .Site.Params.disqus.shortname }}
-      {{ partial "disqus.html" . }}
-    {{ end }}
-
-  </div>
 </article>
 {{ end }}

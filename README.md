@@ -69,10 +69,62 @@ Reference them in templates or `hugo.toml` with the absolute URL path `/assets/i
 
 ```
 content/posts/       — blog posts (.md files and page bundle folders)
+content/lists/       — evergreen list pages (books, movies, games, etc.)
 content/ann/         — ann section pages
-content/             — standalone pages (books, ying, park, etc.)
+content/             — standalone pages (ying, park, etc.)
 layouts/             — Hugo templates
 static/assets/       — CSS, JS, fonts, images
 data/                — JSON data files (quotes, categories, projects)
 assets/              — SCSS processed by Hugo Pipes
 ```
+
+## Layout system
+
+All page content is centered via two CSS classes in `static/assets/css/zurassic.css`:
+
+| Class | Max-width | Use for |
+|-------|-----------|---------|
+| `.page-content` | 1100px (`--t-max`) | Section pages, cards grids, interactive pages |
+| `.page-content.page-content--prose` | 680px | Blog posts, reading lists, long-form text |
+
+Both classes apply the same horizontal padding (32px) and top padding (80px, to clear the fixed nav).
+
+`.portfolio-section` (used by section list pages like `/work/`, `/writing/`, etc.) is aliased to the same rules as `.page-content` — no change needed there.
+
+When adding a new layout, wrap the main content in one of these:
+
+```html
+<!-- standard page -->
+<div class="page-content">…</div>
+
+<!-- prose / reading page -->
+<article class="page-content page-content--prose">…</article>
+```
+
+## Single page layouts
+
+There are two single-page layouts:
+
+| Layout | Used by | Front matter |
+|--------|---------|--------------|
+| `layouts/posts/single.html` | Blog posts and any article-style reading page | `type: posts` |
+| `layouts/_default/single.html` | Custom full-page content (ann apps, ying, park) — manages its own layout via inline HTML | (default, no type needed) |
+
+To make any page render like a blog post (centered title, date, narrow text column), add `type: posts` to its front matter. Example: `content/lists/books.md` uses this.
+
+## Adding a new list page (books, movies, games…)
+
+Create a file in `content/lists/`:
+
+```markdown
+---
+title: "Movies I've Watched"
+description: "Films watched since 2020"
+date: 2025-01-01
+type: posts
+---
+
+Content here.
+```
+
+It automatically appears in the 书单 section on the `/blog` page.

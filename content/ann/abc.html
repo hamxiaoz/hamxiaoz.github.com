@@ -1,168 +1,105 @@
 ---
 title: "Bella's ABC"
+date: 2016-11-27
 logo_link: /ann
 logo_image: /assets/images/ann.png
-close_to_link: /ann
+image: "https://s3-us-west-1.amazonaws.com/blog.zurassic.com/ann/abc-thumbnail.png"
+description: "A fun HTML5 project"
+weight: 1
 ---
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/keypress/2.1.4/keypress.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
 
 <script>
-$(document).ready(function() {
-  var ALPHABET = "abcdefghijklmnopqrstuvwxyz".split("");
-  var ABC = ['a', 'b', 'c'];
-  var BOARD_SELECTOR = '#board';
-  var PLAYING_EFFECTS = [
-    'hvr-buzz', 'hvr-pulse', 'hvr-wobble-horizontal',
-    'hvr-wobble-to-bottom-right', 'hvr-wobble-to-top-right',
-    'hvr-wobble-top', 'hvr-wobble-bottom', 'hvr-wobble-skew'
-  ];
-  var capital = false;
-  var objects = {};
+const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
+const EFFECTS = [
+  'hvr-buzz', 'hvr-pulse', 'hvr-wobble-horizontal',
+  'hvr-wobble-to-bottom-right', 'hvr-wobble-to-top-right',
+  'hvr-wobble-top', 'hvr-wobble-bottom', 'hvr-wobble-skew'
+];
+let capital = false;
+const objects = {};
 
-  function createButton(char, enabled) {
-    var button = document.createElement('button');
-    button.id = 'sound-' + char.toLowerCase();
-    button.className = 'column ui voice button ';
-    button.className += PLAYING_EFFECTS[Math.floor(Math.random() * PLAYING_EFFECTS.length)];
-    if (!enabled) {
-      button.className += ' disabled';
-    }
-    button.textContent = char;
-    button.onclick = function(event) {
-      if(objects[char].enabled) {
-        objects[char].sound.play();
-        objects[char].played = true;
+function createButton(char) {
+  const btn = document.createElement('button');
+  btn.id = 'sound-' + char;
+  btn.className = 'column ui voice button ' + EFFECTS[Math.floor(Math.random() * EFFECTS.length)];
+  btn.textContent = char;
+  btn.addEventListener('click', () => {
+    objects[char].sound.play();
+  });
+  return btn;
+}
 
-        if (isOneOf(ABC, char) && allPlayed(ABC)) {
-          enableAll();
-        }
-      }
-    }
-    return button;
+function createSound(char) {
+  return new Howl({
+    src: ['https://s3-us-west-1.amazonaws.com/blog.zurassic.com/abc/' + char + '.m4a'],
+    html5: true,
+    preload: false,
+    onplay() { objects[char].button.classList.add('playing'); },
+    onend()  { objects[char].button.classList.remove('playing'); }
+  });
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
   }
+  return arr;
+}
 
-  function createSound(char) {
-    return new Howl({
-      src: ['https://s3-us-west-1.amazonaws.com/blog.zurassic.com/abc/'+char.toLowerCase()+'.m4a'],
-      html5: true,
-      onplay: function() {
-        objects[char].button.addClass('playing');
-      },
-      onend: function() {
-        objects[char].button.removeClass('playing');
-      }
-    });
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  const board = document.getElementById('board');
 
-  function init() {
-    ALPHABET.forEach(function(char) {
-      objects[char] = {
-        sound: createSound(char),
-        button: $(createButton(char, isOneOf(ABC, char))),
-        played: false,
-        enabled: isOneOf(ABC, char)
-      };
-    });
-  }
-
-  function setupKeys() {
-    var listener = new window.keypress.Listener();
-    listener.register_many(_.map(ALPHABET, function(char) {
-      return {
-        "keys": char,
-        "is_exclusive": true,
-        "prevent_repeat": true,
-        "on_keydown": function() {
-          objects[char].button.click();
-        }
-      };
-    }));
-  }
-
-  function enableAll() {
-    ALPHABET.forEach(function(char) {
-      objects[char].enabled = true;
-      objects[char].button.removeClass('disabled');
-    });
-  }
-
-  function isOneOf(chars, char) {
-    return _.includes(chars, char);
-  }
-
-  function allPlayed(chars) {
-    return _.every(chars, function(char) {
-      return objects[char].played;
-    });
-  }
-
-  function toggleCapital(capital) {
-    ALPHABET.forEach(function(char) {
-      objects[char].button.text(capital ? char.toUpperCase() : char.toLowerCase());
-    });
-  }
-
-  function addToDOM(selector, buttons) {
-    $(selector).append(buttons);
-  }
-
-  init();
-  setupKeys();
-  addToDOM(BOARD_SELECTOR, _.map(ALPHABET, function(char) {
-    return objects[char].button;
-  }));
-
-  $('#toggle').on('click', function(event) {
-    capital = !capital;
-    toggleCapital(capital);
+  ALPHABET.forEach(char => {
+    objects[char] = {
+      sound: createSound(char),
+      button: createButton(char)
+    };
+    board.appendChild(objects[char].button);
   });
 
-  $('#random').on('click', function(event) {
-    var buttons = $(BOARD_SELECTOR).children().detach();
-    addToDOM(BOARD_SELECTOR, _.shuffle(buttons));
+  document.addEventListener('keydown', e => {
+    if (e.repeat) return;
+    const char = e.key.toLowerCase();
+    if (objects[char]) objects[char].button.click();
+  });
+
+  document.getElementById('toggle').addEventListener('click', () => {
+    capital = !capital;
+    ALPHABET.forEach(char => {
+      objects[char].button.textContent = capital ? char.toUpperCase() : char;
+    });
+  });
+
+  document.getElementById('random').addEventListener('click', () => {
+    board.append(...shuffle(Array.from(board.children)));
   });
 });
 </script>
 
-<style type="text/css">
+<style>
 #board { margin-top: 1em; }
-.title { margin-bottom: 2em !important; }
 .voice.button { margin: 10px; font-size: 4em; }
-
-@-webkit-keyframes hvr-buzz {
-  50%  { -webkit-transform: translateX(3px) rotate(2deg);  transform: translateX(3px) rotate(2deg); }
-  100% { -webkit-transform: translateX(-3px) rotate(-2deg); transform: translateX(-3px) rotate(-2deg); }
+@media (max-width: 480px) {
+  .voice.button { font-size: 1.6em; margin: 4px; }
 }
+
 @keyframes hvr-buzz {
   50%  { transform: translateX(3px) rotate(2deg); }
   100% { transform: translateX(-3px) rotate(-2deg); }
 }
 .hvr-buzz { display: inline-block; vertical-align: middle; }
-.hvr-buzz.playing { -webkit-animation: hvr-buzz 0.15s linear infinite; animation: hvr-buzz 0.15s linear infinite; }
+.hvr-buzz.playing { animation: hvr-buzz 0.15s linear infinite; }
 
-@-webkit-keyframes hvr-pulse {
-  25% { -webkit-transform: scale(1.1); transform: scale(1.1); }
-  75% { -webkit-transform: scale(0.9); transform: scale(0.9); }
-}
 @keyframes hvr-pulse {
   25% { transform: scale(1.1); }
   75% { transform: scale(0.9); }
 }
 .hvr-pulse { display: inline-block; vertical-align: middle; }
-.hvr-pulse.playing { -webkit-animation: hvr-pulse 1s linear infinite; animation: hvr-pulse 1s linear infinite; }
+.hvr-pulse.playing { animation: hvr-pulse 1s linear infinite; }
 
-@-webkit-keyframes hvr-wobble-horizontal {
-  16.65% { transform: translateX(8px); }
-  33.3%  { transform: translateX(-6px); }
-  49.95% { transform: translateX(4px); }
-  66.6%  { transform: translateX(-2px); }
-  83.25% { transform: translateX(1px); }
-  100%   { transform: translateX(0); }
-}
 @keyframes hvr-wobble-horizontal {
   16.65% { transform: translateX(8px); }
   33.3%  { transform: translateX(-6px); }
@@ -172,7 +109,7 @@ $(document).ready(function() {
   100%   { transform: translateX(0); }
 }
 .hvr-wobble-horizontal { display: inline-block; vertical-align: middle; }
-.hvr-wobble-horizontal.playing { -webkit-animation: hvr-wobble-horizontal 1s ease-in-out 1; animation: hvr-wobble-horizontal 1s ease-in-out 1; }
+.hvr-wobble-horizontal.playing { animation: hvr-wobble-horizontal 1s ease-in-out 1; }
 
 .hvr-wobble-to-bottom-right,
 .hvr-wobble-to-top-right,
@@ -181,13 +118,12 @@ $(document).ready(function() {
 .hvr-wobble-skew { display: inline-block; vertical-align: middle; }
 </style>
 
-<div class="title">
-  <h1 class="ui header center-text">
-    Bella's ABC
-    <i class="sub header">2016.11.27</i>
-  </h1>
+<div class="center aligned ui header">
+  <h1>Bella's ABC</h1>
+  <div class="sub header"><time datetime="2016-11-27">2016-11-27</time></div>
+</div>
 
-  <blockquote>
+<blockquote>
     <p>I remember several years ago when I was doing Windows development I read about
     <a href="http://www.hanselman.com/" target="_blank">Scott Hanselman</a>'s WPF project
     <a href="http://www.hanselman.com/blog/IntroducingBabySmashAWPFExperiment.aspx" target="_blank">Baby Smash</a> for his kids.</p>
@@ -206,7 +142,6 @@ $(document).ready(function() {
       <li>Voice by daughter, code by father with <i class="heart icon"></i>.</li>
     </ul>
   </p>
-</div>
 
 <div class="center-text">
   <button class="ui compact button" id="random">
