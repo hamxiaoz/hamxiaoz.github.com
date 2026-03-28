@@ -1,0 +1,37 @@
+[
+  {
+    "name": "蓝人女王传",
+    "click": "更多故事请猛击",
+    "description": "这是一个喜欢蓝色的(湖)蓝人和一个王姓奇女子的故事.",
+    "id": "lrnwz",
+    "link": "/blog#lrnwz"
+  },
+  {
+    "name": "ùzhi青年",
+    "click": "更多故事请慎点",
+    "description": "这是一个ùzhi青年在见自己见天地见众生的故事. '<em>I know nothing</em>', that's what he said.",
+    "id": "u4zhiqn",
+    "link": "/blog#u4zhiqn"
+  },
+  {
+    "name": "诗和远方",
+    "click": "更多故事请轻点",
+    "description": "手中无剑, 心中有诗.",
+    "id": "shi",
+    "link": "/blog#shi"
+  },
+  {
+    "name": "MM",
+    "click": "以往分享请点击这里",
+    "description": "Music Monday (MM), 每周一分享一首你可能没有听过的好歌.",
+    "id": "mm",
+    "link": "/blog#mm"
+  },
+  {
+    "name": "Gift Exchange",
+    "click": "历年Gift Exchange请往这里看",
+    "description": "你猜你猜你猜猜猜",
+    "id": "giftexchange",
+    "link": "/blog#giftexchange"
+  }
+]

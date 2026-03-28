@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="page-content">
+  <div class="items-grid">
+    {{ range $i, $p := .Pages.ByWeight }}
+      {{ partial "project-card.html" (dict "page" $p "index" (add $i 1)) }}
+    {{ end }}
+  </div>
+</div>
+<script>
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+</script>
+{{ end }}

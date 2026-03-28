@@ -1,0 +1,46 @@
+baseURL = "https://zurassic.com/"
+languageCode = "en-us"
+title = "zurassic"
+
+[params]
+  email = "andrew@zurassic.com"
+  description = "Andrew Zheng's personal website"
+  googleAnalytics = "G-HK044STX6K"
+  logoLink = "/"
+  logoImage = "/assets/images/zhi.png"
+
+  # Portfolio theme: "apple" | "te" | "zurassic"
+  theme = "zurassic"
+  name = "Andrew Zheng"
+  bio = "<strong>I make things.</strong> Software, teams, ventures, photographs, articles, and the occasional espresso — if it starts as an idea and ends as something real, I'm in.<br><br>I've shipped products to 13 million users, launched 0-to-1 ventures at BCG Digital Ventures, and built engineering teams from scratch numerous times.  I strive for <i>simplicity</i>, and I believe the best product come from people who can't stop tinkering.<br><br>Currently working as <a href=\"https://www.linkedin.com/in/zurassic/\" target=\"_blank\" style=\"text-decoration: underline; color: rgba(147,34,16,0.67)\">Director of Engineering at Insulet</a>, where I'm turning diabetes data into something doctors and patients actually want to use."
+  avatar = "/assets/images/hero.gif"
+
+[params.social]
+  github   = "https://github.com/hamxiaoz"
+  linkedin = "https://linkedin.com/in/andrewzheng"
+  medium   = "https://medium.com/@zurassic"
+  x        = "https://x.com/hamxiaoz"
+  email    = "mailto:andrew@zurassic.com"
+
+[params.social_secondary]
+  codepen       = "https://codepen.io/hamxiaoz"
+  stackoverflow = "https://stackoverflow.com/users/166286"
+
+[permalinks]
+  posts = "/blog/:slug.html"
+
+[frontmatter]
+  date = [":filename", ":default"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # Allow raw HTML in Markdown — needed for legacy posts with <iframe>, <div>, etc.
+      unsafe = true
+  [markup.highlight]
+    style = "monokai"
+    noClasses = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]

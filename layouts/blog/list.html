@@ -1,0 +1,182 @@
+{{ define "head-extra" }}
+<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title | htmlEscape }} Blog" href="/posts/index.xml">
+{{ end }}
+
+{{ define "main" }}
+{{ $posts := where .Site.RegularPages "Section" "posts" }}
+{{ $listPages := where .Site.RegularPages "Section" "lists" }}
+
+<div class="page-blog">
+<div class="blog-hero">
+  <img src="/assets/images/blog-cover.png" alt="">
+  <a href="/posts/index.xml" class="blog-hero-rss" title="RSS Feed" aria-label="RSS Feed">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
+  </a>
+</div>
+
+<div id="blog-nav-sentinel" style="height:1px;pointer-events:none;"></div>
+<nav class="blog-section-nav" id="blog-section-nav">
+  <div class="blog-section-nav-inner">
+    <a href="#recent" class="blog-nav-pill" data-section="recent">
+      最近 <span class="blog-nav-count">6</span>
+    </a>
+    {{ range $.Site.Data.blogcategory }}
+      {{ $catPosts := where $posts "Params.category" .name }}
+      {{ if $catPosts }}
+        <a href="#{{ .id }}" class="blog-nav-pill" data-section="{{ .id }}">
+          {{ .name }} <span class="blog-nav-count">{{ len $catPosts }}</span>
+        </a>
+      {{ end }}
+    {{ end }}
+    {{ if $listPages }}
+    <a href="#lists" class="blog-nav-pill" data-section="lists">
+      书单 <span class="blog-nav-count">{{ len $listPages }}</span>
+    </a>
+    {{ end }}
+    <a href="#all" class="blog-nav-pill" data-section="all">
+      全部 <span class="blog-nav-count">{{ len $posts }}</span>
+    </a>
+  </div>
+</nav>
+
+<section class="portfolio-section section-page" id="recent">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <h1 class="section-title section-title--cn">最近</h1>
+    </div>
+    <div class="blog-list">
+      {{ range first 6 ($posts.ByDate.Reverse) }}
+        <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
+          <span class="blog-list-title">{{ .Title }}</span>
+          <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ range $.Site.Data.blogcategory }}
+  {{ $meta := . }}
+  {{ $catPosts := where $posts "Params.category" $meta.name }}
+  {{ if $catPosts }}
+  <section class="portfolio-section section-page" id="{{ $meta.id }}">
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <h2 class="section-title section-title--cn">{{ $meta.name }}</h2>
+        {{ with $meta.description }}
+          <p class="section-subtitle section-subtitle--cn">{{ . | safeHTML }}</p>
+        {{ end }}
+      </div>
+      <div class="blog-list">
+        {{ range $catPosts.ByDate.Reverse }}
+          <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
+            <span class="blog-list-title">{{ .Title }}</span>
+            <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+{{ end }}
+
+{{ if $listPages }}
+<section class="portfolio-section section-page" id="lists">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <h2 class="section-title section-title--cn">书单</h2>
+    </div>
+    <div class="blog-list">
+      {{ range $listPages.ByTitle }}
+        <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
+          <span class="blog-list-title">{{ .Title }}</span>
+          {{ with .Params.description }}
+            <span class="blog-list-date">{{ . }}</span>
+          {{ end }}
+        </a>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<section class="portfolio-section section-page" id="all">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <h2 class="section-title section-title--cn">全部</h2>
+    </div>
+    {{ $currentYear := "" }}
+    {{ range $posts.ByDate.Reverse }}
+      {{ $thisYear := .Date.Format "2006" }}
+      {{ if ne $currentYear $thisYear }}
+        {{ if $currentYear }}</div>{{ end }}
+        <h3 class="list-year-header reveal">{{ $thisYear }}</h3>
+        <div class="blog-list">
+        {{ $currentYear = $thisYear }}
+      {{ end }}
+      <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
+        <span class="blog-list-title">{{ .Title }}</span>
+        <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
+      </a>
+    {{ end }}
+    {{ if $currentYear }}</div>{{ end }}
+  </div>
+</section>
+</div><!-- /.page-blog -->
+
+<script>
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+
+// Blog section nav: sticky border + active pill + smooth scroll with offset
+(function() {
+  var nav = document.getElementById('blog-section-nav');
+  var sentinel = document.getElementById('blog-nav-sentinel');
+  if (nav && sentinel) {
+    new IntersectionObserver(function(entries) {
+      nav.classList.toggle('is-stuck', !entries[0].isIntersecting);
+    }).observe(sentinel);
+  }
+
+  var pills = document.querySelectorAll('.blog-nav-pill');
+  var sections = document.querySelectorAll('.portfolio-section[id]');
+  if (!pills.length || !sections.length) return;
+
+  function setActive(id) {
+    pills.forEach(function(p) {
+      p.classList.toggle('active', p.dataset.section === id);
+    });
+  }
+
+  function updateActive() {
+    var offset = 120;
+    var current = sections[0] && sections[0].id;
+    sections.forEach(function(s) {
+      if (s.getBoundingClientRect().top <= offset) current = s.id;
+    });
+    if (current) setActive(current);
+  }
+  updateActive();
+  window.addEventListener('scroll', updateActive, { passive: true });
+
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function(e) {
+      var target = document.getElementById(pill.dataset.section);
+      if (!target) return;
+      e.preventDefault();
+      var offset = 110;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+{{ end }}

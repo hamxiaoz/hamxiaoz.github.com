@@ -1,0 +1,28 @@
+{{ define "main" }}
+<section class="portfolio-section section-page reveal-section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <h1 class="section-title">Work.</h1>
+      <p class="section-subtitle">{{ .Description | default "Shipped products and professional projects." }}</p>
+    </div>
+    <div class="items-grid">
+      {{ range $i, $p := .Pages.ByWeight }}
+        {{ partial "project-card.html" (dict "page" $p "index" (add $i 1) "style" "dark") }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+</script>
+{{ end }}

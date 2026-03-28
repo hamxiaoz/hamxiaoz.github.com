@@ -1,0 +1,30 @@
+{{/*
+  Generic list row partial — used by Writing, Blog, Making (music/video), and any list section.
+  Pass a Hugo page directly: {{ partial "list-item.html" . }}
+
+  Link priority: .Params.external_url → .Params.embed_url → .RelPermalink
+  Source label: .Params.source → .Params.medium → (empty)
+*/}}
+{{ $href := .RelPermalink }}
+{{ $isExternal := false }}
+{{ with .Params.external_url }}{{ $href = . }}{{ $isExternal = true }}{{ end }}
+{{ with .Params.embed_url }}{{ $href = . }}{{ $isExternal = true }}{{ end }}
+
+<a href="{{ $href }}" class="list-item glass reveal"
+   {{ if $isExternal }}target="_blank" rel="noopener noreferrer"{{ end }}>
+  <span class="list-item-source">{{ .Params.source | default (.Params.medium | default "") }}</span>
+  <div class="list-item-body">
+    <h3 class="list-item-title">{{ .Title }}</h3>
+    {{ with .Summary }}<p class="list-item-excerpt">{{ . | truncate 160 }}</p>{{ end }}
+    {{ with .Params.tags }}
+    {{ $tags := . }}
+    {{ if eq (printf "%T" $tags) "string" }}{{ $tags = slice $tags }}{{ end }}
+    <div class="list-item-tags">
+      {{ range $tags }}<span class="list-item-tag">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+  </div>
+  {{ if not .Date.IsZero }}
+  <span class="list-item-date">{{ .Date.Format "Jan 2006" }}</span>
+  {{ end }}
+</a>

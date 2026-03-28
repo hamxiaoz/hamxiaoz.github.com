@@ -1,0 +1,37 @@
+{{ define "main" }}
+<section class="portfolio-section section-page reveal-section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <h1 class="section-title">{{ .Title }}.</h1>
+      <p class="section-subtitle">{{ .Description }}</p>
+    </div>
+
+    {{ if eq .Params.display "cards" }}
+    <div class="items-grid">
+      {{ range $i, $p := .Pages.ByWeight }}
+        {{ partial "project-card.html" (dict "page" $p "index" (add $i 1) "style" "dark") }}
+      {{ end }}
+    </div>
+    {{ else }}
+    <div class="items-list">
+      {{ range .Pages.ByDate.Reverse }}
+        {{ partial "list-item.html" . }}
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<script>
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+</script>
+{{ end }}

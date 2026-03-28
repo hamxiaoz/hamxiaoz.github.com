@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "MM1: Mozart"
+category: "MM"
+---
+
+<img src="MM1.png">
+
+这里是MM系列第1篇。**M**usic **M**onday, 每周一分享一首你可能没有听过的好歌.
+
+> 这是一首可以让你不由自主张开嘴巴微笑的歌曲.
+
+据说有个关于用嘴巴咬住铅笔的实验是这样的:
+- 如果是尖的一端对着自己的嘴巴, 你会不由自主地皱着眉头;
+- 如果是橡皮的一端对着自己的嘴巴, 你会不由自主地张开嘴巴微笑.
+
+今天分享的, 是一首可以让你不由自主张开嘴巴微笑的歌曲:
+
+[莫扎特第四号弦乐四重奏 C大调，K157; String Quartet no.4 in C major K.157: I. Allegro](http://www.xiami.com/song/1770827280)
+
+---
+
+{% include 32chang-figure.html %}
+

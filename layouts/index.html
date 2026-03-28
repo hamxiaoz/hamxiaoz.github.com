@@ -1,0 +1,45 @@
+{{ define "main" }}
+
+{{/* ── HERO ─────────────────────────────────────────────────────────── */}}
+<section class="hero reveal-section" id="home">
+  <div class="hero-inner">
+    {{/* Left column (all themes) / Avatar card right column (zurassic theme) */}}
+    <div class="hero-text">
+      <div class="hero-avatar">
+        {{ if .Site.Params.avatar }}
+          <img src="{{ .Site.Params.avatar }}" alt="{{ .Site.Params.name }}">
+        {{ else }}
+          <span class="hero-avatar-initials">{{ substr (.Site.Params.name | default "A") 0 1 }}</span>
+        {{ end }}
+      </div>
+      <h1 class="hero-name reveal">{{ .Site.Params.name | default .Site.Title }}</h1>
+      <p class="hero-tagline reveal">{{ .Site.Params.tagline }}</p>
+      <p class="hero-bio reveal">{{ .Site.Params.bio | safeHTML }}</p>
+    </div>
+
+    {{/* Right column: image + vertical stamp column */}}
+    <div class="hero-right">
+      {{ if .Site.Params.avatar }}
+        <img src="{{ .Site.Params.avatar }}" alt="{{ .Site.Params.name }}">
+      {{ end }}
+      <div class="hero-stamps">
+        {{ partial "social-links.html" (dict "Site" .Site "icon_only" true) }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el) { obs.observe(el); });
+})();
+</script>
+
+{{ end }}

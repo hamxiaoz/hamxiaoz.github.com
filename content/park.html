@@ -1,0 +1,92 @@
+---
+title: "Park"
+hide_nav_links: true
+hide_footer: true
+---
+
+<style>
+main { padding-top: 0; }
+.park-overlay {
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+}
+.park-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  padding: 0 1.5rem;
+}
+.park-row-break { display: none; }
+@media (max-width: 480px) {
+  .park-overlay { padding-top: 2.5rem; }
+  .park-list { gap: 1.5rem; }
+  .park-row-break { display: block; flex-basis: 100%; height: 0; }
+}
+.park-item {
+  display: inline-block;
+  vertical-align: middle;
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  transition: transform 0.3s;
+}
+.park-item::before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  top: 100%;
+  left: 15%;
+  height: 6px;
+  width: 70%;
+  opacity: 1;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, transparent 70%);
+  transition: transform 0.3s, opacity 0.3s;
+}
+.park-item:hover,
+.park-item:focus,
+.park-item:active {
+  transform: translateY(-5px);
+}
+.park-item:hover::before,
+.park-item:focus::before,
+.park-item:active::before {
+  opacity: 1;
+  transform: translateY(5px);
+}
+.park-item a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.park-item .placeholder {
+  opacity: 0.15;
+  cursor: default;
+}
+</style>
+
+<div class="park-overlay">
+  <div class="park-list">
+    <div class="park-item">
+      <a href="/ying"><img class="large logo" src="/assets/images/ying.png" alt="ying"></a>
+    </div>
+    <div class="park-item">
+      <a href="/ming"><img class="large logo" src="/assets/images/ming.png" alt="ming"></a>
+    </div>
+    <div class="park-row-break"></div>
+    <div class="park-item">
+      <a href="/"><img class="large logo" src="/assets/images/zhi.png" alt="home"></a>
+    </div>
+    <div class="park-item">
+      <a href="/guo"><img class="large logo" src="/assets/images/guo.png" alt="guo"></a>
+    </div>
+    <div class="park-item">
+      <a href="/ann"><img class="large logo" src="/assets/images/ann.png" alt="ann"></a>
+    </div>
+    <div class="park-item">
+      <a href="/bond"><img class="large logo" src="/assets/images/bond.png" alt="bond"></a>
+    </div>
+  </div>
+</div>

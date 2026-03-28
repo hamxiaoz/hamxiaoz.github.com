@@ -1,0 +1,76 @@
+/* Icon font — extracted from Semantic UI 2.x (FontAwesome subset)
+   Font files served from /assets/vendor/themes/default/assets/fonts/ */
+
+@font-face {
+  font-family: 'Icons';
+  src: url('/assets/vendor/themes/default/assets/fonts/icons.eot');
+  src: url('/assets/vendor/themes/default/assets/fonts/icons.eot?#iefix') format('embedded-opentype'),
+       url('/assets/vendor/themes/default/assets/fonts/icons.woff2') format('woff2'),
+       url('/assets/vendor/themes/default/assets/fonts/icons.woff') format('woff'),
+       url('/assets/vendor/themes/default/assets/fonts/icons.ttf') format('truetype'),
+       url('/assets/vendor/themes/default/assets/fonts/icons.svg#icons') format('svg');
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+}
+
+i.icon {
+  display: inline-block;
+  font-family: 'Icons';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Size */
+i.large.icon { font-size: 1.5em; }
+i.small.icon  { font-size: 0.75em; }
+
+/* Color modifiers */
+i.orange.icon { color: #f2711c; }
+
+/* Glyph definitions — only icons used in this site */
+i.close.icon::before,
+i.delete.icon::before { content: "\f00d"; }
+
+i.grid.layout.icon::before { content: "\f00a"; }
+
+i.rss.icon::before { content: "\f09e"; }
+
+i.write.icon::before { content: "\f040"; }
+
+i.book.icon::before { content: "\f02d"; }
+
+i.camera.retro.icon::before { content: "\f083"; }
+
+i.help.icon::before { content: "\f128"; }
+
+i.heart.icon::before { content: "\f004"; }
+
+i.envelope.icon::before { content: "\f0e0"; }
+
+/* square envelope — HTML class "square envelope icon" */
+i.square.envelope.icon::before { content: "\f199"; }
+
+i.refresh.icon::before { content: "\f021"; }
+
+i.trophy.icon::before { content: "\f091"; }
+
+/* Social icons */
+i.twitter.icon::before { content: "\f099"; }
+
+i.linkedin.icon::before { content: "\f0e1"; }
+
+i.github.icon::before { content: "\f09b"; }
+
+/* square github — HTML class "square github icon" */
+i.square.github.icon::before { content: "\f092"; }
+
+i.codepen.icon::before { content: "\f1cb"; }
+
+i.stack.overflow.icon::before { content: "\f16c"; }
+
+i.medium.icon::before { content: "\f23a"; }
