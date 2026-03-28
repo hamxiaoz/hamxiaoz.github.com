@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{ $photos := where .RegularPages ".Params.medium" "photo" }}
 {{ $music  := where .RegularPages ".Params.medium" "music" }}
 {{ $video  := where .RegularPages ".Params.medium" "video" }}
 {{ $art    := where .RegularPages ".Params.medium" "art" }}
@@ -11,19 +10,15 @@
       <p class="section-subtitle">{{ .Description | default "Photography, music, and video." }}</p>
     </div>
 
-    {{ if $photos }}
+    {{ $photoSection := .Site.GetPage "making/photo" }}
+    {{ if $photoSection }}
     <div class="making-subsection reveal">
       <h2 class="making-sub-title">Photography</h2>
       <div class="photo-grid photo-grid--full">
-        {{ range $photos }}
-        <a href="{{ .RelPermalink }}" class="photo-item">
-          {{ with .Params.image }}
-            <img src="{{ . }}" alt="{{ $.Title }}">
-          {{ else }}
-            <div class="photo-placeholder"></div>
-          {{ end }}
+        <a href="{{ with $photoSection.Params.live_url }}{{ . }}{{ else }}{{ $photoSection.RelPermalink }}{{ end }}"
+           class="photo-item"{{ with $photoSection.Params.live_url }} target="_blank" rel="noopener"{{ end }}>
+          {{ with $photoSection.Params.image }}<img src="{{ . }}" alt="{{ $photoSection.Title }}">{{ else }}<div class="photo-placeholder"></div>{{ end }}
         </a>
-        {{ end }}
       </div>
     </div>
     {{ end }}
@@ -46,11 +41,9 @@
     </div>
     {{ end }}
 
-    {{ $artSection := .Site.GetPage "making/art" }}
-    {{ if or $art $artSection }}
+    {{ if $art }}
     <div class="making-subsection reveal">
       <h2 class="making-sub-title">Art</h2>
-      {{ if $art }}
       <div class="photo-grid photo-grid--full">
         {{ range $art }}
         <a href="{{ with .Params.live_url }}{{ . }}{{ else }}{{ $.RelPermalink }}{{ end }}" class="photo-item">
@@ -62,9 +55,6 @@
         </a>
         {{ end }}
       </div>
-      {{ else }}
-      <p class="making-empty">{{ with $artSection }}{{ .Description }}{{ end }}</p>
-      {{ end }}
     </div>
     {{ end }}
 
