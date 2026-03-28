@@ -1,7 +1,6 @@
 ---
 layout: post
 title: 怎么用跑步机算命
-close_to_link: "/blog"
 ---
 
 之前在Las Vegas旅游, 看到有类似ATM一样的机器, 黄黄的, 外面是一个像是埃及法老的壳子,  号称"高科技算命", 把手伸进去, 一分钟不到, 电脑duang地打印出你的前程运气.

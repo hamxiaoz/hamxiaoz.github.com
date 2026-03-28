@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 思岸山"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 --- 
 
 自从参观完了纽约大都会博物馆回来之后, 我就把电脑的桌面换成了下面的古画:

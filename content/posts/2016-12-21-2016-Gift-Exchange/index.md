@@ -2,7 +2,6 @@
 layout: post
 title: 2016 Gift Exchange
 category: "Gift Exchange"
-close_to_link: /blog#giftexchange
 ---
 
 <img src="20161224-gift.jpg">

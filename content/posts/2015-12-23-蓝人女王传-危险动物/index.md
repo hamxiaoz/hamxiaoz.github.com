@@ -2,7 +2,6 @@
 layout: post
 title: '蓝人女王传: 危险动物'
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 昨夜4点突然听到一声巨响,有点像金属碰撞的声音,又有点像玻璃破碎的声音.  

@@ -2,7 +2,6 @@
 layout: post
 title: 'ùzhi青年: 就让我们野蛮生长'
 category: "ùzhi青年"
-close_to_link: /blog#u4zhiqn
 tags:
 - ux-design
 ---

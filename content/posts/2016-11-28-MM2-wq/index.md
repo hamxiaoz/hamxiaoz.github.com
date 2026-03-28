@@ -2,7 +2,6 @@
 layout: post
 title:  "MM2: 不万能的喜剧"
 category: "MM"
-close_to_link: /blog#mm
 ---
 
 <img src="MM2.png">

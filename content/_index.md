@@ -1,3 +1,2 @@
 ---
-park_link: /park
 ---

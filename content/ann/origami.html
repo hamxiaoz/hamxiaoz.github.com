@@ -2,11 +2,13 @@
 title: "Origami"
 logo_link: /ann
 logo_image: /assets/images/ann.png
-close_to_link: /ann
+image: "https://s3-us-west-1.amazonaws.com/blog.zurassic.com/ann/origami/thumbnail.png"
+description: "A photo experiment"
+weight: 3
+live_url: "/ann/origami"
 ---
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="/assets/vendor/oridomi.min.js"></script>
+<script src="https://oxism.com/oriDomi/oridomi.min.js"></script>
 
 <style type="text/css">
 .origami { z-index: 100; }
@@ -25,7 +27,7 @@ p.slide-hint {
 </style>
 
 <script>
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function () {
   var origami = new OriDomi('.origami', {
     vPanels: [5, 5, 5, 5, 10, 10, 10, 10, 5, 5, 5, 5, 20]
   });

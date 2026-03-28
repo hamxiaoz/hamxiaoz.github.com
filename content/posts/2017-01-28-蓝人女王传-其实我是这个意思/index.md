@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 其实我是这个意思"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 --- 
 
 <img src="20170128-actually.jpg"> 

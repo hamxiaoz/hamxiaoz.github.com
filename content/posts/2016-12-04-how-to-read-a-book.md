@@ -2,7 +2,6 @@
 layout: post
 title:  'ùzhi青年: 你是观众还是捕手? 读"如何阅读一本书"'
 category: "ùzhi青年"
-close_to_link: /blog#u4zhiqn
 ---
 
 <img src="https://img1.doubanio.com/lpic/s1670978.jpg">

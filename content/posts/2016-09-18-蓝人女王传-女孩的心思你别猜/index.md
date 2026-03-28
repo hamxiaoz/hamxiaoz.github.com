@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 女孩的心思你别猜"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 八月初, 我们给安安切好了西瓜, 放在木盘里面, 给她戴好bib, 洗好手之后让她吃.

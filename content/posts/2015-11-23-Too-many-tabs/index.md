@@ -1,7 +1,6 @@
 ---
 layout: post
 title: Too many tabs?
-close_to_link: "/blog"
 tags:
 - chrome-extension
 - tips

@@ -1,4 +1,4 @@
 ---
 page_title: Blog
-close_to_link: /
+outputs: ["HTML"]
 ---

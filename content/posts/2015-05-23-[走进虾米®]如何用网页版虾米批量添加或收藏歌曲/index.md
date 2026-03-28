@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "[走进虾米®] 如何用网页版虾米批量添加或收藏歌曲"
-close_to_link: "/blog"
 tags:
 - tutorial
 - hack

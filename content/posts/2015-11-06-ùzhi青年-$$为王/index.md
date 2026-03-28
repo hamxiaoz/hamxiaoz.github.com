@@ -2,7 +2,6 @@
 layout: post
 title: 'ùzhi青年: $$为王'
 category: "ùzhi青年"
-close_to_link: /blog#u4zhiqn
 tags:
 - startup
 - u4zhiqn

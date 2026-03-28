@@ -2,7 +2,6 @@
 layout: post
 title:  "MM3: 克劳汀幻想曲(Claudine)"
 category: "MM"
-close_to_link: /blog#mm
 ---
 
 <img src="MM3.png">

@@ -2,7 +2,6 @@
 layout: post
 title:  "MM0: 风行水上"
 category: "MM"
-close_to_link: /blog#mm
 ---
 
 <img src="MM0.png">

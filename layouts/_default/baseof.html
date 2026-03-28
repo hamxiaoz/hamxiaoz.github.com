@@ -2,8 +2,10 @@
 <html lang="{{ .Site.Language.Lang | default "en" }}">
 
   {{ partial "head.html" . }}
+  {{ block "head-extra" . }}{{ end }}
+</head>
 
-  <body class="theme-{{ .Site.Params.theme | default "zurassic" }}{{ if .IsHome }} page-home{{ end }}">
+  <body class="theme-{{ .Site.Params.theme | default "zurassic" }}{{ if .IsHome }} page-home{{ end }}{{ if .Params.hide_nav_links }} page-hidden-nav{{ end }}">
 
     {{ partial "nav.html" . }}
 

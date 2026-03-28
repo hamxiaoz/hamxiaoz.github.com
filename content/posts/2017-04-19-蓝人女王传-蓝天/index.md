@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 蓝天"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 今早出门，抬头看天，发现有风有云，阳光正好。

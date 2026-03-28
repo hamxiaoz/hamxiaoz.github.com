@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 蓝天"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 安安这个年纪, 最喜欢的就是吃东西.

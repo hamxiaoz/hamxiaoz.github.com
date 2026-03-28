@@ -2,7 +2,6 @@
 layout: post
 title:  "ùzhi青年: 2017年度book Review"
 category: "ùzhi青年"
-close_to_link: /blog#u4zhiqn
 ---
 
 2017三月份的时候， 发过这样的朋友圈：

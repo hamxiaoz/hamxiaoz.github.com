@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 世界上最难搞的两个观众"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 这是世界上最难搞的两个观众:

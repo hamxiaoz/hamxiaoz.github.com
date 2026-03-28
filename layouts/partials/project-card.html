@@ -8,7 +8,7 @@
 {{ $p := .page }}
 {{ $idx := .index | default 1 }}
 {{ $style := .style | default "light" }}
-<article class="project-card project-card--{{ $style }} reveal">
+<article class="project-card project-card--{{ $style }} glass reveal">
   {{/* Number badge (zurassic theme) or company/status badge */}}
   <div class="card-meta-row">
     {{ with $p.Params.company }}
@@ -18,6 +18,12 @@
     {{ end }}{{ end }}
     <span class="card-number">{{ printf "%02d" $idx }}</span>
   </div>
+
+  {{ with $p.Params.image }}
+  <div class="card-image">
+    <img src="{{ . }}" alt="{{ $p.Title }}" loading="lazy">
+  </div>
+  {{ end }}
 
   <div class="card-body">
     <h3 class="card-title">{{ $p.Title }}</h3>
@@ -34,9 +40,9 @@
     {{ with $p.Params.live_url }}
       <a href="{{ . }}" class="card-action card-action--primary" target="_blank" rel="noopener noreferrer">Launch ›</a>
     {{ end }}
-    {{ with $p.Params.article_url }}
-      <a href="{{ . }}" class="card-action card-action--secondary" target="_blank" rel="noopener noreferrer">Read more ›</a>
-    {{ else }}
+    {{ if $p.Params.article_url }}
+      <a href="{{ $p.Params.article_url }}" class="card-action card-action--secondary" target="_blank" rel="noopener noreferrer">Read more ›</a>
+    {{ else if not $p.Params.live_url }}
       <a href="{{ $p.RelPermalink }}" class="card-action card-action--secondary">Learn more ›</a>
     {{ end }}
   </div>

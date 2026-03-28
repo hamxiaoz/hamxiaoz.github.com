@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 卷珠帘"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 昨晚要去看音乐节, 演出歌手有霍尊. 我们出发之前跟家里老人报备. 他们问我们有谁的演出, 我们提到了霍尊.

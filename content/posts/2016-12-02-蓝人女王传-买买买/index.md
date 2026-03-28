@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 买买买"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 以下由女王亲笔:

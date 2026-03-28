@@ -1,7 +1,6 @@
 ---
 layout: post
 title: How to add Disqus comments to Ghost blog?
-close_to_link: "/blog"
 tags:
 - english
 - tutorial

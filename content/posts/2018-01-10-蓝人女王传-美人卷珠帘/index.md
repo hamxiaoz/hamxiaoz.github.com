@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 美人卷珠帘"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 我家女王，如果算武林中人的话, 我觉得应该像方世玉他妈: 苗翠花.

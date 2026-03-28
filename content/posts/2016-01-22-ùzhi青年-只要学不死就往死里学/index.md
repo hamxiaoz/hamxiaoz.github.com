@@ -2,7 +2,6 @@
 layout: post
 title: 'ùzhi青年: 只要学不死, 就往死里学'
 category: "ùzhi青年"
-close_to_link: /blog#u4zhiqn
 ---
 
 #### 推荐

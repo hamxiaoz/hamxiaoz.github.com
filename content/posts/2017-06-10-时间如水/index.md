@@ -2,7 +2,6 @@
 layout: post
 title:  "诗和远方: 时间如水"
 category: "诗和远方"
-close_to_link: /blog#shi
 ---
 
 时间如水  

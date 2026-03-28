@@ -5,16 +5,25 @@ hide_footer: true
 ---
 
 <style>
+main { padding-top: 0; }
 .park-overlay {
-  min-height: 80vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  padding-top: 4rem;
 }
 .park-list {
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 2.5rem;
+  padding: 0 1.5rem;
+}
+.park-row-break { display: none; }
+@media (max-width: 480px) {
+  .park-overlay { padding-top: 2.5rem; }
+  .park-list { gap: 1.5rem; }
+  .park-row-break { display: block; flex-basis: 100%; height: 0; }
 }
 .park-item {
   display: inline-block;
@@ -29,11 +38,11 @@ hide_footer: true
   z-index: -1;
   content: '';
   top: 100%;
-  left: 5%;
-  height: 10px;
-  width: 90%;
-  opacity: 0;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, transparent 80%);
+  left: 15%;
+  height: 6px;
+  width: 70%;
+  opacity: 1;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, transparent 70%);
   transition: transform 0.3s, opacity 0.3s;
 }
 .park-item:hover,
@@ -61,22 +70,23 @@ hide_footer: true
 <div class="park-overlay">
   <div class="park-list">
     <div class="park-item">
-      <a href="/ying"><i class="large help icon"></i></a>
+      <a href="/ying"><img class="large logo" src="/assets/images/ying.png" alt="ying"></a>
     </div>
     <div class="park-item">
-      <span class="placeholder"><i class="large help icon"></i></span>
+      <a href="/ming"><img class="large logo" src="/assets/images/ming.png" alt="ming"></a>
     </div>
+    <div class="park-row-break"></div>
     <div class="park-item">
       <a href="/"><img class="large logo" src="/assets/images/zhi.png" alt="home"></a>
     </div>
     <div class="park-item">
-      <span class="placeholder"><i class="large help icon"></i></span>
+      <a href="/guo"><img class="large logo" src="/assets/images/guo.png" alt="guo"></a>
     </div>
     <div class="park-item">
       <a href="/ann"><img class="large logo" src="/assets/images/ann.png" alt="ann"></a>
     </div>
     <div class="park-item">
-      <span class="placeholder"><i class="large help icon"></i></span>
+      <a href="/bond"><img class="large logo" src="/assets/images/bond.png" alt="bond"></a>
     </div>
   </div>
 </div>

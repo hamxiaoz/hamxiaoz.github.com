@@ -5,7 +5,7 @@ title = "zurassic"
 [params]
   email = "andrew@zurassic.com"
   description = "Andrew Zheng's personal website"
-  googleAnalytics = "UA-69462353-1"
+  googleAnalytics = "G-HK044STX6K"
   logoLink = "/"
   logoImage = "/assets/images/zhi.png"
 
@@ -25,9 +25,6 @@ title = "zurassic"
 [params.social_secondary]
   codepen       = "https://codepen.io/hamxiaoz"
   stackoverflow = "https://stackoverflow.com/users/166286"
-
-[params.disqus]
-  shortname = "hamxiaozgithubcom"
 
 [permalinks]
   posts = "/blog/:slug.html"

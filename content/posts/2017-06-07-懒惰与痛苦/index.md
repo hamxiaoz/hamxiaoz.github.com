@@ -2,7 +2,6 @@
 layout: post
 title:  "诗和远方: 懒惰与痛苦"
 category: "诗和远方"
-close_to_link: /blog#shi
 ---
 
 ![](20170607-lazy.jpeg)

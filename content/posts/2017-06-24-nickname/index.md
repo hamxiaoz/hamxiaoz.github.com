@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 有外号"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 安安不知道在说什么, 就提到了"光明"两个字. 于是我们就问她:

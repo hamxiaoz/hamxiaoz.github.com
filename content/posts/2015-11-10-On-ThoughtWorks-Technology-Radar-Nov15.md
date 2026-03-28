@@ -1,7 +1,6 @@
 ---
 layout: post
 title: On ThoughtWorks Technology Radar Nov ‘15
-close_to_link: "/blog"
 tags:
 - english
 ---

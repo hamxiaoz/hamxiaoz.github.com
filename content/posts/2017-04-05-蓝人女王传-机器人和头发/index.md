@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 机器人和头发"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 随着小孩的长大, 他们也和这个世界建立了一点一点的联系, 他们对事物进行观察, 也在内心维持着一种世界万物的秩序.

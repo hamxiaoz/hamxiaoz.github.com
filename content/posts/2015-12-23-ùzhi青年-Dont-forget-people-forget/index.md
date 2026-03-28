@@ -2,7 +2,6 @@
 layout: post
 title: 'ùzhi青年: Don’t forget people forget'
 category: "ùzhi青年"
-close_to_link: /blog#u4zhiqn
 tags:
 - ux-design
 - lesson-learned

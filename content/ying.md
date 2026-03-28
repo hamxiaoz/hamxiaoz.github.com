@@ -1,8 +1,10 @@
 ---
 title: "Ying"
 page_title: ""
-close_to_link: /park
+logo_link: /ying
 hide_nav_links: true
+logo_image: /assets/images/ying.png
+type: prose
 ---
 
 To the best mom in the world:

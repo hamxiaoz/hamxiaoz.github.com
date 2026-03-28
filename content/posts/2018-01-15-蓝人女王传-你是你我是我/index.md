@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 你是你我是我"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 安安现在可以分清你和我的概念了， 第一次听到她说这个话时我都吓了一跳：

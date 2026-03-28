@@ -1,6 +1,12 @@
 {{ $section := .Section }}
 {{ $blogSection := or (eq $section "posts") (eq .RelPermalink "/blog/") }}
 <nav class="site-nav" id="site-nav">
+  {{ with .Params.logo_image }}
+  {{ $logoHref := $.Params.logo_link | default (cond (ne $section "") (printf "/%s/" $section) "/") }}
+  <a href="{{ $logoHref }}" class="nav-section-logo">
+    <img src="{{ . }}" alt="{{ $section }}">
+  </a>
+  {{ end }}
   <div class="nav-inner">
     <a href="/" class="nav-logo">
       <img src="/assets/images/zurassic.png" alt="{{ .Site.Params.name | default .Site.Title }}">

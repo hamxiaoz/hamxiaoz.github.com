@@ -20,9 +20,9 @@
   <link rel="stylesheet" href="/assets/syntax.css">
 
   <!-- Portfolio theme CSS (id allows JS to swap it via ?theme= param) -->
-  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/assets/css/base.css">
   {{ $theme := .Site.Params.theme | default "zurassic" }}
-  <link id="theme-css" rel="stylesheet" href="/css/{{ $theme }}.css">
+  <link id="theme-css" rel="stylesheet" href="/assets/css/{{ $theme }}.css">
 
   <!-- Theme switcher: reads ?theme=apple|te|zurassic and swaps CSS + body class -->
   <script>
@@ -30,7 +30,7 @@
       var allowed = { apple: 1, te: 1, zurassic: 1 };
       var param = new URLSearchParams(window.location.search).get('theme');
       if (param && allowed[param]) {
-        document.getElementById('theme-css').href = '/css/' + param + '.css';
+        document.getElementById('theme-css').href = '/assets/css/' + param + '.css';
         document.addEventListener('DOMContentLoaded', function() {
           document.body.className = document.body.className.replace(/theme-\w+/, 'theme-' + param);
         });
@@ -50,4 +50,3 @@
       {{ partial "google-analytics.html" $ }}
     {{ end }}
   {{ end }}
-</head>

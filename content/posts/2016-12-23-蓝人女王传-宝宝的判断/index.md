@@ -2,7 +2,6 @@
 layout: post
 title:  "蓝人女王传: 宝宝的判断"
 category: "蓝人女王传"
-close_to_link: /blog#lrnwz
 ---
 
 <img src="20161223-judgement.jpg">

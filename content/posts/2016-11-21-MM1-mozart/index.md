@@ -2,7 +2,6 @@
 layout: post
 title:  "MM1: Mozart"
 category: "MM"
-close_to_link: /blog#mm
 ---
 
 <img src="MM1.png">

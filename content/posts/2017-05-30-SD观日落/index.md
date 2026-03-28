@@ -2,7 +2,6 @@
 layout: post
 title:  "诗和远方: SD观日落"
 category: "诗和远方"
-close_to_link: /blog#shi
 ---
 
 ![](20170205-sd.jpeg)
