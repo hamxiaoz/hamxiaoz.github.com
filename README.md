@@ -112,6 +112,59 @@ There are two single-page layouts:
 
 To make any page render like a blog post (centered title, date, narrow text column), add `type: posts` to its front matter. Example: `content/lists/books.md` uses this.
 
+## Writing page (`/writing/`)
+
+Articles are grouped into sections. Each section is a subdirectory under `content/writing/`.
+
+### Adding a section
+
+Create `content/writing/<section-slug>/_index.md`:
+
+```yaml
+---
+title: "Leadership & Teams"
+description: "On building teams and leading engineers."
+weight: 1   # controls display order
+---
+```
+
+### Adding an article
+
+Create `content/writing/<section-slug>/my-article.md`:
+
+```yaml
+---
+title: "My Article Title"
+date: 2024-03-01
+external_url: "https://..."   # omit for internal Hugo page
+cover: "https://..."          # optional — see cover image rules below
+---
+```
+
+For internal articles (no `external_url`), add body content. Hugo serves it at `.RelPermalink`.
+
+### Cover images
+
+The template checks for a cover in this order:
+
+1. **`cover` frontmatter** — a URL string (external or `/assets/images/...` local path).
+   Use this for external articles or when you want to specify the image explicitly.
+   ```yaml
+   cover: "https://miro.medium.com/v2/resize:fit:1400/..."
+   # or
+   cover: "/assets/images/writing/my-article.jpg"
+   ```
+
+2. **Page bundle resource** — for internal articles using a page bundle, drop a file named
+   `cover.*` (e.g. `cover.jpg`, `cover.png`) alongside `index.md`. No frontmatter needed.
+   ```
+   content/writing/engineering/my-post/
+     index.md
+     cover.jpg   ← auto-detected
+   ```
+
+If neither is present, the article renders without an image — no layout shift.
+
 ## Adding a new list page (books, movies, games…)
 
 Create a file in `content/lists/`:

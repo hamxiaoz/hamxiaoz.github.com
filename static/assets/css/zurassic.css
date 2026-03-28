@@ -977,6 +977,140 @@
   white-space: nowrap;
 }
 
+/* ── Writing list — 1-column override of blog-list grid ───────────────── */
+.theme-zurassic .writing-list-single {
+  grid-template-columns: 1fr;
+}
+.theme-zurassic .writing-list-single .blog-list-title {
+  color: #000;
+}
+
+/* ── Writing section nav ───────────────────────────────────────────────── */
+.theme-zurassic .writing-nav {
+  position: sticky;
+  top: 50px;
+  z-index: 10;
+  background: var(--t-bg);
+  padding: 10px 0;
+  margin-bottom: 40px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.theme-zurassic .writing-nav-inner {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.theme-zurassic .writing-nav-inner::-webkit-scrollbar { display: none; }
+
+.theme-zurassic .writing-nav-pill {
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+  text-decoration: none;
+  padding: 5px 12px;
+  border: 1px solid transparent;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.theme-zurassic .writing-nav-pill:hover {
+  color: var(--t-text);
+  border-color: var(--t-border);
+}
+
+.theme-zurassic .writing-nav-pill.active {
+  color: var(--t-accent);
+  border-color: rgba(147,34,16,0.25);
+  background: rgba(147,34,16,0.05);
+}
+
+/* ── Writing item — 2-column layout: cover left, text right ────────────── */
+.theme-zurassic .writing-list-single .blog-list-item {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  grid-template-rows: auto auto;
+  align-items: start;
+  gap: 0 12px;
+}
+
+.theme-zurassic .writing-cover {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 72px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 3px;
+  display: block;
+}
+
+.theme-zurassic .writing-cover-empty {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  width: 72px;
+  height: 52px;
+  display: block;
+}
+
+.theme-zurassic .writing-list-single .blog-list-title {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.theme-zurassic .writing-list-single .blog-list-date {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+@media (max-width: 480px) {
+  .theme-zurassic .writing-list-single .blog-list-item {
+    grid-template-columns: 48px 1fr;
+    gap: 0 8px;
+  }
+  .theme-zurassic .writing-cover,
+  .theme-zurassic .writing-cover-empty {
+    width: 48px;
+    height: 36px;
+  }
+}
+
+/* ── Writing section block ─────────────────────────────────────────────── */
+.theme-zurassic .writing-section {
+  margin-bottom: 52px;
+  padding-top: 24px;
+  scroll-margin-top: 56px;
+}
+
+.theme-zurassic .writing-group-header {
+  margin-bottom: 16px;
+}
+
+.theme-zurassic .writing-group-title {
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-accent);
+  margin: 0 0 4px;
+}
+
+.theme-zurassic .writing-group-desc {
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+  margin: 0;
+}
+
 /* ── Blog section nav (sticky pill bar) ───────────────────────────────── */
 .theme-zurassic .blog-section-nav {
   position: sticky;
