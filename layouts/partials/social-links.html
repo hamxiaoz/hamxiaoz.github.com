@@ -1,6 +1,9 @@
 {{ $social := .Site.Params.social }}
+{{ $sec := .Site.Params.social_secondary }}
 {{ $iconOnly := .icon_only }}
 {{ with $social.github }}<a href="{{ . }}" class="social-link" aria-label="GitHub" data-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="github icon"></i>{{ if not $iconOnly }}GitHub{{ end }}</a>{{ end }}
 {{ with $social.linkedin }}<a href="{{ . }}" class="social-link" aria-label="LinkedIn" data-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="linkedin icon"></i>{{ if not $iconOnly }}LinkedIn{{ end }}</a>{{ end }}
 {{ with $social.medium }}<a href="{{ . }}" class="social-link" aria-label="Medium" data-label="Medium" target="_blank" rel="noopener noreferrer"><i class="medium icon"></i>{{ if not $iconOnly }}Medium{{ end }}</a>{{ end }}
 {{ with $social.x }}<a href="{{ . }}" class="social-link" aria-label="X" data-label="X" target="_blank" rel="noopener noreferrer"><i class="twitter icon"></i>{{ if not $iconOnly }}X{{ end }}</a>{{ end }}
+{{ with $sec.codepen }}<a href="{{ . }}" class="social-link" aria-label="CodePen" data-label="CodePen" target="_blank" rel="noopener noreferrer"><i class="codepen icon"></i>{{ if not $iconOnly }}CodePen{{ end }}</a>{{ end }}
+{{ with $sec.stackoverflow }}<a href="{{ . }}" class="social-link" aria-label="Stack Overflow" data-label="Stack Overflow" target="_blank" rel="noopener noreferrer"><i class="stack overflow icon"></i>{{ if not $iconOnly }}Stack Overflow{{ end }}</a>{{ end }}

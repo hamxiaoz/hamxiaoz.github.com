@@ -1,11 +1,5 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <span class="footer-copy">© 2005-{{ now.Format "2006" }} {{ .Site.Params.name | default .Site.Title }}</span>
-    <div class="footer-links">
-      {{ partial "social-links.html" (dict "Site" .Site) }}
-      {{ $sec := .Site.Params.social_secondary }}
-      {{ with $sec.codepen }}<a href="{{ . }}" class="social-link" target="_blank" rel="noopener noreferrer"><i class="codepen icon"></i>CodePen</a>{{ end }}
-      {{ with $sec.stackoverflow }}<a href="{{ . }}" class="social-link" target="_blank" rel="noopener noreferrer"><i class="stack overflow icon"></i>StackOverflow</a>{{ end }}
-    </div>
   </div>
 </footer>
