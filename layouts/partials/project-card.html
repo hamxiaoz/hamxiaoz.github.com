@@ -28,7 +28,7 @@
   <div class="card-body">
     <h3 class="card-title">{{ $p.Title }}</h3>
     {{ with $p.Params.role }}<p class="card-role">{{ . }}</p>{{ end }}
-    <p class="card-desc">{{ $p.Params.description | default $p.Summary }}</p>
+    <div class="card-desc">{{ with $p.Params.description }}{{ . }}{{ else }}{{ $p.Content }}{{ end }}</div>
     {{ with $p.Params.tags }}
     <div class="card-tags">
       {{ range . }}<span class="card-tag">{{ . }}</span>{{ end }}
