@@ -40,10 +40,8 @@
     {{ with $p.Params.live_url }}
       <a href="{{ . }}" class="card-action card-action--primary" target="_blank" rel="noopener noreferrer">Launch ›</a>
     {{ end }}
-    {{ if $p.Params.article_url }}
-      <a href="{{ $p.Params.article_url }}" class="card-action card-action--secondary" target="_blank" rel="noopener noreferrer">Read more ›</a>
-    {{ else if not $p.Params.live_url }}
-      <a href="{{ $p.RelPermalink }}" class="card-action card-action--secondary">Learn more ›</a>
+    {{ with $p.Params.article_url }}
+      <a href="{{ . }}" class="card-action {{ if $p.Params.live_url }}card-action--secondary{{ else }}card-action--primary{{ end }}" target="_blank" rel="noopener noreferrer">Learn more ›</a>
     {{ end }}
   </div>
 

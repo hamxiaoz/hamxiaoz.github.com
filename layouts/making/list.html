@@ -1,5 +1,4 @@
 {{ define "main" }}
-{{ $music  := where .RegularPages ".Params.medium" "music" }}
 {{ $video  := where .RegularPages ".Params.medium" "video" }}
 {{ $art    := where .RegularPages ".Params.medium" "art" }}
 
@@ -19,11 +18,15 @@
     </div>
     {{ end }}
 
-    {{ if $music }}
+    {{ $musicSection := .Site.GetPage "making/music" }}
+    {{ if $musicSection }}
     <div class="making-subsection reveal">
       <h2 class="making-sub-title">Music</h2>
-      <div class="items-list">
-        {{ range $music }}{{ partial "list-item.html" . }}{{ end }}
+      <div class="photo-grid photo-grid--full">
+        <a href="{{ with $musicSection.Params.live_url }}{{ . }}{{ else }}{{ $musicSection.RelPermalink }}{{ end }}"
+           class="photo-item"{{ with $musicSection.Params.live_url }} target="_blank" rel="noopener"{{ end }}>
+          {{ with $musicSection.Params.image }}<img src="{{ . }}" alt="{{ $musicSection.Title }}">{{ else }}<div class="photo-placeholder"></div>{{ end }}
+        </a>
       </div>
     </div>
     {{ end }}

@@ -553,7 +553,7 @@
 .theme-zurassic .card-image {
   margin: 0 -32px 20px;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1 / 1;
 }
 .theme-zurassic .card-image img {
   width: 100%;
@@ -600,6 +600,10 @@
   border: 1px solid var(--t-border);
   padding: 2px 10px;
   border-radius: 100px;
+}
+
+.theme-zurassic .card-body {
+  flex: 1;
 }
 
 .theme-zurassic .card-actions {

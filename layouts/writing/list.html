@@ -28,7 +28,7 @@
            class="blog-list-item"
            {{ with .Params.external_url }}target="_blank" rel="noopener noreferrer"{{ end }}>
           {{ if $cover }}<img class="writing-cover" src="{{ $cover }}" alt="{{ .Title }}" loading="lazy">{{ else }}<span class="writing-cover writing-cover-empty"></span>{{ end }}
-          <span class="blog-list-title">{{ .Title }}</span>
+          <span class="blog-list-title">{{ .Title }}{{ with .Params.external_url }}<svg class="external-link-icon" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7M8 1h3m0 0v3m0-3L5 7"/></svg>{{ end }}</span>
           <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
         </a>
         {{ end }}

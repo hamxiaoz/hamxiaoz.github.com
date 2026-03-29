@@ -5,5 +5,5 @@ tags: ["design"]
 image: "/assets/images/business-card-thumbnail.png"
 live_url: "/assets/images/Andrew-namecard.png"
 status: "live"
-weight: 13
+weight: 9
 ---
