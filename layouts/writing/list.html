@@ -1,16 +1,13 @@
 {{ define "main" }}
 <section class="portfolio-section section-page section-writing reveal-section">
   <div class="section-inner">
-    <div class="section-header reveal">
-      <p class="section-subtitle">{{ .Description | default "On leadership, engineering, and the spaces in between." }}</p>
-    </div>
 
     {{ if .Sections }}
-    <nav class="writing-nav" aria-label="Jump to section">
-      <div class="writing-nav-inner">
+    <nav class="page-sub-nav" id="page-sub-nav" aria-label="Jump to section">
+      <div class="page-sub-nav-inner">
         {{ range .Sections.ByParam "weight" }}
         <a href="#section-{{ .Title | urlize }}"
-           class="writing-nav-pill"
+           class="page-sub-nav-pill"
            data-section="section-{{ .Title | urlize }}">{{ .Title }}</a>
         {{ end }}
       </div>
@@ -54,29 +51,33 @@
     els.forEach(function(el) { obs.observe(el); });
   }
 
-  var pills = document.querySelectorAll('.writing-nav-pill');
+  var pills = document.querySelectorAll('.page-sub-nav-pill');
   var sections = document.querySelectorAll('.writing-section');
   if (!pills.length || !sections.length) return;
 
-  var spy = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (!entry.isIntersecting) return;
-      var id = entry.target.id;
-      pills.forEach(function(p) {
-        p.classList.toggle('active', p.getAttribute('data-section') === id);
-      });
+  function updateActive() {
+    var offset = 120;
+    var current = sections[0] && sections[0].id;
+    sections.forEach(function(s) {
+      if (s.getBoundingClientRect().top <= offset) current = s.id;
     });
-  }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
-
-  sections.forEach(function(s) { spy.observe(s); });
+    if (current) {
+      pills.forEach(function(p) {
+        p.classList.toggle('active', p.getAttribute('data-section') === current);
+      });
+    }
+  }
+  updateActive();
+  window.addEventListener('scroll', updateActive, { passive: true });
 
   pills.forEach(function(pill) {
     pill.addEventListener('click', function(e) {
       var target = document.getElementById(this.getAttribute('data-section'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      if (!target) return;
+      e.preventDefault();
+      var offset = 110;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
     });
   });
 })();

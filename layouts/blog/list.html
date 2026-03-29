@@ -1,65 +1,65 @@
 {{ define "head-extra" }}
-<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title | htmlEscape }} Blog" href="/posts/index.xml">
+<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title | htmlEscape }} Blog" href="/blog/index.xml">
 {{ end }}
 
 {{ define "main" }}
-{{ $posts := where .Site.RegularPages "Section" "posts" }}
+{{ $posts := where .Site.RegularPages "Section" "blog" }}
 {{ $listPages := where .Site.RegularPages "Section" "lists" }}
 
 <div class="page-blog">
 <div class="blog-hero">
   <img src="/assets/images/blog-cover.png" alt="">
-  <a href="/posts/index.xml" class="blog-hero-rss" title="RSS Feed" aria-label="RSS Feed">
+  <a href="/blog/index.xml" class="blog-hero-rss" title="RSS Feed" aria-label="RSS Feed">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19.01 7.38 20 6.18 20C4.98 20 4 19.01 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"/></svg>
   </a>
 </div>
 
-<div id="blog-nav-sentinel" style="height:1px;pointer-events:none;"></div>
-<nav class="blog-section-nav" id="blog-section-nav">
-  <div class="blog-section-nav-inner">
-    <a href="#recent" class="blog-nav-pill" data-section="recent">
-      最近 <span class="blog-nav-count">6</span>
+<div class="page-blog-body">
+<nav class="page-sub-nav" id="page-sub-nav">
+  <div class="page-sub-nav-inner">
+    <a href="#recent" class="page-sub-nav-pill" data-section="recent">
+      最近 <span class="page-sub-nav-count">6</span>
     </a>
     {{ range $.Site.Data.blogcategory }}
       {{ $catPosts := where $posts "Params.category" .name }}
       {{ if $catPosts }}
-        <a href="#{{ .id }}" class="blog-nav-pill" data-section="{{ .id }}">
-          {{ .name }} <span class="blog-nav-count">{{ len $catPosts }}</span>
+        <a href="#{{ .id }}" class="page-sub-nav-pill" data-section="{{ .id }}">
+          {{ .name }} <span class="page-sub-nav-count">{{ len $catPosts }}</span>
         </a>
       {{ end }}
     {{ end }}
     {{ if $listPages }}
-    <a href="#lists" class="blog-nav-pill" data-section="lists">
-      书单 <span class="blog-nav-count">{{ len $listPages }}</span>
+    <a href="#lists" class="page-sub-nav-pill" data-section="lists">
+      书单 <span class="page-sub-nav-count">{{ len $listPages }}</span>
     </a>
     {{ end }}
-    <a href="#all" class="blog-nav-pill" data-section="all">
-      全部 <span class="blog-nav-count">{{ len $posts }}</span>
+    <a href="#all" class="page-sub-nav-pill" data-section="all">
+      全部 <span class="page-sub-nav-count">{{ len $posts }}</span>
     </a>
   </div>
 </nav>
 
-<section class="portfolio-section section-page" id="recent">
+<div class="blog-section" id="recent">
   <div class="section-inner">
     <div class="section-header reveal">
       <h1 class="section-title section-title--cn">最近</h1>
     </div>
     <div class="blog-list">
       {{ range first 6 ($posts.ByDate.Reverse) }}
-        <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
-          <span class="blog-list-title">{{ .Title }}</span>
+        <a href="{{ with .Params.external_url }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}" class="blog-list-item reveal"{{ with .Params.external_url }} target="_blank" rel="noopener noreferrer"{{ end }}>
+          <span class="blog-list-title">{{ .Title }}{{ with .Params.external_url }}<svg class="external-link-icon" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7M8 1h3m0 0v3m0-3L5 7"/></svg>{{ end }}</span>
           <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
         </a>
       {{ end }}
     </div>
   </div>
-</section>
+</div>
 
 {{ range $.Site.Data.blogcategory }}
   {{ $meta := . }}
   {{ $catPosts := where $posts "Params.category" $meta.name }}
   {{ if $catPosts }}
-  <section class="portfolio-section section-page" id="{{ $meta.id }}">
+  <div class="blog-section" id="{{ $meta.id }}">
     <div class="section-inner">
       <div class="section-header reveal">
         <h2 class="section-title section-title--cn">{{ $meta.name }}</h2>
@@ -69,19 +69,19 @@
       </div>
       <div class="blog-list">
         {{ range $catPosts.ByDate.Reverse }}
-          <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
-            <span class="blog-list-title">{{ .Title }}</span>
+          <a href="{{ with .Params.external_url }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}" class="blog-list-item reveal"{{ with .Params.external_url }} target="_blank" rel="noopener noreferrer"{{ end }}>
+            <span class="blog-list-title">{{ .Title }}{{ with .Params.external_url }}<svg class="external-link-icon" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7M8 1h3m0 0v3m0-3L5 7"/></svg>{{ end }}</span>
             <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
           </a>
         {{ end }}
       </div>
     </div>
-  </section>
+  </div>
   {{ end }}
 {{ end }}
 
 {{ if $listPages }}
-<section class="portfolio-section section-page" id="lists">
+<div class="blog-section" id="lists">
   <div class="section-inner">
     <div class="section-header reveal">
       <h2 class="section-title section-title--cn">书单</h2>
@@ -97,10 +97,10 @@
       {{ end }}
     </div>
   </div>
-</section>
+</div>
 {{ end }}
 
-<section class="portfolio-section section-page" id="all">
+<div class="blog-section" id="all">
   <div class="section-inner">
     <div class="section-header reveal">
       <h2 class="section-title section-title--cn">全部</h2>
@@ -114,14 +114,15 @@
         <div class="blog-list">
         {{ $currentYear = $thisYear }}
       {{ end }}
-      <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
-        <span class="blog-list-title">{{ .Title }}</span>
+      <a href="{{ with .Params.external_url }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}" class="blog-list-item reveal"{{ with .Params.external_url }} target="_blank" rel="noopener noreferrer"{{ end }}>
+        <span class="blog-list-title">{{ .Title }}{{ with .Params.external_url }}<svg class="external-link-icon" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7M8 1h3m0 0v3m0-3L5 7"/></svg>{{ end }}</span>
         <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
       </a>
     {{ end }}
     {{ if $currentYear }}</div>{{ end }}
   </div>
-</section>
+</div>
+</div><!-- /.page-blog-body -->
 </div><!-- /.page-blog -->
 
 <script>
@@ -138,16 +139,8 @@
 
 // Blog section nav: sticky border + active pill + smooth scroll with offset
 (function() {
-  var nav = document.getElementById('blog-section-nav');
-  var sentinel = document.getElementById('blog-nav-sentinel');
-  if (nav && sentinel) {
-    new IntersectionObserver(function(entries) {
-      nav.classList.toggle('is-stuck', !entries[0].isIntersecting);
-    }).observe(sentinel);
-  }
-
-  var pills = document.querySelectorAll('.blog-nav-pill');
-  var sections = document.querySelectorAll('.portfolio-section[id]');
+  var pills = document.querySelectorAll('.page-sub-nav-pill');
+  var sections = document.querySelectorAll('.blog-section');
   if (!pills.length || !sections.length) return;
 
   function setActive(id) {
