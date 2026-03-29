@@ -1,5 +1,5 @@
 ---
-title: "Functional Programming in TypeScript/JavaScript"
+title: "Functional Programming"
 description: ""
 weight: 2
 ---

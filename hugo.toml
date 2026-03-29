@@ -27,7 +27,7 @@ title = "zurassic"
   stackoverflow = "https://stackoverflow.com/users/166286"
 
 [permalinks]
-  posts = "/blog/:slug.html"
+  blog = "/blog/:slug.html"
 
 [frontmatter]
   date = [":filename", ":default"]

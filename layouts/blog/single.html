@@ -1,4 +1,10 @@
 {{ define "main" }}
+{{ with .Params.external_url }}
+<meta http-equiv="refresh" content="0; url={{ . }}">
+<meta name="robots" content="noindex">
+<script>window.location.replace("{{ . }}")</script>
+<p>Redirecting… <a href="{{ . }}">Click here if not redirected.</a></p>
+{{ end }}
 <article class="page-content page-content--prose" itemscope itemtype="http://schema.org/BlogPosting">
 
     <div class="center aligned ui header">
