@@ -1,4 +1,0 @@
----
-title: "Art"
-medium: "art"
----

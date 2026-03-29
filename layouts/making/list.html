@@ -1,67 +1,50 @@
 {{ define "main" }}
-{{ $video  := where .RegularPages ".Params.medium" "video" }}
-{{ $art    := where .RegularPages ".Params.medium" "art" }}
+{{ $allTags := slice }}
+{{ range .Pages }}
+  {{ range .Params.tags }}
+    {{ $allTags = $allTags | append . }}
+  {{ end }}
+{{ end }}
+{{ $allTags = $allTags | uniq | sort }}
 
-<section class="portfolio-section section-page section-making reveal-section">
+<section class="portfolio-section section-page reveal-section">
   <div class="section-inner">
-
-    {{ $photoSection := .Site.GetPage "making/photo" }}
-    {{ if $photoSection }}
-    <div class="making-subsection reveal">
-      <h2 class="making-sub-title">Photography</h2>
-      <div class="photo-grid photo-grid--full">
-        <a href="{{ with $photoSection.Params.live_url }}{{ . }}{{ else }}{{ $photoSection.RelPermalink }}{{ end }}"
-           class="photo-item"{{ with $photoSection.Params.live_url }} target="_blank" rel="noopener"{{ end }}>
-          {{ with $photoSection.Params.image }}<img src="{{ . }}" alt="{{ $photoSection.Title }}">{{ else }}<div class="photo-placeholder"></div>{{ end }}
-        </a>
-      </div>
+    <div class="tag-filter reveal" id="tag-filter">
+      <button class="tag-filter-btn active" data-tag="all">All</button>
+      {{ range $allTags }}
+      <button class="tag-filter-btn" data-tag="{{ . | lower }}">{{ . }}</button>
+      {{ end }}
     </div>
-    {{ end }}
 
-    {{ $musicSection := .Site.GetPage "making/music" }}
-    {{ if $musicSection }}
-    <div class="making-subsection reveal">
-      <h2 class="making-sub-title">Music</h2>
-      <div class="photo-grid photo-grid--full">
-        <a href="{{ with $musicSection.Params.live_url }}{{ . }}{{ else }}{{ $musicSection.RelPermalink }}{{ end }}"
-           class="photo-item"{{ with $musicSection.Params.live_url }} target="_blank" rel="noopener"{{ end }}>
-          {{ with $musicSection.Params.image }}<img src="{{ . }}" alt="{{ $musicSection.Title }}">{{ else }}<div class="photo-placeholder"></div>{{ end }}
-        </a>
+    <div class="items-grid" id="making-grid">
+      {{ range $i, $p := .Pages.ByWeight }}
+      <div class="project-filter-item"
+           data-tags="{{ range $p.Params.tags }}{{ . | lower }} {{ end }}">
+        {{ partial "project-card.html" (dict "page" $p "index" (add $i 1) "style" "dark") }}
       </div>
+      {{ end }}
     </div>
-    {{ end }}
-
-    {{ if $video }}
-    <div class="making-subsection reveal">
-      <h2 class="making-sub-title">Video</h2>
-      <div class="items-list">
-        {{ range $video }}{{ partial "list-item.html" . }}{{ end }}
-      </div>
-    </div>
-    {{ end }}
-
-    {{ if $art }}
-    <div class="making-subsection reveal">
-      <h2 class="making-sub-title">Art</h2>
-      <div class="photo-grid photo-grid--full">
-        {{ range $art }}
-        <a href="{{ with .Params.live_url }}{{ . }}{{ else }}{{ $.RelPermalink }}{{ end }}" class="photo-item">
-          {{ with .Params.image }}
-            <img src="{{ . }}" alt="{{ $.Title }}">
-          {{ else }}
-            <div class="photo-placeholder"></div>
-          {{ end }}
-        </a>
-        {{ end }}
-      </div>
-    </div>
-    {{ end }}
-
   </div>
 </section>
 
 <script>
 (function() {
+  var filterBtns = document.querySelectorAll('.tag-filter-btn');
+  var items = document.querySelectorAll('.project-filter-item');
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var tag = this.dataset.tag;
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      items.forEach(function(item) {
+        if (tag === 'all' || item.dataset.tags.indexOf(tag) !== -1) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
   var els = document.querySelectorAll('.reveal');
   if (!els.length) return;
   var obs = new IntersectionObserver(function(entries) {
