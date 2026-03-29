@@ -1,8 +1,9 @@
 ---
 title: "Hackathon Experience"
 description: "Why I Like and What I Learned from Hackathons?"
+company: "Education & Awards"
 image: "/assets/images/portfolio-hackathon.png"
-tags: ["overview"]
+tags: ["Hackathon"]
 article_url: "https://medium.com/zurassic/what-i-learned-from-hackathons-in-adp-7ab1b03b2476"
-weight: 12
+weight: 7
 ---
