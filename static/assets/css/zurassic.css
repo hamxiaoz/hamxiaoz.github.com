@@ -585,6 +585,13 @@
   line-height: 1.6;
   flex: 1;
 }
+.theme-zurassic .card-desc ul {
+  margin: 0;
+  padding-left: 1em;
+}
+.theme-zurassic .card-desc ul li {
+  margin-bottom: 4px;
+}
 
 .theme-zurassic .card-tags {
   display: flex;
