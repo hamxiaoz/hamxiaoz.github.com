@@ -8,7 +8,7 @@
 {{ $p := .page }}
 {{ $idx := .index | default 1 }}
 {{ $style := .style | default "light" }}
-<article class="project-card project-card--{{ $style }} glass reveal">
+<article class="project-card project-card--{{ $style }} glass">
   {{/* Number badge (zurassic theme) or company/status badge */}}
   <div class="card-meta-row">
     {{ with $p.Params.company }}

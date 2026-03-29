@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 {{/* ── HERO ─────────────────────────────────────────────────────────── */}}
-<section class="hero reveal-section" id="home">
+<section class="hero" id="home">
   <div class="hero-inner">
     {{/* Left column (all themes) / Avatar card right column (zurassic theme) */}}
     <div class="hero-text">
@@ -12,9 +12,9 @@
           <span class="hero-avatar-initials">{{ substr (.Site.Params.name | default "A") 0 1 }}</span>
         {{ end }}
       </div>
-      <h1 class="hero-name reveal">{{ .Site.Params.name | default .Site.Title }}</h1>
-      <p class="hero-tagline reveal">{{ .Site.Params.tagline }}</p>
-      <p class="hero-bio reveal">{{ .Site.Params.bio | safeHTML }}</p>
+      <h1 class="hero-name">{{ .Site.Params.name | default .Site.Title }}</h1>
+      <p class="hero-tagline">{{ .Site.Params.tagline }}</p>
+      <p class="hero-bio">{{ .Site.Params.bio | safeHTML }}</p>
     </div>
 
     {{/* Right column: image + vertical stamp column */}}
@@ -28,18 +28,5 @@
     </div>
   </div>
 </section>
-
-<script>
-(function() {
-  var els = document.querySelectorAll('.reveal');
-  if (!els.length) return;
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  els.forEach(function(el) { obs.observe(el); });
-})();
-</script>
 
 {{ end }}

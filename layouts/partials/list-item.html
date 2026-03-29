@@ -10,7 +10,7 @@
 {{ with .Params.external_url }}{{ $href = . }}{{ $isExternal = true }}{{ end }}
 {{ with .Params.embed_url }}{{ $href = . }}{{ $isExternal = true }}{{ end }}
 
-<a href="{{ $href }}" class="list-item glass reveal"
+<a href="{{ $href }}" class="list-item glass"
    {{ if $isExternal }}target="_blank" rel="noopener noreferrer"{{ end }}>
   <span class="list-item-source">{{ .Params.source | default (.Params.medium | default "") }}</span>
   <div class="list-item-body">

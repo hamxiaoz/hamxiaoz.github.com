@@ -1,5 +1,5 @@
 {{ define "main" }}
-<section class="portfolio-section section-page section-writing reveal-section">
+<section class="portfolio-section section-page section-writing">
   <div class="section-inner">
 
     {{ if .Sections }}
@@ -15,7 +15,7 @@
     {{ end }}
 
     {{ range .Sections.ByParam "weight" }}
-    <div class="writing-section reveal" id="section-{{ .Title | urlize }}">
+    <div class="writing-section" id="section-{{ .Title | urlize }}">
       <div class="writing-group-header">
         <h2 class="writing-group-title">{{ .Title }}</h2>
         {{ with .Description }}<p class="writing-group-desc">{{ . }}</p>{{ end }}
@@ -41,16 +41,6 @@
 
 <script>
 (function() {
-  var els = document.querySelectorAll('.reveal');
-  if (els.length) {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-      });
-    }, { threshold: 0.1 });
-    els.forEach(function(el) { obs.observe(el); });
-  }
-
   var pills = document.querySelectorAll('.page-sub-nav-pill');
   var sections = document.querySelectorAll('.writing-section');
   if (!pills.length || !sections.length) return;

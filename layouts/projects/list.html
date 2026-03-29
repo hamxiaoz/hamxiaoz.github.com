@@ -7,9 +7,9 @@
 {{ end }}
 {{ $allTags = $allTags | uniq | sort }}
 
-<section class="portfolio-section section-page reveal-section">
+<section class="portfolio-section section-page">
   <div class="section-inner">
-    <div class="tag-filter reveal" id="tag-filter">
+    <div class="tag-filter" id="tag-filter">
       <button class="tag-filter-btn active" data-tag="all">All</button>
       {{ range $allTags }}
       <button class="tag-filter-btn" data-tag="{{ . | lower }}">{{ . }}</button>
@@ -47,14 +47,6 @@
     });
   });
 
-  var els = document.querySelectorAll('.reveal');
-  if (!els.length) return;
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  els.forEach(function(el) { obs.observe(el); });
 })();
 </script>
 {{ end }}

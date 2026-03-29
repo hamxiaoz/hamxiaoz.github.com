@@ -41,12 +41,12 @@
 
 <div class="blog-section" id="recent">
   <div class="section-inner">
-    <div class="section-header reveal">
+    <div class="section-header">
       <h1 class="section-title section-title--cn">最近</h1>
     </div>
     <div class="blog-list">
       {{ range first 6 ($posts.ByDate.Reverse) }}
-        <a href="{{ with .Params.external_url }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}" class="blog-list-item reveal"{{ with .Params.external_url }} target="_blank" rel="noopener noreferrer"{{ end }}>
+        <a href="{{ with .Params.external_url }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}" class="blog-list-item"{{ with .Params.external_url }} target="_blank" rel="noopener noreferrer"{{ end }}>
           <span class="blog-list-title">{{ .Title }}{{ with .Params.external_url }}<svg class="external-link-icon" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7M8 1h3m0 0v3m0-3L5 7"/></svg>{{ end }}</span>
           <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
         </a>
@@ -61,7 +61,7 @@
   {{ if $catPosts }}
   <div class="blog-section" id="{{ $meta.id }}">
     <div class="section-inner">
-      <div class="section-header reveal">
+      <div class="section-header">
         <h2 class="section-title section-title--cn">{{ $meta.name }}</h2>
         {{ with $meta.description }}
           <p class="section-subtitle section-subtitle--cn">{{ . | safeHTML }}</p>
@@ -69,7 +69,7 @@
       </div>
       <div class="blog-list">
         {{ range $catPosts.ByDate.Reverse }}
-          <a href="{{ with .Params.external_url }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}" class="blog-list-item reveal"{{ with .Params.external_url }} target="_blank" rel="noopener noreferrer"{{ end }}>
+          <a href="{{ with .Params.external_url }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}" class="blog-list-item"{{ with .Params.external_url }} target="_blank" rel="noopener noreferrer"{{ end }}>
             <span class="blog-list-title">{{ .Title }}{{ with .Params.external_url }}<svg class="external-link-icon" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7M8 1h3m0 0v3m0-3L5 7"/></svg>{{ end }}</span>
             <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
           </a>
@@ -83,12 +83,12 @@
 {{ if $listPages }}
 <div class="blog-section" id="lists">
   <div class="section-inner">
-    <div class="section-header reveal">
+    <div class="section-header">
       <h2 class="section-title section-title--cn">书单</h2>
     </div>
     <div class="blog-list">
       {{ range $listPages.ByTitle }}
-        <a href="{{ .RelPermalink }}" class="blog-list-item reveal">
+        <a href="{{ .RelPermalink }}" class="blog-list-item">
           <span class="blog-list-title">{{ .Title }}</span>
           {{ with .Params.description }}
             <span class="blog-list-date">{{ . }}</span>
@@ -102,7 +102,7 @@
 
 <div class="blog-section" id="all">
   <div class="section-inner">
-    <div class="section-header reveal">
+    <div class="section-header">
       <h2 class="section-title section-title--cn">全部</h2>
     </div>
     {{ $currentYear := "" }}
@@ -110,11 +110,11 @@
       {{ $thisYear := .Date.Format "2006" }}
       {{ if ne $currentYear $thisYear }}
         {{ if $currentYear }}</div>{{ end }}
-        <h3 class="list-year-header reveal">{{ $thisYear }}</h3>
+        <h3 class="list-year-header">{{ $thisYear }}</h3>
         <div class="blog-list">
         {{ $currentYear = $thisYear }}
       {{ end }}
-      <a href="{{ with .Params.external_url }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}" class="blog-list-item reveal"{{ with .Params.external_url }} target="_blank" rel="noopener noreferrer"{{ end }}>
+      <a href="{{ with .Params.external_url }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}" class="blog-list-item"{{ with .Params.external_url }} target="_blank" rel="noopener noreferrer"{{ end }}>
         <span class="blog-list-title">{{ .Title }}{{ with .Params.external_url }}<svg class="external-link-icon" width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 2H2a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V7M8 1h3m0 0v3m0-3L5 7"/></svg>{{ end }}</span>
         <span class="blog-list-date">{{ .Date.Format "2006-01-02" }}</span>
       </a>
@@ -126,17 +126,6 @@
 </div><!-- /.page-blog -->
 
 <script>
-(function() {
-  var els = document.querySelectorAll('.reveal');
-  if (!els.length) return;
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  els.forEach(function(el) { obs.observe(el); });
-})();
-
 // Blog section nav: sticky border + active pill + smooth scroll with offset
 (function() {
   var pills = document.querySelectorAll('.page-sub-nav-pill');
