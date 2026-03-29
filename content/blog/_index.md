@@ -1,4 +1,4 @@
 ---
 page_title: Blog
-outputs: ["HTML"]
+outputs: ["HTML", "RSS"]
 ---
