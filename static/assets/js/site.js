@@ -119,13 +119,22 @@
   }
 
   /* ── Park easter egg ────────────────────────────────────────────────────
-     Double-click the nav logo to navigate to /park */
+     Double-click (desktop) or double-tap (mobile) the nav logo → /park */
   function initParkEasterEgg() {
     var logo = document.querySelector('.nav-logo');
     if (!logo) return;
     logo.addEventListener('dblclick', function (e) {
       e.preventDefault();
       window.location.href = '/park';
+    });
+    var lastTap = 0;
+    logo.addEventListener('touchend', function (e) {
+      var now = Date.now();
+      if (now - lastTap < 300) {
+        e.preventDefault();
+        window.location.href = '/park';
+      }
+      lastTap = now;
     });
   }
 
