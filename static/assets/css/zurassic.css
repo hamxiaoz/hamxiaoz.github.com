@@ -462,6 +462,11 @@
   padding: 80px 32px;
 }
 .theme-zurassic .page-content--prose { max-width: 680px; }
+.theme-zurassic .post-content img {
+  max-width: 480px;
+  height: auto;
+  display: block;
+}
 @media (max-width: 480px) {
   .theme-zurassic .page-content,
   .theme-zurassic .portfolio-section { padding-left: 12px; padding-right: 12px; }
