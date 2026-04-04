@@ -1,6 +1,8 @@
 ---
-title: "AI Field Notes: Family Assistant with OpenClaw"
+title: "Applied AI Field Notes 002 - Family Assistant with OpenClaw"
 date: 2026-03-31
+# external_url: "https://www.linkedin.com/pulse/applied-ai-field-notes-002-family-assistant-openclaw-andrew-zheng-iwcmc/"
+cover: "https://media.licdn.com/dms/image/v2/D5612AQHB03VkPVDKaQ/article-cover_image-shrink_720_1280/B56Z1azaKvK0AU-/0/1775344921630?e=1776902400&v=beta&t=jeU28iReZzo8I9DWKCn8s9QzipfRIr_59neR6vBAOJk"
 ---
 
 >  My wife used to ask me to handle _all_ things "computer-related" — from fixing noisy PC fans to downloading school photos — just because I'm a software engineer. Things have changed. Three weeks ago, I "hired" a family assistant, and from skeptic to daily reliance, here's what that shift actually looks like.
@@ -59,6 +61,12 @@ He downloaded school pictures for us. I didn't know if he could navigate the flo
 
 ![](hamham-school-pictures-download.png)
 
+**No more to-do list**
+
+I stopped maintain a to-do list. HamHam is my assistant, I ask him to remind me, and I materialize the list whenever I need it.
+
+> The list becomes a view, not a thing I manage.
+
 ---
 
 **He's in the family chat now**
@@ -86,5 +94,10 @@ When something can run without you — at scale, over time — it changes what y
 That's agentic thinking.
 
 ---
+
+This is part of my series of "Applied AI Field Notes" - a collection of articles on how I use AI in personal and professional life.
+
+- Applied AI Field Notes 001 - Lego Mosaic Helper
+- Applied AI Field Notes 002 - Family Assistant with OpenClaw
 
 _More AI field notes to come._
