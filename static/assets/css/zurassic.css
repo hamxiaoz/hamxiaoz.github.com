@@ -463,7 +463,7 @@
 }
 .theme-zurassic .page-content--prose { max-width: 680px; }
 .theme-zurassic .post-content img {
-  max-width: 480px;
+  max-width: min(480px, 100%);
   height: auto;
   display: block;
 }
