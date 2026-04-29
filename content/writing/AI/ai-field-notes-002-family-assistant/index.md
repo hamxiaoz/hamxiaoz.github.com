@@ -2,7 +2,7 @@
 title: "Applied AI Field Notes 002 - Family Assistant with OpenClaw"
 date: 2026-03-31
 # external_url: "https://www.linkedin.com/pulse/applied-ai-field-notes-002-family-assistant-openclaw-andrew-zheng-iwcmc/"
-cover: "https://media.licdn.com/dms/image/v2/D5612AQHB03VkPVDKaQ/article-cover_image-shrink_720_1280/B56Z1azaKvK0AU-/0/1775344921630?e=1776902400&v=beta&t=jeU28iReZzo8I9DWKCn8s9QzipfRIr_59neR6vBAOJk"
+cover: "https://media.licdn.com/dms/image/v2/D5612AQHB03VkPVDKaQ/article-cover_image-shrink_720_1280/B56Z1azaKvK0AU-/0/1775344921630?e=1779321600&v=beta&t=4dngoV_YFua-9s1F9kgXRHtbE5N_slgNmC6SYBnZ-5g"
 ---
 
 >  My wife used to ask me to handle _all_ things "computer-related" — from fixing noisy PC fans to downloading school photos — just because I'm a software engineer. Things have changed. Three weeks ago, I "hired" a family assistant, and from skeptic to daily reliance, here's what that shift actually looks like.
