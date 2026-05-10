@@ -154,7 +154,7 @@
         var s = document.createElement('script');
         s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
         s.onload  = resolve;
-        s.onerror = reject;
+        s.onerror = function (err) { html2canvasPromise = null; reject(err); };
         document.head.appendChild(s);
       });
       return html2canvasPromise;
@@ -172,7 +172,7 @@
 
       card.querySelector('.dl-title').textContent = h1   ? h1.textContent   : '';
       card.querySelector('.dl-date').textContent  = time ? time.textContent  : '';
-      document.querySelector('#download-card .dl-body').innerHTML = body ? body.innerHTML : '';
+      card.querySelector('.dl-body').innerHTML    = body ? body.innerHTML    : '';
     }
 
     btn.addEventListener('click', function () {
