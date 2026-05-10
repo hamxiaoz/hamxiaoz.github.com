@@ -139,14 +139,13 @@
   }
 
   /* ── Blog post image download ───────────────────────────────────────────
-     On load: lazy-loads qrcode from jsDelivr, generates QR for the page URL
-     into both the on-page widget and the hidden #download-card.
-     On click of #dl-qr-wrap: lazy-loads html2canvas, captures the card as
-     a 2× PNG polaroid with QR embedded, and triggers a browser download. */
+     Lazy-loads qrcodejs + html2canvas on first click.
+     Generates a QR code (post URL) into the hidden #download-card polaroid,
+     then captures it as a 2× PNG and triggers a browser download. */
   function initDownloadButton() {
-    var qrWrap = document.getElementById('dl-qr-wrap');
-    var card   = document.getElementById('download-card');
-    if (!qrWrap || !card) return;
+    var btn  = document.getElementById('dl-btn');
+    var card = document.getElementById('download-card');
+    if (!btn || !card) return;
 
     var html2canvasPromise = null;
     var qrLibPromise = null;
@@ -156,7 +155,7 @@
       if (qrLibPromise) return qrLibPromise;
       qrLibPromise = new Promise(function (resolve, reject) {
         var s = document.createElement('script');
-        s.src = 'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js';
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
         s.onload  = resolve;
         s.onerror = function (err) { qrLibPromise = null; reject(err); };
         document.head.appendChild(s);
@@ -190,26 +189,28 @@
       card.querySelector('.dl-body').innerHTML    = body ? body.innerHTML    : '';
     }
 
-    /* Generate QR codes on page load — fills both the visible widget
-       and the hidden card img so html2canvas can capture it immediately */
-    loadQrLib().then(function () {
-      var opts = { width: 80, margin: 1, color: { dark: '#343434', light: '#ffffff' } };
-      QRCode.toDataURL(pageUrl, opts, function (err, dataUrl) {
-        if (err) { console.warn('[dl] QR generation failed', err); return; }
-        var pageImg = document.getElementById('dl-qr-img');
-        if (pageImg) { pageImg.src = dataUrl; }
-        card.querySelector('.dl-qr-img').src = dataUrl;
-      });
-    }).catch(function () {});
+    /* Generates QR into the card's .dl-qr-img using qrcodejs (synchronous canvas),
+       then resolves so html2canvas can capture the card immediately after. */
+    function generateQrIntoCard() {
+      return loadQrLib().then(function () {
+        var tmp = document.createElement('div');
+        tmp.style.cssText = 'position:absolute;left:-9999px';
+        document.body.appendChild(tmp);
+        new QRCode(tmp, { text: pageUrl, width: 80, height: 80, colorDark: '#343434', colorLight: '#ffffff' });
+        var canvas = tmp.querySelector('canvas');
+        document.body.removeChild(tmp);
+        var img = card.querySelector('.dl-qr-img');
+        if (img && canvas) { img.src = canvas.toDataURL('image/png'); }
+      }).catch(function () {});
+    }
 
-    /* Click → download polaroid PNG */
-    qrWrap.addEventListener('click', function () {
-      qrWrap.style.opacity       = '0.4';
-      qrWrap.style.pointerEvents = 'none';
+    btn.addEventListener('click', function () {
+      btn.textContent = '⏳';
+      btn.disabled = true;
 
       populateCard();
 
-      loadHtml2Canvas()
+      Promise.all([generateQrIntoCard(), loadHtml2Canvas()])
         .then(function () {
           return window.html2canvas(card, { scale: 2, useCORS: true, logging: false });
         })
@@ -232,8 +233,8 @@
           console.error('[dl] image capture failed', err);
         })
         .then(function () {
-          qrWrap.style.opacity       = '';
-          qrWrap.style.pointerEvents = '';
+          btn.textContent = '📸';
+          btn.disabled = false;
         });
     });
   }
