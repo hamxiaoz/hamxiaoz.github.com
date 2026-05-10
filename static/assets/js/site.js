@@ -195,11 +195,12 @@
     loadQrLib().then(function () {
       var opts = { width: 80, margin: 1, color: { dark: '#343434', light: '#ffffff' } };
       QRCode.toDataURL(pageUrl, opts, function (err, dataUrl) {
-        if (err) return;
-        document.getElementById('dl-qr-img').src = dataUrl;
-        card.querySelector('.dl-qr-img').src      = dataUrl;
+        if (err) { console.warn('[dl] QR generation failed', err); return; }
+        var pageImg = document.getElementById('dl-qr-img');
+        if (pageImg) { pageImg.src = dataUrl; }
+        card.querySelector('.dl-qr-img').src = dataUrl;
       });
-    });
+    }).catch(function () {});
 
     /* Click → download polaroid PNG */
     qrWrap.addEventListener('click', function () {
