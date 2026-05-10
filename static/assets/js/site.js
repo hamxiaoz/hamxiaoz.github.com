@@ -138,6 +138,71 @@
     });
   }
 
+  /* ── Blog post image download ───────────────────────────────────────────
+     Lazy-loads html2canvas on first click, renders the hidden #download-card
+     polaroid, and triggers a PNG download. */
+  function initDownloadButton() {
+    var btn  = document.getElementById('dl-btn');
+    var card = document.getElementById('download-card');
+    if (!btn || !card) return;
+
+    var html2canvasPromise = null;
+
+    function loadHtml2Canvas() {
+      if (html2canvasPromise) return html2canvasPromise;
+      html2canvasPromise = new Promise(function (resolve, reject) {
+        var s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        s.onload  = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+      return html2canvasPromise;
+    }
+
+    function getSlug() {
+      var parts = window.location.pathname.replace(/\.html$/, '').split('/');
+      return parts[parts.length - 1] || 'post';
+    }
+
+    function populateCard() {
+      var h1   = document.querySelector('article h1');
+      var time = document.querySelector('article time');
+      var body = document.querySelector('article .post-content:not(.dl-body)');
+
+      card.querySelector('.dl-title').textContent = h1   ? h1.textContent   : '';
+      card.querySelector('.dl-date').textContent  = time ? time.textContent  : '';
+      document.querySelector('#download-card .dl-body').innerHTML = body ? body.innerHTML : '';
+    }
+
+    btn.addEventListener('click', function () {
+      btn.textContent = '⏳';
+      btn.disabled = true;
+
+      populateCard();
+
+      loadHtml2Canvas()
+        .then(function () {
+          return window.html2canvas(card, { scale: 2, useCORS: true, logging: false });
+        })
+        .then(function (canvas) {
+          var a = document.createElement('a');
+          a.download = getSlug() + '.png';
+          a.href = canvas.toDataURL('image/png');
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        })
+        .catch(function (err) {
+          console.error('[dl] image capture failed', err);
+        })
+        .then(function () {
+          btn.textContent = '📸';
+          btn.disabled = false;
+        });
+    });
+  }
+
   /* ── Init ───────────────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     initTabs();
@@ -145,6 +210,7 @@
     initQuoteWidget();
     initNavScroll();
     initParkEasterEgg();
+    initDownloadButton();
   });
 
 }());
