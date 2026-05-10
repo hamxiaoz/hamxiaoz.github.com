@@ -30,5 +30,23 @@
       {{ end }}
     {{ end }}
 
+    {{/* Hidden polaroid card — off-screen, zero layout impact */}}
+    <div id="download-card" aria-hidden="true">
+      <div class="dl-polaroid-outer">
+        <div class="dl-polaroid-inner">
+          <div class="dl-polaroid-content">
+            <h2 class="dl-title"></h2>
+            <div class="dl-date"></div>
+            <div class="post-content dl-body"></div>
+          </div>
+          <div class="dl-polaroid-credit">zurassic.com</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dl-btn-wrap">
+      <button class="dl-btn" id="dl-btn" title="Save as image">📸</button>
+    </div>
+
 </article>
 {{ end }}
