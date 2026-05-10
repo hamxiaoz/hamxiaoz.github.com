@@ -354,8 +354,7 @@ blockquote {
   text-align: center;
   margin: 1.5em 0 0.25em;
   cursor: pointer;
-  display: inline-block;
-  width: 100%;
+  display: block;
 
   img {
     display: inline-block;
@@ -373,7 +372,7 @@ blockquote {
   color: #ccc;
   font-size: 9px;
   letter-spacing: .06em;
-  margin-top: 5px;
+  margin: 5px 0 0;
 }
 
 // ── QR block inside polaroid download card ───────────────────────────────
