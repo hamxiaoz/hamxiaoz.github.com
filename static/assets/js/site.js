@@ -189,18 +189,23 @@
       card.querySelector('.dl-body').innerHTML    = body ? body.innerHTML    : '';
     }
 
-    /* Generates QR into the card's .dl-qr-img using qrcodejs (synchronous canvas),
-       then resolves so html2canvas can capture the card immediately after. */
+    /* Generates QR into the card's .dl-qr-canvas using qrcodejs.
+       Draws canvas-to-canvas (no img/data-URL involved) so html2canvas
+       captures the pixel data directly — avoids Chrome's CORS quirks. */
     function generateQrIntoCard() {
       return loadQrLib().then(function () {
         var tmp = document.createElement('div');
         tmp.style.cssText = 'position:absolute;left:-9999px';
         document.body.appendChild(tmp);
         new QRCode(tmp, { text: pageUrl, width: 80, height: 80, colorDark: '#343434', colorLight: '#ffffff' });
-        var canvas = tmp.querySelector('canvas');
+        var src = tmp.querySelector('canvas');
         document.body.removeChild(tmp);
-        var img = card.querySelector('.dl-qr-img');
-        if (img && canvas) { img.src = canvas.toDataURL('image/png'); }
+        var dst = card.querySelector('.dl-qr-canvas');
+        if (src && dst) {
+          dst.width  = src.width;
+          dst.height = src.height;
+          dst.getContext('2d').drawImage(src, 0, 0);
+        }
       }).catch(function () {});
     }
 
