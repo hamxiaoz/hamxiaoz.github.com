@@ -205,7 +205,7 @@
         var tmp = document.createElement('div');
         tmp.style.cssText = 'position:absolute;left:-9999px';
         document.body.appendChild(tmp);
-        new QRCode(tmp, { text: pageUrl, width: 80, height: 80, colorDark: '#343434', colorLight: '#ffffff' });
+        new QRCode(tmp, { text: pageUrl, width: 64, height: 64, colorDark: '#8B2010', colorLight: '#ffffff' });
         var src = tmp.querySelector('canvas');
         document.body.removeChild(tmp);
         var dst = card.querySelector('.dl-qr-canvas');

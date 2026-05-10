@@ -318,6 +318,7 @@ blockquote {
 .dl-polaroid-inner {
   background: #fff;
   padding: 12px 12px 36px;
+  position: relative;
 }
 
 .dl-polaroid-content {
@@ -342,12 +343,41 @@ blockquote {
   text-align: center;
 }
 
-.dl-polaroid-credit {
+.dl-logo-center {
   text-align: center;
-  margin-top: 12px;
+  padding-top: 18px;
+}
+
+.dl-logo-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: #343434;
+  color: #fff;
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  border-radius: 2px;
+}
+
+.dl-logo-credit {
+  margin-top: 6px;
   color: #bbb;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: .06em;
+}
+
+.dl-qr-corner {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+
+  canvas {
+    display: block;
+  }
 }
 
 .dl-btn-wrap {
@@ -380,13 +410,3 @@ blockquote {
   }
 }
 
-// ── QR block inside polaroid download card ───────────────────────────────
-
-.dl-qr-block {
-  text-align: center;
-  padding: 14px 0 2px;
-
-  canvas {
-    display: inline-block;
-  }
-}
