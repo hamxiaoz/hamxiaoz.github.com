@@ -188,9 +188,17 @@
       card.querySelector('.dl-date').textContent  = time ? time.textContent : '';
       if (body) {
         var clone = body.cloneNode(true);
-        /* Remove media elements — cached images lack CORS headers, which taints
-           the canvas in Chrome and breaks toBlob(). Text-only card avoids this. */
-        clone.querySelectorAll('img, figure, video, audio, iframe').forEach(function (el) { el.remove(); });
+        /* Images cached on page-load lack CORS headers; re-fetching with a
+           cache-busting param + crossorigin="anonymous" forces a fresh request
+           that html2canvas can read without tainting the canvas in Chrome. */
+        clone.querySelectorAll('img').forEach(function (img) {
+          var src = img.getAttribute('src');
+          if (src && src.indexOf('data:') !== 0) {
+            img.setAttribute('src', src + (src.indexOf('?') >= 0 ? '&' : '?') + '_dl=1');
+            img.setAttribute('crossorigin', 'anonymous');
+          }
+        });
+        clone.querySelectorAll('video, audio, iframe').forEach(function (el) { el.remove(); });
         card.querySelector('.dl-body').innerHTML = clone.innerHTML;
       } else {
         card.querySelector('.dl-body').innerHTML = '';
