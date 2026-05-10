@@ -177,16 +177,24 @@
 
     function getSlug() {
       var parts = window.location.pathname.replace(/\/$/, '').replace(/\.html$/, '').split('/');
-      return parts[parts.length - 1] || 'post';
+      return decodeURIComponent(parts[parts.length - 1] || 'post');
     }
 
     function populateCard() {
       var h1   = document.querySelector('article h1');
       var time = document.querySelector('article time');
       var body = document.querySelector('article .post-content:not(.dl-body)');
-      card.querySelector('.dl-title').textContent = h1   ? h1.textContent   : '';
-      card.querySelector('.dl-date').textContent  = time ? time.textContent  : '';
-      card.querySelector('.dl-body').innerHTML    = body ? body.innerHTML    : '';
+      card.querySelector('.dl-title').textContent = h1   ? h1.textContent : '';
+      card.querySelector('.dl-date').textContent  = time ? time.textContent : '';
+      if (body) {
+        var clone = body.cloneNode(true);
+        /* Remove media elements — cached images lack CORS headers, which taints
+           the canvas in Chrome and breaks toBlob(). Text-only card avoids this. */
+        clone.querySelectorAll('img, figure, video, audio, iframe').forEach(function (el) { el.remove(); });
+        card.querySelector('.dl-body').innerHTML = clone.innerHTML;
+      } else {
+        card.querySelector('.dl-body').innerHTML = '';
+      }
     }
 
     /* Generates QR into the card's .dl-qr-canvas using qrcodejs.
@@ -222,15 +230,28 @@
         .then(function (canvas) {
           return new Promise(function (resolve) {
             canvas.toBlob(function (blob) {
-              var url = URL.createObjectURL(blob);
-              var a = document.createElement('a');
-              a.download = getSlug() + '.png';
-              a.href = url;
-              document.body.appendChild(a);
-              a.click();
-              document.body.removeChild(a);
-              URL.revokeObjectURL(url);
-              resolve();
+              var filename = getSlug() + '.png';
+              /* Use Web Share API on mobile (especially iOS Safari, which doesn't
+                 support <a download> for blob URLs — the download gets stuck). */
+              var file = new File([blob], filename, { type: 'image/png' });
+              /* Web Share API (share sheet) only on mobile — desktop Safari also
+                 supports it but shows a share sheet with no "Save file" option. */
+              var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) ||
+                             (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+              if (isMobile && navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                navigator.share({ files: [file], title: filename }).catch(function () {});
+                resolve();
+              } else {
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.download = filename;
+                a.href = url;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                resolve();
+              }
             }, 'image/png');
           });
         })
