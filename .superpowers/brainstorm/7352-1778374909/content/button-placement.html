@@ -1,0 +1,46 @@
+<h2>Where should the download button appear?</h2>
+<p class="subtitle">The blog post page ends with a category section (when present). Pick the placement that feels right.</p>
+
+<div class="cards">
+
+  <div class="card" data-choice="below-content" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:1.2em;background:#f9f9f9;font-family:sans-serif;font-size:13px;color:#555">
+      <div style="border-left:3px solid #ccc;padding-left:8px;margin-bottom:8px;font-style:italic;color:#888">...end of post content</div>
+      <hr style="border:0;border-top:1px dashed #ccc;margin:8px 0">
+      <div style="text-align:center;margin:10px 0">
+        <button style="padding:6px 16px;border:1px solid #c9c9c9;border-radius:4px;background:#fff;cursor:pointer;font-size:12px;color:#555">⬇ Save as image</button>
+      </div>
+      <div style="border-top:1px solid #eee;padding-top:8px;margin-top:8px;color:#aaa;font-size:11px;text-align:center">Category intro section (optional)</div>
+    </div>
+    <div class="card-body">
+      <h3>A — Below post content, above category</h3>
+      <p>Right after the article ends, before the optional category intro. Clearly tied to the post.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="after-category" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:1.2em;background:#f9f9f9;font-family:sans-serif;font-size:13px;color:#555">
+      <div style="border-left:3px solid #ccc;padding-left:8px;margin-bottom:8px;font-style:italic;color:#888">...end of post content</div>
+      <div style="border-top:1px solid #eee;padding:8px 0;color:#aaa;font-size:11px;text-align:center">Category intro section</div>
+      <div style="text-align:center;margin:10px 0">
+        <button style="padding:6px 16px;border:1px solid #c9c9c9;border-radius:4px;background:#fff;cursor:pointer;font-size:12px;color:#555">⬇ Save as image</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Very bottom of article</h3>
+      <p>After the category section (if any), at the very end of the article. Natural "done reading" moment.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="floating" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:1.2em;background:#f9f9f9;font-family:sans-serif;font-size:13px;color:#555;position:relative;min-height:90px">
+      <div style="border-left:3px solid #ccc;padding-left:8px;margin-bottom:8px;font-style:italic;color:#888">...scrolling through post content...</div>
+      <button style="position:absolute;bottom:8px;right:8px;padding:5px 12px;border:1px solid #c9c9c9;border-radius:20px;background:#fff;cursor:pointer;font-size:11px;color:#555;box-shadow:0 1px 4px rgba(0,0,0,.15)">⬇ Save</button>
+    </div>
+    <div class="card-body">
+      <h3>C — Floating corner button</h3>
+      <p>Fixed-position button always visible while reading. Accessible at any scroll position, but adds persistent UI chrome.</p>
+    </div>
+  </div>
+
+</div>

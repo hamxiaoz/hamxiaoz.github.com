@@ -1,0 +1,56 @@
+<h2>Which emoji conveys "save as image"?</h2>
+<p class="subtitle">Pick the one that feels most fun and intuitive for saving the page as a picture.</p>
+
+<div class="options">
+
+  <div class="option" data-choice="camera-flash" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3 style="font-size:1.6em;margin:0">📸</h3>
+      <p>Camera with flash — the classic "take a picture" signal</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="frame" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3 style="font-size:1.6em;margin:0">🖼️</h3>
+      <p>Framed picture — "save this as an image/artwork"</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="camera-combo" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3 style="font-size:1.6em;margin:0">📷💾</h3>
+      <p>Camera + floppy disk — "capture and save"</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="sparkle-camera" onclick="toggleSelect(this)">
+    <div class="letter">D</div>
+    <div class="content">
+      <h3 style="font-size:1.6em;margin:0">✨📸</h3>
+      <p>Sparkle + camera — fun, a little magical</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="section" style="margin-top:2em">
+  <div class="mockup">
+    <div class="mockup-header">Preview in button context</div>
+    <div class="mockup-body" style="background:#f5f5f5;padding:1.5em;text-align:center">
+      <button id="preview-btn" style="display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border:1px solid #e0e0e0;border-radius:20px;background:#fff;cursor:pointer;font-size:14px;color:#bbb;box-shadow:0 1px 2px rgba(0,0,0,.06);font-family:inherit">📸</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.option').forEach(function(opt) {
+  opt.addEventListener('click', function() {
+    var map = {'camera-flash':'📸','frame':'🖼️','camera-combo':'📷💾','sparkle-camera':'✨📸'};
+    document.getElementById('preview-btn').textContent = map[opt.dataset.choice] || '📸';
+  });
+});
+</script>

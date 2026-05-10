@@ -1,0 +1,83 @@
+<h2>What does the downloaded image look like?</h2>
+<p class="subtitle">These are mockups of the actual image that gets saved to your device. Pick your favourite(s).</p>
+
+<div class="cards">
+
+  <!-- Option A: Clean article capture, no extras -->
+  <div class="card" data-choice="raw" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:1em;background:#f5f5f5;font-family:'Lato',sans-serif">
+      <div style="background:#fff;padding:1.2em;max-width:340px;margin:0 auto;font-size:11px;color:#555;border:1px solid #e8e8e8">
+        <h2 style="margin:0 0 4px;font-size:15px;color:#343434;font-weight:700">How I got into woodworking</h2>
+        <div style="color:#aaa;font-size:10px;margin-bottom:12px">2024-03-15</div>
+        <p style="margin:0 0 8px;line-height:1.6;color:#777">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+        <img src="" style="width:100%;height:60px;background:#e8e8e8;display:block;border:6px solid white;box-shadow:0 0 0 1px #D4D4D5" alt="">
+        <p style="margin:8px 0 0;line-height:1.6;color:#777">Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A — Raw article</h3>
+      <p>Exact screenshot of the post content as-is. No extra decorations.</p>
+    </div>
+  </div>
+
+  <!-- Option B: Branded card with header bar -->
+  <div class="card" data-choice="branded" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:1em;background:#f5f5f5;font-family:'Lato',sans-serif">
+      <div style="background:#fff;max-width:340px;margin:0 auto;font-size:11px;color:#555;border:1px solid #e8e8e8;overflow:hidden">
+        <div style="background:#882A1B;padding:10px 14px;color:#fff">
+          <div style="font-size:9px;opacity:.7;letter-spacing:.08em;text-transform:uppercase">zurassic.com</div>
+          <div style="font-size:14px;font-weight:700;margin-top:2px">How I got into woodworking</div>
+          <div style="font-size:9px;opacity:.7;margin-top:2px">2024-03-15</div>
+        </div>
+        <div style="padding:12px 14px">
+          <p style="margin:0 0 8px;line-height:1.6;color:#777">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt...</p>
+          <img src="" style="width:100%;height:50px;background:#e8e8e8;display:block;border:4px solid white;box-shadow:0 0 0 1px #D4D4D5" alt="">
+          <p style="margin:8px 0 0;line-height:1.6;color:#777">Ut enim ad minim veniam...</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B — Branded header</h3>
+      <p>Red header bar with site name, title & date. Article content below. Looks polished when shared.</p>
+    </div>
+  </div>
+
+  <!-- Option C: Styled card with subtle footer watermark -->
+  <div class="card" data-choice="watermark" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:1em;background:#f5f5f5;font-family:'Lato',sans-serif">
+      <div style="background:#fff;max-width:340px;margin:0 auto;font-size:11px;color:#555;border:1px solid #e8e8e8">
+        <div style="padding:12px 14px">
+          <h2 style="margin:0 0 4px;font-size:15px;color:#343434;font-weight:700">How I got into woodworking</h2>
+          <div style="color:#aaa;font-size:10px;margin-bottom:12px">2024-03-15</div>
+          <p style="margin:0 0 8px;line-height:1.6;color:#777">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor...</p>
+          <img src="" style="width:100%;height:50px;background:#e8e8e8;display:block;border:4px solid white;box-shadow:0 0 0 1px #D4D4D5" alt="">
+          <p style="margin:8px 0 0;line-height:1.6;color:#777">Ut enim ad minim veniam...</p>
+        </div>
+        <div style="border-top:1px solid #f0f0f0;padding:6px 14px;text-align:right;color:#ccc;font-size:9px;letter-spacing:.05em">zurassic.com</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C — Subtle footer watermark</h3>
+      <p>Clean article layout with just a tiny "zurassic.com" credit at the bottom right. Minimal branding.</p>
+    </div>
+  </div>
+
+  <!-- Option D: Polaroid / framed style -->
+  <div class="card" data-choice="polaroid" onclick="toggleSelect(this)">
+    <div class="card-image" style="padding:1em;background:#e8e8e8;font-family:'Lato',sans-serif">
+      <div style="background:#fff;max-width:320px;margin:0 auto;padding:12px 12px 28px;box-shadow:0 2px 8px rgba(0,0,0,.15);border:1px solid #ddd">
+        <div style="background:#f9f9f9;padding:10px;font-size:11px;color:#555;border:1px solid #eee">
+          <h2 style="margin:0 0 4px;font-size:13px;color:#343434;font-weight:700">How I got into woodworking</h2>
+          <div style="color:#aaa;font-size:9px;margin-bottom:8px">2024-03-15</div>
+          <p style="margin:0;line-height:1.5;color:#777;font-size:10px">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt...</p>
+        </div>
+        <div style="text-align:center;margin-top:10px;color:#bbb;font-size:9px;letter-spacing:.06em">zurassic.com</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>D — Polaroid / card frame</h3>
+      <p>The article sits inside a white "photo" frame with a bottom margin — like a printed polaroid. Fun and distinctive.</p>
+    </div>
+  </div>
+
+</div>
