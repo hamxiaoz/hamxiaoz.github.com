@@ -139,14 +139,30 @@
   }
 
   /* ── Blog post image download ───────────────────────────────────────────
-     Lazy-loads html2canvas on first click, renders the hidden #download-card
-     polaroid, and triggers a PNG download. */
+     On load: lazy-loads qrcode from jsDelivr, generates QR for the page URL
+     into both the on-page widget and the hidden #download-card.
+     On click of #dl-qr-wrap: lazy-loads html2canvas, captures the card as
+     a 2× PNG polaroid with QR embedded, and triggers a browser download. */
   function initDownloadButton() {
-    var btn  = document.getElementById('dl-btn');
-    var card = document.getElementById('download-card');
-    if (!btn || !card) return;
+    var qrWrap = document.getElementById('dl-qr-wrap');
+    var card   = document.getElementById('download-card');
+    if (!qrWrap || !card) return;
 
     var html2canvasPromise = null;
+    var qrLibPromise = null;
+    var pageUrl = window.location.href.replace(/\/$/, '');
+
+    function loadQrLib() {
+      if (qrLibPromise) return qrLibPromise;
+      qrLibPromise = new Promise(function (resolve, reject) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js';
+        s.onload  = resolve;
+        s.onerror = function (err) { qrLibPromise = null; reject(err); };
+        document.head.appendChild(s);
+      });
+      return qrLibPromise;
+    }
 
     function loadHtml2Canvas() {
       if (html2canvasPromise) return html2canvasPromise;
@@ -161,7 +177,7 @@
     }
 
     function getSlug() {
-      var parts = window.location.pathname.replace(/\.html$/, '').split('/');
+      var parts = window.location.pathname.replace(/\/$/, '').replace(/\.html$/, '').split('/');
       return parts[parts.length - 1] || 'post';
     }
 
@@ -169,15 +185,26 @@
       var h1   = document.querySelector('article h1');
       var time = document.querySelector('article time');
       var body = document.querySelector('article .post-content:not(.dl-body)');
-
       card.querySelector('.dl-title').textContent = h1   ? h1.textContent   : '';
       card.querySelector('.dl-date').textContent  = time ? time.textContent  : '';
       card.querySelector('.dl-body').innerHTML    = body ? body.innerHTML    : '';
     }
 
-    btn.addEventListener('click', function () {
-      btn.textContent = '⏳';
-      btn.disabled = true;
+    /* Generate QR codes on page load — fills both the visible widget
+       and the hidden card img so html2canvas can capture it immediately */
+    loadQrLib().then(function () {
+      var opts = { width: 80, margin: 1, color: { dark: '#343434', light: '#ffffff' } };
+      QRCode.toDataURL(pageUrl, opts, function (err, dataUrl) {
+        if (err) return;
+        document.getElementById('dl-qr-img').src = dataUrl;
+        card.querySelector('.dl-qr-img').src      = dataUrl;
+      });
+    });
+
+    /* Click → download polaroid PNG */
+    qrWrap.addEventListener('click', function () {
+      qrWrap.style.opacity       = '0.4';
+      qrWrap.style.pointerEvents = 'none';
 
       populateCard();
 
@@ -186,19 +213,26 @@
           return window.html2canvas(card, { scale: 2, useCORS: true, logging: false });
         })
         .then(function (canvas) {
-          var a = document.createElement('a');
-          a.download = getSlug() + '.png';
-          a.href = canvas.toDataURL('image/png');
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
+          return new Promise(function (resolve) {
+            canvas.toBlob(function (blob) {
+              var url = URL.createObjectURL(blob);
+              var a = document.createElement('a');
+              a.download = getSlug() + '.png';
+              a.href = url;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+              resolve();
+            }, 'image/png');
+          });
         })
         .catch(function (err) {
           console.error('[dl] image capture failed', err);
         })
         .then(function () {
-          btn.textContent = '📸';
-          btn.disabled = false;
+          qrWrap.style.opacity       = '';
+          qrWrap.style.pointerEvents = '';
         });
     });
   }
