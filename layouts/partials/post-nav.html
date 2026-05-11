@@ -1,0 +1,16 @@
+<nav class="post-nav">
+  {{ with .PrevInSection }}
+    <a class="post-nav__link post-nav__link--prev" href="{{ .RelPermalink }}">
+      <span class="post-nav__label">← Previous</span>
+      <span class="post-nav__title">{{ .Title }}</span>
+    </a>
+  {{ else }}
+    <span class="post-nav__spacer"></span>
+  {{ end }}
+  {{ with .NextInSection }}
+    <a class="post-nav__link post-nav__link--next" href="{{ .RelPermalink }}">
+      <span class="post-nav__label">Next →</span>
+      <span class="post-nav__title">{{ .Title }}</span>
+    </a>
+  {{ end }}
+</nav>
