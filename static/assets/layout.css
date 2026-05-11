@@ -367,3 +367,50 @@ a.ui.card:hover { box-shadow: 0 3px 8px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.2
   align-items: center;
   gap: 0.75em;
 }
+
+/* ── Post prev/next navigation ─────────────────────────────────────────── */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1.5em 0 0.5em;
+  border-top: 1px solid #eee;
+  gap: 1em;
+  margin-top: 1.5em;
+}
+
+.post-nav__link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  text-decoration: none;
+  max-width: 44%;
+}
+
+.post-nav__link--next {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.post-nav__label {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #bbb;
+}
+
+.post-nav__title {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: rgba(147, 34, 16, 0.80);
+  line-height: 1.35;
+}
+
+.post-nav__title:hover {
+  color: rgba(147, 34, 16, 1);
+  text-decoration: underline;
+}
+
+.post-nav__spacer {
+  flex: 1;
+}
