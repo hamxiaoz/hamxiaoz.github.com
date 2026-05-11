@@ -402,12 +402,12 @@ a.ui.card:hover { box-shadow: 0 3px 8px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.2
 .post-nav__title {
   font-size: 0.85em;
   font-weight: 600;
-  color: rgba(147, 34, 16, 0.80);
+  color: rgba(147, 34, 16, 0.50);
   line-height: 1.35;
 }
 
 .post-nav__title:hover {
-  color: rgba(147, 34, 16, 1);
+  color: rgba(147, 34, 16, 0.80);
   text-decoration: underline;
 }
 
