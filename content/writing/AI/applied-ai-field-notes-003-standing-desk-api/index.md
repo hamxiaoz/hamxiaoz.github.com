@@ -1,7 +1,12 @@
 ---
 title: "Applied AI Field Notes 003 — My Standing Desk Has an API Now"
 date: 2026-05-17
-cover: "https://media.licdn.com/dms/image/v2/D5612AQHB03VkPVDKaQ/article-cover_image-shrink_720_1280/B56Z1azaKvK0AU-/0/1775344921630?e=1779321600&v=beta&t=4dngoV_YFua-9s1F9kgXRHtbE5N_slgNmC6SYBnZ-5g"
+cover: "https://media.licdn.com/dms/image/v2/D5612AQHC9Wrca8Qzpw/article-cover_image-shrink_720_1280/B56Z4.lp5qKgAQ-/0/1779166519168?e=1780531200&v=beta&t=dj8YTvsnV1P0NXZXYbVznMf46Zt6YhOsrPY68MsvPWE"
+linkedin_hook: "I almost spent $1,000 to give my standing desk an API. Instead, I hacked it with the help of Claude. Total cost: $25, two Sundays and a much better understanding of the thing I sit at every day."
+linkedin_hashtags: "#Hardware #IoT #AppliedAI #ESP32 #MakerCulture #ClaudeCode"
+medium_tags: ["hardware", "iot", "ai", "programming", "maker"]
+x_post: "I almost spent $1K to give my standing desk an API. Spent $25 instead. {url} #Hardware #IoT #AppliedAI #ESP32"
+x_hashtags: "#Hardware #IoT #AppliedAI #ESP32"
 ---
 
 I almost spent $1,000 to give my standing desk an API.
