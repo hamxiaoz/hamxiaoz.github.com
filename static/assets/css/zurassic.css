@@ -467,6 +467,11 @@
   height: auto;
   display: block;
 }
+.theme-zurassic .category-intro a {
+  color: var(--t-accent);
+  transition: color 0.15s;
+}
+.theme-zurassic .category-intro a:hover { color: var(--t-accent-hover); }
 @media (max-width: 480px) {
   .theme-zurassic .page-content,
   .theme-zurassic .portfolio-section { padding-left: 12px; padding-right: 12px; }
