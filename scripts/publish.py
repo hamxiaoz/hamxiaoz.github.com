@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 """
 Publishing engine for hamxiaoz.github.com articles.
-Publishes markdown articles to Medium, LinkedIn, and X.
+
+Posts to X (Twitter). Medium and LinkedIn are published manually — see the
+/publish-hugo-article skill — because neither offers a reliable self-serve
+publishing API anymore (Medium stopped issuing integration tokens; LinkedIn
+native articles require closed partner access).
 
 Usage:
-    python scripts/publish.py <article_path> [--medium] [--linkedin] [--x]
-                              [--publish] [--dry-run] [--force] [--whoami-medium]
+    python scripts/publish.py <article_path> --x [--dry-run] [--force]
 
 Options:
-    --medium        Publish to Medium (draft by default)
-    --linkedin      Publish full article to LinkedIn
-    --x             Post to X (Twitter)
-    --publish       Make Medium post public immediately (default: draft)
-    --dry-run       Show what would be sent without calling any APIs
-    --force         Republish even if already published
-    --whoami-medium Print your Medium author ID and exit
+    --x         Post to X (Twitter)
+    --dry-run   Show what would be sent without calling any APIs
+    --force     Repost even if already posted
 """
 
 import argparse
@@ -129,25 +128,7 @@ def set_frontmatter_key(filepath, key, value):
 
 
 # ---------------------------------------------------------------------------
-# Teaser extractor
-# ---------------------------------------------------------------------------
-
-def extract_teaser(body, max_chars=700):
-    """First substantial paragraph from markdown body, stripped of syntax."""
-    for p in body.split('\n\n'):
-        p = p.strip()
-        if not p or p.startswith('#') or p.startswith('```') or p.startswith('|'):
-            continue
-        clean = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', p)
-        clean = re.sub(r'[*_`#>!]', '', clean)
-        clean = re.sub(r'\s+', ' ', clean).strip()
-        if len(clean) > 60:
-            return clean[:max_chars] + ('…' if len(clean) > max_chars else '')
-    return ''
-
-
-# ---------------------------------------------------------------------------
-# HTTP helpers
+# HTTP helper
 # ---------------------------------------------------------------------------
 
 def http_post(url, payload, headers):
@@ -160,252 +141,6 @@ def http_post(url, payload, headers):
     except urllib.error.HTTPError as e:
         body = e.read().decode('utf-8', errors='replace')
         raise RuntimeError(f'HTTP {e.code} from {url}:\n{body}') from e
-
-
-def http_get(url, headers):
-    """GET request, return parsed JSON response."""
-    req = urllib.request.Request(url, headers=headers)
-    try:
-        with urllib.request.urlopen(req) as resp:
-            return json.loads(resp.read().decode('utf-8'))
-    except urllib.error.HTTPError as e:
-        body = e.read().decode('utf-8', errors='replace')
-        raise RuntimeError(f'HTTP {e.code} from {url}:\n{body}') from e
-
-
-# ---------------------------------------------------------------------------
-# Medium
-# ---------------------------------------------------------------------------
-
-def get_medium_author_id(token):
-    data = http_get('https://api.medium.com/v1/me', {
-        'Authorization': f'Bearer {token}',
-        'Content-Type': 'application/json',
-    })
-    return data['data']['id']
-
-
-def publish_to_medium(filepath, fields, body, token, author_id, publish=False, dry_run=False):
-    title = fields.get('title', '').strip('"\'')
-    # Parse medium_tags from frontmatter
-    raw_tags = fields.get('medium_tags', '')
-    if raw_tags.startswith('['):
-        tags = [t.strip().strip('"\'') for t in raw_tags.strip('[]').split(',') if t.strip()]
-    else:
-        tags = [t.strip() for t in raw_tags.split(',') if t.strip()]
-
-    # Prepend cover image if set
-    cover = fields.get('cover', '').strip('"\'')
-    full_body = f'![cover]({cover})\n\n{body}' if cover else body
-
-    payload = {
-        'title': title,
-        'contentFormat': 'markdown',
-        'content': full_body,
-        'publishStatus': 'public' if publish else 'draft',
-        'tags': tags[:5],  # Medium max 5 tags
-    }
-
-    print(f'\n--- Medium {"(public)" if publish else "(draft)"} ---')
-    print(f'Title: {title}')
-    print(f'Tags: {tags}')
-    print(f'Body length: {len(full_body)} chars')
-
-    if dry_run:
-        print('[dry-run] Would POST to Medium API. No request sent.')
-        return None
-
-    url = f'https://api.medium.com/v1/users/{author_id}/posts'
-    headers = {
-        'Authorization': f'Bearer {token}',
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-    }
-    resp = http_post(url, payload, headers)
-    medium_url = resp['data']['url']
-    print(f'Published: {medium_url}')
-    return medium_url
-
-
-# ---------------------------------------------------------------------------
-# LinkedIn
-# ---------------------------------------------------------------------------
-
-def markdown_to_linkedin_blocks(body):
-    """Convert markdown body to LinkedIn article content blocks."""
-    blocks = []
-    lines = body.split('\n')
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-
-        # Code block
-        if line.startswith('```'):
-            code_lines = []
-            i += 1
-            while i < len(lines) and not lines[i].startswith('```'):
-                code_lines.append(lines[i])
-                i += 1
-            blocks.append({
-                'blockType': 'CODE',
-                'code': {'text': '\n'.join(code_lines)}
-            })
-            i += 1
-            continue
-
-        # Headings
-        h_match = re.match(r'^(#{1,3})\s+(.*)', line)
-        if h_match:
-            level = len(h_match.group(1))
-            text = h_match.group(2).strip()
-            heading_type = {1: 'HEADING_ONE', 2: 'HEADING_TWO', 3: 'HEADING_THREE'}.get(level, 'HEADING_TWO')
-            blocks.append({
-                'blockType': 'PARAGRAPH',
-                'paragraph': {
-                    'text': {'text': text},
-                    'style': heading_type,
-                }
-            })
-            i += 1
-            continue
-
-        # List items
-        if re.match(r'^[-*+]\s+', line):
-            items = []
-            while i < len(lines) and re.match(r'^[-*+]\s+', lines[i]):
-                items.append(re.sub(r'^[-*+]\s+', '', lines[i]).strip())
-                i += 1
-            blocks.append({
-                'blockType': 'LIST',
-                'list': {
-                    'items': [{'text': {'text': t}} for t in items],
-                    'listOrdering': 'UNORDERED',
-                }
-            })
-            continue
-
-        # Numbered list
-        if re.match(r'^\d+\.\s+', line):
-            items = []
-            while i < len(lines) and re.match(r'^\d+\.\s+', lines[i]):
-                items.append(re.sub(r'^\d+\.\s+', '', lines[i]).strip())
-                i += 1
-            blocks.append({
-                'blockType': 'LIST',
-                'list': {
-                    'items': [{'text': {'text': t}} for t in items],
-                    'listOrdering': 'ORDERED',
-                }
-            })
-            continue
-
-        # Blank line — skip
-        if not line.strip():
-            i += 1
-            continue
-
-        # Regular paragraph (accumulate until blank line)
-        para_lines = []
-        while i < len(lines) and lines[i].strip():
-            para_lines.append(lines[i])
-            i += 1
-        para_text = ' '.join(para_lines)
-        # Strip markdown inline formatting for block text
-        para_text = re.sub(r'\*\*([^*]+)\*\*', r'\1', para_text)
-        para_text = re.sub(r'\*([^*]+)\*', r'\1', para_text)
-        para_text = re.sub(r'`([^`]+)`', r'\1', para_text)
-        para_text = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', para_text)
-        if para_text.strip():
-            blocks.append({
-                'blockType': 'PARAGRAPH',
-                'paragraph': {'text': {'text': para_text.strip()}}
-            })
-
-    return blocks
-
-
-def publish_to_linkedin(filepath, fields, body, access_token, person_urn, dry_run=False):
-    title = fields.get('title', '').strip('"\'')
-    hook = fields.get('linkedin_hook', '').strip('"\'')
-    hashtags = fields.get('linkedin_hashtags', '').strip('"\'')
-
-    print(f'\n--- LinkedIn Article ---')
-    print(f'Title: {title}')
-    print(f'Hook: {hook[:80]}...' if len(hook) > 80 else f'Hook: {hook}')
-    print(f'Hashtags: {hashtags}')
-
-    content_blocks = markdown_to_linkedin_blocks(body)
-    print(f'Content blocks: {len(content_blocks)}')
-
-    if dry_run:
-        print('[dry-run] Would POST to LinkedIn Articles API. No request sent.')
-        return True
-
-    headers = {
-        'Authorization': f'Bearer {access_token}',
-        'Content-Type': 'application/json',
-        'X-Restli-Protocol-Version': '2.0.0',
-        'LinkedIn-Version': '202401',
-    }
-
-    # Append hashtags as footer paragraph
-    if hashtags:
-        content_blocks.append({
-            'blockType': 'PARAGRAPH',
-            'paragraph': {'text': {'text': hashtags}}
-        })
-
-    payload = {
-        'author': person_urn,
-        'title': {'text': title},
-        'content': {
-            'contentBlocks': content_blocks,
-        },
-        'lifecycleState': 'PUBLISHED',
-        'visibility': 'PUBLIC',
-    }
-
-    if hook:
-        payload['description'] = {'text': hook}
-
-    try:
-        resp = http_post('https://api.linkedin.com/rest/articles', payload, headers)
-        print(f'LinkedIn article published.')
-        return True
-    except RuntimeError as e:
-        err_str = str(e)
-        if '403' in err_str or '451' in err_str or 'FORBIDDEN' in err_str.upper():
-            print(f'WARNING: LinkedIn Articles API appears restricted (may require Partner Program).')
-            print('Falling back to LinkedIn long-form post...')
-            return _linkedin_fallback_post(title, hook, body, hashtags, access_token, person_urn)
-        raise
-
-
-def _linkedin_fallback_post(title, hook, body, hashtags, access_token, person_urn):
-    """Fallback: post as a LinkedIn UGC text post (limited to ~3000 chars)."""
-    teaser = extract_teaser(body, max_chars=2000)
-    post_text = f'{hook}\n\n{teaser}\n\n{hashtags}' if hook else f'{teaser}\n\n{hashtags}'
-    post_text = post_text[:3000]
-
-    headers = {
-        'Authorization': f'Bearer {access_token}',
-        'Content-Type': 'application/json',
-        'X-Restli-Protocol-Version': '2.0.0',
-    }
-    payload = {
-        'author': person_urn,
-        'lifecycleState': 'PUBLISHED',
-        'specificContent': {
-            'com.linkedin.ugc.ShareContent': {
-                'shareCommentary': {'text': post_text},
-                'shareMediaCategory': 'NONE',
-            }
-        },
-        'visibility': {'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC'},
-    }
-    http_post('https://api.linkedin.com/v2/ugcPosts', payload, headers)
-    print('LinkedIn long-form post published (fallback mode).')
-    return True
 
 
 # ---------------------------------------------------------------------------
@@ -446,14 +181,14 @@ def _oauth1_header(method, url, params, api_key, api_secret, token, token_secret
 
 
 def post_to_x(filepath, fields, body, api_key, api_secret, access_token, access_secret,
-              medium_url=None, dry_run=False):
+              dry_run=False):
     title = fields.get('title', '').strip('"\'')
     x_post = fields.get('x_post', '').strip('"\'')
     x_hashtags = fields.get('x_hashtags', '').strip('"\'')
 
-    # Substitute {url} placeholder
-    url_to_use = medium_url or fields.get('medium_url', '').strip('"\'') or \
-                 fields.get('external_url', '').strip('"\'') or '{url}'
+    # Substitute {url} placeholder with the canonical/external URL
+    url_to_use = fields.get('external_url', '').strip('"\'') or \
+                 fields.get('medium_url', '').strip('"\'') or '{url}'
     if x_post:
         tweet_text = x_post.replace('{url}', url_to_use)
     else:
@@ -489,25 +224,14 @@ def post_to_x(filepath, fields, body, api_key, api_secret, access_token, access_
 # ---------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser(description='Publish article to Medium, LinkedIn, X')
+    parser = argparse.ArgumentParser(description='Post an article to X (Twitter)')
     parser.add_argument('article', nargs='?', help='Path to markdown article file')
-    parser.add_argument('--medium', action='store_true', help='Publish to Medium')
-    parser.add_argument('--linkedin', action='store_true', help='Publish to LinkedIn')
     parser.add_argument('--x', action='store_true', help='Post to X')
-    parser.add_argument('--publish', action='store_true', help='Make Medium post public (default: draft)')
     parser.add_argument('--dry-run', action='store_true', help='Show what would be sent, no API calls')
-    parser.add_argument('--force', action='store_true', help='Republish even if already published')
-    parser.add_argument('--whoami-medium', action='store_true', help='Print Medium author ID and exit')
+    parser.add_argument('--force', action='store_true', help='Repost even if already posted')
     args = parser.parse_args()
 
     load_dotenv()
-
-    # Special: print Medium author ID
-    if args.whoami_medium:
-        token = require_env('MEDIUM_TOKEN')
-        author_id = get_medium_author_id(token)
-        print(f'MEDIUM_AUTHOR_ID={author_id}')
-        return
 
     if not args.article:
         parser.print_help()
@@ -520,43 +244,6 @@ def main():
     title = fields.get('title', os.path.basename(args.article)).strip('"\'')
     print(f'Article: {title}')
 
-    medium_url = None
-
-    # --- Medium ---
-    if args.medium:
-        # Idempotency check
-        existing = fields.get('medium_url', '').strip('"\'')
-        if existing and not args.force and not args.dry_run:
-            sys.exit(f'Already published to Medium: {existing}\nUse --force to republish.')
-
-        token = '' if args.dry_run else require_env('MEDIUM_TOKEN')
-        author_id = '' if args.dry_run else require_env('MEDIUM_AUTHOR_ID')
-        medium_url = publish_to_medium(
-            args.article, fields, body, token, author_id,
-            publish=args.publish, dry_run=args.dry_run
-        )
-        if medium_url and not args.dry_run:
-            set_frontmatter_key(args.article, 'medium_url', medium_url)
-            set_frontmatter_key(args.article, 'external_url', medium_url)
-            print(f'Frontmatter updated: medium_url + external_url')
-
-    # --- LinkedIn ---
-    if args.linkedin:
-        existing = fields.get('linkedin_posted', '').strip('"\'')
-        if existing == 'true' and not args.force and not args.dry_run:
-            sys.exit('Already posted to LinkedIn. Use --force to repost.')
-
-        access_token = '' if args.dry_run else require_env('LINKEDIN_ACCESS_TOKEN')
-        person_urn = '' if args.dry_run else require_env('LINKEDIN_PERSON_URN')
-        ok = publish_to_linkedin(
-            args.article, fields, body, access_token, person_urn,
-            dry_run=args.dry_run
-        )
-        if ok and not args.dry_run:
-            set_frontmatter_key(args.article, 'linkedin_posted', 'true')
-            print('Frontmatter updated: linkedin_posted')
-
-    # --- X ---
     if args.x:
         existing = fields.get('x_posted', '').strip('"\'')
         if existing == 'true' and not args.force and not args.dry_run:
@@ -568,14 +255,14 @@ def main():
         access_secret = '' if args.dry_run else require_env('X_ACCESS_TOKEN_SECRET')
         ok = post_to_x(
             args.article, fields, body, api_key, api_secret, access_token, access_secret,
-            medium_url=medium_url, dry_run=args.dry_run
+            dry_run=args.dry_run
         )
         if ok and not args.dry_run:
             set_frontmatter_key(args.article, 'x_posted', 'true')
             print('Frontmatter updated: x_posted')
-
-    if not any([args.medium, args.linkedin, args.x, args.whoami_medium]):
-        print('No platform specified. Use --medium, --linkedin, --x, or --whoami-medium.')
+    else:
+        print('No platform specified. Use --x.')
+        print('Medium and LinkedIn are published manually — run the /publish-hugo-article skill.')
         parser.print_help()
 
 
