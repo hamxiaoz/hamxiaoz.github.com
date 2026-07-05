@@ -467,6 +467,16 @@
   height: auto;
   display: block;
 }
+.theme-zurassic .post-content a:not(.app-link) {
+  color: var(--t-accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(147, 34, 16, 0.3);
+  text-underline-offset: 2px;
+  transition: color 0.15s;
+}
+.theme-zurassic .post-content a:not(.app-link):hover {
+  color: var(--t-accent-hover);
+}
 .theme-zurassic .category-intro a {
   color: var(--t-accent);
   transition: color 0.15s;

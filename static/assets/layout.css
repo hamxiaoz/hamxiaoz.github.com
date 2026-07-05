@@ -368,6 +368,24 @@ a.ui.card:hover { box-shadow: 0 3px 8px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.2
   gap: 0.75em;
 }
 
+/* ── Post social links (byline) ────────────────────────────────────────── */
+.post-social-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 1.5em 0 0.5em;
+  border-top: 1px solid #eee;
+  margin-top: 1.5em;
+}
+
+.post-social-label {
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #bbb;
+}
+
 /* ── Post prev/next navigation ─────────────────────────────────────────── */
 .post-nav {
   display: flex;
@@ -413,4 +431,66 @@ a.ui.card:hover { box-shadow: 0 3px 8px rgba(0,0,0,.15), 0 2px 4px rgba(0,0,0,.2
 
 .post-nav__spacer {
   flex: 1;
+}
+
+/* ── App link callout (dashed card wrapping the app-link card) ─────────── */
+.post-content .app-callout {
+  border: 1px dashed rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
+  background: #FAFAF8;
+  padding: 1.5em 1.75em;
+  margin: 1.5em 0;
+  text-align: center;
+}
+
+/* ── Inline app link card (icon + title + caption, rust accent) ─────────── */
+.post-content a.app-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9em;
+  text-align: left;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0.7em 1.2em 0.7em 0.7em;
+  border-radius: 10px;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.15s;
+}
+
+.post-content a.app-link:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+  border-color: rgba(147, 34, 16, 0.25);
+}
+
+.post-content a.app-link .app-link__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4em;
+  height: 2.4em;
+  border-radius: 8px;
+  background: rgba(147, 34, 16, 0.1);
+  color: rgba(147, 34, 16, 0.9);
+  font-size: 1.1em;
+  flex-shrink: 0;
+}
+
+.post-content a.app-link .app-link__stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+}
+
+.post-content a.app-link .app-link__title {
+  font-weight: 700;
+  color: #141414;
+  font-size: 0.95em;
+}
+
+.post-content a.app-link .app-link__caption {
+  font-size: 0.78em;
+  color: rgba(147, 34, 16, 0.75);
+  font-weight: 600;
 }

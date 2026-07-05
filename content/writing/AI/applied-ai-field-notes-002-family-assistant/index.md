@@ -2,7 +2,6 @@
 title: "Applied AI Field Notes 002 - Family Assistant with OpenClaw"
 date: 2026-03-31
 # external_url: "https://www.linkedin.com/pulse/applied-ai-field-notes-002-family-assistant-openclaw-andrew-zheng-iwcmc/"
-cover: "https://media.licdn.com/dms/image/v2/D5612AQHB03VkPVDKaQ/article-cover_image-shrink_720_1280/B56Z1azaKvK0AU-/0/1775344921630?e=1779321600&v=beta&t=4dngoV_YFua-9s1F9kgXRHtbE5N_slgNmC6SYBnZ-5g"
 ---
 
 >  My wife used to ask me to handle _all_ things "computer-related" — from fixing noisy PC fans to downloading school photos — just because I'm a software engineer. Things have changed. Three weeks ago, I "hired" a family assistant, and from skeptic to daily reliance, here's what that shift actually looks like.
@@ -97,7 +96,9 @@ That's agentic thinking.
 
 This is part of my series of "Applied AI Field Notes" - a collection of articles on how I use AI in personal and professional life.
 
-- Applied AI Field Notes 001 - Lego Mosaic Helper
-- Applied AI Field Notes 002 - Family Assistant with OpenClaw
+- [Applied AI Field Notes 001 - Lego Mosaic Helper](/writing/ai/applied-ai-field-notes-001-lego-mosaic-helper/)
+- **Applied AI Field Notes 002 - Family Assistant with OpenClaw** (you're reading it)
+- [Applied AI Field Notes 003 - My Standing Desk Has an API Now](/writing/ai/applied-ai-field-notes-003-standing-desk-api/)
+- [Applied AI Field Notes 004 - My Best Customer Is 9 Years Old](/writing/ai/applied-ai-field-notes-004-my-best-customer-is-9-years-old/)
 
 _More AI field notes to come._

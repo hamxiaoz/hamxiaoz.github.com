@@ -9,6 +9,10 @@
   <div class="post-content" itemprop="articleBody">
     {{ .Content }}
   </div>
+  <div class="post-social-links">
+    <span class="post-social-label">Find me on</span>
+    {{ partial "social-links.html" (dict "Site" .Site "only" (slice "x" "linkedin" "medium")) }}
+  </div>
   {{ partial "post-nav" . }}
 </article>
 {{ end }}

@@ -1,7 +1,6 @@
 ---
 title: "Applied AI Field Notes 003 — My Standing Desk Has an API Now"
 date: 2026-05-17
-cover: "https://media.licdn.com/dms/image/v2/D5612AQHC9Wrca8Qzpw/article-cover_image-shrink_720_1280/B56Z4.lp5qKgAQ-/0/1779166519168?e=1780531200&v=beta&t=dj8YTvsnV1P0NXZXYbVznMf46Zt6YhOsrPY68MsvPWE"
 linkedin_hook: "I almost spent $1,000 to give my standing desk an API. Instead, I hacked it with the help of Claude. Total cost: $25, two Sundays and a much better understanding of the thing I sit at every day."
 linkedin_hashtags: "#Hardware #IoT #AppliedAI #ESP32 #MakerCulture #ClaudeCode"
 medium_tags: ["hardware", "iot", "ai", "programming", "maker"]
@@ -114,8 +113,9 @@ AI is making all the "hacking" fun again. All you need is curiosity and patience
 
 This is part of my series of "Applied AI Field Notes" - a collection of articles on how I use AI in personal and professional life.
 
-- Applied AI Field Notes 001 - Lego Mosaic Helper
-- Applied AI Field Notes 002 - Family Assistant with OpenClaw
-- Applied AI FIeld Notes 003 — My Standing Desk Has an API Now
+- [Applied AI Field Notes 001 - Lego Mosaic Helper](/writing/ai/applied-ai-field-notes-001-lego-mosaic-helper/)
+- [Applied AI Field Notes 002 - Family Assistant with OpenClaw](/writing/ai/applied-ai-field-notes-002-family-assistant/)
+- **Applied AI Field Notes 003 - My Standing Desk Has an API Now** (you're reading it)
+- [Applied AI Field Notes 004 - My Best Customer Is 9 Years Old](/writing/ai/applied-ai-field-notes-004-my-best-customer-is-9-years-old/)
 
 _More AI field notes to come._

@@ -23,7 +23,9 @@
       <div class="blog-list writing-list-single">
         {{ range .Pages.ByDate.Reverse }}
         {{- $cover := "" }}
-        {{- with .Params.cover }}{{ $cover = . }}{{ else }}{{ with .Resources.GetMatch "cover.*" }}{{ $cover = .RelPermalink }}{{ end }}{{ end }}
+        {{- with .Resources.GetMatch "cover-thumbnail.*" }}{{ $cover = .RelPermalink }}
+        {{- else }}{{ with .Resources.GetMatch "cover.*" }}{{ $cover = .RelPermalink }}
+        {{- else }}{{ with .Params.cover }}{{ $cover = . }}{{ end }}{{ end }}{{ end }}
         <a href="{{ with .Params.external_url }}{{ . }}{{ else }}{{ .RelPermalink }}{{ end }}"
            class="blog-list-item"
            {{ with .Params.external_url }}target="_blank" rel="noopener noreferrer"{{ end }}>
