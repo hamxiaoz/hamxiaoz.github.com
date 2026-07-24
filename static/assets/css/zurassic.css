@@ -976,6 +976,32 @@
   flex-shrink: 0;
 }
 .theme-zurassic .proj-status--live { color: #34C759; border-color: rgba(52,199,89,0.3); }
+.theme-zurassic .proj-status--wip  { color: #FF9500; border-color: rgba(255,149,0,0.35); }
+
+/* Work-in-progress placeholder thumbnail */
+.theme-zurassic .proj-thumb--wip {
+  position: relative;
+  background-color: rgba(255,149,0,0.04);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255,149,0,0.10) 0, rgba(255,149,0,0.10) 8px,
+    transparent 8px, transparent 16px);
+  border-color: rgba(255,149,0,0.25);
+}
+.theme-zurassic .proj-thumb--wip::after {
+  content: "IN THE MAKING";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  text-align: center;
+  font-family: var(--t-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #B26A00;
+}
 
 /* Story link — own line, tucked under the description */
 .theme-zurassic .proj-story-line { margin-top: 9px; }

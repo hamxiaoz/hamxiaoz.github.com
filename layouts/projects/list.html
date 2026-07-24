@@ -17,12 +17,19 @@
     </div>
 
     {{ range .Pages.GroupByDate "2006" }}
+    {{/* Within a year: work-in-progress first, then ready projects (newest first) */}}
+    {{ $sorted := .Pages.ByDate.Reverse }}
+    {{ $ready := where $sorted "Params.status" "!=" "wip" }}
+    {{ $inProgress := where $sorted "Params.status" "wip" }}
     <div class="writing-section proj-year" id="year-{{ .Key }}" data-year="{{ .Key }}">
       <div class="writing-group-header">
         <h2 class="writing-group-title">{{ .Key }}</h2>
       </div>
       <div class="proj-list">
-        {{ range .Pages }}
+        {{ range $inProgress }}
+        {{ partial "project-row.html" (dict "page" .) }}
+        {{ end }}
+        {{ range $ready }}
         {{ partial "project-row.html" (dict "page" .) }}
         {{ end }}
       </div>

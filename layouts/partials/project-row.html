@@ -22,7 +22,7 @@
   {{ with $p.Params.image }}
   <img class="proj-thumb" src="{{ . }}" alt="{{ $p.Title }}" loading="lazy">
   {{ else }}
-  <span class="proj-thumb"></span>
+  <span class="proj-thumb{{ if eq $p.Params.status "wip" }} proj-thumb--wip{{ end }}"></span>
   {{ end }}
 
   <div class="proj-body">
@@ -38,7 +38,7 @@
     {{ if $showStory }}
     <div class="proj-story-line">
       <a class="proj-story" href="{{ $article }}"
-         {{ if hasPrefix $article "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>Read the story ›</a>
+         target="_blank" rel="noopener noreferrer">Read the story ›</a>
     </div>
     {{ end }}
 
