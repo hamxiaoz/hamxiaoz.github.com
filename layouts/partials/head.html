@@ -12,24 +12,32 @@
   <!-- All theme fonts (loaded together so ?theme= switching works without reload) -->
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Lato:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
 
+  {{/* Cache-bust static-served CSS by content hash so returning visitors
+       never get a stale stylesheet after a deploy (these files live in
+       static/ and are served at a fixed path, so browsers otherwise reuse
+       the cached copy indefinitely). */}}
   <!-- Legacy CSS (blog, ann, books pages) -->
-  <link rel="stylesheet" href="/assets/icons.css">
-  <link rel="stylesheet" href="/assets/layout.css">
+  <link rel="stylesheet" href="/assets/icons.css?v={{ substr (crypto.MD5 (readFile "static/assets/icons.css")) 0 8 }}">
+  <link rel="stylesheet" href="/assets/layout.css?v={{ substr (crypto.MD5 (readFile "static/assets/layout.css")) 0 8 }}">
   {{ $css := resources.Get "main.scss" | toCSS | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-  <link rel="stylesheet" href="/assets/syntax.css">
+  <link rel="stylesheet" href="/assets/syntax.css?v={{ substr (crypto.MD5 (readFile "static/assets/syntax.css")) 0 8 }}">
 
   <!-- Portfolio theme CSS (id allows JS to swap it via ?theme= param) -->
+  {{ $themeVers := dict
+      "zurassic" (substr (crypto.MD5 (readFile "static/assets/css/zurassic.css")) 0 8)
+      "apple"    (substr (crypto.MD5 (readFile "static/assets/css/apple.css")) 0 8)
+      "te"       (substr (crypto.MD5 (readFile "static/assets/css/te.css")) 0 8) }}
   {{ $theme := .Site.Params.theme | default "zurassic" }}
-  <link id="theme-css" rel="stylesheet" href="/assets/css/{{ $theme }}.css">
+  <link id="theme-css" rel="stylesheet" href="/assets/css/{{ $theme }}.css?v={{ index $themeVers $theme }}">
 
   <!-- Theme switcher: reads ?theme=apple|te|zurassic and swaps CSS + body class -->
   <script>
     (function() {
-      var allowed = { apple: 1, te: 1, zurassic: 1 };
+      var ver = {{ $themeVers | jsonify | safeJS }};
       var param = new URLSearchParams(window.location.search).get('theme');
-      if (param && allowed[param]) {
-        document.getElementById('theme-css').href = '/assets/css/' + param + '.css';
+      if (param && ver[param]) {
+        document.getElementById('theme-css').href = '/assets/css/' + param + '.css?v=' + ver[param];
         document.addEventListener('DOMContentLoaded', function() {
           document.body.className = document.body.className.replace(/theme-\w+/, 'theme-' + param);
         });
