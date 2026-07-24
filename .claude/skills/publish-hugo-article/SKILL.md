@@ -1,13 +1,14 @@
 ---
 name: publish-hugo-article
 description: >
-  Prepare a Hugo markdown article for publishing to Medium and LinkedIn (and
-  optionally X). Generates a LinkedIn hook, hashtags, Medium tags, and a
-  copy-paste-ready LinkedIn post; writes them to frontmatter; then guides MANUAL
-  posting — because Medium and LinkedIn no longer offer reliable self-serve
-  publishing APIs (see "Why manual" below). Records the resulting public URLs
-  back into frontmatter so the site's external-link card points to the right
-  place. X (Twitter) can still be posted via API.
+  Prepare a Hugo markdown article for publishing to Medium, LinkedIn, and X.
+  Generates a LinkedIn hook, hashtags, Medium tags, and a copy-paste-ready
+  LinkedIn post and tweet; writes them to frontmatter; then guides MANUAL
+  posting on all three platforms — because none of them offer a reliable
+  self-serve publishing API anymore (see "Why manual" below). Records the
+  published URL for each platform back into frontmatter for tracking. Never
+  touches external_url — the /writing and /blog cards always keep linking to
+  the canonical blog page.
   Trigger: "/publish-hugo-article", "publish article", "publish this to medium",
   "publish to linkedin", "post this article", "share article".
 allowed-tools:
@@ -19,13 +20,16 @@ allowed-tools:
 ---
 
 You are running the `publish-hugo-article` skill. Follow these steps in order.
-Do NOT skip steps. Do NOT post anything to X without explicit user confirmation.
+Do NOT skip steps. Every platform in this skill is copy-paste only — never call
+an API or run a posting script on the user's behalf. This skill implements the
+flow documented in `docs/publishing-plan.md` — if the two ever disagree, that
+doc is the source of truth for policy; treat this file as its mechanical
+execution.
 
 ## Why manual (read this first)
 
-As of 2026, native API publishing to Medium and LinkedIn is not reliably
-available, so this skill prepares content for manual posting instead of calling
-their APIs:
+As of 2026, none of Medium, LinkedIn, or X offer a publishing path worth
+automating, so this skill prepares content for manual posting on all three:
 
 - **Medium** stopped issuing new integration tokens (~2025) and the API is
   officially unsupported. Only pre-2025 legacy tokens still work. The best manual
@@ -35,11 +39,14 @@ their APIs:
   partner access that LinkedIn is not currently granting. Only a plain **feed
   post** is self-serve, and the legacy `/v2/ugcPosts` endpoint is deprecated. So
   this skill produces a ready-to-paste feed post that links back to your site.
-- **X** free-tier write access still works, so `scripts/publish.py --x` remains a
-  valid optional API path.
+- **X** free-tier write access still technically works, but the user has chosen
+  to keep posting manual across the board rather than manage API credentials
+  for one platform while the other two are copy-paste. This skill always prints
+  a ready-to-paste tweet — it never calls the X API.
 
-The canonical copy of every article lives on the Hugo site (zurassic.com). Medium
-and LinkedIn link back to it.
+The canonical copy of every article lives on the Hugo site (zurassic.com). Medium,
+LinkedIn, and X all link back to it — but the site itself never links out to
+them from list pages (see `external_url` note in Step 10).
 
 ---
 
@@ -56,17 +63,35 @@ Read the article file fully before proceeding.
 
 ## STEP 2 — Check publish state
 
-Look at the frontmatter for existing `medium_url`, `linkedin_posted`, `x_posted` fields.
-If any platform is already done, tell the user and ask whether they want to redo it.
+Look at the frontmatter for existing `linkedin_url`, `medium_url`, `x_url`.
+If any are already set, tell the user that platform is already published and
+ask whether they want to redo it.
 
 ---
 
-## STEP 3 — Generate suggestions
+## STEP 3 — Confirm the blog is published (canonical first)
 
-Read the article title and body carefully. Then generate ALL of the following yourself (no API call needed — you generate these inline):
+The article must be live on zurassic.com before anything below can link to it.
+
+- If the article isn't committed/deployed yet, tell the user to publish it
+  first (the site builds via GitHub Actions on push to `master`), then
+  re-run this skill.
+- If it's live, ask for (or derive and confirm) the canonical URL, e.g.
+  `https://zurassic.com/writing/<section>/<slug>/`. Remember Hugo lowercases
+  section names in URLs (a section folder named `AI` renders as `/writing/ai/...`).
+- Recommend waiting ~24h after the blog publish before syndicating, so Google
+  indexes the blog URL as the original.
+
+Hold onto this URL — call it `{canonical_url}` below.
+
+---
+
+## STEP 4 — Generate suggestions
+
+Read the article title and body carefully, then generate ALL of the following yourself (no external API/model call needed):
 
 ### LinkedIn hook
-Write 1–2 sentences that:
+1–2 sentences that:
 - Open with a provocative insight, counterintuitive claim, or relatable pain point
 - Do NOT start with "I" or the article title
 - Target the professional audience implied by the article topic
@@ -76,10 +101,10 @@ Write 1–2 sentences that:
 5–7 hashtags. Mix: 1–2 broad (#Engineering, #Leadership), 2–3 topic-specific, 1–2 niche. Format: `#Tag1 #Tag2 #Tag3`
 
 ### Medium tags
-3–5 tags as plain lowercase words (no `#`). These are Medium's tag taxonomy — use common ones like `engineering`, `leadership`, `ai`, `programming`, `productivity`.
+3–5 tags as plain lowercase words (no `#`) — Medium's tag taxonomy, e.g. `engineering`, `leadership`, `ai`, `programming`, `productivity`.
 
 ### X post
-A complete tweet:
+A complete tweet-thread opener:
 - Start with the hook (condensed to 1 punchy sentence)
 - Include `{url}` as placeholder (replaced at post time with the canonical URL)
 - End with 3–4 hashtags
@@ -90,7 +115,7 @@ A complete tweet:
 
 ---
 
-## STEP 4 — Confirm the LinkedIn hook
+## STEP 5 — Confirm the LinkedIn hook
 
 Present the hook clearly and ask:
 
@@ -112,7 +137,7 @@ If they choose "I'll write my own", use AskUserQuestion to collect their text.
 
 ---
 
-## STEP 5 — Confirm hashtags and tags
+## STEP 6 — Confirm hashtags and tags
 
 Show all platform metadata together and ask for approval:
 
@@ -135,9 +160,9 @@ If they want to edit, use AskUserQuestion to collect the replacement text.
 
 ---
 
-## STEP 6 — Write to frontmatter
+## STEP 7 — Write metadata to frontmatter
 
-After hook + hashtags are confirmed, use the Edit tool to add/update these fields in the article's frontmatter (between the `---` delimiters). Add them after existing fields:
+Use the Edit tool to add/update these fields in the article's frontmatter (between the `---` delimiters). Add them after existing fields:
 
 ```yaml
 linkedin_hook: "{confirmed hook}"
@@ -153,47 +178,7 @@ Tell the user: "I've written the suggestions to the article frontmatter. You can
 
 ---
 
-## STEP 7 — Confirm the canonical URL
-
-Medium import and the LinkedIn post both link back to the article on the Hugo
-site, so it must be live first.
-
-Ask the user (AskUserQuestion or plain prompt): "Is this article published and
-live on zurassic.com? If so, paste its canonical URL (e.g.
-`https://zurassic.com/writing/<section>/<slug>/`)."
-
-- If they don't have a URL yet, tell them to commit/deploy the article first (the
-  site builds via GitHub Actions), then re-run this step.
-- Derive a best-guess URL from the file path and offer it for confirmation, but
-  use what the user provides.
-
-Hold onto this URL — call it `{canonical_url}` below.
-
----
-
-## STEP 8 — Prepare Medium (manual)
-
-Present this to the user:
-
-```
-MEDIUM — easiest path is Import a story (keeps formatting):
-
-1. Go to: https://medium.com/p/import
-2. Paste the canonical URL: {canonical_url}
-3. Click Import — Medium pulls in the title, body, and images.
-4. Add these tags (max 5): {medium_tags}
-5. Set a canonical link to {canonical_url} under "..." → "Edit settings" so
-   Medium's copy doesn't outrank yours in search.
-6. Publish (or save as draft to review first).
-```
-
-If the user prefers raw copy-paste instead of import, offer to print the article
-body (markdown) for them to paste into a new Medium story. Note that Medium's
-editor renders pasted markdown as plain text, so import is strongly preferred.
-
----
-
-## STEP 9 — Prepare LinkedIn (manual)
+## STEP 8 — LinkedIn (manual)
 
 Build a ready-to-paste **feed post**: the confirmed hook, a one–two sentence
 teaser drawn from the article's opening, the canonical link, and the hashtags.
@@ -217,53 +202,91 @@ If the user instead wants a native LinkedIn **Article** (the long-form editor at
 linkedin.com/article/new), offer to print the full article body for copy-paste,
 and remind them to set the article's link/source back to {canonical_url}.
 
----
-
-## STEP 10 — X (optional, API or manual)
-
-Ask whether to post to X. If yes, offer two paths:
-
-- **API:** check `scripts/publish.py` exists, then from the repo root run
-  `python3 scripts/publish.py {article_path} --x`. The script substitutes the URL
-  into `x_post`, truncates to 280 chars, posts via the X API, and sets
-  `x_posted: true` in frontmatter. Requires the `X_*` credentials in `.env`
-  (run `python3 scripts/x_auth.py` to obtain them). Show the command output.
-- **Manual:** print the `x_post` with `{url}` replaced by `{canonical_url}`,
-  truncated to 280 chars, for them to paste at x.com.
+After they post, ask for the published LinkedIn URL and use Edit to set
+`linkedin_url: "{url}"` in frontmatter.
 
 ---
 
-## STEP 11 — Record results in frontmatter
+## STEP 9 — Medium (manual)
 
-Manual posting means the skill can't capture URLs automatically. After the user
-confirms what they posted, use the Edit tool to update frontmatter so the site's
-external-link card points correctly:
+Present this to the user:
 
-- If they published to Medium, ask for the resulting Medium URL and set both
-  `medium_url: "{url}"` and `external_url: "{url}"`. (`external_url` drives the
-  card link on the /writing and /blog pages — without it the card has nowhere to
-  go. Prefer the canonical Hugo URL or the Medium URL per the user's preference.)
-- If they posted to LinkedIn, set `linkedin_posted: true`.
-- If X was posted manually, set `x_posted: true` (the API path sets this itself).
+```
+MEDIUM — easiest path is Import a story (keeps formatting):
 
-Use targeted replacement; don't rewrite unrelated frontmatter.
+1. Go to: https://medium.com/p/import
+2. Paste the canonical URL: {canonical_url}
+3. Click Import — Medium pulls in the title, body, and images.
+4. Add these tags (max 5): {medium_tags}
+5. Set a canonical link to {canonical_url} under "..." → "Edit settings" so
+   Medium's copy doesn't outrank yours in search.
+6. Publish (or save as draft to review first).
+```
+
+If the user prefers raw copy-paste instead of import, offer to print the article
+body (markdown) for them to paste into a new Medium story. Note that Medium's
+editor renders pasted markdown as plain text, so import is strongly preferred.
+
+Recommend publishing 2–3 days after the blog and LinkedIn, not same-day.
+
+After they post, ask for the published Medium URL and use Edit to set
+`medium_url: "{url}"` in frontmatter.
+
+---
+
+## STEP 10 — X (manual)
+
+Ask whether to post to X. If yes, print the `x_post` with `{url}` replaced by
+`{canonical_url}`, truncated to 280 chars if needed, inside a fenced block:
+
+```
+X — copy-paste this as a new post (x.com, "Post"):
+
+{x_post with {url} replaced}
+```
+
+Mention the thread-building tips from the plan: break at natural beats, lead
+with the strongest hook, put the blog link in the **last** tweet (never the
+first), pin the thread, and consider a quote-tweet of the best line a day
+later. Always manual — this skill never calls the X API or runs a posting
+script.
+
+After they post, ask for the published X/tweet URL and use Edit to set
+`x_url: "{url}"` in frontmatter.
+
+**Do not set `external_url`** on any of these three steps. `external_url`
+controls where the `/writing` and `/blog` list-page cards link — it must stay
+unset (or pointed at nothing) so those cards always link to the canonical blog
+page, never out to Medium/LinkedIn/X. `linkedin_url`/`medium_url`/`x_url` are
+for your own tracking only.
+
+---
+
+## STEP 11 — Optional: communities
+
+For "buildy" articles (a tool or app people can try), ask if the user wants to
+also post to:
+- Show HN (title + link + repo)
+- Relevant subreddits
+- Product Hunt, timed the same week as the other launches
+
+This step is optional and not tracked in frontmatter.
 
 ---
 
 ## STEP 12 — Summary
 
-Show a checklist of what was prepared and what the user still needs to do:
+Show a checklist of what was prepared and what's been recorded:
 
 ```
 Prepared and written to frontmatter: hook, hashtags, Medium tags, X post.
 
-To finish posting:
-- Medium: import {canonical_url} at medium.com/p/import  (tags: {medium_tags})
-- LinkedIn: paste the feed post above
-- X: {posted via API ✓ | paste the tweet above}
+Posted:
+- LinkedIn: {linkedin_url, or "not yet"}
+- Medium: {medium_url, or "not yet"}
+- X: {x_url, or "not yet"}
 
-Frontmatter updated with: {list of fields set, e.g. medium_url, external_url, linkedin_posted}
-Run `hugo server` to verify the site card links to the right URL.
+external_url was not touched — the /writing card still links to {canonical_url}.
 ```
 
 ---
@@ -271,13 +294,16 @@ Run `hugo server` to verify the site card links to the right URL.
 ## Error handling
 
 **Missing canonical URL:** the article must be live on the site before Medium
-import or the LinkedIn link will work. Tell the user to commit/deploy first.
+import or the LinkedIn/X links will work. Tell the user to commit/deploy first.
 
-**User asks to publish to Medium/LinkedIn via API:** explain why that's no longer
-self-serve (see "Why manual" above) and steer them to the import / copy-paste
-flow. Only fall back to API publishing if the user explicitly says they hold a
-working pre-2025 Medium token or LinkedIn partner access.
+**User asks to publish via an API instead of copy-paste:** explain why this
+skill is manual-only across all three platforms (see "Why manual" above) and
+steer them back to the import/copy-paste flow for that platform. Only deviate if
+the user explicitly says they hold a working pre-2025 Medium token or LinkedIn
+partner access — X automation is out of scope for this skill regardless of
+credentials, since the user has chosen manual-everywhere for consistency.
 
-**X API fails:** the most common causes are missing `X_*` credentials in `.env`
-(run `python3 scripts/x_auth.py`), or the app lacking Read+Write permission. Show
-the error and offer the manual copy-paste tweet instead.
+**User asks to set `external_url` to a platform URL:** confirm they really want
+the site's list-page card to send readers off-site instead of to the canonical
+blog page — this is a deliberate deviation from the default (see Step 10) and
+should be a conscious choice, not a side effect of running this skill.

@@ -1,6 +1,12 @@
 ---
 title: "Applied AI Field Notes 004 — My Best Customer Is 9 Years Old"
 date: 2026-07-03
+linkedin_hook: "The best feedback loop I've ever had isn't from a beta program or a Slack channel — it's from a 9-year-old ten feet away, refreshing his browser."
+linkedin_hashtags: "#Engineering #ProductDevelopment #AI #AppliedAI #BuildInPublic #VibeCoding"
+medium_tags: ["ai", "programming", "product-management", "parenting"]
+x_post: "My best customer is 9 years old. He asks for a feature, I ship it same day in Claude Code, he refreshes the browser. That's the whole loop. {url}"
+x_hashtags: "#AI #BuildInPublic #ClaudeCode"
+linkedin_url: "https://www.linkedin.com/pulse/applied-ai-field-notes-004-my-best-customer-9-years-old-andrew-zheng-sex5c/"
 ---
 
 {{< app-link url="https://projects.zurassic.com/music-practice-stage/" label="Music Practice Stage App" >}}
