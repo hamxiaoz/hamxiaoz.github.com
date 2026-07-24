@@ -7,7 +7,7 @@
 {{ end }}
 {{ $allTags = $allTags | uniq | sort }}
 
-<section class="portfolio-section section-page">
+<section class="portfolio-section section-page section-writing">
   <div class="section-inner">
     <div class="tag-filter" id="tag-filter">
       <button class="tag-filter-btn active" data-tag="all">All</button>
@@ -16,21 +16,26 @@
       {{ end }}
     </div>
 
-    <div class="items-grid" id="projects-grid">
-      {{ range $i, $p := .Pages.ByWeight }}
-      <div class="project-filter-item"
-           data-tags="{{ range $p.Params.tags }}{{ . | lower }} {{ end }}">
-        {{ partial "project-card.html" (dict "page" $p "index" (add $i 1) "style" "dark") }}
+    {{ range .Pages.GroupByDate "2006" }}
+    <div class="writing-section proj-year" id="year-{{ .Key }}" data-year="{{ .Key }}">
+      <div class="writing-group-header">
+        <h2 class="writing-group-title">{{ .Key }}</h2>
       </div>
-      {{ end }}
+      <div class="proj-list">
+        {{ range .Pages }}
+        {{ partial "project-row.html" (dict "page" .) }}
+        {{ end }}
+      </div>
     </div>
+    {{ end }}
   </div>
 </section>
 
 <script>
 (function() {
   var filterBtns = document.querySelectorAll('.tag-filter-btn');
-  var items = document.querySelectorAll('.project-filter-item');
+  var items = document.querySelectorAll('.proj-row');
+  var years = document.querySelectorAll('.proj-year');
 
   filterBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
@@ -38,15 +43,16 @@
       filterBtns.forEach(function(b) { b.classList.remove('active'); });
       this.classList.add('active');
       items.forEach(function(item) {
-        if (tag === 'all' || item.dataset.tags.indexOf(tag) !== -1) {
-          item.style.display = '';
-        } else {
-          item.style.display = 'none';
-        }
+        var show = tag === 'all' || item.dataset.tags.indexOf(tag) !== -1;
+        item.style.display = show ? '' : 'none';
+      });
+      // Hide a year header when the filter leaves it empty
+      years.forEach(function(year) {
+        var visible = year.querySelectorAll('.proj-row:not([style*="display: none"])').length;
+        year.style.display = visible ? '' : 'none';
       });
     });
   });
-
 })();
 </script>
 {{ end }}

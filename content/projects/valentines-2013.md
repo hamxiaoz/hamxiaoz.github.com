@@ -4,6 +4,6 @@ description: "Made with jQuery, RMagick, and love. A personalized generative Val
 tags: ["design", "code"]
 image: "/assets/images/2013-vday-thumbnail.png"
 live_url: "http://hamxiaoz.github.io/2013VDayGift/"
+date: 2013-02-14
 status: "live"
-weight: 10
 ---

@@ -4,6 +4,6 @@ description: "You cannot stop vibe coding? This is for you - camera sitting time
 tags: ["code", "ai", "wellness"]
 image: "/assets/images/project-flow-break.png"
 live_url: "https://projects.zurassic.com/flow-break/"
+date: 2026-03-19
 status: "live"
-weight: 1
 ---

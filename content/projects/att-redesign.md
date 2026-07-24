@@ -4,6 +4,6 @@ description: "How can we simplify the process of shopping for a wireless plan? A
 tags: ["design"]
 image: "/assets/images/portfolio-att.png"
 article_url: "https://goo.gl/OX2Z8X"
+date: 2016-02-01
 status: "live"
-weight: 5
 ---

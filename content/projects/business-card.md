@@ -4,6 +4,6 @@ description: "How to present yourself in 7 square inches? A personal branding an
 tags: ["design"]
 image: "/assets/images/business-card-thumbnail.png"
 live_url: "/assets/images/Andrew-namecard.png"
+date: 2016-10-31
 status: "live"
-weight: 9
 ---

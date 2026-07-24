@@ -4,6 +4,6 @@ description: "An interactive alphabet learning app for kids. Tap letters to hear
 tags: ["code"]
 image: "/assets/images/abc-thumbnail.png"
 live_url: "/ann/abc"
+date: 2016-11-27
 status: "live"
-weight: 3
 ---

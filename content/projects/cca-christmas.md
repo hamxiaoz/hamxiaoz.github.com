@@ -4,6 +4,6 @@ description: "华人事业互助会2014圣诞贺卡 — An interactive holiday c
 tags: ["design", "code"]
 image: "/assets/images/hu-thumbnail.png"
 live_url: "http://hamxiaoz.github.io/hu-2014/"
+date: 2014-12-22
 status: "live"
-weight: 11
 ---

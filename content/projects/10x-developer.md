@@ -4,6 +4,6 @@ description: "A gitbook with collection of resources, tools, and workflows for d
 tags: ["code"]
 image: "/assets/images/project-wordcloud.png"
 live_url: "https://zurassic.gitbook.io/10x-developer"
+date: 2015-07-31
 status: "live"
-weight: 2
 ---

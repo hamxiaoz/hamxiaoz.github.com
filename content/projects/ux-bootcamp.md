@@ -4,6 +4,6 @@ description: "What I've learned from a UX design bootcamp — process, tools, an
 tags: ["design"]
 image: "/assets/images/portfolio-ux.png"
 article_url: "https://medium.com/@hamxiaoz/what-i-v-learned-from-a-ux-design-bootcamp-9bbac8755a4a#.uvjivldfz"
+date: 2016-02-11
 status: "archived"
-weight: 4
 ---

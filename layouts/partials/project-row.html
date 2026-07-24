@@ -1,0 +1,55 @@
+{{/*
+  Project row — used by the Projects list only.
+  The whole row is the link (live_url, falling back to article_url); the story
+  link sits above it in the stacking order so it wins its own click.
+  Params:
+    .page — the Hugo page (.Params, .Title, .RelPermalink, etc.)
+*/}}
+{{ $p := .page }}
+{{ $live := $p.Params.live_url }}
+{{ $article := $p.Params.article_url }}
+{{ $href := $live | default $article }}
+{{/* Only show a separate story link when the row itself goes somewhere else */}}
+{{ $showStory := and $article $live }}
+<div class="proj-row{{ if not $href }} proj-row--dead{{ end }}"
+     data-tags="{{ range $p.Params.tags }}{{ . | lower }} {{ end }}">
+
+  {{ with $href }}
+  <a class="proj-hit" href="{{ . }}" aria-label="{{ $p.Title }}"
+     {{ if hasPrefix . "http" }}target="_blank" rel="noopener noreferrer"{{ end }}></a>
+  {{ end }}
+
+  {{ with $p.Params.image }}
+  <img class="proj-thumb" src="{{ . }}" alt="{{ $p.Title }}" loading="lazy">
+  {{ else }}
+  <span class="proj-thumb"></span>
+  {{ end }}
+
+  <div class="proj-body">
+    <div class="proj-head">
+      <span class="proj-title">{{ $p.Title }}</span>
+      {{ with $p.Params.status }}
+      <span class="proj-status proj-status--{{ . }}">{{ . }}</span>
+      {{ end }}
+    </div>
+
+    {{ with $p.Params.description }}<p class="proj-desc">{{ . }}</p>{{ end }}
+
+    {{ if $showStory }}
+    <div class="proj-story-line">
+      <a class="proj-story" href="{{ $article }}"
+         {{ if hasPrefix $article "http" }}target="_blank" rel="noopener noreferrer"{{ end }}>Read the story ›</a>
+    </div>
+    {{ end }}
+
+    {{ with $p.Params.tags }}
+    <div class="proj-tags">
+      {{ range . }}<span class="proj-tag">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+  </div>
+
+  <span class="proj-go" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5l5 5-5 5"/></svg>
+  </span>
+</div>
