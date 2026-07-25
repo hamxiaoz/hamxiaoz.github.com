@@ -1,0 +1,199 @@
+{{ define "main" }}
+{{ $work := (where site.RegularPages "Section" "work").ByWeight }}
+{{ $workSection := site.GetPage "/work" }}
+<section class="portfolio-section section-page work-v1c">
+  <div class="section-inner">
+    {{ partial "work-variant-switcher.html" (dict "current" "work-v1c") }}
+
+    <header class="wv-header">
+      <div class="section-label"><span class="section-label-text">Selected Work</span></div>
+      <h1 class="wv-title">Work<em>.</em></h1>
+      {{ with $workSection.Params.description }}<p class="wv-intro">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="tag-filter" id="cat-filter">
+      <button class="tag-filter-btn active" data-cat="all">All</button>
+      <button class="tag-filter-btn" data-cat="career">Career</button>
+      <button class="tag-filter-btn" data-cat="projects">Products &amp; Tools</button>
+      <button class="tag-filter-btn" data-cat="education">Education &amp; Awards</button>
+    </div>
+
+    <div class="wv1c-roles">
+      {{ $ri := 0 }}
+      {{ range $work }}
+        {{ if .Params.role }}
+        {{ $ri = add $ri 1 }}
+        <article class="wv1c-role" data-cat="career">
+          <div class="wv1c-meta">
+            <div class="wv1c-meta-inner">
+              <span class="wv1c-num">{{ printf "%02d" $ri }}</span>
+              <h3 class="wv1c-company">{{ .Title }}</h3>
+              {{ with .Params.role }}<p class="wv1c-role-name">{{ . }}</p>{{ end }}
+              {{ with .Params.tags }}
+              <div class="wv-role-tags">
+                {{ range first 4 . }}<span class="card-tag">{{ . }}</span>{{ end }}
+              </div>
+              {{ end }}
+              <div class="wv1c-links">
+                {{ with .Params.live_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Launch ›</a>{{ end }}
+                {{ with .Params.article_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Learn more ›</a>{{ end }}
+              </div>
+            </div>
+          </div>
+          <div class="wv-role-bullets wv1c-bullets">{{ .Content }}</div>
+        </article>
+        {{ end }}
+      {{ end }}
+    </div>
+
+    <div class="wv1c-gallery-head section-label">
+      <span class="section-label-text">Products &amp; Side Projects</span>
+    </div>
+
+    <div class="wv1c-gallery">
+      {{ range $work }}
+        {{ $cat := partial "work-category.html" . }}
+        {{ if and (ne $cat "career") .Params.image }}
+        <a class="wv1c-tile"
+           data-cat="{{ $cat }}"
+           href="{{ or .Params.article_url .Params.live_url .RelPermalink }}"
+           {{ if or .Params.article_url .Params.live_url }}target="_blank" rel="noopener noreferrer"{{ end }}>
+          <span class="wv1c-tile-img"><img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy"></span>
+          <span class="wv1c-tile-title">{{ .Title }}</span>
+          <span class="wv1c-tile-co">{{ .Params.company }}</span>
+        </a>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ partial "work-shared-css.html" . }}
+<style>
+/* ══ V1C — Split ledger ══ */
+.theme-zurassic .work-v1c .wv1c-roles { margin-bottom: 72px; }
+.theme-zurassic .work-v1c .wv1c-role {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 48px;
+  padding: 48px 0;
+  border-top: 1px solid var(--t-border);
+}
+.theme-zurassic .work-v1c .wv1c-roles .wv1c-role:last-child { border-bottom: 1px solid var(--t-border); }
+.theme-zurassic .work-v1c .wv1c-meta-inner {
+  position: sticky;
+  top: 110px;
+}
+.theme-zurassic .work-v1c .wv1c-num {
+  display: block;
+  font-family: var(--t-font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--t-accent);
+  margin-bottom: 12px;
+}
+.theme-zurassic .work-v1c .wv1c-company {
+  font-family: var(--t-font-sans);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--t-text);
+  margin: 0 0 6px;
+}
+.theme-zurassic .work-v1c .wv1c-role-name {
+  font-size: 13px;
+  color: var(--t-text-mid);
+  margin: 0 0 16px;
+}
+.theme-zurassic .work-v1c .wv1c-meta .wv-role-tags { margin-top: 0; margin-bottom: 18px; }
+.theme-zurassic .work-v1c .wv1c-links {
+  display: flex;
+  gap: 18px;
+}
+.theme-zurassic .work-v1c .wv1c-bullets {
+  font-size: 14.5px;
+  line-height: 1.7;
+  max-width: none;
+}
+
+.theme-zurassic .work-v1c .wv1c-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px 16px;
+}
+.theme-zurassic .work-v1c .wv1c-tile { display: block; }
+.theme-zurassic .work-v1c .wv1c-tile-img {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--t-radius);
+  border: 1px solid var(--t-border);
+  margin-bottom: 12px;
+  background: var(--t-surface);
+}
+.theme-zurassic .work-v1c .wv1c-tile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.theme-zurassic .work-v1c .wv1c-tile:hover .wv1c-tile-img img { transform: scale(1.04); }
+.theme-zurassic .work-v1c .wv1c-tile-title {
+  display: block;
+  font-family: var(--t-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t-text);
+  margin-bottom: 3px;
+  transition: color 0.15s;
+}
+.theme-zurassic .work-v1c .wv1c-tile:hover .wv1c-tile-title { color: var(--t-accent); }
+.theme-zurassic .work-v1c .wv1c-tile-co {
+  display: block;
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+}
+
+@media (max-width: 768px) {
+  .theme-zurassic .work-v1c .wv1c-role {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 36px 0;
+  }
+  .theme-zurassic .work-v1c .wv1c-meta-inner { position: static; }
+}
+</style>
+
+<script>
+(function() {
+  var filterBtns = document.querySelectorAll('.work-v1c .tag-filter-btn');
+  var items = document.querySelectorAll('.work-v1c [data-cat]');
+  var rolesBlock = document.querySelector('.work-v1c .wv1c-roles');
+  var galleryHead = document.querySelector('.work-v1c .wv1c-gallery-head');
+  var gallery = document.querySelector('.work-v1c .wv1c-gallery');
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var cat = this.dataset.cat;
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      items.forEach(function(item) {
+        var show = cat === 'all' || item.dataset.cat === cat;
+        item.style.display = show ? '' : 'none';
+      });
+      var rolesVisible = rolesBlock.querySelectorAll('.wv1c-role:not([style*="display: none"])').length;
+      rolesBlock.style.display = rolesVisible ? '' : 'none';
+      var tilesVisible = gallery.querySelectorAll('.wv1c-tile:not([style*="display: none"])').length;
+      galleryHead.style.display = tilesVisible ? '' : 'none';
+      gallery.style.display = tilesVisible ? '' : 'none';
+    });
+  });
+})();
+</script>
+{{ end }}

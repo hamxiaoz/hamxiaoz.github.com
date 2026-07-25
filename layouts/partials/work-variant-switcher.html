@@ -1,8 +1,18 @@
-{{- /* Mockup-only chrome: jump between the 4 /work redesign variants. Param: current (1-4) */ -}}
+{{- /* Mockup-only chrome: jump between /work redesign variants. Param: current (section slug, e.g. "work-v1b") */ -}}
+{{- $variants := slice
+  (dict "slug" "work-v1"  "label" "1A Editorial")
+  (dict "slug" "work-v1b" "label" "1B Big Type")
+  (dict "slug" "work-v1c" "label" "1C Split")
+  (dict "slug" "work-v2"  "label" "2A Chapters")
+  (dict "slug" "work-v2b" "label" "2B Numbered")
+  (dict "slug" "work-v2c" "label" "2C Sidebar")
+  (dict "slug" "work-v3"  "label" "3 Mosaic")
+  (dict "slug" "work-v4"  "label" "4 Timeline")
+-}}
 {{- $current := .current -}}
 <div class="wv-switch" role="navigation" aria-label="Mockup variants">
-  <span class="wv-switch-label">Mockup {{ $current }}/4</span>
-  {{ range $n, $name := (slice "Editorial" "Chapters" "Mosaic" "Timeline") }}
-  <a href="/work-v{{ add $n 1 }}/" {{ if eq (add $n 1) $current }}class="active"{{ end }}>{{ add $n 1 }} {{ $name }}</a>
+  <span class="wv-switch-label">Mockups</span>
+  {{ range $variants }}
+  <a href="/{{ .slug }}/" {{ if eq .slug $current }}class="active"{{ end }}>{{ .label }}</a>
   {{ end }}
 </div>

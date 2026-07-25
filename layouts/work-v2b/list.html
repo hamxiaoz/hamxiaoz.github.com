@@ -1,0 +1,277 @@
+{{ define "main" }}
+{{ $work := (where site.RegularPages "Section" "work").ByWeight }}
+{{ $workSection := site.GetPage "/work" }}
+<section class="portfolio-section section-page work-v2b">
+  <div class="section-inner">
+    {{ partial "work-variant-switcher.html" (dict "current" "work-v2b") }}
+
+    <header class="wv-header">
+      <div class="section-label"><span class="section-label-text">Selected Work</span></div>
+      <h1 class="wv-title">Work<em>.</em></h1>
+      {{ with $workSection.Params.description }}<p class="wv-intro">{{ . }}</p>{{ end }}
+    </header>
+  </div>
+</section>
+
+<nav class="page-sub-nav" id="page-sub-nav" aria-label="Jump to chapter">
+  <div class="page-sub-nav-inner">
+    <a href="#section-leadership" class="page-sub-nav-pill" data-section="section-leadership">Leadership</a>
+    <a href="#section-products" class="page-sub-nav-pill" data-section="section-products">Products &amp; Tools</a>
+    <a href="#section-education" class="page-sub-nav-pill" data-section="section-education">Education &amp; Awards</a>
+  </div>
+</nav>
+
+<section class="portfolio-section section-page work-v2b work-v2b-body">
+  <div class="section-inner">
+
+    <div class="writing-section" id="section-leadership">
+      <div class="wv2b-chap">
+        <span class="wv2b-chap-num">01</span>
+        <h2 class="wv2b-chap-title">Leadership</h2>
+      </div>
+      {{ $ri := 0 }}
+      {{ range $work }}
+        {{ if .Params.role }}
+        {{ $ri = add $ri 1 }}
+        {{ partial "work-role-row.html" (dict "page" . "index" $ri "class" "wv2b-role") }}
+        {{ end }}
+      {{ end }}
+    </div>
+
+    <div class="writing-section" id="section-products">
+      <div class="wv2b-chap">
+        <span class="wv2b-chap-num">02</span>
+        <h2 class="wv2b-chap-title">Products &amp; Tools</h2>
+      </div>
+      <div class="wv2b-tiles">
+        {{ range $work }}
+          {{ $cat := partial "work-category.html" . }}
+          {{ if and (eq $cat "projects") .Params.image }}
+          <a class="wv2b-tile"
+             href="{{ or .Params.article_url .Params.live_url .RelPermalink }}"
+             {{ if or .Params.article_url .Params.live_url }}target="_blank" rel="noopener noreferrer"{{ end }}>
+            <span class="wv2b-tile-img"><img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy"></span>
+            <span class="wv2b-tile-body">
+              <span class="wv2b-tile-title">{{ .Title }}</span>
+              {{ with .Params.description }}<span class="wv2b-tile-desc">{{ . }}</span>{{ end }}
+              <span class="wv2b-tile-co">{{ .Params.company }}</span>
+            </span>
+          </a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="writing-section" id="section-education">
+      <div class="wv2b-chap">
+        <span class="wv2b-chap-num">03</span>
+        <h2 class="wv2b-chap-title">Education &amp; Awards</h2>
+      </div>
+      <div class="wv2b-rows">
+        {{ range $work }}
+          {{ $cat := partial "work-category.html" . }}
+          {{ if eq $cat "education" }}
+          {{ $p := . }}
+          {{ $href := or .Params.article_url .Params.live_url }}
+          <a class="wv2b-row glass"
+             href="{{ or $href .RelPermalink }}"
+             {{ if $href }}target="_blank" rel="noopener noreferrer"{{ end }}>
+            {{ with .Params.image }}
+            <span class="wv2b-row-thumb"><img src="{{ . }}" alt="{{ $p.Title }}" loading="lazy"></span>
+            {{ else }}
+            <span class="wv2b-row-thumb wv2b-row-thumb--empty" aria-hidden="true"></span>
+            {{ end }}
+            <span class="wv2b-row-body">
+              <span class="wv2b-row-title">{{ .Title }}</span>
+              {{ with or .Params.description (delimit (.Params.tags | default (slice)) " · ") }}
+              <span class="wv2b-row-desc">{{ . }}</span>
+              {{ end }}
+            </span>
+            {{ if $href }}<span class="wv2b-row-go">›</span>{{ end }}
+          </a>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{{ partial "work-shared-css.html" . }}
+<style>
+/* ══ V2B — Numbered chapters ══ */
+.theme-zurassic .work-v2b { padding-bottom: 0; }
+.theme-zurassic .work-v2b .wv-header { margin-bottom: 24px; }
+.theme-zurassic .work-v2b-body { padding-top: 24px; }
+.theme-zurassic .work-v2b-body .writing-section { scroll-margin-top: var(--nav-h); margin-bottom: 88px; }
+
+.theme-zurassic .work-v2b .wv2b-chap {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  border-bottom: 1px solid var(--t-border);
+  padding-bottom: 16px;
+}
+.theme-zurassic .work-v2b .wv2b-chap-num {
+  font-family: var(--t-font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--t-accent);
+}
+.theme-zurassic .work-v2b .wv2b-chap-title {
+  font-family: var(--t-font-sans);
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--t-text);
+  margin: 0;
+}
+
+.theme-zurassic .work-v2b .wv2b-role:first-of-type { border-top: none; }
+
+/* Products — 2-col large tiles */
+.theme-zurassic .work-v2b .wv2b-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px 24px;
+  padding-top: 32px;
+}
+@media (max-width: 640px) {
+  .theme-zurassic .work-v2b .wv2b-tiles { grid-template-columns: 1fr; }
+}
+.theme-zurassic .work-v2b .wv2b-tile { display: block; }
+.theme-zurassic .work-v2b .wv2b-tile-img {
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: var(--t-radius);
+  border: 1px solid var(--t-border);
+  margin-bottom: 16px;
+  background: var(--t-surface);
+}
+.theme-zurassic .work-v2b .wv2b-tile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.theme-zurassic .work-v2b .wv2b-tile:hover .wv2b-tile-img img { transform: scale(1.04); }
+.theme-zurassic .work-v2b .wv2b-tile-title {
+  display: block;
+  font-family: var(--t-font-sans);
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--t-text);
+  margin-bottom: 4px;
+  transition: color 0.15s;
+}
+.theme-zurassic .work-v2b .wv2b-tile:hover .wv2b-tile-title { color: var(--t-accent); }
+.theme-zurassic .work-v2b .wv2b-tile-desc {
+  display: block;
+  font-size: 13px;
+  color: var(--t-text-mid);
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+.theme-zurassic .work-v2b .wv2b-tile-co {
+  display: block;
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+}
+
+/* Education — compact rows */
+.theme-zurassic .work-v2b .wv2b-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 32px;
+  max-width: 720px;
+}
+.theme-zurassic .work-v2b .wv2b-row {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px 14px 14px;
+}
+.theme-zurassic .work-v2b .wv2b-row-thumb {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--t-border);
+  background: var(--t-surface);
+}
+.theme-zurassic .work-v2b .wv2b-row-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.theme-zurassic .work-v2b .wv2b-row-thumb--empty {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+.theme-zurassic .work-v2b .wv2b-row-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.theme-zurassic .work-v2b .wv2b-row-title {
+  font-family: var(--t-font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--t-text);
+}
+.theme-zurassic .work-v2b .wv2b-row-desc {
+  font-size: 13px;
+  color: var(--t-text-mid);
+  line-height: 1.5;
+}
+.theme-zurassic .work-v2b .wv2b-row-go {
+  font-size: 18px;
+  color: var(--t-text-dim);
+  transition: color 0.15s, transform 0.2s;
+}
+.theme-zurassic .work-v2b .wv2b-row:hover .wv2b-row-go {
+  color: var(--t-accent);
+  transform: translateX(3px);
+}
+</style>
+
+<script>
+(function() {
+  var pills = document.querySelectorAll('.page-sub-nav-pill');
+  var sections = document.querySelectorAll('.writing-section');
+  if (!pills.length || !sections.length) return;
+
+  function updateActive() {
+    var offset = 120;
+    var current = sections[0] && sections[0].id;
+    sections.forEach(function(s) {
+      if (s.getBoundingClientRect().top <= offset) current = s.id;
+    });
+    if (current) {
+      pills.forEach(function(p) {
+        p.classList.toggle('active', p.getAttribute('data-section') === current);
+      });
+    }
+  }
+  updateActive();
+  window.addEventListener('scroll', updateActive, { passive: true });
+
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function(e) {
+      var target = document.getElementById(this.getAttribute('data-section'));
+      if (!target) return;
+      e.preventDefault();
+      var offset = 110;
+      var top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+{{ end }}
