@@ -861,6 +861,22 @@
 .theme-zurassic .footer-links .social-link::after { display: none; }
 .theme-zurassic .footer-links .social-link:hover { color: var(--t-text); }
 
+/* ── Projects intro ─────────────────────────────────────────────────────── */
+.theme-zurassic .proj-intro {
+  margin: 0 0 28px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--t-text-dim);
+}
+.theme-zurassic .proj-intro p { margin: 0; }
+.theme-zurassic .proj-intro a {
+  color: var(--t-accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: color 0.15s;
+}
+.theme-zurassic .proj-intro a:hover { color: var(--t-accent-hover); }
+
 /* ── Tag filter (Projects page) ─────────────────────────────────────────── */
 .theme-zurassic .tag-filter {
   display: flex;

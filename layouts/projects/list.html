@@ -9,6 +9,8 @@
 
 <section class="portfolio-section section-page section-writing">
   <div class="section-inner">
+    {{ with .Content }}<div class="proj-intro">{{ . }}</div>{{ end }}
+
     <div class="tag-filter" id="tag-filter">
       <button class="tag-filter-btn active" data-tag="all">All</button>
       {{ range $allTags }}
