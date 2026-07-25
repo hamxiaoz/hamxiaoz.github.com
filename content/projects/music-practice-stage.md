@@ -1,6 +1,6 @@
 ---
 title: "Music Practice Stage"
-description: "Metronome, session flip clock, practice notes, webcam mirror, and 50 themes for focused music practice."
+description: "Everything my kids need to practice music. Metronome, session flip clock, practice notes, webcam mirror, and 50 themes."
 tags: ["code", "music", "ai"]
 image: "/assets/images/project-music-practice-stage.png"
 live_url: "https://music-practice-stage.zurassic.com"

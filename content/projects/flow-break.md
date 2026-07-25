@@ -1,6 +1,6 @@
 ---
 title: "Flow Break"
-description: "You cannot stop vibe coding? This is for you - camera sitting timer with real-time video FX filters, breath animations, and gesture dismissal — 100% local processing."
+description: "You cannot stop vibe coding? This is for you — an AI-assisted Pomodoro timer that watches instead of counting: real-time video FX filters, breath animations, and gesture dismissal — 100% local processing."
 tags: ["code", "ai", "wellness"]
 image: "/assets/images/project-flow-break.png"
 live_url: "https://flow-break.zurassic.com"
