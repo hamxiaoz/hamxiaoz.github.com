@@ -5,6 +5,11 @@ role: "Dev Lead"
 tags: ["Angular", "Mobile", "Enterprise", "UX"]
 live_url: "https://itunes.apple.com/us/app/adp-mobile-solutions/id444553167?mt=8"
 weight: 3
+period: "2016 — 2018"
+highlights:
+  - "Led the team that built ADP Paycard — a net-new product inside one of the most widely used enterprise payroll apps"
+  - "Shipped features to a #1 Free Business App on the App Store, serving 13M registered users"
+  - "1st place at the internal UX Hackathon; \"Smart Use of API\" award with Google Home integration"
 ---
 
 - Led the engineering team that built ADP Paycard — a net-new product embedded in ADP Mobile Solutions, one of the most widely used enterprise payroll apps

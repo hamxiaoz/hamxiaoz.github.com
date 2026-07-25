@@ -1,0 +1,301 @@
+{{ define "main" }}
+{{ $work := (where site.RegularPages "Section" "work").ByWeight }}
+{{ $workSection := site.GetPage "/work" }}
+<section class="portfolio-section section-page work-v5">
+  <div class="section-inner">
+    {{ partial "work-variant-switcher.html" (dict "current" "work-v5") }}
+
+    <header class="wv-header">
+      <div class="section-label"><span class="section-label-text">Selected Work</span></div>
+      <h1 class="wv-title">Work<em>.</em></h1>
+      {{ with $workSection.Params.description }}<p class="wv-intro">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="wv5-roles">
+      {{ $ri := 0 }}
+      {{ range $work }}
+        {{ if .Params.role }}
+        {{ $ri = add $ri 1 }}
+        <article class="wv5-role">
+          <div class="wv5-num" aria-hidden="true">{{ printf "%02d" $ri }}</div>
+          <div class="wv5-eyebrow">
+            <span class="wv5-role-name">{{ .Params.role }}</span>
+            {{ with .Params.period }}<span class="wv5-period">{{ . }}</span>{{ end }}
+          </div>
+          <h3 class="wv5-company">{{ .Title }}</h3>
+          <div class="wv5-highlights">
+            {{ with .Params.highlights }}
+            <ul>
+              {{ range . }}<li>{{ . }}</li>{{ end }}
+            </ul>
+            {{ else }}
+            {{ .Content }}
+            {{ end }}
+          </div>
+          <div class="wv5-foot">
+            {{ with .Params.tags }}
+            <div class="wv-role-tags">
+              {{ range first 5 . }}<span class="card-tag">{{ . }}</span>{{ end }}
+            </div>
+            {{ end }}
+            {{ with .Params.live_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Launch ›</a>{{ end }}
+            {{ with .Params.article_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Learn more ›</a>{{ end }}
+          </div>
+        </article>
+        {{ end }}
+      {{ end }}
+    </div>
+
+    <div class="section-label">
+      <span class="section-label-text">Products &amp; Side Projects</span>
+    </div>
+
+    <div class="wv5-gallery">
+      {{ range $work }}
+        {{ $cat := partial "work-category.html" . }}
+        {{ if and (eq $cat "projects") .Params.image }}
+        <a class="wv5-tile"
+           href="{{ or .Params.article_url .Params.live_url .RelPermalink }}"
+           {{ if or .Params.article_url .Params.live_url }}target="_blank" rel="noopener noreferrer"{{ end }}>
+          <span class="wv5-tile-img"><img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy"></span>
+          <span class="wv5-tile-title">{{ .Title }}</span>
+          <span class="wv5-tile-co">{{ .Params.company }}</span>
+        </a>
+        {{ end }}
+      {{ end }}
+    </div>
+
+    <div class="section-label wv5-awards-label">
+      <span class="section-label-text">Education &amp; Awards</span>
+    </div>
+
+    <div class="wv5-awards">
+      {{ range $work }}
+        {{ $cat := partial "work-category.html" . }}
+        {{ if eq $cat "education" }}
+        {{ $p := . }}
+        {{ $href := or .Params.article_url .Params.live_url }}
+        <a class="wv5-award glass{{ if not $href }} wv5-award--dead{{ end }}"
+           href="{{ or $href .RelPermalink }}"
+           {{ if $href }}target="_blank" rel="noopener noreferrer"{{ end }}>
+          {{ with .Params.image }}
+          <span class="wv5-award-thumb"><img src="{{ . }}" alt="{{ $p.Title }}" loading="lazy"></span>
+          {{ else }}
+          <span class="wv5-award-thumb wv5-award-thumb--empty" aria-hidden="true"></span>
+          {{ end }}
+          <span class="wv5-award-body">
+            <span class="wv5-award-title">{{ .Title }}</span>
+            {{ with or .Params.description (delimit (.Params.tags | default (slice)) " · ") }}
+            <span class="wv5-award-desc">{{ . }}</span>
+            {{ end }}
+          </span>
+          {{ if $href }}<span class="wv5-award-go">›</span>{{ end }}
+        </a>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ partial "work-shared-css.html" . }}
+<style>
+/* ══ V5 — Final: big-type roles + grid gallery + awards strip ══ */
+.theme-zurassic .work-v5 .wv5-roles { margin-bottom: 80px; }
+.theme-zurassic .work-v5 .wv5-role {
+  position: relative;
+  padding: 60px 0;
+  border-top: 1px solid var(--t-border);
+  overflow: hidden;
+}
+.theme-zurassic .work-v5 .wv5-roles .wv5-role:last-child { border-bottom: 1px solid var(--t-border); }
+.theme-zurassic .work-v5 .wv5-num {
+  position: absolute;
+  top: 24px;
+  right: -8px;
+  font-family: var(--t-font-mono);
+  font-size: clamp(110px, 15vw, 180px);
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--t-border);
+  pointer-events: none;
+  user-select: none;
+}
+@supports not (-webkit-text-stroke: 1px black) {
+  .theme-zurassic .work-v5 .wv5-num { color: rgba(0,0,0,0.04); }
+}
+.theme-zurassic .work-v5 .wv5-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.theme-zurassic .work-v5 .wv5-role-name {
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-accent);
+}
+.theme-zurassic .work-v5 .wv5-period {
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+}
+.theme-zurassic .work-v5 .wv5-company {
+  font-family: var(--t-font-sans);
+  font-size: clamp(34px, 5vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  color: var(--t-text);
+  margin: 0 0 22px;
+  max-width: 78%;
+  position: relative;
+}
+.theme-zurassic .work-v5 .wv5-highlights {
+  font-size: 14.5px;
+  color: var(--t-text-mid);
+  line-height: 1.65;
+  max-width: 640px;
+  position: relative;
+}
+.theme-zurassic .work-v5 .wv5-highlights ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.theme-zurassic .work-v5 .wv5-highlights li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 10px;
+}
+.theme-zurassic .work-v5 .wv5-highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 8px;
+  height: 1px;
+  background: var(--t-accent);
+}
+.theme-zurassic .work-v5 .wv5-foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-top: 24px;
+  position: relative;
+}
+.theme-zurassic .work-v5 .wv5-foot .wv-role-tags { margin-top: 0; }
+
+/* Gallery grid */
+.theme-zurassic .work-v5 .wv5-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px 16px;
+  margin-bottom: 80px;
+}
+.theme-zurassic .work-v5 .wv5-tile { display: block; }
+.theme-zurassic .work-v5 .wv5-tile-img {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--t-radius);
+  border: 1px solid var(--t-border);
+  margin-bottom: 12px;
+  background: var(--t-surface);
+}
+.theme-zurassic .work-v5 .wv5-tile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.theme-zurassic .work-v5 .wv5-tile:hover .wv5-tile-img img { transform: scale(1.04); }
+.theme-zurassic .work-v5 .wv5-tile-title {
+  display: block;
+  font-family: var(--t-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t-text);
+  margin-bottom: 3px;
+  transition: color 0.15s;
+}
+.theme-zurassic .work-v5 .wv5-tile:hover .wv5-tile-title { color: var(--t-accent); }
+.theme-zurassic .work-v5 .wv5-tile-co {
+  display: block;
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+}
+
+/* Awards strip */
+.theme-zurassic .work-v5 .wv5-awards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 720px;
+}
+.theme-zurassic .work-v5 .wv5-award {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px 12px 12px;
+}
+.theme-zurassic .work-v5 .wv5-award-thumb {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--t-border);
+  background: var(--t-surface);
+}
+.theme-zurassic .work-v5 .wv5-award-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.theme-zurassic .work-v5 .wv5-award-thumb--empty {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+.theme-zurassic .work-v5 .wv5-award-body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.theme-zurassic .work-v5 .wv5-award-title {
+  font-family: var(--t-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t-text);
+}
+.theme-zurassic .work-v5 .wv5-award-desc {
+  font-size: 12.5px;
+  color: var(--t-text-mid);
+  line-height: 1.5;
+}
+.theme-zurassic .work-v5 .wv5-award-go {
+  font-size: 16px;
+  color: var(--t-text-dim);
+  transition: color 0.15s, transform 0.2s;
+}
+.theme-zurassic .work-v5 .wv5-award:hover .wv5-award-go {
+  color: var(--t-accent);
+  transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+  .theme-zurassic .work-v5 .wv5-company { max-width: 100%; }
+  .theme-zurassic .work-v5 .wv5-num { font-size: 84px; top: 18px; }
+  .theme-zurassic .work-v5 .wv5-role { padding: 42px 0; }
+  .theme-zurassic .work-v5 .wv5-eyebrow { flex-wrap: wrap; gap: 6px 16px; }
+}
+</style>
+{{ end }}

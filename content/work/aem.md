@@ -5,6 +5,11 @@ role: "Software Engineer & Architect"
 tags: ["C++", "C#", "Win32", "Real-time"]
 article_url: "https://www.youtube.com/watch?v=tyyQgcu2kXI"
 weight: 3
+period: "2008 — 2016"
+highlights:
+  - "Sole architect and engineer across the full AEM software portfolio — native desktop, web, developer tooling, and USB driver"
+  - "Built AEMTuner, an industry-leading real-time engine tuning software in C++ and C#"
+  - "Architected the end-to-end software distribution pipeline: release server, download portal, and zero-install auto-updater"
 ---
 
 - Sole architect and engineer across the full AEM software portfolio — spanning native desktop (C++/C#), web (Meteor/Node.js), developer tooling (DSL) and USB driver

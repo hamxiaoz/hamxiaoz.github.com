@@ -5,6 +5,11 @@ role: "Venture CTO"
 tags: ["IoT", "AI", "Web", "AWS/Azure/GCP", "Mobile", "Enterprise"]
 article_url: "https://medium.com/bcgdv-engineering/12-things-i-wish-id-known-before-becoming-a-lead-engineer-91d2508f3a6"
 weight: 2
+period: "2018 — 2021"
+highlights:
+  - "Venture CTO at BCG X, building startups from zero to launch across IoT, AI, and consumer health"
+  - "Launched BCG Digital Ventures' first venture in Singapore, leading a 10+ person full-stack team"
+  - "Architected and shipped an enterprise IoT platform spanning cloud, frontend, and hardware integration"
 ---
 
 - Served as Venture CTO and engineering lead at BCG X, building startups from zero to launch across IoT, AI, and consumer health
