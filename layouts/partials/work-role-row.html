@@ -1,0 +1,23 @@
+{{- /* Typographic career row. Params: page, index, class (optional) */ -}}
+{{- $p := .page -}}
+<article class="wv-role {{ with .class }}{{ . }}{{ end }}" data-cat="career">
+  <div class="wv-role-num" aria-hidden="true">{{ printf "%02d" .index }}</div>
+  <div class="wv-role-main">
+    {{ with $p.Params.role }}<p class="wv-role-eyebrow">{{ . }}</p>{{ end }}
+    <h3 class="wv-role-company">{{ $p.Title }}</h3>
+    <div class="wv-role-bullets">{{ $p.Content }}</div>
+    {{ with $p.Params.tags }}
+    <div class="wv-role-tags">
+      {{ range . }}<span class="card-tag">{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+    <div class="wv-role-foot">
+      {{ with $p.Params.live_url }}
+      <a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Launch ›</a>
+      {{ end }}
+      {{ with $p.Params.article_url }}
+      <a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Learn more ›</a>
+      {{ end }}
+    </div>
+  </div>
+</article>

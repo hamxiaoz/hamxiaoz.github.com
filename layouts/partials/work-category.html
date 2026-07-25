@@ -1,0 +1,8 @@
+{{- /* Returns the work category slug for a work page: career | education | projects */ -}}
+{{- $cat := "projects" -}}
+{{- if .Params.role -}}
+  {{- $cat = "career" -}}
+{{- else if eq .Params.company "Education & Awards" -}}
+  {{- $cat = "education" -}}
+{{- end -}}
+{{- return $cat -}}

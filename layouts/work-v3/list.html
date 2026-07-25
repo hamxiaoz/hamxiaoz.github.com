@@ -1,0 +1,217 @@
+{{ define "main" }}
+{{ $work := (where site.RegularPages "Section" "work").ByWeight }}
+{{ $workSection := site.GetPage "/work" }}
+<section class="portfolio-section section-page work-v3">
+  <div class="section-inner">
+    {{ partial "work-variant-switcher.html" (dict "current" 3) }}
+
+    <header class="wv-header">
+      <div class="section-label"><span class="section-label-text">Selected Work</span></div>
+      <h1 class="wv-title">Work<em>.</em></h1>
+      {{ with $workSection.Params.description }}<p class="wv-intro">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="tag-filter" id="cat-filter">
+      <button class="tag-filter-btn active" data-cat="all">All</button>
+      <button class="tag-filter-btn" data-cat="career">Career</button>
+      <button class="tag-filter-btn" data-cat="projects">Products &amp; Tools</button>
+      <button class="tag-filter-btn" data-cat="education">Education &amp; Awards</button>
+    </div>
+
+    <div class="wv3-mosaic">
+      {{ $ci := 0 }}{{ $mi := 0 }}
+      {{ range $work }}
+        {{ $cat := partial "work-category.html" . }}
+        {{ if .Params.role }}
+          {{/* Typographic career tile — interleaved via order so the mosaic mixes */}}
+          <a class="wv3-tile wv3-tile--career glass"
+             data-cat="career"
+             style="order: {{ mul $ci 4 }};"
+             href="{{ or .Params.article_url .Params.live_url .RelPermalink }}"
+             {{ if or .Params.article_url .Params.live_url }}target="_blank" rel="noopener noreferrer"{{ end }}>
+            <span class="wv3-career-ghost" aria-hidden="true">{{ printf "%02d" (add $ci 1) }}</span>
+            <span class="wv3-career-top">
+              {{ with .Params.role }}<span class="wv3-career-role">{{ . }}</span>{{ end }}
+              <span class="wv3-career-company">{{ .Params.company }}</span>
+            </span>
+            <span class="wv3-career-tags">
+              {{ range first 3 .Params.tags }}<span class="card-tag">{{ . }}</span>{{ end }}
+            </span>
+          </a>
+          {{ $ci = add $ci 1 }}
+        {{ else if .Params.image }}
+          <a class="wv3-tile wv3-tile--img{{ if eq (mod $mi 4) 2 }} wv3-tile--wide{{ end }}"
+             data-cat="{{ $cat }}"
+             style="order: {{ add (add $mi 1) (div $mi 3) }};"
+             href="{{ or .Params.article_url .Params.live_url .RelPermalink }}"
+             {{ if or .Params.article_url .Params.live_url }}target="_blank" rel="noopener noreferrer"{{ end }}>
+            <img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy">
+            <span class="wv3-cap">
+              <span class="wv3-cap-title">{{ .Title }}</span>
+              <span class="wv3-cap-co">{{ .Params.company }}</span>
+            </span>
+          </a>
+          {{ $mi = add $mi 1 }}
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ partial "work-shared-css.html" . }}
+<style>
+/* ══ V3 — Gallery-first mosaic ══ */
+.theme-zurassic .work-v3 .wv3-mosaic {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 140px;
+  grid-auto-flow: dense;
+  gap: 14px;
+}
+.theme-zurassic .work-v3 .wv3-tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--t-radius);
+  display: block;
+}
+
+/* Image tiles */
+.theme-zurassic .work-v3 .wv3-tile--img {
+  grid-column: span 2;
+  grid-row: span 2;
+  border: 1px solid var(--t-border);
+}
+.theme-zurassic .work-v3 .wv3-tile--wide { grid-column: span 3; }
+.theme-zurassic .work-v3 .wv3-tile--img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.theme-zurassic .work-v3 .wv3-tile--img:hover img { transform: scale(1.05); }
+.theme-zurassic .work-v3 .wv3-cap {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 40px 16px 14px;
+  background: linear-gradient(transparent, rgba(20,20,20,0.78));
+  opacity: 0;
+  transition: opacity 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.theme-zurassic .work-v3 .wv3-tile--img:hover .wv3-cap { opacity: 1; }
+@media (hover: none) {
+  .theme-zurassic .work-v3 .wv3-cap { opacity: 1; }
+}
+.theme-zurassic .work-v3 .wv3-cap-title {
+  font-family: var(--t-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+.theme-zurassic .work-v3 .wv3-cap-co {
+  font-family: var(--t-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+}
+
+/* Typographic career tiles */
+.theme-zurassic .work-v3 .wv3-tile--career {
+  grid-column: span 3;
+  grid-row: span 2;
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.theme-zurassic .work-v3 .wv3-tile--career::after {
+  content: '';
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 60px; height: 60px;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+.theme-zurassic .work-v3 .wv3-career-ghost {
+  position: absolute;
+  right: 10px; bottom: -14px;
+  font-family: var(--t-font-mono);
+  font-size: 110px;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--t-border);
+  pointer-events: none;
+  user-select: none;
+  transition: -webkit-text-stroke-color 0.3s;
+}
+@supports not (-webkit-text-stroke: 1px black) {
+  .theme-zurassic .work-v3 .wv3-career-ghost { color: rgba(0,0,0,0.05); }
+}
+.theme-zurassic .work-v3 .wv3-tile--career:hover .wv3-career-ghost {
+  -webkit-text-stroke-color: rgba(147,34,16,0.3);
+}
+.theme-zurassic .work-v3 .wv3-career-top { display: block; }
+.theme-zurassic .work-v3 .wv3-career-role {
+  display: block;
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-accent);
+  margin-bottom: 10px;
+}
+.theme-zurassic .work-v3 .wv3-career-company {
+  display: block;
+  font-family: var(--t-font-sans);
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--t-text);
+  max-width: 80%;
+}
+.theme-zurassic .work-v3 .wv3-career-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .theme-zurassic .work-v3 .wv3-mosaic {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 120px;
+  }
+  .theme-zurassic .work-v3 .wv3-tile--img,
+  .theme-zurassic .work-v3 .wv3-tile--wide { grid-column: span 1; grid-row: span 1; }
+  .theme-zurassic .work-v3 .wv3-tile--career { grid-column: span 2; grid-row: span 2; }
+  .theme-zurassic .work-v3 .wv3-career-ghost { font-size: 80px; }
+}
+</style>
+
+<script>
+(function() {
+  var filterBtns = document.querySelectorAll('.work-v3 .tag-filter-btn');
+  var items = document.querySelectorAll('.work-v3 .wv3-tile');
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var cat = this.dataset.cat;
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      items.forEach(function(item) {
+        var show = cat === 'all' || item.dataset.cat === cat;
+        item.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+{{ end }}

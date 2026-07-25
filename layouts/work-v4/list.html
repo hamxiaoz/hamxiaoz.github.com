@@ -1,0 +1,196 @@
+{{ define "main" }}
+{{ $work := (where site.RegularPages "Section" "work").ByWeight }}
+{{ $workSection := site.GetPage "/work" }}
+{{/* Approximate years for the mockup — replace with real `year` frontmatter if this variant wins */}}
+{{ $years := dict
+  "insulet" 2021
+  "bcg" 2018
+  "adp" 2016
+  "aem" 2011
+  "hackathon" 2017
+  "dale-carnegie" 2017
+  "ux-bootcamp" 2016
+  "release-server" 2015
+  "atom-syntax" 2015
+  "infinity-tuner" 2014
+  "freelance" 2013
+  "aq1" 2013
+  "software-updater" 2013
+  "cmserver" 2012
+  "cmtool" 2012
+}}
+{{ $entries := slice }}
+{{ range $work }}
+  {{ $y := 2010 }}
+  {{ with index $years .File.ContentBaseName }}{{ $y = . }}{{ end }}
+  {{ $bonus := 0 }}
+  {{ if .Params.role }}{{ $bonus = 1 }}{{ end }}
+  {{ $entries = $entries | append (dict "year" $y "key" (add (mul $y 10) $bonus) "page" .) }}
+{{ end }}
+{{ $entries = sort $entries "key" "desc" }}
+
+<section class="portfolio-section section-page work-v4">
+  <div class="section-inner">
+    {{ partial "work-variant-switcher.html" (dict "current" 4) }}
+
+    <header class="wv-header">
+      <div class="section-label"><span class="section-label-text">Selected Work</span></div>
+      <h1 class="wv-title">Work<em>.</em></h1>
+      {{ with $workSection.Params.description }}<p class="wv-intro">{{ . }}</p>{{ end }}
+    </header>
+
+    <div class="tag-filter wv4-eras">
+      <a class="tag-filter-btn" href="#y2021" data-target="y2021">2021 · Insulet</a>
+      <a class="tag-filter-btn" href="#y2018" data-target="y2018">2018 · BCG</a>
+      <a class="tag-filter-btn" href="#y2016" data-target="y2016">2016 · ADP</a>
+      <a class="tag-filter-btn" href="#y2011" data-target="y2011">2011 · AEM</a>
+    </div>
+
+    <div class="wv4-timeline">
+      {{ $prev := 0 }}
+      {{ $ri := 0 }}
+      {{ range $entries }}
+        {{ if ne .year $prev }}
+        <div class="wv4-year" id="y{{ .year }}"><span>{{ .year }}</span></div>
+        {{ $prev = .year }}
+        {{ end }}
+        {{ if .page.Params.role }}
+          {{ $ri = add $ri 1 }}
+          {{ partial "work-role-row.html" (dict "page" .page "index" $ri "class" "wv4-role") }}
+        {{ else }}
+        {{ $p := .page }}
+        {{ $href := or $p.Params.article_url $p.Params.live_url }}
+        <a class="wv4-item glass{{ if not $href }} wv4-item--dead{{ end }}"
+           href="{{ or $href $p.RelPermalink }}"
+           {{ if $href }}target="_blank" rel="noopener noreferrer"{{ end }}>
+          {{ with $p.Params.image }}
+          <span class="wv4-item-thumb"><img src="{{ . }}" alt="{{ $p.Title }}" loading="lazy"></span>
+          {{ else }}
+          <span class="wv4-item-thumb wv4-item-thumb--empty" aria-hidden="true"></span>
+          {{ end }}
+          <span class="wv4-item-body">
+            <span class="wv4-item-title">{{ $p.Title }}</span>
+            {{ with or $p.Params.description (delimit ($p.Params.tags | default (slice)) " · ") }}
+            <span class="wv4-item-desc">{{ . }}</span>
+            {{ end }}
+          </span>
+          <span class="wv4-item-co">{{ $p.Params.company }}</span>
+        </a>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ partial "work-shared-css.html" . }}
+<style>
+/* ══ V4 — Career timeline ══ */
+.theme-zurassic .work-v4 .wv4-timeline {
+  position: relative;
+  margin-left: 8px;
+  padding-left: 48px;
+  border-left: 2px solid var(--t-border);
+}
+.theme-zurassic .work-v4 .wv4-year {
+  position: relative;
+  margin: 56px 0 20px;
+  scroll-margin-top: 100px;
+}
+.theme-zurassic .work-v4 .wv4-year:first-child { margin-top: 8px; }
+.theme-zurassic .work-v4 .wv4-year span {
+  font-family: var(--t-font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--t-text-dim);
+}
+.theme-zurassic .work-v4 .wv4-year::before {
+  content: '';
+  position: absolute;
+  left: -55px;
+  top: 8px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--t-accent);
+  box-shadow: 0 0 0 4px var(--t-bg);
+}
+
+/* Career rows sit directly on the rail, slightly compacted */
+.theme-zurassic .work-v4 .wv4-role { padding: 28px 0 36px; border-top: none; }
+.theme-zurassic .work-v4 .wv4-role .wv-role-num,
+.theme-zurassic .work-v4 .wv-role-num { font-size: clamp(40px, 5vw, 64px); }
+
+/* Compact project rows */
+.theme-zurassic .work-v4 .wv4-item {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px 14px 14px;
+  margin-bottom: 10px;
+}
+.theme-zurassic .work-v4 .wv4-item-thumb {
+  display: block;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--t-border);
+  background: var(--t-surface);
+}
+.theme-zurassic .work-v4 .wv4-item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.theme-zurassic .work-v4 .wv4-item-thumb--empty {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+.theme-zurassic .work-v4 .wv4-item-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.theme-zurassic .work-v4 .wv4-item-title {
+  font-family: var(--t-font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--t-text);
+}
+.theme-zurassic .work-v4 .wv4-item-desc {
+  font-size: 13px;
+  color: var(--t-text-mid);
+  line-height: 1.5;
+}
+.theme-zurassic .work-v4 .wv4-item-co {
+  font-family: var(--t-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .theme-zurassic .work-v4 .wv4-timeline { padding-left: 24px; margin-left: 4px; }
+  .theme-zurassic .work-v4 .wv4-year::before { left: -31px; }
+  .theme-zurassic .work-v4 .wv4-item { grid-template-columns: 44px 1fr; }
+  .theme-zurassic .work-v4 .wv4-item-thumb { width: 44px; height: 44px; }
+  .theme-zurassic .work-v4 .wv4-item-co { display: none; }
+}
+</style>
+
+<script>
+(function() {
+  var pills = document.querySelectorAll('.wv4-eras .tag-filter-btn');
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function(e) {
+      var target = document.getElementById(this.getAttribute('data-target'));
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.scrollY - 100;
+      window.scrollTo({ top: top, behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+{{ end }}

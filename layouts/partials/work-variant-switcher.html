@@ -1,0 +1,8 @@
+{{- /* Mockup-only chrome: jump between the 4 /work redesign variants. Param: current (1-4) */ -}}
+{{- $current := .current -}}
+<div class="wv-switch" role="navigation" aria-label="Mockup variants">
+  <span class="wv-switch-label">Mockup {{ $current }}/4</span>
+  {{ range $n, $name := (slice "Editorial" "Chapters" "Mosaic" "Timeline") }}
+  <a href="/work-v{{ add $n 1 }}/" {{ if eq (add $n 1) $current }}class="active"{{ end }}>{{ add $n 1 }} {{ $name }}</a>
+  {{ end }}
+</div>
