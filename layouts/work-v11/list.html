@@ -116,11 +116,9 @@
 .theme-zurassic .work-v11 .wv11-foot { margin: 26px 0 30px; }
 .theme-zurassic .work-v11 .wv11-tags { margin-top: 0; }
 
-.theme-zurassic .work-v11 .wv11-tiles {
-  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
-  gap: 22px 14px;
-  margin-bottom: 0;
-}
+/* Column count comes from the shared count modifiers (n1/n2/n3), so a company
+   with one or two products fills the row instead of stranding a small tile. */
+.theme-zurassic .work-v11 .wv11-tiles { margin-bottom: 0; }
 /* Capped tile width: several source shots are small (freelance is 212px square),
    so a full-bleed stretch would upscale them into mush. */
 .theme-zurassic .work-v11 .wv11-shots {

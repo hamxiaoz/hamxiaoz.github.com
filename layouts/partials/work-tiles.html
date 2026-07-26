@@ -1,6 +1,10 @@
-{{- /* Project tile grid from an explicit page slice. Params: pages, class (optional) */ -}}
-<div class="wv-gallery {{ with .class }}{{ . }}{{ end }}">
-  {{ range .pages }}
+{{- /* Project tile grid from an explicit page slice. Params: pages, class (optional)
+       Adds a count modifier (n1/n2/n3) so a company with only a couple of products
+       gets large showcase images that fill the row instead of a lonely small tile. */ -}}
+{{- $pages := .pages -}}
+{{- $n := len $pages -}}
+<div class="wv-gallery{{ if and (gt $n 0) (le $n 3) }} wv-gallery--n{{ $n }}{{ end }}{{ with .class }} {{ . }}{{ end }}">
+  {{ range $pages }}
   <a class="wv-gtile"
      href="{{ or .Params.article_url .Params.live_url .RelPermalink }}"
      {{ if or .Params.article_url .Params.live_url }}target="_blank" rel="noopener noreferrer"{{ end }}>

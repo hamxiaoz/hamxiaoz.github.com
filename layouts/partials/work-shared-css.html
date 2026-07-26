@@ -320,6 +320,62 @@
   text-transform: uppercase;
   color: var(--t-text-dim);
 }
+/* ── Count-aware gallery sizing ──────────────────────────────────────────
+   A company with 1-2 shipped products should show them large enough to fill
+   the row; only a long list (AEM) earns small thumbnails. */
+.theme-zurassic .wv-gallery--n1,
+.theme-zurassic .wv-gallery--n2,
+.theme-zurassic .wv-gallery--n3 { gap: 24px; }
+.theme-zurassic .wv-gallery--n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.theme-zurassic .wv-gallery--n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.theme-zurassic .wv-gallery--n1 { grid-template-columns: minmax(0, 1fr); }
+
+/* Aspect ratio lives on the wrapper span (the img is height:100%), so it has to
+   be overridden there — setting it on the img has no effect. */
+.theme-zurassic .wv-gallery--n1 .wv-gtile-img,
+.theme-zurassic .wv-gallery--n2 .wv-gtile-img,
+.theme-zurassic .wv-gallery--n3 .wv-gtile-img {
+  margin-bottom: 14px;
+  aspect-ratio: 16 / 10;
+}
+
+/* A single product becomes a feature row: image left, name and blurb right,
+   so the section fills its width without a stranded tile. */
+.theme-zurassic .wv-gallery--n1 .wv-gtile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 36px;
+  align-items: center;
+}
+.theme-zurassic .wv-gallery--n1 .wv-gtile-img {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  margin-bottom: 0;
+}
+.theme-zurassic .wv-gallery--n1 .wv-gtile-title {
+  grid-column: 2;
+  align-self: end;
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+.theme-zurassic .wv-gallery--n1 .wv-gtile-desc {
+  grid-column: 2;
+  align-self: start;
+  -webkit-line-clamp: 4;
+  font-size: 14px;
+}
+@media (max-width: 700px) {
+  .theme-zurassic .wv-gallery--n2,
+  .theme-zurassic .wv-gallery--n3 { grid-template-columns: minmax(0, 1fr); }
+  .theme-zurassic .wv-gallery--n1 .wv-gtile {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 12px;
+  }
+  .theme-zurassic .wv-gallery--n1 .wv-gtile-img { grid-column: 1; grid-row: 1; }
+  .theme-zurassic .wv-gallery--n1 .wv-gtile-title,
+  .theme-zurassic .wv-gallery--n1 .wv-gtile-desc { grid-column: 1; }
+}
+
 /* Sentence-case caption — for tiles already grouped under their company */
 .theme-zurassic .wv-gtile-desc {
   display: -webkit-box;
