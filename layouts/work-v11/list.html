@@ -14,7 +14,6 @@
     {{ $lead := $s.lead }}
     <section class="wv11-co">
       <header class="wv11-head">
-        <span class="wv11-num" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
         {{ partial "work-logo.html" (dict "page" $lead "class" "wv11-logo") }}
         <h2 class="wv11-company">{{ $lead.Title }}</h2>
         <span class="wv11-rule"></span>
@@ -24,19 +23,16 @@
         </span>
       </header>
 
-      <div class="wv11-body">
-        {{ partial "work-bullets.html" (dict "page" $lead "class" "wv11-hl") }}
-        <div class="wv11-side">
-          {{ with $lead.Params.tags }}
-          <div class="wv-role-tags wv11-tags">
-            {{ range first 6 . }}<span class="card-tag">{{ . }}</span>{{ end }}
-          </div>
-          {{ end }}
-          <div class="wv11-links">
-            {{ with $lead.Params.live_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Launch ›</a>{{ end }}
-            {{ with $lead.Params.article_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Learn more ›</a>{{ end }}
-          </div>
+      {{ partial "work-bullets.html" (dict "page" $lead "class" "wv11-hl") }}
+
+      <div class="wv-foot wv11-foot">
+        {{ with $lead.Params.tags }}
+        <div class="wv-role-tags wv11-tags">
+          {{ range first 6 . }}<span class="card-tag">{{ . }}</span>{{ end }}
         </div>
+        {{ end }}
+        {{ with $lead.Params.live_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Launch ›</a>{{ end }}
+        {{ with $lead.Params.article_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Learn more ›</a>{{ end }}
       </div>
 
       {{ if $s.tiles }}
@@ -66,7 +62,7 @@
 
 {{ partial "work-shared-css.html" . }}
 <style>
-/* ══ V11 — Dossier: numbered chapter header, columned bullets, grid below ══ */
+/* ══ V11 — Dossier: chapter header, 3-column bullets, tags row, grid below ══ */
 .theme-zurassic .work-v11 .wv11-intro { max-width: 620px; margin-bottom: 48px; }
 .theme-zurassic .work-v11 .wv11-co { margin-bottom: 76px; }
 
@@ -77,14 +73,6 @@
   padding-bottom: 14px;
   border-bottom: 1px solid var(--t-border-strong);
   margin-bottom: 24px;
-}
-.theme-zurassic .work-v11 .wv11-num {
-  font-family: var(--t-font-mono);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--t-accent);
-  flex-shrink: 0;
 }
 /* Logo sits inline in the chapter header, aligned with the company name */
 .theme-zurassic .work-v11 .wv11-logo {
@@ -115,22 +103,18 @@
   flex-shrink: 0;
 }
 
-.theme-zurassic .work-v11 .wv11-body {
-  display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 44px;
-  align-items: start;
-  margin-bottom: 30px;
-}
+/* Bullets span the full width, one per column. Grid (not CSS columns) so each
+   highlight keeps its own column instead of being balanced by text height. */
 .theme-zurassic .work-v11 .wv11-hl { max-width: none; }
 .theme-zurassic .work-v11 .wv11-hl ul {
-  columns: 2;
-  column-gap: 44px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 40px;
 }
-.theme-zurassic .work-v11 .wv11-hl li { break-inside: avoid; }
-.theme-zurassic .work-v11 .wv11-side { display: flex; flex-direction: column; gap: 16px; }
+.theme-zurassic .work-v11 .wv11-hl li { margin-bottom: 0; }
+
+.theme-zurassic .work-v11 .wv11-foot { margin: 26px 0 30px; }
 .theme-zurassic .work-v11 .wv11-tags { margin-top: 0; }
-.theme-zurassic .work-v11 .wv11-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
 
 .theme-zurassic .work-v11 .wv11-tiles {
   grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
@@ -161,13 +145,16 @@
 }
 .theme-zurassic .work-v11 .wv11-ph { height: 140px; max-width: 620px; }
 
+@media (max-width: 1000px) {
+  .theme-zurassic .work-v11 .wv11-hl ul { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 860px) {
-  .theme-zurassic .work-v11 .wv11-body { grid-template-columns: 1fr; gap: 22px; }
-  .theme-zurassic .work-v11 .wv11-hl ul { columns: 1; }
   .theme-zurassic .work-v11 .wv11-head { flex-wrap: wrap; gap: 8px 14px; }
   .theme-zurassic .work-v11 .wv11-rule { display: none; }
-  .theme-zurassic .work-v11 .wv11-links { flex-direction: row; gap: 20px; }
   .theme-zurassic .work-v11 .wv11-co { margin-bottom: 56px; }
+}
+@media (max-width: 660px) {
+  .theme-zurassic .work-v11 .wv11-hl ul { grid-template-columns: 1fr; }
 }
 </style>
 {{ end }}
