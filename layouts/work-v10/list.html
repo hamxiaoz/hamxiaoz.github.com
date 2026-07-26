@@ -76,8 +76,10 @@
 
 /* Column split per product count — the text block widens when there is little
    product imagery to show, so no section is left with an empty column. */
+/* A lone product keeps one column, so every product tile on the page shares the
+   same width and sits in the same grid position; column three stays open. */
 .theme-zurassic .work-v10 .wv10-body--t1w .wv10-text { grid-column: span 1; }
-.theme-zurassic .work-v10 .wv10-body--t1w .wv10-products { grid-column: span 2; --cols: 1; }
+.theme-zurassic .work-v10 .wv10-body--t1w .wv10-products { grid-column: span 1; --cols: 1; }
 .theme-zurassic .work-v10 .wv10-body--t1p2 .wv10-text { grid-column: span 1; }
 .theme-zurassic .work-v10 .wv10-body--t1p2 .wv10-products { grid-column: span 2; --cols: 2; }
 .theme-zurassic .work-v10 .wv10-body--t1p3 .wv10-text { grid-column: span 1; }
@@ -91,9 +93,12 @@
   gap: 24px 16px;
   margin-bottom: 0;
 }
+/* Two products span two outer columns, so matching the outer 40px gutter makes
+   these tiles exactly as wide as a single-product tile — one grid, no drift. */
+.theme-zurassic .work-v10 .wv10-body--t1p2 .wv-gallery { column-gap: 40px; }
 /* Wider crops where tiles are large; square where they are small and numerous */
-.theme-zurassic .work-v10 .wv10-body--t1p2 .wv-gtile-img { aspect-ratio: 4 / 3; }
-.theme-zurassic .work-v10 .wv10-body--t1w .wv-gtile-img { aspect-ratio: 16 / 10; }
+.theme-zurassic .work-v10 .wv10-body--t1p2 .wv-gtile-img,
+.theme-zurassic .work-v10 .wv10-body--t1w .wv-gtile-img { aspect-ratio: 4 / 3; }
 .theme-zurassic .work-v10 .wv10-hl { max-width: none; }
 .theme-zurassic .work-v10 .wv10-foot { margin-top: 20px; }
 
