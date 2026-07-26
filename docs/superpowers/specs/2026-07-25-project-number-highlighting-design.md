@@ -2,9 +2,13 @@
 
 Date: 2026-07-25
 Branch: `work-redesign-mockups`
-Status: shipped — treatment **A (Ink)** chosen after previewing all three at
-`/projects-num/`. That mockup page has been deleted. Content markup is left to
-the author; no project description carries a marker yet.
+Status: shipped — treatment **B (Marker)** is live.
+
+Ink (A) was chosen first and reverted. Once ten markers were on the page and several
+held prose rather than numbers, colouring the words in `--t-accent-hover` made them
+read as links: that red is also the `.proj-story` link colour. Marker moves the colour
+behind the text instead of into it, so nothing coloured is unclickable. See "Visual
+treatments" for the two extra options that were rendered during the second pass.
 
 ## Problem
 
@@ -95,8 +99,8 @@ A description with no marker renders exactly as it does today.
 Three options, all driven by the identical `.proj-num` markup. Only the CSS block differs,
 so the final pick is a one-block swap.
 
-**A — Ink. CHOSEN.** Bold, accent red, in the sentence flow. Now lives in
-`static/assets/css/zurassic.css` beside `.proj-desc`.
+**A — Ink.** Bold, accent red, in the sentence flow. Chosen first, then reverted — see
+Status. Fine for short numeric spans, wrong once markers hold prose.
 
 ```css
 .proj-num { font-weight: 700; color: var(--t-accent-hover); }
@@ -105,19 +109,54 @@ so the final pick is a one-block swap.
 Quietest and most editorial. Zero layout shift. Uses `--t-accent-hover` (0.90 alpha) rather
 than `--t-accent` (0.67) for adequate contrast against `--t-text-mid` body copy.
 
-**B — Marker.** Highlighter swipe behind unchanged text.
+**B — Marker. CHOSEN.** A highlighter wash over otherwise untouched text. Lives in
+`static/assets/css/zurassic.css` beside `.proj-desc`.
 
 ```css
-.proj-num {
-  font-weight: 500;
-  color: var(--t-text);
-  background-image: linear-gradient(transparent 58%, rgba(147,34,16,0.14) 58%,
-                                    rgba(147,34,16,0.14) 92%, transparent 92%);
-  padding: 0 2px;
+.theme-zurassic .proj-num {
+  font-weight: inherit;
+  padding: 0.04em 3px;
+  margin: 0 -3px;
+  border-radius: 2px;
+  background-image: linear-gradient(180deg,
+    rgba(147,34,16,0.13) 0%,
+    rgba(147,34,16,0.21) 45%,
+    rgba(147,34,16,0.17) 100%);
 }
 ```
 
-Reads literally as "highlighted" and scans well. Risk: gimmicky when many rows carry one.
+Four things this went through, each worth not repeating:
+
+- **Band geometry.** The first attempt ran 58%→92% at 0.14 alpha, leaving a gap above and
+  below. It read as a strikethrough. The shipped version is a full graded wash, densest
+  around 45%, like ink pooling.
+- **Don't stack emphasis.** The first shipped version also set `font-weight: 500` and
+  `color: var(--t-text)`. Three signals at once (darker, heavier, washed) made the marked
+  phrases outshout the bold project titles. A real highlighter changes neither the ink nor
+  the handwriting — only the wash. Both overrides were removed. Testing proved the band
+  alpha was never the problem: fading it to 0.10 while keeping weight and colour still felt
+  heavy, and raising it to 0.22 with plain text still felt lighter.
+- **`font-weight: inherit` is load-bearing.** `.proj-num` renders as `<strong>`, so dropping
+  the explicit weight does *not* give you the body weight — the UA default bold takes over
+  and the result is heavier than what you removed. Caught by reading computed styles, not
+  by looking.
+- **Overshoot has a ceiling.** Vertical padding on an inline box expands the paint area
+  without changing line height, which is what lets the wash clear the letters. But
+  `line-height: 1.6` on 14px gives a 22.4px line box, and at `0.18em` the stroke is 22.0px —
+  wrapped fragments end up 0.4px apart and read as one solid block. Measured ladder:
+
+  | Overshoot | Stroke | Gap between wrapped lines |
+  |---|---|---|
+  | 0 | 17.0px | 5.4px |
+  | 0.04em (shipped) | 18.1px | 4.3px |
+  | 0.07em | 18.9px | 3.5px |
+  | 0.10em | 19.8px | 2.6px |
+  | 0.18em | 22.0px | 0.4px |
+
+  If `line-height` on `.proj-desc` ever drops, re-check this — it fails silently.
+
+Survives density better than Ink: with ten markers on the page the wash reads as background
+texture rather than ten competing coloured words.
 
 **C — Tab.** Mono pill, baseline-aligned inline.
 
@@ -136,7 +175,20 @@ Reads literally as "highlighted" and scans well. Risk: gimmicky when many rows c
 ```
 
 Strongest scannability; echoes the existing `.proj-status` and `.proj-tag` pills. Breaks
-sentence rhythm the most.
+sentence rhythm the most, and got worse as markers grew longer than a bare number.
+
+**D — Weight.** Near-black bold, no colour at all.
+
+```css
+.proj-num { font-weight: 700; color: var(--t-text); }
+```
+
+Added in the second pass. The most direct answer to the link problem and the quietest
+option; runner-up to Marker, and the fallback if the swipe ever feels like too much.
+
+**E — Underline.** Dark semibold over an accent rule. Added in the second pass and
+immediately rejected: an underline is *the* link signifier, so it reads more clickable
+than Ink did. Recorded so nobody proposes it again.
 
 ## Mockup delivery (removed)
 
@@ -150,12 +202,17 @@ idea needs a taller band (roughly 12%→90%) and more alpha.
 
 ## Verification
 
-- `hugo` builds without error.
-- With `==34k+ downloads==` temporarily added to `monokai-slate.md`, `/projects` renders
-  `<strong class="proj-num">34k+ downloads</strong>`; the marker was then reverted.
-- `<meta name="description">` on the project single page `/projects/monokai-slate/`
-  (no permalink override for `projects` in `hugo.toml`, so it renders via
-  `layouts/_default/single.html`) contains no `==`.
+- `hugo` exits 0. Check the exit code directly — in fish, `$status` after a pipe reports the
+  last command in the pipeline, so `hugo | tail` followed by `$status` measures `tail` and
+  always looks green.
+- Ten markers across `content/projects/` render as `<strong class="proj-num">`.
+- Computed styles on `/projects` match the surrounding copy: marker weight 400 = desc
+  weight 400, marker colour `rgba(0,0,0,0.6)` = desc colour. Only the background differs.
+- `<meta name="description">` on project single pages (no permalink override for `projects`
+  in `hugo.toml`, so they render via `layouts/_default/single.html`) contains no `==`.
+- 375×812: five markers wrap across two lines, stroke 17.0px, 3.8px clearance between
+  fragments. No collision.
 
-Not yet checked, because no description carries a marker: how Ink reads at the 640px
-breakpoint where `.proj-desc` drops to 13px.
+Contrast: the marked text sits at 5.1:1 against its wash, versus 5.7:1 for the body copy on
+the page background. Both clear WCAG AA. The earlier dark-text version measured 12.9:1 —
+that headroom was traded deliberately for a lighter page.

@@ -979,12 +979,27 @@
   max-width: 60ch;
 }
 
-/* Curated number highlight — ==34k+ downloads== in a project description.
-   accent-hover (0.90 alpha) rather than accent (0.67) for contrast against
-   the --t-text-mid body copy it sits inside. */
+/* Curated highlight — ==34k+ downloads== in a project description.
+   A highlighter wash, not coloured text: the accent red is also the link colour,
+   so colouring the words made long spans read as clickable.
+   Deliberately inherits colour and weight from .proj-desc. A real highlighter
+   changes neither; stacking all three signals made the marked phrases outshout
+   the project titles.
+   Vertical padding expands the paint area of an inline box without touching line
+   height, so the wash clears the letters instead of sitting behind them. Keep it
+   small: at 0.18em the stroke fills the whole 22.4px line box and wrapped
+   fragments collide. Negative horizontal margin cancels the side padding so
+   following punctuation stays tight. */
 .theme-zurassic .proj-num {
-  font-weight: 700;
-  color: var(--t-accent-hover);
+  /* required: .proj-num is a <strong>, so without this the UA default bold applies */
+  font-weight: inherit;
+  padding: 0.04em 3px;
+  margin: 0 -3px;
+  border-radius: 2px;
+  background-image: linear-gradient(180deg,
+    rgba(147,34,16,0.13) 0%,
+    rgba(147,34,16,0.21) 45%,
+    rgba(147,34,16,0.17) 100%);
 }
 
 .theme-zurassic .proj-status {
