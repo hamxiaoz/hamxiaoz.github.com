@@ -15,9 +15,10 @@
     {{ range $sections }}
     {{ $lead := .lead }}
     {{ $tiles := .tiles }}
-    {{/* One product → text takes two columns; two or more → text takes one */}}
+    {{/* Text always holds one column; the product area spans the other two and
+         only its internal density changes with the number of products. */}}
     {{ $layout := "t1p3" }}
-    {{ if eq (len $tiles) 1 }}{{ $layout = "t2p1" }}{{ end }}
+    {{ if eq (len $tiles) 1 }}{{ $layout = "t1w" }}{{ end }}
     {{ if eq (len $tiles) 2 }}{{ $layout = "t1p2" }}{{ end }}
     {{ if eq (len $tiles) 0 }}{{ $layout = "text" }}{{ end }}
     <section class="wv10-co">
@@ -49,7 +50,7 @@
     {{ with $sideWork }}
     <section class="wv10-co">
       {{/* Plain text — the template escapes it; pre-escaped entities double-encode */}}
-      {{ partial "work-section-head.html" (dict "title" "Freelance & Education" "role" "Independent work, training & awards") }}
+      {{ partial "work-section-head.html" (dict "title" "Independent Work, Training & Awards") }}
       <div class="wv10-body wv10-body--side">
         <div class="wv10-products">
           {{ partial "work-tiles.html" (dict "pages" . "nomod" true) }}
@@ -75,8 +76,8 @@
 
 /* Column split per product count — the text block widens when there is little
    product imagery to show, so no section is left with an empty column. */
-.theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-text { grid-column: span 2; }
-.theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-products { grid-column: span 1; --cols: 1; }
+.theme-zurassic .work-v10 .wv10-body--t1w .wv10-text { grid-column: span 1; }
+.theme-zurassic .work-v10 .wv10-body--t1w .wv10-products { grid-column: span 2; --cols: 1; }
 .theme-zurassic .work-v10 .wv10-body--t1p2 .wv10-text { grid-column: span 1; }
 .theme-zurassic .work-v10 .wv10-body--t1p2 .wv10-products { grid-column: span 2; --cols: 2; }
 .theme-zurassic .work-v10 .wv10-body--t1p3 .wv10-text { grid-column: span 1; }
@@ -91,30 +92,19 @@
   margin-bottom: 0;
 }
 /* Wider crops where tiles are large; square where they are small and numerous */
-.theme-zurassic .work-v10 .wv10-body--t2p1 .wv-gtile-img,
 .theme-zurassic .work-v10 .wv10-body--t1p2 .wv-gtile-img { aspect-ratio: 4 / 3; }
-
-.theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-hl ul {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px 32px;
-}
-.theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-hl li { margin-bottom: 0; }
+.theme-zurassic .work-v10 .wv10-body--t1w .wv-gtile-img { aspect-ratio: 16 / 10; }
 .theme-zurassic .work-v10 .wv10-hl { max-width: none; }
 .theme-zurassic .work-v10 .wv10-foot { margin-top: 20px; }
 
 @media (max-width: 860px) {
-  .theme-zurassic .work-v10 .wv10-body,
-  .theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-hl ul { grid-template-columns: minmax(0, 1fr); }
-  .theme-zurassic .work-v10 .wv10-body { gap: 28px; }
-  .theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-text,
-  .theme-zurassic .work-v10 .wv10-body--t1p2 .wv10-text,
-  .theme-zurassic .work-v10 .wv10-body--t1p3 .wv10-text,
-  .theme-zurassic .work-v10 .wv10-body--text .wv10-text,
-  .theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-products,
-  .theme-zurassic .work-v10 .wv10-body--t1p2 .wv10-products,
-  .theme-zurassic .work-v10 .wv10-body--t1p3 .wv10-products,
-  .theme-zurassic .work-v10 .wv10-body--side .wv10-products { grid-column: span 1; }
+  .theme-zurassic .work-v10 .wv10-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  /* Everything stacks into the single column */
+  .theme-zurassic .work-v10 .wv10-text,
+  .theme-zurassic .work-v10 .wv10-products { grid-column: span 1 !important; }
   .theme-zurassic .work-v10 .wv10-products .wv-gallery { --cols: 2 !important; }
   .theme-zurassic .work-v10 .wv10-co { margin-bottom: 56px; }
 }

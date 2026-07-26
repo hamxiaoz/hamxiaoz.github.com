@@ -3,7 +3,6 @@ title: "AEM Performance Electronics"
 company: "AEM Performance Electronics"
 role: "Software Engineer & Architect"
 tags: ["C++", "C#", "Win32", "Real-time"]
-article_url: "https://www.youtube.com/watch?v=tyyQgcu2kXI"
 weight: 3
 period: "2008 — 2016"
 logo: "/assets/images/logo-aem.png"
