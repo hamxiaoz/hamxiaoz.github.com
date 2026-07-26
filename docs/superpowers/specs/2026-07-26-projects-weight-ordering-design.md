@@ -77,12 +77,19 @@ existing `$sorted := .Pages.ByDate.Reverse` line is dropped — the partial now 
 so pre-sorting the input is redundant:
 
 ```go-html-template
+{{/* Within a year: work-in-progress first, then ready projects. */}}
+{{/* Inside each bucket, `weight` hoists projects above the date order. */}}
+{{ $ready := partial "order-projects.html" (where .Pages "Params.status" "!=" "wip") }}
 {{ $inProgress := partial "order-projects.html" (where .Pages "Params.status" "wip") }}
-{{ $ready      := partial "order-projects.html" (where .Pages "Params.status" "!=" "wip") }}
 ```
 
-Nothing else in the layout changes. The tag filter hides rows client-side and never
-reorders, so it is unaffected.
+The comment above the two assignments is deliberately two single-line comments rather
+than one block comment. Hugo emits one newline per template action line; a block
+comment spanning two lines counts as one action, reducing the total from four to three
+and dropping a blank line per year group in the rendered HTML. Two single-line comments
+preserve the four-action count, keeping the output byte-identical to the baseline.
+Merging them into a block comment is functionally harmless but will change the HTML.
+The tag filter hides rows client-side and never reorders, so it is unaffected.
 
 ### Risk
 
