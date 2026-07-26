@@ -215,28 +215,47 @@
 }
 .theme-zurassic .wv-head-period { color: var(--t-text-dim); }
 
-/* A — Stack: logo over the name, role beneath, one hairline closing the block */
+/* A and B put the logo on the right, so the name sets the left edge with the
+   body copy below it. Markup has the logo first, hence the order swap. */
+.theme-zurassic .wv-head--stack .wv-head-title,
+.theme-zurassic .wv-head--inline .wv-head-title { font-size: clamp(21px, 2.3vw, 28px); }
+.theme-zurassic .wv-head--stack .wv-head-logo,
+.theme-zurassic .wv-head--inline .wv-head-logo { order: 2; margin-bottom: 0; flex-shrink: 0; }
+/* Text takes the remaining space and wraps inside itself, so the logo stays on
+   the first row at every width. Basis must be 0, not auto: a wrapping flex
+   container breaks the line on base sizes before it ever shrinks an item. */
+.theme-zurassic .wv-head--stack .wv-head-text,
+.theme-zurassic .wv-head--inline .wv-head-text {
+  order: 1;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* A — Stack: company over role on the left, logo held right */
 .theme-zurassic .wv-head--stack {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 24px;
+  flex-wrap: wrap;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--t-border-strong);
   margin-bottom: 28px;
 }
-.theme-zurassic .wv-head--stack .wv-head-logo { margin-bottom: 16px; }
 .theme-zurassic .wv-head--stack .wv-head-logo img { height: 26px; max-width: 130px; }
-.theme-zurassic .wv-head--stack .wv-head-title { margin-bottom: 8px; }
+.theme-zurassic .wv-head--stack .wv-head-title { margin-bottom: 6px; }
 
-/* B — Inline: everything on one line, role divided from the name by a hairline */
+/* B — Inline: name and role on one line, logo held right */
 .theme-zurassic .wv-head--inline {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 12px 16px;
   flex-wrap: wrap;
   padding-bottom: 14px;
   border-bottom: 1px solid var(--t-border-strong);
   margin-bottom: 28px;
 }
-.theme-zurassic .wv-head--inline .wv-head-logo { margin-bottom: 0; flex-shrink: 0; }
 .theme-zurassic .wv-head--inline .wv-head-logo img { height: 24px; max-width: 120px; }
 .theme-zurassic .wv-head--inline .wv-head-text {
   display: flex;
