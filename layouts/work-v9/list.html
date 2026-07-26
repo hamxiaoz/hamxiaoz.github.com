@@ -1,0 +1,145 @@
+{{ define "main" }}
+{{ $work := (where site.RegularPages "Section" "work").ByWeight }}
+{{ $workSection := site.GetPage "/work" }}
+{{ $companies := slice "Insulet" "BCG" "ADP" "AEM Performance Electronics" "Freelance" }}
+{{ $sections := partial "work-sections.html" (dict "work" $work "companies" $companies) }}
+
+<section class="portfolio-section section-page work-v9">
+  <div class="section-inner">
+    {{ partial "work-variant-switcher.html" (dict "current" "work-v9") }}
+
+    {{ with $workSection.Content }}<div class="proj-intro wv9-intro">{{ . }}</div>{{ end }}
+
+    {{ range $i, $s := $sections }}
+    {{ $lead := $s.lead }}
+    <section class="wv9-co">
+      <div class="wv9-row{{ if eq (mod $i 2) 1 }} wv9-row--flip{{ end }}">
+        <div class="wv9-text">
+          <div class="wv-eyebrow">
+            {{ with $lead.Params.role }}<span class="wv-rolename">{{ . }}</span>{{ end }}
+            {{ with $lead.Params.period }}<span class="wv-period">{{ . }}</span>{{ end }}
+          </div>
+          <h2 class="wv9-company">{{ $lead.Title }}</h2>
+          {{ partial "work-bullets.html" (dict "page" $lead) }}
+          <div class="wv-foot">
+            {{ with $lead.Params.tags }}
+            <div class="wv-role-tags">
+              {{ range first 5 . }}<span class="card-tag">{{ . }}</span>{{ end }}
+            </div>
+            {{ end }}
+            {{ with $lead.Params.live_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Launch ›</a>{{ end }}
+            {{ with $lead.Params.article_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Learn more ›</a>{{ end }}
+          </div>
+        </div>
+        <div class="wv9-media">
+          {{ $shots := $lead.Params.images }}
+          {{ if not $shots }}{{ with $lead.Params.image }}{{ $shots = slice . }}{{ end }}{{ end }}
+          {{ if $shots }}
+            <span class="wv9-media-main"><img src="{{ index $shots 0 }}" alt="{{ $lead.Title }} product" loading="lazy"></span>
+          {{ else }}
+            <span class="wv-ph wv9-ph"><span class="wv-ph-label">{{ $s.company }} · product shot</span></span>
+          {{ end }}
+        </div>
+      </div>
+
+      {{ with $s.tiles }}
+      <div class="wv9-tiles-head">
+        <span class="wv9-tiles-count">{{ len . }} shipped</span>
+        <span class="wv9-tiles-rule"></span>
+      </div>
+      {{ partial "work-tiles.html" (dict "pages" . "class" "wv9-tiles") }}
+      {{ end }}
+    </section>
+    {{ end }}
+
+    <div class="section-label">
+      <span class="section-label-text">Education &amp; Awards</span>
+    </div>
+    {{ partial "work-awards.html" (dict "work" $work) }}
+  </div>
+</section>
+
+{{ partial "work-shared-css.html" . }}
+<style>
+/* ══ V9 — Company chapters: v6 case row + that company's project grid ══ */
+.theme-zurassic .work-v9 .wv9-intro { max-width: 620px; margin-bottom: 44px; }
+
+.theme-zurassic .work-v9 .wv9-co {
+  padding: 56px 0 64px;
+  border-top: 1px solid var(--t-border);
+}
+.theme-zurassic .work-v9 .wv9-co:last-of-type { border-bottom: 1px solid var(--t-border); margin-bottom: 72px; }
+
+.theme-zurassic .work-v9 .wv9-row {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 56px;
+  align-items: center;
+}
+.theme-zurassic .work-v9 .wv9-row--flip { grid-template-columns: 400px 1fr; }
+.theme-zurassic .work-v9 .wv9-row--flip .wv9-text { order: 2; }
+.theme-zurassic .work-v9 .wv9-row--flip .wv9-media { order: 1; }
+
+.theme-zurassic .work-v9 .wv9-company {
+  font-family: var(--t-font-sans);
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--t-text);
+  margin: 0 0 18px;
+}
+.theme-zurassic .work-v9 .wv-hl { max-width: none; }
+
+.theme-zurassic .work-v9 .wv9-media-main {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--t-radius);
+  border: 1px solid var(--t-border);
+  background: #fff;
+}
+.theme-zurassic .work-v9 .wv9-media-main img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+.theme-zurassic .work-v9 .wv9-ph { height: 150px; }
+
+/* Per-company project grid */
+.theme-zurassic .work-v9 .wv9-tiles-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 44px 0 20px;
+}
+.theme-zurassic .work-v9 .wv9-tiles-count {
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+  white-space: nowrap;
+}
+.theme-zurassic .work-v9 .wv9-tiles-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--t-border);
+}
+.theme-zurassic .work-v9 .wv9-tiles {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .theme-zurassic .work-v9 .wv9-row,
+  .theme-zurassic .work-v9 .wv9-row--flip {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .theme-zurassic .work-v9 .wv9-row--flip .wv9-text { order: 1; }
+  .theme-zurassic .work-v9 .wv9-row--flip .wv9-media { order: 2; }
+  .theme-zurassic .work-v9 .wv9-co { padding: 44px 0 48px; }
+}
+</style>
+{{ end }}

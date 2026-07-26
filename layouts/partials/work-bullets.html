@@ -1,0 +1,14 @@
+{{- /* Section bullets: highlights → body content → description.
+       Params: page, class (optional) */ -}}
+{{- $p := .page -}}
+<div class="wv-hl{{ with .class }} {{ . }}{{ end }}">
+  {{- if $p.Params.highlights }}
+  <ul>
+    {{- range $p.Params.highlights }}<li>{{ . }}</li>{{ end }}
+  </ul>
+  {{- else if $p.Content }}
+  {{ $p.Content }}
+  {{- else if $p.Params.description }}
+  <ul><li>{{ $p.Params.description }}</li></ul>
+  {{- end }}
+</div>

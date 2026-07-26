@@ -1,0 +1,12 @@
+{{- /* Project tile grid from an explicit page slice. Params: pages, class (optional) */ -}}
+<div class="wv-gallery {{ with .class }}{{ . }}{{ end }}">
+  {{ range .pages }}
+  <a class="wv-gtile"
+     href="{{ or .Params.article_url .Params.live_url .RelPermalink }}"
+     {{ if or .Params.article_url .Params.live_url }}target="_blank" rel="noopener noreferrer"{{ end }}>
+    <span class="wv-gtile-img"><img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy"></span>
+    <span class="wv-gtile-title">{{ .Title }}</span>
+    {{ with .Params.description }}<span class="wv-gtile-desc">{{ . }}</span>{{ end }}
+  </a>
+  {{ end }}
+</div>

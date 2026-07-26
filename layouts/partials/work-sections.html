@@ -1,0 +1,24 @@
+{{- /* Resolves company sections for the /work page.
+       Params: work (page list), companies (ordered slice of company names)
+       Returns: slice of dicts — company, lead (section page), tiles (project pages) */ -}}
+{{- $work := .work -}}
+{{- $out := slice -}}
+{{- range .companies -}}
+  {{- $co := . -}}
+  {{- $group := where $work "Params.company" $co -}}
+  {{- if gt (len $group) 0 -}}
+    {{- /* Lead = the page carrying the role; otherwise the lightest-weight page */ -}}
+    {{- $lead := index $group 0 -}}
+    {{- range $group -}}
+      {{- if .Params.role -}}{{- $lead = . -}}{{- end -}}
+    {{- end -}}
+    {{- $tiles := slice -}}
+    {{- range $group -}}
+      {{- if and (ne .RelPermalink $lead.RelPermalink) .Params.image -}}
+        {{- $tiles = $tiles | append . -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $out = $out | append (dict "company" $co "lead" $lead "tiles" $tiles) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}
