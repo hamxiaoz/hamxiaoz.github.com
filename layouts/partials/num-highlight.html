@@ -1,0 +1,6 @@
+{{- /*
+  Render ==marked== spans in a description as <strong class="proj-num">.
+  Context (.) is the raw description string.
+  Escape first so the source text is treated as text, then inject the markup.
+*/ -}}
+{{- . | htmlEscape | replaceRE "==([^=]+)==" "<strong class=\"proj-num\">$1</strong>" | safeHTML -}}

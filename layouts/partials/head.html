@@ -4,7 +4,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>{{ if .IsPage }}{{ .Title | htmlEscape }} | {{ end }}{{ .Site.Title | htmlEscape }}</title>
-  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  {{/* num-strip: project descriptions carry ==…== highlight markers that must never reach meta tags */}}
+  <meta name="description" content="{{ with .Description }}{{ partial "num-strip.html" . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

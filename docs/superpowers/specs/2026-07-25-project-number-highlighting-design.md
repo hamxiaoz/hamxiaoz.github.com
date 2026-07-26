@@ -2,7 +2,9 @@
 
 Date: 2026-07-25
 Branch: `work-redesign-mockups`
-Status: approved for planning
+Status: shipped — treatment **A (Ink)** chosen after previewing all three at
+`/projects-num/`. That mockup page has been deleted. Content markup is left to
+the author; no project description carries a marker yet.
 
 ## Problem
 
@@ -45,8 +47,8 @@ that are not bold can reset it.
 
 | Partial | Behavior | Consumers |
 |---|---|---|
-| `num-highlight.html` | `==x==` → `<strong class="proj-num">x</strong>` | mockup page only (for now) |
-| `num-strip.html` | `==x==` → `x` | live `/projects`, cards, meta tags |
+| `num-highlight.html` | `==x==` → `<strong class="proj-num">x</strong>` | `project-row.html` (the `/projects` list) |
+| `num-strip.html` | `==x==` → `x` | `head.html` meta tags, `project-card.html` |
 
 Both take the description string as the context (`.`) and return a string.
 `num-highlight.html` pipes through `safeHTML`.
@@ -56,24 +58,25 @@ cleanup is deleting one file rather than untangling a conditional.
 
 ### Call sites
 
-| File | Line | Change |
-|---|---|---|
-| `layouts/partials/project-row.html` | 36 | accept a `nums` bool in the param dict; highlight when true, strip otherwise |
-| `layouts/partials/project-card.html` | 31 | always strip |
-| `layouts/partials/head.html` | 7 | strip, so `<meta name="description">` never contains `==` |
+| File | Change |
+|---|---|
+| `layouts/partials/project-row.html` | highlight |
+| `layouts/partials/project-card.html` | strip |
+| `layouts/partials/head.html` | strip, so `<meta name="description">` never contains `==` |
 
-`project-row.html` takes the flag because the mockup page reuses it — duplicating the row
-partial into the mockup would let the two drift. `project-card.html` serves `/ann`,
-`/making`, `/work` and `_default/list`; none of those are the projects section today, but it
-strips unconditionally so a future section rendering project pages cannot leak markers.
+`project-card.html` serves `/ann`, `/making`, `/work` and `_default/list`; none of those
+render the projects section today, so it never sees a marker. It strips rather than
+highlights for two reasons: a future section rendering project pages cannot leak `==`, and
+its dark variant would render accent-red `.proj-num` illegibly.
 
 Project single pages fall through to `_default/single`, which is why `head.html` must strip.
 
 ### Content changes
 
-Markers added to five files in `content/projects/`:
+None. The author adds markers by hand. Candidates surfaced during the mockup, kept here as
+a starting point rather than a prescription:
 
-| File | Marked phrase |
+| File | Candidate phrase |
 |---|---|
 | `monokai-slate.md` | `34k+ downloads` |
 | `clickable-thunder-text.md` | `1k+ users` |
@@ -81,19 +84,19 @@ Markers added to five files in `content/projects/`:
 | `flow-break.md` | `100% local processing` |
 | `jarvis-desk-controller.md` | `$25 ESP32` |
 
-Deliberately unmarked: `lego-mosaic-helper.md` (`40179` is a set number),
-`weekly-project.md` (`2012` is a date), `beijing-air.md` (`v1 API` is a version).
-`business-card.md`'s `7 square inches` is rhetorical rather than a metric — left to the
-author's judgment after seeing the mockup.
+Poor candidates: `lego-mosaic-helper.md` (`40179` is a set number), `weekly-project.md`
+(`2012` is a date), `beijing-air.md` (`v1 API` is a version), `business-card.md`
+(`7 square inches` is rhetorical, not a metric).
 
-Live `/projects` is visually unchanged by this step: it strips the markers.
+A description with no marker renders exactly as it does today.
 
 ## Visual treatments
 
 Three options, all driven by the identical `.proj-num` markup. Only the CSS block differs,
 so the final pick is a one-block swap.
 
-**A — Ink.** Bold, accent red, in the sentence flow.
+**A — Ink. CHOSEN.** Bold, accent red, in the sentence flow. Now lives in
+`static/assets/css/zurassic.css` beside `.proj-desc`.
 
 ```css
 .proj-num { font-weight: 700; color: var(--t-accent-hover); }
@@ -135,39 +138,24 @@ Reads literally as "highlighted" and scans well. Risk: gimmicky when many rows c
 Strongest scannability; echoes the existing `.proj-status` and `.proj-tag` pills. Breaks
 sentence rhythm the most.
 
-## Mockup delivery
+## Mockup delivery (removed)
 
-A throwaway Hugo page at `/projects-num/`, following the existing `/work-v*` mockup pattern.
+A throwaway page at `/projects-num/` rendered ten real projects three times, once per
+treatment, through the real `project-row.html`. Deleted once Ink was chosen.
 
-- `content/projects-num/_index.md` — `sitemap.disable: true`
-- `layouts/projects-num/list.html` — pulls real pages from the `projects` section, renders
-  them three times through `project-row.html` with `"nums" true`, each pass wrapped in
-  `.pn-a` / `.pn-b` / `.pn-c`. Treatment CSS is scoped to those wrappers and lives inline in
-  this layout, not in `zurassic.css`.
-
-Scope decisions for the mockup:
-
-- **Subset, not the full list.** Ten projects — the five marked ones plus five unmarked — so
-  highlight density is legible without 69 rows of scrolling.
-- **No tag filter.** Three copies of `.proj-row` would break the filter's querySelectorAll,
-  and filtering is not what is being evaluated.
-- **No year grouping.** Flat list; grouping adds height without informing the choice.
-- A sticky A/B/C jump bar at the top, mirroring `work-variant-switcher.html`.
-
-## Rollout after the pick
-
-1. Move the chosen treatment's CSS into `static/assets/css/zurassic.css` beside `.proj-desc`
-   (around line 974), unscoped as `.theme-zurassic .proj-num`.
-2. Switch `project-row.html` and `project-card.html` to `num-highlight.html`.
-3. Delete `num-strip.html`, `content/projects-num/`, `layouts/projects-num/`.
-4. `head.html` keeps stripping — meta descriptions stay plain text permanently.
+One finding worth keeping: **treatment B as specified was wrong.** At
+`rgba(147,34,16,0.14)` with a 58%→92% gradient band, the swipe rendered as a thin faint
+line that read as a strikethrough rather than a highlight. Anyone revisiting the marker
+idea needs a taller band (roughly 12%→90%) and more alpha.
 
 ## Verification
 
-- `hugo` builds without error; page count increases by exactly 1.
-- `/projects-num/` renders all three treatments with visible highlights on the five marked rows.
-- Live `/projects` shows no `==` characters in the rendered HTML.
+- `hugo` builds without error.
+- With `==34k+ downloads==` temporarily added to `monokai-slate.md`, `/projects` renders
+  `<strong class="proj-num">34k+ downloads</strong>`; the marker was then reverted.
 - `<meta name="description">` on the project single page `/projects/monokai-slate/`
   (no permalink override for `projects` in `hugo.toml`, so it renders via
   `layouts/_default/single.html`) contains no `==`.
-- Mobile breakpoint at 640px: treatment C's pills do not overflow the 88px-thumbnail layout.
+
+Not yet checked, because no description carries a marker: how Ink reads at the 640px
+breakpoint where `.proj-desc` drops to 13px.

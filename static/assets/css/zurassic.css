@@ -979,6 +979,14 @@
   max-width: 60ch;
 }
 
+/* Curated number highlight — ==34k+ downloads== in a project description.
+   accent-hover (0.90 alpha) rather than accent (0.67) for contrast against
+   the --t-text-mid body copy it sits inside. */
+.theme-zurassic .proj-num {
+  font-weight: 700;
+  color: var(--t-accent-hover);
+}
+
 .theme-zurassic .proj-status {
   font-family: var(--t-font-mono);
   font-size: 9px;

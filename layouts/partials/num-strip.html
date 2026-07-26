@@ -1,0 +1,8 @@
+{{- /*
+  Drop ==…== markers from a description, leaving plain text.
+  Context (.) is the raw description string. Returns a string, not HTML —
+  callers keep Hugo's normal escaping.
+  Used where markup can't go: <meta name="description">, and project-card
+  (whose dark variant would render the accent-red .proj-num illegibly).
+*/ -}}
+{{- . | replaceRE "==([^=]+)==" "$1" -}}

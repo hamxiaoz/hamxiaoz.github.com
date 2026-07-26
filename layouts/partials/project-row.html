@@ -33,7 +33,7 @@
       {{ end }}
     </div>
 
-    {{ with $p.Params.description }}<p class="proj-desc">{{ . }}</p>{{ end }}
+    {{ with $p.Params.description }}<p class="proj-desc">{{ partial "num-highlight.html" . }}</p>{{ end }}
 
     {{ if $showStory }}
     <div class="proj-story-line">
