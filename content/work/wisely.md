@@ -5,5 +5,5 @@ company: "ADP"
 image: "/assets/images/work-shot-wisely.png"
 tags: ["Mobile", "Fintech"]
 live_url: "https://www.mywisely.com/"
-weight: 11
+weight: 12
 ---

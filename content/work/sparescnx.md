@@ -5,5 +5,5 @@ company: "BCG"
 image: "/assets/images/work-shot-sparescnx.jpg"
 tags: ["IoT", "Enterprise"]
 live_url: "https://www.youtube.com/watch?v=41LM14Ow_Oo"
-weight: 9
+weight: 10
 ---
