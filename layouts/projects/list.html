@@ -19,10 +19,10 @@
     </div>
 
     {{ range .Pages.GroupByDate "2006" }}
-    {{/* Within a year: work-in-progress first, then ready projects (newest first) */}}
-    {{ $sorted := .Pages.ByDate.Reverse }}
-    {{ $ready := where $sorted "Params.status" "!=" "wip" }}
-    {{ $inProgress := where $sorted "Params.status" "wip" }}
+    {{/* Within a year: work-in-progress first, then ready projects. */}}
+    {{/* Inside each bucket, `weight` hoists projects above the date order. */}}
+    {{ $ready := partial "order-projects.html" (where .Pages "Params.status" "!=" "wip") }}
+    {{ $inProgress := partial "order-projects.html" (where .Pages "Params.status" "wip") }}
     <div class="writing-section proj-year" id="year-{{ .Key }}" data-year="{{ .Key }}">
       <div class="writing-group-header">
         <h2 class="writing-group-title">{{ .Key }}</h2>

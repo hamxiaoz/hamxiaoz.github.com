@@ -1,0 +1,6 @@
+{{- /* Order one bucket of project pages: weighted first (ascending weight),
+       then unweighted, newest date first. `weight` is optional front matter;
+       unset means 0, which is the "unweighted" sentinel. Lower sorts higher. */ -}}
+{{- $weighted := (where . "Weight" "!=" 0).ByWeight -}}
+{{- $unweighted := (where . "Weight" "==" 0).ByDate.Reverse -}}
+{{- return ($weighted | append $unweighted) -}}
