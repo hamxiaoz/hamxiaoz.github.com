@@ -1,6 +1,6 @@
 ---
 title: "FreshStart Export Viewer"
-description: "Convert FreshStart Chrome extension JSON export to a readable list of links."
+description: "Converts a FreshStart Chrome extension JSON export into a readable list of links — so I could read my tab backups without restoring them."
 tags: ["code"]
 image: "/assets/images/project-fresh-start.png"
 live_url: "http://codepen.io/hamxiaoz/pen/zGQzep"

@@ -6,5 +6,6 @@ image: "/assets/images/project-flow-break.png"
 live_url: "https://flow-break.zurassic.com"
 repo: "hamxiaoz/flow-break"
 date: 2026-03-19
+weight: 1
 status: "live"
 ---

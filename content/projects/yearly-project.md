@@ -1,6 +1,6 @@
 ---
 title: "Yearly Project"
-description: "Made White Elephant trailer videos every year since 2012."
+description: "Since 2012, we trade gifts every Christmas. To level up the game, I made a video trailer for my gift. It's fun, and ==the whole family gets involved in the video making==."
 tags: ["design", "video"]
 image: "/assets/images/white-elephant-thumbnail.png"
 live_url: "/blog/#giftexchange"
