@@ -1,7 +1,7 @@
 # Manual ordering for /projects via `weight`
 
 **Date:** 2026-07-26
-**Status:** Approved, ready for implementation
+**Status:** Implemented 2026-07-26
 
 ## Problem
 
@@ -86,10 +86,7 @@ reorders, so it is unaffected.
 
 ### Risk
 
-`where` must resolve `Weight` as a method on the page. If Hugo does not resolve it, the
-fallback is an explicit `range` loop that builds the two slices by comparing `.Weight` —
-identical semantics, roughly four more lines. Confirm empirically during implementation
-rather than assuming either way.
+`where` resolved `Weight` as a method, so the three-line form shipped as written.
 
 ## Scope
 
