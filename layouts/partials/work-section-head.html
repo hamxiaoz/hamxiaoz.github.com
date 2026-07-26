@@ -1,14 +1,21 @@
-{{- /* Section header: logo + company on one row with the rule and role/period.
-       Params: either `page` (a lead page) or explicit `title` / `role` / `period`. */ -}}
+{{- /* Section header. Params:
+       page  — a lead page (supplies logo, title, role, period), or
+       title / role / period — explicit values
+       style — "rule" (default, used by v11), "stack", "inline", "plaque"
+       noperiod — drop the date range */ -}}
 {{- $page := .page -}}
 {{- $title := .title -}}
 {{- $role := .role -}}
 {{- $period := .period -}}
+{{- $style := .style | default "rule" -}}
 {{- if $page -}}
   {{- $title = $page.Title -}}
   {{- $role = $page.Params.role -}}
   {{- $period = $page.Params.period -}}
 {{- end -}}
+{{- if .noperiod }}{{ $period = "" }}{{ end -}}
+
+{{- if eq $style "rule" -}}
 <header class="wv-head">
   {{ if $page }}{{ partial "work-logo.html" (dict "page" $page "class" "wv-head-logo") }}{{ end }}
   <h2 class="wv-head-title">{{ $title }}</h2>
@@ -18,3 +25,13 @@
     {{ with $period }}<span class="wv-period">{{ . }}</span>{{ end }}
   </span>
 </header>
+{{- else -}}
+<header class="wv-head wv-head--{{ $style }}">
+  {{ if $page }}{{ partial "work-logo.html" (dict "page" $page "class" "wv-head-logo") }}{{ end }}
+  <div class="wv-head-text">
+    <h2 class="wv-head-title">{{ $title }}</h2>
+    {{ with $role }}<p class="wv-head-role">{{ . }}</p>{{ end }}
+    {{ with $period }}<p class="wv-head-period">{{ . }}</p>{{ end }}
+  </div>
+</header>
+{{- end -}}

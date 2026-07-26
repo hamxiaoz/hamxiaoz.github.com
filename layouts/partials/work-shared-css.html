@@ -202,6 +202,104 @@
   .theme-zurassic .wv-head-rule { display: none; }
 }
 
+/* ── Header variants (A stack / B inline / C plaque) ─────────────────────
+   Shared bits: role in mono accent micro-type, no floating right-hand text. */
+.theme-zurassic .wv-head-role,
+.theme-zurassic .wv-head-period {
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-accent);
+  margin: 0;
+}
+.theme-zurassic .wv-head-period { color: var(--t-text-dim); }
+
+/* A — Stack: logo over the name, role beneath, one hairline closing the block */
+.theme-zurassic .wv-head--stack {
+  display: block;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--t-border-strong);
+  margin-bottom: 28px;
+}
+.theme-zurassic .wv-head--stack .wv-head-logo { margin-bottom: 16px; }
+.theme-zurassic .wv-head--stack .wv-head-logo img { height: 26px; max-width: 130px; }
+.theme-zurassic .wv-head--stack .wv-head-title { margin-bottom: 8px; }
+
+/* B — Inline: everything on one line, role divided from the name by a hairline */
+.theme-zurassic .wv-head--inline {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--t-border-strong);
+  margin-bottom: 28px;
+}
+.theme-zurassic .wv-head--inline .wv-head-logo { margin-bottom: 0; flex-shrink: 0; }
+.theme-zurassic .wv-head--inline .wv-head-logo img { height: 24px; max-width: 120px; }
+.theme-zurassic .wv-head--inline .wv-head-text {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.theme-zurassic .wv-head--inline .wv-head-role {
+  position: relative;
+  padding-left: 20px;
+}
+.theme-zurassic .wv-head--inline .wv-head-role::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  height: 1.05em;
+  width: 1px;
+  background: var(--t-border-strong);
+}
+
+/* C — Plaque: logo in a chip, name and role contained in a glass band */
+.theme-zurassic .wv-head--plaque {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 24px;
+  background: var(--t-surface);
+  border: 1px solid var(--t-border);
+  border-left: 3px solid var(--t-accent);
+  border-radius: var(--t-radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  margin-bottom: 30px;
+}
+.theme-zurassic .wv-head--plaque .wv-head-logo {
+  margin-bottom: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border: 1px solid var(--t-border);
+  border-radius: 12px;
+}
+.theme-zurassic .wv-head--plaque .wv-head-logo img {
+  height: 26px;
+  max-width: 44px;
+  object-fit: contain;
+}
+.theme-zurassic .wv-head--plaque .wv-head-title {
+  font-size: clamp(24px, 2.8vw, 34px);
+  margin-bottom: 6px;
+}
+
+@media (max-width: 700px) {
+  .theme-zurassic .wv-head--plaque { padding: 16px 18px; gap: 14px; }
+  .theme-zurassic .wv-head--plaque .wv-head-logo { width: 46px; height: 46px; }
+  .theme-zurassic .wv-head--plaque .wv-head-logo img { height: 20px; max-width: 32px; }
+}
+
 /* Company logo mark — fixed height, natural width (wordmarks run wide,
    icon marks are square), so every section sits on the same optical baseline. */
 .theme-zurassic .wv-logo {

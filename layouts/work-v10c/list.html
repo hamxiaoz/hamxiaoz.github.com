@@ -1,11 +1,11 @@
 {{ define "main" }}
 {{ $work := (where site.RegularPages "Section" "work").ByWeight }}
 {{ $workSection := site.GetPage "/work" }}
-<section class="portfolio-section section-page wv10 work-v10">
+<section class="portfolio-section section-page wv10 work-v10c">
   <div class="section-inner">
-    {{ partial "work-variant-switcher.html" (dict "current" "work-v10") }}
+    {{ partial "work-variant-switcher.html" (dict "current" "work-v10c") }}
     {{ with $workSection.Content }}<div class="proj-intro wv10-intro">{{ . }}</div>{{ end }}
-    {{ partial "work-v10-sections.html" (dict "work" $work) }}
+    {{ partial "work-v10-sections.html" (dict "work" $work "headStyle" "plaque" "noperiod" true) }}
   </div>
 </section>
 

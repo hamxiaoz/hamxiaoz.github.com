@@ -1,0 +1,55 @@
+<style>
+/* ══ V10 — Ledger: shared section header, text column beside product columns ══ */
+.theme-zurassic .wv10 .wv10-intro { max-width: 620px; margin-bottom: 44px; }
+.theme-zurassic .wv10 .wv10-co { margin-bottom: 72px; }
+
+.theme-zurassic .wv10 .wv10-body {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  align-items: start;
+}
+
+/* Column split per product count — the text block widens when there is little
+   product imagery to show, so no section is left with an empty column. */
+/* A lone product keeps one column, so every product tile on the page shares the
+   same width and sits in the same grid position; column three stays open. */
+.theme-zurassic .wv10 .wv10-body--t1w .wv10-text { grid-column: span 1; }
+.theme-zurassic .wv10 .wv10-body--t1w .wv10-products { grid-column: span 1; --cols: 1; }
+.theme-zurassic .wv10 .wv10-body--t1p2 .wv10-text { grid-column: span 1; }
+.theme-zurassic .wv10 .wv10-body--t1p2 .wv10-products { grid-column: span 2; --cols: 2; }
+.theme-zurassic .wv10 .wv10-body--t1p3 .wv10-text { grid-column: span 1; }
+.theme-zurassic .wv10 .wv10-body--t1p3 .wv10-products { grid-column: span 2; --cols: 3; }
+.theme-zurassic .wv10 .wv10-body--text .wv10-text { grid-column: span 3; }
+.theme-zurassic .wv10 .wv10-body--side .wv10-products { grid-column: span 3; --cols: 4; }
+
+/* The caller owns the column count here (tiles are rendered with nomod) */
+.theme-zurassic .wv10 .wv10-products .wv-gallery {
+  grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
+  gap: 24px 16px;
+  margin-bottom: 0;
+}
+/* Two products span two outer columns, so matching the outer 40px gutter makes
+   these tiles exactly as wide as a single-product tile — one grid, no drift. */
+.theme-zurassic .wv10 .wv10-body--t1p2 .wv-gallery { column-gap: 40px; }
+/* Wider crops where tiles are large; square where they are small and numerous */
+.theme-zurassic .wv10 .wv10-body--t1p2 .wv-gtile-img,
+.theme-zurassic .wv10 .wv10-body--t1w .wv-gtile-img { aspect-ratio: 4 / 3; }
+.theme-zurassic .wv10 .wv10-hl { max-width: none; }
+.theme-zurassic .wv10 .wv10-foot { margin-top: 20px; }
+
+@media (max-width: 860px) {
+  .theme-zurassic .wv10 .wv10-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  /* Everything stacks into the single column */
+  .theme-zurassic .wv10 .wv10-text,
+  .theme-zurassic .wv10 .wv10-products { grid-column: span 1 !important; }
+  .theme-zurassic .wv10 .wv10-products .wv-gallery { --cols: 2 !important; }
+  .theme-zurassic .wv10 .wv10-co { margin-bottom: 56px; }
+}
+@media (max-width: 520px) {
+  .theme-zurassic .wv10 .wv10-products .wv-gallery { --cols: 1 !important; }
+}
+</style>

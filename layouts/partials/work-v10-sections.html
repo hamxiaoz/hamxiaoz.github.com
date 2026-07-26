@@ -1,0 +1,56 @@
+{{- /* v10 section body, shared by the v10 header variants.
+       Params: work (page list), headStyle (optional), noperiod (optional) */ -}}
+{{- $work := .work -}}
+{{- $headStyle := .headStyle | default "rule" -}}
+{{- $noperiod := .noperiod -}}
+{{- $companies := slice "Insulet" "BCG" "ADP" "AEM Performance Electronics" -}}
+{{- $sections := partial "work-sections.html" (dict "work" $work "companies" $companies) -}}
+{{- /* Freelance and the education items share one closing section */ -}}
+{{- $sideWork := where $work "Params.company" "in" (slice "Freelance" "Education & Awards") -}}
+
+{{ range $sections }}
+{{ $lead := .lead }}
+{{ $tiles := .tiles }}
+{{/* Text always holds one column; the product area spans the rest and only its
+     internal density changes with the number of products. */}}
+{{ $layout := "t1p3" }}
+{{ if eq (len $tiles) 1 }}{{ $layout = "t1w" }}{{ end }}
+{{ if eq (len $tiles) 2 }}{{ $layout = "t1p2" }}{{ end }}
+{{ if eq (len $tiles) 0 }}{{ $layout = "text" }}{{ end }}
+<section class="wv10-co">
+  {{ partial "work-section-head.html" (dict "page" $lead "style" $headStyle "noperiod" $noperiod) }}
+
+  <div class="wv10-body wv10-body--{{ $layout }}">
+    <div class="wv10-text">
+      {{ partial "work-bullets.html" (dict "page" $lead "class" "wv10-hl") }}
+      <div class="wv-foot wv10-foot">
+        {{ with $lead.Params.tags }}
+        <div class="wv-role-tags">
+          {{ range first 6 . }}<span class="card-tag">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+        {{ with $lead.Params.live_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Launch ›</a>{{ end }}
+        {{ with $lead.Params.article_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Learn more ›</a>{{ end }}
+      </div>
+    </div>
+
+    {{ with $tiles }}
+    <div class="wv10-products">
+      {{ partial "work-tiles.html" (dict "pages" . "nomod" true) }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ with $sideWork }}
+<section class="wv10-co">
+  {{/* Plain text — the template escapes it; pre-escaped entities double-encode */}}
+  {{ partial "work-section-head.html" (dict "title" "Independent Work, Training & Awards" "style" $headStyle) }}
+  <div class="wv10-body wv10-body--side">
+    <div class="wv10-products">
+      {{ partial "work-tiles.html" (dict "pages" . "nomod" true) }}
+    </div>
+  </div>
+</section>
+{{ end }}
