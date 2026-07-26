@@ -6,6 +6,10 @@ tags: ["C++", "C#", "Win32", "Real-time"]
 article_url: "https://www.youtube.com/watch?v=tyyQgcu2kXI"
 weight: 3
 period: "2008 — 2016"
+images:
+  - "/assets/images/portfolio-infinity-tuner.png"
+  - "/assets/images/portfolio-aq1.png"
+  - "/assets/images/portfolio-cmtool.png"
 highlights:
   - "Sole architect and engineer across the full AEM software portfolio — native desktop, web, developer tooling, and USB driver"
   - "Built AEMTuner, an industry-leading real-time engine tuning software in C++ and C#"

@@ -1,0 +1,15 @@
+{{- /* Product gallery grid (projects category with images). Param: work (page list) */ -}}
+<div class="wv-gallery">
+  {{ range .work }}
+    {{ $cat := partial "work-category.html" . }}
+    {{ if and (eq $cat "projects") .Params.image }}
+    <a class="wv-gtile"
+       href="{{ or .Params.article_url .Params.live_url .RelPermalink }}"
+       {{ if or .Params.article_url .Params.live_url }}target="_blank" rel="noopener noreferrer"{{ end }}>
+      <span class="wv-gtile-img"><img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy"></span>
+      <span class="wv-gtile-title">{{ .Title }}</span>
+      <span class="wv-gtile-co">{{ .Params.company }}</span>
+    </a>
+    {{ end }}
+  {{ end }}
+</div>

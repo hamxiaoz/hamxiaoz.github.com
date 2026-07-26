@@ -1,0 +1,204 @@
+{{ define "main" }}
+{{ $work := (where site.RegularPages "Section" "work").ByWeight }}
+{{ $workSection := site.GetPage "/work" }}
+<section class="portfolio-section section-page work-v8">
+  <div class="section-inner">
+    {{ partial "work-variant-switcher.html" (dict "current" "work-v8") }}
+
+    <header class="wv-header">
+      <div class="section-label"><span class="section-label-text">Selected Work</span></div>
+      <h1 class="wv-title">Work<em>.</em></h1>
+      {{ with $workSection.Params.description }}<p class="wv-intro">{{ . }}</p>{{ end }}
+    </header>
+  </div>
+
+  <div class="wv8-cases">
+    {{ $ri := 0 }}
+    {{ range $work }}
+      {{ if .Params.role }}
+      {{ $ri = add $ri 1 }}
+      {{ $p := . }}
+      <article class="wv8-case">
+        {{/* Full-bleed picture band — breaks the container for a magazine feel */}}
+        <div class="wv8-band">
+          {{ with .Params.images }}
+            {{ $imgs := . }}
+            {{ if gt (len $imgs) 1 }}
+            <div class="wv8-band-multi">
+              {{ range first 3 $imgs }}
+              <span class="wv8-band-cell"><img src="{{ . }}" alt="{{ $p.Title }}" loading="lazy"></span>
+              {{ end }}
+            </div>
+            {{ else }}
+            <span class="wv8-band-img"><img src="{{ index $imgs 0 }}" alt="{{ $p.Title }} product" loading="lazy"></span>
+            {{ end }}
+          {{ else }}
+            <span class="wv-ph wv8-ph"><span class="wv-ph-label">{{ .Params.company }} · product shot</span></span>
+          {{ end }}
+          <span class="wv8-band-tag">
+            <span class="wv8-band-num">{{ printf "%02d" $ri }}</span>
+            <span class="wv8-band-role">{{ .Params.role }}</span>
+            {{ with .Params.period }}<span class="wv8-band-period">{{ . }}</span>{{ end }}
+          </span>
+        </div>
+
+        <div class="section-inner wv8-text">
+          <h3 class="wv8-company">{{ .Title }}</h3>
+          <div class="wv8-col">
+            <div class="wv8-points">
+              {{ with .Params.highlights }}
+                {{ range . }}<p class="wv8-point">{{ . }}</p>{{ end }}
+              {{ else }}
+                <div class="wv-hl">{{ .Content }}</div>
+              {{ end }}
+            </div>
+            <div class="wv8-meta">
+              {{ with .Params.tags }}
+              <div class="wv-role-tags wv8-tags">
+                {{ range first 6 . }}<span class="card-tag">{{ . }}</span>{{ end }}
+              </div>
+              {{ end }}
+              <div class="wv8-links">
+                {{ with .Params.live_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Launch ›</a>{{ end }}
+                {{ with .Params.article_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Learn more ›</a>{{ end }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      {{ end }}
+    {{ end }}
+  </div>
+
+  <div class="section-inner">
+    <div class="section-label">
+      <span class="section-label-text">Products &amp; Side Projects</span>
+    </div>
+    {{ partial "work-gallery.html" (dict "work" $work) }}
+
+    <div class="section-label">
+      <span class="section-label-text">Education &amp; Awards</span>
+    </div>
+    {{ partial "work-awards.html" (dict "work" $work) }}
+  </div>
+</section>
+
+{{ partial "work-shared-css.html" . }}
+<style>
+/* ══ V8 — Picture band: full-bleed image + editorial text block ══ */
+/* No overflow-x guard on this section: it would clip the full-bleed bands
+   back to the padding box. Bands use 100vw with a centering negative margin. */
+.theme-zurassic .work-v8 .wv8-cases { margin-bottom: 88px; }
+.theme-zurassic .work-v8 .wv8-case { margin-bottom: 80px; }
+
+.theme-zurassic .work-v8 .wv8-band {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: #fff;
+  border-top: 1px solid var(--t-border);
+  border-bottom: 1px solid var(--t-border);
+  margin-bottom: 32px;
+}
+.theme-zurassic .work-v8 .wv8-band-img { display: block; }
+.theme-zurassic .work-v8 .wv8-band-img img {
+  width: 100%;
+  height: clamp(240px, 34vw, 420px);
+  object-fit: cover;
+  display: block;
+}
+.theme-zurassic .work-v8 .wv8-band-multi {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--t-border);
+}
+.theme-zurassic .work-v8 .wv8-band-cell { display: block; background: #fff; }
+.theme-zurassic .work-v8 .wv8-band-cell img {
+  width: 100%;
+  height: clamp(240px, 34vw, 420px);
+  object-fit: cover;
+  display: block;
+}
+/* Missing shot: a short band, so an empty state never dominates the page */
+.theme-zurassic .work-v8 .wv8-ph {
+  display: flex;
+  height: 160px;
+  border: none;
+  border-radius: 0;
+}
+.theme-zurassic .work-v8 .wv8-band-tag {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(20,20,20,0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--t-text-light);
+  padding: 8px 20px 8px 16px;
+  border-radius: 0 100px 100px 0;
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.theme-zurassic .work-v8 .wv8-band-num { font-weight: 700; color: rgba(255,255,255,0.5); }
+.theme-zurassic .work-v8 .wv8-band-period { color: rgba(255,255,255,0.5); }
+
+.theme-zurassic .work-v8 .wv8-company {
+  font-family: var(--t-font-sans);
+  font-size: clamp(32px, 4.4vw, 54px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  color: var(--t-text);
+  margin: 0 0 26px;
+}
+.theme-zurassic .work-v8 .wv8-col {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: 48px;
+  align-items: start;
+}
+.theme-zurassic .work-v8 .wv8-points {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.theme-zurassic .work-v8 .wv8-point {
+  position: relative;
+  font-size: 15px;
+  color: var(--t-text-mid);
+  line-height: 1.6;
+  margin: 0;
+  padding-left: 22px;
+}
+.theme-zurassic .work-v8 .wv8-point::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 12px;
+  height: 1px;
+  background: var(--t-accent);
+}
+.theme-zurassic .work-v8 .wv8-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.theme-zurassic .work-v8 .wv8-tags { margin-top: 0; }
+.theme-zurassic .work-v8 .wv8-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+
+@media (max-width: 768px) {
+  .theme-zurassic .work-v8 .wv8-col { grid-template-columns: 1fr; gap: 24px; }
+  .theme-zurassic .work-v8 .wv8-band-multi { grid-template-columns: 1fr 1fr; }
+  .theme-zurassic .work-v8 .wv8-band-multi .wv8-band-cell:nth-child(3) { display: none; }
+  .theme-zurassic .work-v8 .wv8-case { margin-bottom: 60px; }
+  .theme-zurassic .work-v8 .wv8-links { flex-direction: row; gap: 20px; }
+}
+</style>
+{{ end }}

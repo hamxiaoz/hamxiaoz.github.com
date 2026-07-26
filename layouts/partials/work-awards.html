@@ -1,0 +1,26 @@
+{{- /* Compact education & awards rows. Param: work (page list) */ -}}
+<div class="wv-awards">
+  {{ range .work }}
+    {{ $cat := partial "work-category.html" . }}
+    {{ if eq $cat "education" }}
+    {{ $p := . }}
+    {{ $href := or .Params.article_url .Params.live_url }}
+    <a class="wv-award glass"
+       href="{{ or $href .RelPermalink }}"
+       {{ if $href }}target="_blank" rel="noopener noreferrer"{{ end }}>
+      {{ with .Params.image }}
+      <span class="wv-award-thumb"><img src="{{ . }}" alt="{{ $p.Title }}" loading="lazy"></span>
+      {{ else }}
+      <span class="wv-award-thumb wv-award-thumb--empty" aria-hidden="true"></span>
+      {{ end }}
+      <span class="wv-award-body">
+        <span class="wv-award-title">{{ .Title }}</span>
+        {{ with or .Params.description (delimit (.Params.tags | default (slice)) " · ") }}
+        <span class="wv-award-desc">{{ . }}</span>
+        {{ end }}
+      </span>
+      {{ if $href }}<span class="wv-award-go">›</span>{{ end }}
+    </a>
+    {{ end }}
+  {{ end }}
+</div>

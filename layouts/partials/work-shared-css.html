@@ -159,4 +159,180 @@
   .theme-zurassic .wv-role-num { font-size: 44px; }
   .theme-zurassic .wv-role::after { display: none; }
 }
+
+/* Shared role meta: eyebrow (role + period), highlight bullets, footer */
+.theme-zurassic .wv-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.theme-zurassic .wv-rolename {
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-accent);
+}
+.theme-zurassic .wv-period {
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+}
+.theme-zurassic .wv-hl {
+  font-size: 14.5px;
+  color: var(--t-text-mid);
+  line-height: 1.65;
+  position: relative;
+}
+.theme-zurassic .wv-hl ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.theme-zurassic .wv-hl li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+.theme-zurassic .wv-hl li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 10px;
+  height: 1px;
+  background: var(--t-accent);
+}
+.theme-zurassic .wv-foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin-top: 24px;
+  position: relative;
+}
+.theme-zurassic .wv-foot .wv-role-tags { margin-top: 0; }
+
+/* Shared product gallery grid (work-gallery.html) */
+.theme-zurassic .wv-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px 16px;
+  margin-bottom: 80px;
+}
+.theme-zurassic .wv-gtile { display: block; }
+.theme-zurassic .wv-gtile-img {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--t-radius);
+  border: 1px solid var(--t-border);
+  margin-bottom: 12px;
+  background: var(--t-surface);
+}
+.theme-zurassic .wv-gtile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.theme-zurassic .wv-gtile:hover .wv-gtile-img img { transform: scale(1.04); }
+.theme-zurassic .wv-gtile-title {
+  display: block;
+  font-family: var(--t-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t-text);
+  margin-bottom: 3px;
+  transition: color 0.15s;
+}
+.theme-zurassic .wv-gtile:hover .wv-gtile-title { color: var(--t-accent); }
+.theme-zurassic .wv-gtile-co {
+  display: block;
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+}
+
+/* Shared awards strip (work-awards.html) */
+.theme-zurassic .wv-awards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 720px;
+}
+.theme-zurassic .wv-award {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 20px 12px 12px;
+}
+.theme-zurassic .wv-award-thumb {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--t-border);
+  background: var(--t-surface);
+}
+.theme-zurassic .wv-award-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.theme-zurassic .wv-award-thumb--empty {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+.theme-zurassic .wv-award-body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.theme-zurassic .wv-award-title {
+  font-family: var(--t-font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--t-text);
+}
+.theme-zurassic .wv-award-desc {
+  font-size: 12.5px;
+  color: var(--t-text-mid);
+  line-height: 1.5;
+}
+.theme-zurassic .wv-award-go {
+  font-size: 16px;
+  color: var(--t-text-dim);
+  transition: color 0.15s, transform 0.2s;
+}
+.theme-zurassic .wv-award:hover .wv-award-go {
+  color: var(--t-accent);
+  transform: translateX(3px);
+}
+
+/* Placeholder frame for missing product shots */
+.theme-zurassic .wv-ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--t-border-strong);
+  border-radius: var(--t-radius);
+  background-image: radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+.theme-zurassic .wv-ph-label {
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+  text-align: center;
+  padding: 12px;
+}
 </style>
