@@ -1,13 +1,11 @@
 ---
-title: "ADP Mobile Solutions"
+title: "ADP (Automatic Data Processing, Inc)"
 company: "ADP"
 role: "Dev Lead"
 tags: ["Angular", "Mobile", "Enterprise", "UX"]
-live_url: "https://itunes.apple.com/us/app/adp-mobile-solutions/id444553167?mt=8"
 weight: 3
 period: "2016 — 2018"
-images:
-  - "/assets/images/work-shot-adp.png"
+logo: "/assets/images/logo-adp.png"
 highlights:
   - "Led the team that built ADP Paycard — a net-new product inside one of the most widely used enterprise payroll apps"
   - "Shipped features to a #1 Free Business App on the App Store, serving 13M registered users"

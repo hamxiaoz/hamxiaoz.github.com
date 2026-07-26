@@ -1,15 +1,12 @@
 ---
-title: "AEM Software Portfolio"
+title: "AEM Performance Electronics"
 company: "AEM Performance Electronics"
 role: "Software Engineer & Architect"
 tags: ["C++", "C#", "Win32", "Real-time"]
 article_url: "https://www.youtube.com/watch?v=tyyQgcu2kXI"
 weight: 3
 period: "2008 — 2016"
-images:
-  - "/assets/images/portfolio-infinity-tuner.png"
-  - "/assets/images/portfolio-aq1.png"
-  - "/assets/images/portfolio-cmtool.png"
+logo: "/assets/images/logo-aem.png"
 highlights:
   - "Sole architect and engineer across the full AEM software portfolio — native desktop, web, developer tooling, and USB driver"
   - "Built AEMTuner, an industry-leading real-time engine tuning software in C++ and C#"

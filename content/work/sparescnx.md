@@ -1,0 +1,9 @@
+---
+title: "SparesCNX"
+description: "Bringing order to inventory chaos — BCG venture launch film"
+company: "BCG"
+image: "/assets/images/work-shot-sparescnx.jpg"
+tags: ["IoT", "Enterprise"]
+live_url: "https://www.youtube.com/watch?v=41LM14Ow_Oo"
+weight: 9
+---

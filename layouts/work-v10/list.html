@@ -16,6 +16,7 @@
       <div class="wv10-meta">
         <div class="wv10-meta-inner">
           <span class="wv10-num">{{ printf "%02d" (add $i 1) }}</span>
+          {{ partial "work-logo.html" (dict "page" $lead "class" "wv10-logo") }}
           <h2 class="wv10-company">{{ $lead.Title }}</h2>
           {{ with $lead.Params.role }}<p class="wv10-role">{{ . }}</p>{{ end }}
           {{ with $lead.Params.period }}<p class="wv-period wv10-period">{{ . }}</p>{{ end }}
@@ -85,6 +86,8 @@
   color: var(--t-accent);
   margin-bottom: 12px;
 }
+.theme-zurassic .work-v10 .wv10-logo { margin-bottom: 14px; }
+.theme-zurassic .work-v10 .wv10-logo img { height: 26px; }
 .theme-zurassic .work-v10 .wv10-company {
   font-family: var(--t-font-sans);
   font-size: 24px;

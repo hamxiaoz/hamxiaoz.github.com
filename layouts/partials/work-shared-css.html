@@ -160,6 +160,66 @@
   .theme-zurassic .wv-role::after { display: none; }
 }
 
+/* Company logo mark — fixed height, natural width (wordmarks run wide,
+   icon marks are square), so every section sits on the same optical baseline. */
+.theme-zurassic .wv-logo {
+  display: block;
+  margin-bottom: 18px;
+}
+.theme-zurassic .wv-logo img {
+  height: 30px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Featured "shipped product" hero — same hover zoom as the grid tiles */
+.theme-zurassic .wv-hero {
+  display: block;
+}
+.theme-zurassic .wv-hero-frame {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--t-radius);
+  border: 1px solid var(--t-border);
+  background: #fff;
+  margin-bottom: 12px;
+}
+.theme-zurassic .wv-hero-frame img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.theme-zurassic .wv-hero:hover .wv-hero-frame img { transform: scale(1.04); }
+.theme-zurassic .wv-hero-label {
+  display: block;
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-accent);
+  margin-bottom: 4px;
+}
+.theme-zurassic .wv-hero-title {
+  display: block;
+  font-family: var(--t-font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--t-text);
+  transition: color 0.15s;
+}
+.theme-zurassic .wv-hero:hover .wv-hero-title { color: var(--t-accent); }
+.theme-zurassic .wv-hero-desc {
+  display: block;
+  font-size: 13px;
+  color: var(--t-text-mid);
+  line-height: 1.5;
+  margin-top: 2px;
+}
+
 /* Shared role meta: eyebrow (role + period), highlight bullets, footer */
 .theme-zurassic .wv-eyebrow {
   display: flex;

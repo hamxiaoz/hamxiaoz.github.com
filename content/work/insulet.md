@@ -3,11 +3,9 @@ title: "Insulet Corporation"
 company: "Insulet"
 role: "Director of Software Engineering"
 tags: ["AI", "Mobile", "Web", "Medical", "AWS/Azure", "Enterprise", "Medical Device"]
-article_url: "https://www.omnipod.com/innovation/discover"
 weight: 1
 period: "2021 — Now"
-images:
-  - "/assets/images/work-shot-insulet.png"
+logo: "/assets/images/logo-insulet.svg"
 highlights:
   - "Founded Omnipod Discover — Insulet's data platform connecting patients and clinicians through actionable diabetes insights"
   - "Architect and ship FDA-regulated medical device software across mobile, web, and API at medical-grade quality"

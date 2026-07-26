@@ -1,0 +1,6 @@
+{{- /* Company logo mark. Params: page (lead), class (optional) */ -}}
+{{- with .page.Params.logo -}}
+<span class="wv-logo{{ with $.class }} {{ . }}{{ end }}">
+  <img src="{{ . }}" alt="{{ $.page.Params.company }} logo" loading="lazy">
+</span>
+{{- end -}}

@@ -15,6 +15,7 @@
     <section class="wv9-co">
       <div class="wv9-row{{ if eq (mod $i 2) 1 }} wv9-row--flip{{ end }}">
         <div class="wv9-text">
+          {{ partial "work-logo.html" (dict "page" $lead) }}
           <div class="wv-eyebrow">
             {{ with $lead.Params.role }}<span class="wv-rolename">{{ . }}</span>{{ end }}
             {{ with $lead.Params.period }}<span class="wv-period">{{ . }}</span>{{ end }}
@@ -32,22 +33,37 @@
           </div>
         </div>
         <div class="wv9-media">
-          {{ $shots := $lead.Params.images }}
-          {{ if not $shots }}{{ with $lead.Params.image }}{{ $shots = slice . }}{{ end }}{{ end }}
-          {{ if $shots }}
-            <span class="wv9-media-main"><img src="{{ index $shots 0 }}" alt="{{ $lead.Title }} product" loading="lazy"></span>
+          {{/* Featured shipped product: the company's first product tile,
+               falling back to the lead's own image (Freelance has no tiles). */}}
+          {{ if $s.tiles }}
+            {{ $hero := index $s.tiles 0 }}
+            {{ $href := or $hero.Params.live_url $hero.Params.article_url $hero.RelPermalink }}
+            <a class="wv-hero" href="{{ $href }}" target="_blank" rel="noopener noreferrer">
+              <span class="wv-hero-frame"><img src="{{ $hero.Params.image }}" alt="{{ $hero.Title }}" loading="lazy"></span>
+              <span class="wv-hero-label">Shipped product</span>
+              <span class="wv-hero-title">{{ $hero.Title }}</span>
+              {{ with $hero.Params.description }}<span class="wv-hero-desc">{{ . }}</span>{{ end }}
+            </a>
+          {{ else if $lead.Params.image }}
+            {{ $href := or $lead.Params.live_url $lead.Params.article_url $lead.RelPermalink }}
+            <a class="wv-hero" href="{{ $href }}" target="_blank" rel="noopener noreferrer">
+              <span class="wv-hero-frame"><img src="{{ $lead.Params.image }}" alt="{{ $lead.Title }}" loading="lazy"></span>
+              <span class="wv-hero-label">Shipped product</span>
+              <span class="wv-hero-title">{{ $lead.Title }}</span>
+              {{ with $lead.Params.description }}<span class="wv-hero-desc">{{ . }}</span>{{ end }}
+            </a>
           {{ else }}
             <span class="wv-ph wv9-ph"><span class="wv-ph-label">{{ $s.company }} · product shot</span></span>
           {{ end }}
         </div>
       </div>
 
-      {{ with $s.tiles }}
+      {{ if gt (len $s.tiles) 1 }}
       <div class="wv9-tiles-head">
-        <span class="wv9-tiles-count">{{ len . }} shipped</span>
+        <span class="wv9-tiles-count">{{ len $s.tiles }} shipped</span>
         <span class="wv9-tiles-rule"></span>
       </div>
-      {{ partial "work-tiles.html" (dict "pages" . "class" "wv9-tiles") }}
+      {{ partial "work-tiles.html" (dict "pages" (after 1 $s.tiles) "class" "wv9-tiles") }}
       {{ end }}
     </section>
     {{ end }}

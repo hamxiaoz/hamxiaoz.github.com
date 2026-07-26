@@ -15,6 +15,7 @@
     <section class="wv11-co">
       <header class="wv11-head">
         <span class="wv11-num" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+        {{ partial "work-logo.html" (dict "page" $lead "class" "wv11-logo") }}
         <h2 class="wv11-company">{{ $lead.Title }}</h2>
         <span class="wv11-rule"></span>
         <span class="wv11-meta">
@@ -85,6 +86,13 @@
   color: var(--t-accent);
   flex-shrink: 0;
 }
+/* Logo sits inline in the chapter header, aligned with the company name */
+.theme-zurassic .work-v11 .wv11-logo {
+  margin-bottom: 0;
+  flex-shrink: 0;
+  align-self: center;
+}
+.theme-zurassic .work-v11 .wv11-logo img { height: 24px; max-width: 120px; }
 .theme-zurassic .work-v11 .wv11-company {
   font-family: var(--t-font-sans);
   font-size: clamp(26px, 3.2vw, 40px);
