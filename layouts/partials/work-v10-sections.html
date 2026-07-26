@@ -3,6 +3,8 @@
 {{- $work := .work -}}
 {{- $headStyle := .headStyle | default "rule" -}}
 {{- $noperiod := .noperiod -}}
+{{- /* roleInBody moves the role out of the header and above the bullets */ -}}
+{{- $roleInBody := .roleInBody -}}
 {{- $companies := slice "Insulet" "BCG" "ADP" "AEM Performance Electronics" -}}
 {{- $sections := partial "work-sections.html" (dict "work" $work "companies" $companies) -}}
 {{- /* Freelance and the education items share one closing section */ -}}
@@ -18,10 +20,13 @@
 {{ if eq (len $tiles) 2 }}{{ $layout = "t1p2" }}{{ end }}
 {{ if eq (len $tiles) 0 }}{{ $layout = "text" }}{{ end }}
 <section class="wv10-co">
-  {{ partial "work-section-head.html" (dict "page" $lead "style" $headStyle "noperiod" $noperiod) }}
+  {{ partial "work-section-head.html" (dict "page" $lead "style" $headStyle "noperiod" $noperiod "norole" $roleInBody) }}
 
   <div class="wv10-body wv10-body--{{ $layout }}">
     <div class="wv10-text">
+      {{ if $roleInBody }}
+        {{ with $lead.Params.role }}<h3 class="wv10-role">{{ . }}</h3>{{ end }}
+      {{ end }}
       {{ partial "work-bullets.html" (dict "page" $lead "class" "wv10-hl") }}
       <div class="wv-foot wv10-foot">
         {{ with $lead.Params.tags }}

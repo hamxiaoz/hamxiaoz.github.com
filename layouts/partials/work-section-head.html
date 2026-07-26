@@ -14,8 +14,18 @@
   {{- $period = $page.Params.period -}}
 {{- end -}}
 {{- if .noperiod }}{{ $period = "" }}{{ end -}}
+{{- if .norole }}{{ $role = "" }}{{ end -}}
 
-{{- if eq $style "rule" -}}
+{{- if eq $style "label" -}}
+{{- /* Red dot + mono company label + hairline, with the logo holding the right
+       edge — the same device as the page's "Products & Side Projects" labels. */ -}}
+<header class="wv-head wv-head--label">
+  <span class="wv-head-dot" aria-hidden="true"></span>
+  <h2 class="wv-head-title">{{ $title }}</h2>
+  <span class="wv-head-rule"></span>
+  {{ if $page }}{{ partial "work-logo.html" (dict "page" $page "class" "wv-head-logo") }}{{ end }}
+</header>
+{{- else if eq $style "rule" -}}
 <header class="wv-head">
   {{ if $page }}{{ partial "work-logo.html" (dict "page" $page "class" "wv-head-logo") }}{{ end }}
   <h2 class="wv-head-title">{{ $title }}</h2>

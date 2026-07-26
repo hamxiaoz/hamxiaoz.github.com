@@ -277,6 +277,44 @@
   background: var(--t-border-strong);
 }
 
+/* D — Label: the section-label device (dot + mono caps + rule) as the header.
+   The company reads as an eyebrow; the role carries the heading weight in the
+   text column below. */
+.theme-zurassic .wv-head--label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 24px;
+}
+.theme-zurassic .wv-head--label .wv-head-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--t-accent);
+  flex-shrink: 0;
+}
+.theme-zurassic .wv-head--label .wv-head-title {
+  font-family: var(--t-font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--t-text);
+  white-space: nowrap;
+  margin: 0;
+}
+.theme-zurassic .wv-head--label .wv-head-logo { margin-bottom: 0; flex-shrink: 0; }
+.theme-zurassic .wv-head--label .wv-head-logo img { height: 22px; max-width: 100px; }
+@media (max-width: 700px) {
+  /* Long names (ADP) would overflow a nowrap label at this width */
+  .theme-zurassic .wv-head--label { flex-wrap: wrap; }
+  .theme-zurassic .wv-head--label .wv-head-title { white-space: normal; }
+  .theme-zurassic .wv-head--label .wv-head-rule { display: none; }
+  .theme-zurassic .wv-head--label .wv-head-logo { margin-left: auto; }
+}
+
 /* C — Plaque: logo in a chip, name and role contained in a glass band */
 .theme-zurassic .wv-head--plaque {
   display: flex;
