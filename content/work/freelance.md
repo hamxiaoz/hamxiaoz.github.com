@@ -5,6 +5,6 @@ image: "/assets/images/portfolio-freelance.png"
 company: "Freelance"
 tags: ["overview"]
 article_url: "https://medium.com/@hamxiaoz/portfolio-freelance-d17f943c5368#.59a4kkcrq"
-weight: 6
+weight: 4
 period: "2013 — Now"
 ---

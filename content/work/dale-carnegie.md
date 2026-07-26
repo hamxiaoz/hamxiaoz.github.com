@@ -1,6 +1,7 @@
 ---
 title: "Dale Carnegie Training"
 company: "Education & Awards"
+description: "Effective Communications & Human Relations — Highest Achievement and Breakthrough awards"
 # image: "/assets/images/portfolio-ux.png"
 tags: ["Leadership", "Public Speaking"]
 # article_url: "https://medium.com/@hamxiaoz/what-i-v-learned-from-a-ux-design-bootcamp-9bbac8755a4a#.uvjivldfz"

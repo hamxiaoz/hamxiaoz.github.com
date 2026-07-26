@@ -1,8 +1,10 @@
 {{ define "main" }}
 {{ $work := (where site.RegularPages "Section" "work").ByWeight }}
 {{ $workSection := site.GetPage "/work" }}
-{{ $companies := slice "Insulet" "BCG" "ADP" "AEM Performance Electronics" "Freelance" }}
+{{ $companies := slice "Insulet" "BCG" "ADP" "AEM Performance Electronics" }}
 {{ $sections := partial "work-sections.html" (dict "work" $work "companies" $companies) }}
+{{/* Freelance and the education items share one closing section */}}
+{{ $sideWork := where $work "Params.company" "in" (slice "Freelance" "Education & Awards") }}
 
 <section class="portfolio-section section-page work-v10">
   <div class="section-inner">
@@ -10,137 +12,114 @@
 
     {{ with $workSection.Content }}<div class="proj-intro wv10-intro">{{ . }}</div>{{ end }}
 
-    {{ range $i, $s := $sections }}
-    {{ $lead := $s.lead }}
+    {{ range $sections }}
+    {{ $lead := .lead }}
+    {{ $tiles := .tiles }}
+    {{/* One product → text takes two columns; two or more → text takes one */}}
+    {{ $layout := "t1p3" }}
+    {{ if eq (len $tiles) 1 }}{{ $layout = "t2p1" }}{{ end }}
+    {{ if eq (len $tiles) 2 }}{{ $layout = "t1p2" }}{{ end }}
+    {{ if eq (len $tiles) 0 }}{{ $layout = "text" }}{{ end }}
     <section class="wv10-co">
-      <div class="wv10-meta">
-        <div class="wv10-meta-inner">
-          <span class="wv10-num">{{ printf "%02d" (add $i 1) }}</span>
-          {{ partial "work-logo.html" (dict "page" $lead "class" "wv10-logo") }}
-          <h2 class="wv10-company">{{ $lead.Title }}</h2>
-          {{ with $lead.Params.role }}<p class="wv10-role">{{ . }}</p>{{ end }}
-          {{ with $lead.Params.period }}<p class="wv-period wv10-period">{{ . }}</p>{{ end }}
-          {{/* Bullets live in the rail so the right column stays a pure gallery */}}
+      {{ partial "work-section-head.html" (dict "page" $lead) }}
+
+      <div class="wv10-body wv10-body--{{ $layout }}">
+        <div class="wv10-text">
           {{ partial "work-bullets.html" (dict "page" $lead "class" "wv10-hl") }}
-          {{ with $lead.Params.tags }}
-          <div class="wv-role-tags wv10-tags">
-            {{ range first 4 . }}<span class="card-tag">{{ . }}</span>{{ end }}
-          </div>
-          {{ end }}
-          <div class="wv10-links">
+          <div class="wv-foot wv10-foot">
+            {{ with $lead.Params.tags }}
+            <div class="wv-role-tags">
+              {{ range first 6 . }}<span class="card-tag">{{ . }}</span>{{ end }}
+            </div>
+            {{ end }}
             {{ with $lead.Params.live_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Launch ›</a>{{ end }}
             {{ with $lead.Params.article_url }}<a class="wv-role-link" href="{{ . }}" target="_blank" rel="noopener noreferrer">Learn more ›</a>{{ end }}
           </div>
         </div>
-      </div>
 
-      <div class="wv10-body">
-        {{ if $s.tiles }}
-          {{ partial "work-tiles.html" (dict "pages" $s.tiles "class" "wv10-tiles") }}
-        {{ else }}
-          {{/* No products of its own — fall back to the lead's shot */}}
-          {{ $shots := $lead.Params.images }}
-          {{ if not $shots }}{{ with $lead.Params.image }}{{ $shots = slice . }}{{ end }}{{ end }}
-          {{ if $shots }}
-          <span class="wv10-shot"><img src="{{ index $shots 0 }}" alt="{{ $lead.Title }} product" loading="lazy"></span>
-          {{ else }}
-          <span class="wv-ph wv10-ph"><span class="wv-ph-label">{{ $s.company }} · product shot</span></span>
-          {{ end }}
+        {{ with $tiles }}
+        <div class="wv10-products">
+          {{ partial "work-tiles.html" (dict "pages" . "nomod" true) }}
+        </div>
         {{ end }}
       </div>
     </section>
     {{ end }}
 
-    <div class="section-label">
-      <span class="section-label-text">Education &amp; Awards</span>
-    </div>
-    {{ partial "work-awards.html" (dict "work" $work) }}
+    {{ with $sideWork }}
+    <section class="wv10-co">
+      {{/* Plain text — the template escapes it; pre-escaped entities double-encode */}}
+      {{ partial "work-section-head.html" (dict "title" "Freelance & Education" "role" "Independent work, training & awards") }}
+      <div class="wv10-body wv10-body--side">
+        <div class="wv10-products">
+          {{ partial "work-tiles.html" (dict "pages" . "nomod" true) }}
+        </div>
+      </div>
+    </section>
+    {{ end }}
   </div>
 </section>
 
 {{ partial "work-shared-css.html" . }}
 <style>
-/* ══ V10 — Ledger: sticky text rail + product gallery ══ */
+/* ══ V10 — Ledger: shared section header, text column beside product columns ══ */
 .theme-zurassic .work-v10 .wv10-intro { max-width: 620px; margin-bottom: 44px; }
+.theme-zurassic .work-v10 .wv10-co { margin-bottom: 72px; }
 
-.theme-zurassic .work-v10 .wv10-co {
+.theme-zurassic .work-v10 .wv10-body {
   display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 56px;
-  padding: 48px 0 56px;
-  border-top: 1px solid var(--t-border);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+  align-items: start;
 }
-.theme-zurassic .work-v10 .wv10-co:last-of-type {
-  border-bottom: 1px solid var(--t-border);
-  margin-bottom: 72px;
-}
-.theme-zurassic .work-v10 .wv10-meta-inner { position: sticky; top: 110px; }
-.theme-zurassic .work-v10 .wv10-num {
-  display: block;
-  font-family: var(--t-font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: var(--t-accent);
-  margin-bottom: 12px;
-}
-.theme-zurassic .work-v10 .wv10-logo { margin-bottom: 14px; }
-.theme-zurassic .work-v10 .wv10-logo img { height: 26px; }
-.theme-zurassic .work-v10 .wv10-company {
-  font-family: var(--t-font-sans);
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: var(--t-text);
-  margin: 0 0 6px;
-}
-.theme-zurassic .work-v10 .wv10-role {
-  font-size: 13px;
-  color: var(--t-text-mid);
-  margin: 0 0 6px;
-}
-.theme-zurassic .work-v10 .wv10-period { margin: 0 0 18px; display: block; }
-/* Rail bullets: smaller and tighter than body copy — supporting detail, not the story */
-.theme-zurassic .work-v10 .wv10-hl {
-  font-size: 13px;
-  line-height: 1.55;
-  margin-bottom: 20px;
-}
-.theme-zurassic .work-v10 .wv10-hl li { padding-left: 16px; margin-bottom: 8px; }
-.theme-zurassic .work-v10 .wv10-hl li::before { width: 8px; top: 0.62em; }
-.theme-zurassic .work-v10 .wv10-tags { margin: 0 0 18px; }
-.theme-zurassic .work-v10 .wv10-links { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
 
-.theme-zurassic .work-v10 .wv10-shot {
-  display: block;
-  max-width: 560px;
-  overflow: hidden;
-  border-radius: var(--t-radius);
-  border: 1px solid var(--t-border);
-  background: #fff;
-  margin-bottom: 26px;
-}
-.theme-zurassic .work-v10 .wv10-shot img {
-  width: 100%;
-  aspect-ratio: 20 / 9;
-  object-fit: cover;
-  display: block;
-}
-.theme-zurassic .work-v10 .wv10-ph { height: 140px; margin-bottom: 0; }
+/* Column split per product count — the text block widens when there is little
+   product imagery to show, so no section is left with an empty column. */
+.theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-text { grid-column: span 2; }
+.theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-products { grid-column: span 1; --cols: 1; }
+.theme-zurassic .work-v10 .wv10-body--t1p2 .wv10-text { grid-column: span 1; }
+.theme-zurassic .work-v10 .wv10-body--t1p2 .wv10-products { grid-column: span 2; --cols: 2; }
+.theme-zurassic .work-v10 .wv10-body--t1p3 .wv10-text { grid-column: span 1; }
+.theme-zurassic .work-v10 .wv10-body--t1p3 .wv10-products { grid-column: span 2; --cols: 3; }
+.theme-zurassic .work-v10 .wv10-body--text .wv10-text { grid-column: span 3; }
+.theme-zurassic .work-v10 .wv10-body--side .wv10-products { grid-column: span 3; --cols: 4; }
 
-/* Gallery column: column count comes from the count modifiers in the shared CSS,
-   so 1-2 products render large instead of stranding a small tile. */
-.theme-zurassic .work-v10 .wv10-tiles { margin: 0; }
+/* The caller owns the column count here (tiles are rendered with nomod) */
+.theme-zurassic .work-v10 .wv10-products .wv-gallery {
+  grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
+  gap: 24px 16px;
+  margin-bottom: 0;
+}
+/* Wider crops where tiles are large; square where they are small and numerous */
+.theme-zurassic .work-v10 .wv10-body--t2p1 .wv-gtile-img,
+.theme-zurassic .work-v10 .wv10-body--t1p2 .wv-gtile-img { aspect-ratio: 4 / 3; }
+
+.theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-hl ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 32px;
+}
+.theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-hl li { margin-bottom: 0; }
+.theme-zurassic .work-v10 .wv10-hl { max-width: none; }
+.theme-zurassic .work-v10 .wv10-foot { margin-top: 20px; }
 
 @media (max-width: 860px) {
-  .theme-zurassic .work-v10 .wv10-co {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 36px 0 44px;
-  }
-  .theme-zurassic .work-v10 .wv10-meta-inner { position: static; }
-  .theme-zurassic .work-v10 .wv10-links { flex-direction: row; gap: 20px; }
+  .theme-zurassic .work-v10 .wv10-body,
+  .theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-hl ul { grid-template-columns: minmax(0, 1fr); }
+  .theme-zurassic .work-v10 .wv10-body { gap: 28px; }
+  .theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-text,
+  .theme-zurassic .work-v10 .wv10-body--t1p2 .wv10-text,
+  .theme-zurassic .work-v10 .wv10-body--t1p3 .wv10-text,
+  .theme-zurassic .work-v10 .wv10-body--text .wv10-text,
+  .theme-zurassic .work-v10 .wv10-body--t2p1 .wv10-products,
+  .theme-zurassic .work-v10 .wv10-body--t1p2 .wv10-products,
+  .theme-zurassic .work-v10 .wv10-body--t1p3 .wv10-products,
+  .theme-zurassic .work-v10 .wv10-body--side .wv10-products { grid-column: span 1; }
+  .theme-zurassic .work-v10 .wv10-products .wv-gallery { --cols: 2 !important; }
+  .theme-zurassic .work-v10 .wv10-co { margin-bottom: 56px; }
+}
+@media (max-width: 520px) {
+  .theme-zurassic .work-v10 .wv10-products .wv-gallery { --cols: 1 !important; }
 }
 </style>
 {{ end }}

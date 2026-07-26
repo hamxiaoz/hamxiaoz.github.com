@@ -1,0 +1,20 @@
+{{- /* Section header: logo + company on one row with the rule and role/period.
+       Params: either `page` (a lead page) or explicit `title` / `role` / `period`. */ -}}
+{{- $page := .page -}}
+{{- $title := .title -}}
+{{- $role := .role -}}
+{{- $period := .period -}}
+{{- if $page -}}
+  {{- $title = $page.Title -}}
+  {{- $role = $page.Params.role -}}
+  {{- $period = $page.Params.period -}}
+{{- end -}}
+<header class="wv-head">
+  {{ if $page }}{{ partial "work-logo.html" (dict "page" $page "class" "wv-head-logo") }}{{ end }}
+  <h2 class="wv-head-title">{{ $title }}</h2>
+  <span class="wv-head-rule"></span>
+  <span class="wv-head-meta">
+    {{ with $role }}<span class="wv-rolename">{{ . }}</span>{{ end }}
+    {{ with $period }}<span class="wv-period">{{ . }}</span>{{ end }}
+  </span>
+</header>

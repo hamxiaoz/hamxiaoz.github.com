@@ -160,6 +160,48 @@
   .theme-zurassic .wv-role::after { display: none; }
 }
 
+/* Section header — logo, company, hairline rule, role/period on one row */
+.theme-zurassic .wv-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--t-border-strong);
+  margin-bottom: 24px;
+}
+.theme-zurassic .wv-head-logo {
+  margin-bottom: 0;
+  flex-shrink: 0;
+  align-self: center;
+}
+/* Scoped under .wv-head so it beats the later, equally specific .wv-logo img rule */
+.theme-zurassic .wv-head .wv-head-logo img { height: 24px; max-width: 120px; }
+.theme-zurassic .wv-head-title {
+  font-family: var(--t-font-sans);
+  font-size: clamp(26px, 3.2vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--t-text);
+  margin: 0;
+}
+.theme-zurassic .wv-head-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--t-border);
+  min-width: 20px;
+}
+.theme-zurassic .wv-head-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-shrink: 0;
+}
+@media (max-width: 860px) {
+  .theme-zurassic .wv-head { flex-wrap: wrap; gap: 8px 14px; }
+  .theme-zurassic .wv-head-rule { display: none; }
+}
+
 /* Company logo mark — fixed height, natural width (wordmarks run wide,
    icon marks are square), so every section sits on the same optical baseline. */
 .theme-zurassic .wv-logo {
@@ -302,6 +344,11 @@
   transition: transform 0.35s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 .theme-zurassic .wv-gtile:hover .wv-gtile-img img { transform: scale(1.04); }
+/* Item with no screenshot (e.g. a training programme) keeps the grid rhythm */
+.theme-zurassic .wv-gtile-img--empty {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
 .theme-zurassic .wv-gtile-title {
   display: block;
   font-family: var(--t-font-sans);

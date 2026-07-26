@@ -1,14 +1,23 @@
-{{- /* Project tile grid from an explicit page slice. Params: pages, class (optional)
-       Adds a count modifier (n1/n2/n3) so a company with only a couple of products
-       gets large showcase images that fill the row instead of a lonely small tile. */ -}}
+{{- /* Project tile grid from an explicit page slice.
+       Params: pages, class (optional), nomod (optional)
+       By default a count modifier (n1/n2/n3) sizes small sets up so they fill the
+       row. Pass nomod when the caller controls its own column count. */ -}}
 {{- $pages := .pages -}}
 {{- $n := len $pages -}}
-<div class="wv-gallery{{ if and (gt $n 0) (le $n 3) }} wv-gallery--n{{ $n }}{{ end }}{{ with .class }} {{ . }}{{ end }}">
+{{- $mod := true -}}
+{{- if .nomod }}{{ $mod = false }}{{ end -}}
+{{- if or (eq $n 0) (gt $n 3) }}{{ $mod = false }}{{ end -}}
+<div class="wv-gallery{{ if $mod }} wv-gallery--n{{ $n }}{{ end }}{{ with .class }} {{ . }}{{ end }}">
   {{ range $pages }}
+  {{ $p := . }}
   <a class="wv-gtile"
      href="{{ or .Params.article_url .Params.live_url .RelPermalink }}"
      {{ if or .Params.article_url .Params.live_url }}target="_blank" rel="noopener noreferrer"{{ end }}>
-    <span class="wv-gtile-img"><img src="{{ .Params.image }}" alt="{{ .Title }}" loading="lazy"></span>
+    {{ with .Params.image }}
+    <span class="wv-gtile-img"><img src="{{ . }}" alt="{{ $p.Title }}" loading="lazy"></span>
+    {{ else }}
+    <span class="wv-gtile-img wv-gtile-img--empty" aria-hidden="true"></span>
+    {{ end }}
     <span class="wv-gtile-title">{{ .Title }}</span>
     {{ with .Params.description }}<span class="wv-gtile-desc">{{ . }}</span>{{ end }}
   </a>

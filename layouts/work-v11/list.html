@@ -13,15 +13,7 @@
     {{ range $i, $s := $sections }}
     {{ $lead := $s.lead }}
     <section class="wv11-co">
-      <header class="wv11-head">
-        {{ partial "work-logo.html" (dict "page" $lead "class" "wv11-logo") }}
-        <h2 class="wv11-company">{{ $lead.Title }}</h2>
-        <span class="wv11-rule"></span>
-        <span class="wv11-meta">
-          {{ with $lead.Params.role }}<span class="wv-rolename">{{ . }}</span>{{ end }}
-          {{ with $lead.Params.period }}<span class="wv-period">{{ . }}</span>{{ end }}
-        </span>
-      </header>
+      {{ partial "work-section-head.html" (dict "page" $lead) }}
 
       {{ partial "work-bullets.html" (dict "page" $lead "class" "wv11-hl") }}
 
@@ -66,42 +58,7 @@
 .theme-zurassic .work-v11 .wv11-intro { max-width: 620px; margin-bottom: 48px; }
 .theme-zurassic .work-v11 .wv11-co { margin-bottom: 76px; }
 
-.theme-zurassic .work-v11 .wv11-head {
-  display: flex;
-  align-items: baseline;
-  gap: 16px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--t-border-strong);
-  margin-bottom: 24px;
-}
-/* Logo sits inline in the chapter header, aligned with the company name */
-.theme-zurassic .work-v11 .wv11-logo {
-  margin-bottom: 0;
-  flex-shrink: 0;
-  align-self: center;
-}
-.theme-zurassic .work-v11 .wv11-logo img { height: 24px; max-width: 120px; }
-.theme-zurassic .work-v11 .wv11-company {
-  font-family: var(--t-font-sans);
-  font-size: clamp(26px, 3.2vw, 40px);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  color: var(--t-text);
-  margin: 0;
-}
-.theme-zurassic .work-v11 .wv11-rule {
-  flex: 1;
-  height: 1px;
-  background: var(--t-border);
-  min-width: 20px;
-}
-.theme-zurassic .work-v11 .wv11-meta {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  flex-shrink: 0;
-}
+/* Section header comes from work-section-head.html (shared with v10) */
 
 /* Bullets span the full width, one per column. Grid (not CSS columns) so each
    highlight keeps its own column instead of being balanced by text height. */
@@ -147,8 +104,6 @@
   .theme-zurassic .work-v11 .wv11-hl ul { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 860px) {
-  .theme-zurassic .work-v11 .wv11-head { flex-wrap: wrap; gap: 8px 14px; }
-  .theme-zurassic .work-v11 .wv11-rule { display: none; }
   .theme-zurassic .work-v11 .wv11-co { margin-bottom: 56px; }
 }
 @media (max-width: 660px) {
