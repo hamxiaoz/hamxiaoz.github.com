@@ -5,11 +5,7 @@
   <div class="section-inner">
     {{ partial "work-variant-switcher.html" (dict "current" "work-v6") }}
 
-    <header class="wv-header">
-      <div class="section-label"><span class="section-label-text">Selected Work</span></div>
-      <h1 class="wv-title">Work<em>.</em></h1>
-      {{ with $workSection.Params.description }}<p class="wv-intro">{{ . }}</p>{{ end }}
-    </header>
+    {{ with $workSection.Content }}<div class="proj-intro wv6-intro">{{ . }}</div>{{ end }}
 
     <div class="wv6-roles">
       {{ $ri := 0 }}
@@ -23,7 +19,7 @@
               <span class="wv-rolename">{{ .Params.role }}</span>
               {{ with .Params.period }}<span class="wv-period">{{ . }}</span>{{ end }}
             </div>
-            <h3 class="wv6-company">{{ .Title }}</h3>
+            <h2 class="wv6-company">{{ .Title }}</h2>
             <div class="wv-hl">
               {{ with .Params.highlights }}
               <ul>
@@ -78,6 +74,10 @@
 {{ partial "work-shared-css.html" . }}
 <style>
 /* ══ V6 — Case rows: text + product shot, alternating ══ */
+.theme-zurassic .work-v6 .wv6-intro {
+  max-width: 620px;
+  margin-bottom: 44px;
+}
 .theme-zurassic .work-v6 .wv6-roles { margin-bottom: 80px; }
 .theme-zurassic .work-v6 .wv6-role {
   display: grid;
