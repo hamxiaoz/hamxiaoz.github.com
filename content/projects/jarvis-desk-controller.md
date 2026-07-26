@@ -1,6 +1,6 @@
 ---
 title: "Jarvis Desk Controller"
-description: "API for your standing desk. ESPHome firmware that turns a $25 ESP32 into a WiFi bridge for a Jarvis (or any Jiecang-based) desk — web dashboard, HTTP API, and sit/stand presets included."
+description: "==API for your standing desk==. ESPHome firmware that turns a $25 ESP32 into a WiFi bridge for a Jarvis (or any Jiecang-based) desk — web dashboard, HTTP API, and sit/stand presets included."
 tags: ["code", "ai", "hardware"]
 image: "/assets/images/project-jarvis-desk.png"
 live_url: "https://github.com/hamxiaoz/jarvis-desk-controller"
