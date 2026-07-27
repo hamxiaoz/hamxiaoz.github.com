@@ -1,6 +1,6 @@
 ---
 title: "Freelance"
-description: "Full stack development since 2013"
+description: "Full stack development 2013–"
 image: "/assets/images/portfolio-freelance.png"
 company: "Freelance"
 tags: ["overview"]

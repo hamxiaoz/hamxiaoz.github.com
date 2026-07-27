@@ -1,6 +1,6 @@
 ---
 title: "SparesCNX"
-description: "Bringing order to inventory chaos — BCG venture launch film"
+description: "Bringing order to inventory chaos — BCG venture"
 company: "BCG"
 image: "/assets/images/work-shot-sparescnx.jpg"
 tags: ["IoT", "Enterprise"]
