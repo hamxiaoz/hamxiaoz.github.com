@@ -6,6 +6,7 @@ tags: ["Angular", "Mobile", "Enterprise", "UX"]
 weight: 3
 period: "2016 — 2018"
 logo: "/assets/images/logo-adp.png"
+website: "https://www.adp.com/"
 highlights:
   - "Led the team that built Wisely, a ground-up mobile product"
   - "Shipped features to a #1 Free Business App on the App Store, serving 13M registered users"

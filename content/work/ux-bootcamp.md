@@ -1,5 +1,5 @@
 ---
-title: "UX Design Bootcamp"
+title: "12 Weeks UX Design Bootcamp"
 description: "What I've learned from a UX design bootcamp"
 company: "Education & Awards"
 image: "/assets/images/portfolio-ux.png"

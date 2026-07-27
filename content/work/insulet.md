@@ -6,6 +6,7 @@ tags: ["AI", "Mobile", "Web", "Medical", "AWS/Azure", "Enterprise", "Medical Dev
 weight: 1
 period: "2021 — Now"
 logo: "/assets/images/logo-insulet.png"
+website: "https://www.insulet.com/"
 highlights:
   - "Founded Omnipod Discover — Insulet's data platform connecting patients and clinicians through actionable diabetes insights"
   - "Architect and ship FDA-regulated medical device software across mobile, web, and API at medical-grade quality"

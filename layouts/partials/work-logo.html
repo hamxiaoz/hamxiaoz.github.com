@@ -1,6 +1,14 @@
-{{- /* Company logo mark. Params: page (lead), class (optional) */ -}}
+{{- /* Company logo mark. Params: page (lead), class (optional).
+       Clickable to the company's website when `website` frontmatter is set. */ -}}
 {{- with .page.Params.logo -}}
+{{- $alt := printf "%s logo" $.page.Params.company -}}
+{{- with $.page.Params.website -}}
+<a class="wv-logo{{ with $.class }} {{ . }}{{ end }}" href="{{ . }}" target="_blank" rel="noopener noreferrer">
+  <img src="{{ $.page.Params.logo }}" alt="{{ $alt }}" loading="lazy">
+</a>
+{{- else -}}
 <span class="wv-logo{{ with $.class }} {{ . }}{{ end }}">
-  <img src="{{ . }}" alt="{{ $.page.Params.company }} logo" loading="lazy">
+  <img src="{{ $.page.Params.logo }}" alt="{{ $alt }}" loading="lazy">
 </span>
+{{- end -}}
 {{- end -}}

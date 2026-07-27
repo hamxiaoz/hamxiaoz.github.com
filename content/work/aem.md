@@ -6,6 +6,7 @@ tags: ["C++", "C#", "Win32", "Real-time"]
 weight: 3
 period: "2008 — 2016"
 logo: "/assets/images/logo-aem.png"
+website: "https://www.aemelectronics.com/"
 highlights:
   - "Sole architect and engineer across the full AEM software portfolio — native desktop, web, developer tooling, and USB driver"
   - "Built AEMTuner, an industry-leading real-time engine tuning software in C++ and C#"

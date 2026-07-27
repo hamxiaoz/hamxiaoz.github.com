@@ -389,6 +389,13 @@
   max-width: 160px;
   object-fit: contain;
   display: block;
+  transition: opacity 0.15s, transform 0.15s;
+}
+/* Only <a> logos are clickable (a `website` was set) — dim slightly on hover
+   so the affordance doesn't rely on cursor alone. */
+a.wv-logo:hover img {
+  opacity: 0.85;
+  transform: translateY(-1px);
 }
 
 /* Featured "shipped product" hero — same hover zoom as the grid tiles */

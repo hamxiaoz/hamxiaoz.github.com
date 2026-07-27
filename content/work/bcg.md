@@ -6,6 +6,7 @@ tags: ["IoT", "AI", "Web", "AWS/Azure/GCP", "Mobile", "Enterprise"]
 weight: 2
 period: "2018 — 2021"
 logo: "/assets/images/logo-bcg.png"
+website: "https://www.bcg.com/"
 highlights:
   - "Venture CTO at BCG X, building startups from zero to launch across IoT, AI, and consumer health"
   - "Launched BCG Digital Ventures' first venture in Singapore, leading a 10+ person full-stack team <a href=\"https://medium.com/bcgdv-engineering/12-things-i-wish-id-known-before-becoming-a-lead-engineer-91d2508f3a6\" target=\"_blank\" rel=\"noopener noreferrer\">Read the story ›</a>"
