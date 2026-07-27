@@ -202,7 +202,7 @@
   .theme-zurassic .wv-head-rule { display: none; }
 }
 
-/* ── Header variants (A stack / B inline / C plaque) ─────────────────────
+/* ── Header variants (A stack / B inline / D label) ─────────────────────
    Shared bits: role in mono accent micro-type, no floating right-hand text. */
 .theme-zurassic .wv-head-role,
 .theme-zurassic .wv-head-period {
@@ -218,7 +218,8 @@
 /* A and B put the logo on the right, so the name sets the left edge with the
    body copy below it. Markup has the logo first, hence the order swap. */
 .theme-zurassic .wv-head--stack .wv-head-title,
-.theme-zurassic .wv-head--inline .wv-head-title { font-size: clamp(21px, 2.3vw, 28px); }
+.theme-zurassic .wv-head--inline .wv-head-title,
+.theme-zurassic .wv-head--label .wv-head-title { font-size: clamp(21px, 2.3vw, 28px); }
 .theme-zurassic .wv-head--stack .wv-head-logo,
 .theme-zurassic .wv-head--inline .wv-head-logo { order: 2; margin-bottom: 0; flex-shrink: 0; }
 /* Text takes the remaining space and wraps inside itself, so the logo stays on
@@ -295,13 +296,9 @@
   background: var(--t-accent);
   flex-shrink: 0;
 }
+/* Same title treatment as 10A; the dot, rule and right-hand logo are what make
+   this variant distinct, not the type. */
 .theme-zurassic .wv-head--label .wv-head-title {
-  font-family: var(--t-font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--t-text);
   white-space: nowrap;
   margin: 0;
 }
@@ -320,46 +317,43 @@
   .theme-zurassic .wv-head--label .wv-head-logo { margin-left: auto; }
 }
 
-/* C — Plaque: logo in a chip, name and role contained in a glass band */
-.theme-zurassic .wv-head--plaque {
+/* D — Label: the section-label device (dot + mono caps + rule) as the header.
+   The company reads as an eyebrow; the role carries the heading weight in the
+   text column below. */
+.theme-zurassic .wv-head--label {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 18px 24px;
-  background: var(--t-surface);
-  border: 1px solid var(--t-border);
-  border-left: 3px solid var(--t-accent);
-  border-radius: var(--t-radius);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  margin-bottom: 30px;
+  gap: 12px;
+  padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 24px;
 }
-.theme-zurassic .wv-head--plaque .wv-head-logo {
-  margin-bottom: 0;
+.theme-zurassic .wv-head--label .wv-head-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--t-accent);
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  background: #fff;
-  border: 1px solid var(--t-border);
-  border-radius: 12px;
 }
-.theme-zurassic .wv-head--plaque .wv-head-logo img {
+/* Same title treatment as 10A; the dot, rule and right-hand logo are what make
+   this variant distinct, not the type. */
+.theme-zurassic .wv-head--label .wv-head-title {
+  white-space: nowrap;
+  margin: 0;
+}
+.theme-zurassic .wv-head--label .wv-head-logo { margin-bottom: 0; flex-shrink: 0; }
+/* Brand chips are all 260x91, so a fixed height gives every logo the same box */
+.theme-zurassic .wv-head--label .wv-head-logo img {
   height: 26px;
-  max-width: 44px;
-  object-fit: contain;
+  max-width: none;
+  border-radius: 3px;
 }
-.theme-zurassic .wv-head--plaque .wv-head-title {
-  font-size: clamp(24px, 2.8vw, 34px);
-  margin-bottom: 6px;
-}
-
 @media (max-width: 700px) {
-  .theme-zurassic .wv-head--plaque { padding: 16px 18px; gap: 14px; }
-  .theme-zurassic .wv-head--plaque .wv-head-logo { width: 46px; height: 46px; }
-  .theme-zurassic .wv-head--plaque .wv-head-logo img { height: 20px; max-width: 32px; }
+  /* Long names (ADP) would overflow a nowrap label at this width */
+  .theme-zurassic .wv-head--label { flex-wrap: wrap; }
+  .theme-zurassic .wv-head--label .wv-head-title { white-space: normal; }
+  .theme-zurassic .wv-head--label .wv-head-rule { display: none; }
+  .theme-zurassic .wv-head--label .wv-head-logo { margin-left: auto; }
 }
 
 /* Company logo mark — fixed height, natural width (wordmarks run wide,
