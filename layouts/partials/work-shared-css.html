@@ -278,6 +278,33 @@
   background: var(--t-border-strong);
 }
 
+/* 9B — Brand inline: chip and rule share one line, the rule running from the
+   logo across to the products. */
+.theme-zurassic .wv-head--brandline {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 34px;
+}
+.theme-zurassic .wv-head--brandline .wv-head-logo { margin-bottom: 0; flex-shrink: 0; }
+.theme-zurassic .wv-head--brandline .wv-head-logo img {
+  height: 30px;
+  max-width: none;
+  border-radius: 3px;
+}
+.theme-zurassic .wv-head--brandline .wv-head-title {
+  font-size: clamp(21px, 2.3vw, 28px);
+  margin: 0;
+  white-space: nowrap;
+}
+.theme-zurassic .wv-head--brandline .wv-head-rule { background: var(--t-border-strong); }
+@media (max-width: 700px) {
+  .theme-zurassic .wv-head--brandline { flex-wrap: wrap; }
+  .theme-zurassic .wv-head--brandline .wv-head-title { white-space: normal; }
+}
+
 /* 9A — Brand: a full-width rule opens the section, with the logo chip below it
    standing in for the company name. */
 .theme-zurassic .wv-head--brand {

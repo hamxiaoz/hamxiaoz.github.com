@@ -1,34 +1,13 @@
 {{ define "main" }}
 {{ $work := (where site.RegularPages "Section" "work").ByWeight }}
-{{ $workSection := site.GetPage "/work" }}
-<section class="portfolio-section section-page wv10 work-v9a">
+<section class="portfolio-section section-page wv10 wv9x work-v9a">
   <div class="section-inner">
     {{ partial "work-variant-switcher.html" (dict "current" "work-v9a") }}
-    {{ with $workSection.Content }}<div class="proj-intro wv10-intro">{{ . }}</div>{{ end }}
     {{ partial "work-v10-sections.html" (dict "work" $work "headStyle" "brand" "noperiod" true "roleInBody" true) }}
   </div>
 </section>
 
 {{ partial "work-shared-css.html" . }}
 {{ partial "work-v10-css.html" . }}
-<style>
-/* 9A only, single-product sections: v9's proportions. The product column is
-   pinned at 400px and the description takes the remainder (580px at full
-   width), centred against each other — rather than a share of three equal
-   columns. Declared after the shared CSS to win the source-order tie. */
-.theme-zurassic .work-v9a .wv10-body--t1w {
-  grid-template-columns: 1fr 400px;
-  gap: 56px;
-  align-items: center;
-}
-.theme-zurassic .work-v9a .wv10-body--t1w .wv10-text { grid-column: auto; }
-.theme-zurassic .work-v9a .wv10-body--t1w .wv10-products { grid-column: auto; --cols: 1; }
-@media (max-width: 860px) {
-  .theme-zurassic .work-v9a .wv10-body--t1w {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 28px;
-    align-items: start;
-  }
-}
-</style>
+{{ partial "work-v9x-css.html" . }}
 {{ end }}

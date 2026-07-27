@@ -1,0 +1,13 @@
+{{ define "main" }}
+{{ $work := (where site.RegularPages "Section" "work").ByWeight }}
+<section class="portfolio-section section-page wv10 wv9x work-v9b">
+  <div class="section-inner">
+    {{ partial "work-variant-switcher.html" (dict "current" "work-v9b") }}
+    {{ partial "work-v10-sections.html" (dict "work" $work "headStyle" "brandline" "noperiod" true "roleInBody" true) }}
+  </div>
+</section>
+
+{{ partial "work-shared-css.html" . }}
+{{ partial "work-v10-css.html" . }}
+{{ partial "work-v9x-css.html" . }}
+{{ end }}

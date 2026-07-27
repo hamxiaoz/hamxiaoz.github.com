@@ -1,0 +1,21 @@
+<style>
+/* Shared by the 9-series brand variants (9A, 9B).
+   Single-product sections use v9's proportions: the product column is pinned at
+   400px and the description takes the remainder (580px at full width), rather
+   than each taking a share of three equal columns. Top-aligned so the body copy
+   starts on the same line as every other section. Declared after the shared v10
+   CSS so it wins the source-order tie at equal specificity. */
+.theme-zurassic .wv9x .wv10-body--t1w {
+  grid-template-columns: 1fr 400px;
+  gap: 56px;
+  align-items: start;
+}
+.theme-zurassic .wv9x .wv10-body--t1w .wv10-text { grid-column: auto; }
+.theme-zurassic .wv9x .wv10-body--t1w .wv10-products { grid-column: auto; --cols: 1; }
+@media (max-width: 860px) {
+  .theme-zurassic .wv9x .wv10-body--t1w {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+}
+</style>
