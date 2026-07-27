@@ -36,15 +36,16 @@
 .theme-zurassic .wv10 .wv10-body--t1p2 .wv-gtile-img,
 .theme-zurassic .wv10 .wv10-body--t1w .wv-gtile-img { aspect-ratio: 4 / 3; }
 .theme-zurassic .wv10 .wv10-hl { max-width: none; }
-/* Role as the text column's heading (used when the header is a quiet label).
-   Matches 10B's company title in size and colour. */
+/* Job title above the bullets — same treatment as 10B's job title:
+   mono micro-caps in the accent red. */
 .theme-zurassic .wv10 .wv10-role {
-  font-family: var(--t-font-sans);
-  font-size: clamp(21px, 2.3vw, 28px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  color: var(--t-text);
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--t-accent);
   margin: 0 0 14px;
 }
 .theme-zurassic .wv10 .wv10-foot { margin-top: 20px; }
