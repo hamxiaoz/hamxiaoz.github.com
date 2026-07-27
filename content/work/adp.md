@@ -9,7 +9,7 @@ logo: "/assets/images/logo-adp.png"
 highlights:
   - "Led the team that built Wisely, a ground-up mobile product"
   - "Shipped features to a #1 Free Business App on the App Store, serving 13M registered users"
-  - "Won 1st place at the internal UX Hackathon; Won \"Smart Use of API\" award in API Hackathon"
+  - "Won 1st place at the internal UX Hackathon; Won \"Smart Use of API\" award in API Hackathon <a href=\"https://medium.com/zurassic/what-i-learned-from-hackathons-in-adp-7ab1b03b2476\" target=\"_blank\" rel=\"noopener noreferrer\">Read the story ›</a>"
 ---
 
 - Led the engineering team that built Wisely, a ground-up mobile product embedded in ADP Mobile Solutions, one of the most widely used enterprise payroll apps

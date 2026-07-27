@@ -7,8 +7,9 @@
 {{- $roleInBody := .roleInBody -}}
 {{- $companies := slice "Insulet" "BCG" "ADP" "AEM Performance Electronics" -}}
 {{- $sections := partial "work-sections.html" (dict "work" $work "companies" $companies) -}}
-{{- /* Freelance and the education items share one closing section */ -}}
-{{- $sideWork := where $work "Params.company" "in" (slice "Freelance" "Education & Awards") -}}
+{{- /* Freelance and the education items share one closing section. The
+       hackathon write-up is excluded: its link lives on ADP's award bullet. */ -}}
+{{- $sideWork := where (where $work "Params.company" "in" (slice "Freelance" "Education & Awards")) "File.ContentBaseName" "!=" "hackathon" -}}
 
 {{ range $sections }}
 {{ $lead := .lead }}
