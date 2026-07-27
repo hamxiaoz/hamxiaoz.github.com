@@ -306,7 +306,12 @@
   margin: 0;
 }
 .theme-zurassic .wv-head--label .wv-head-logo { margin-bottom: 0; flex-shrink: 0; }
-.theme-zurassic .wv-head--label .wv-head-logo img { height: 22px; max-width: 100px; }
+/* Brand chips are all 260x91, so a fixed height gives every logo the same box */
+.theme-zurassic .wv-head--label .wv-head-logo img {
+  height: 26px;
+  max-width: none;
+  border-radius: 3px;
+}
 @media (max-width: 700px) {
   /* Long names (ADP) would overflow a nowrap label at this width */
   .theme-zurassic .wv-head--label { flex-wrap: wrap; }
