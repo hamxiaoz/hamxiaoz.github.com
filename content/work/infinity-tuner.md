@@ -5,5 +5,5 @@ image: "/assets/images/portfolio-infinity-tuner.png"
 company: "AEM Performance Electronics"
 tags: ["desktop"]
 article_url: "https://medium.com/p/152596e910bb"
-weight: 19
+weight: 14
 ---
