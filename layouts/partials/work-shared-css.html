@@ -484,6 +484,25 @@
   height: 1px;
   background: var(--t-accent);
 }
+/* Inline story link inside a highlight — same treatment as "Read the story" on
+   /projects (.proj-story) */
+.theme-zurassic .wv-hl a {
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--t-accent);
+  border-bottom: 1px solid rgba(147, 34, 16, 0.25);
+  padding-bottom: 1px;
+  white-space: nowrap;
+  margin-left: 4px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.theme-zurassic .wv-hl a:hover {
+  color: var(--t-accent-hover);
+  border-bottom-color: var(--t-accent-hover);
+}
+
 .theme-zurassic .wv-foot {
   display: flex;
   align-items: center;

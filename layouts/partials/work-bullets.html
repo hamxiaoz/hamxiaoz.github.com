@@ -4,7 +4,8 @@
 <div class="wv-hl{{ with .class }} {{ . }}{{ end }}">
   {{- if $p.Params.highlights }}
   <ul>
-    {{- range $p.Params.highlights }}<li>{{ . }}</li>{{ end }}
+    {{- /* markdownify so a highlight can carry an inline "Read the story" link */ -}}
+    {{- range $p.Params.highlights }}<li>{{ . | markdownify }}</li>{{ end }}
   </ul>
   {{- else if $p.Content }}
   {{ $p.Content }}
