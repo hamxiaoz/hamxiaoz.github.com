@@ -12,22 +12,14 @@
 {{ partial "work-shared-css.html" . }}
 {{ partial "work-v10-css.html" . }}
 <style>
-/* 9A only: a lone product sits in the third column and the description widens
-   across the first two, with its bullets in a 2-up grid so the line length
-   stays the same as every other section. Declared after the shared CSS so it
-   wins the source-order tie at equal specificity. */
+/* 9A only: a lone product sits in the third column while the description stays
+   one continuous block two columns wide (as in v9). Declared after the shared
+   CSS so it wins the source-order tie at equal specificity. */
 .theme-zurassic .work-v9a .wv10-body--t1w .wv10-text { grid-column: span 2; }
 .theme-zurassic .work-v9a .wv10-body--t1w .wv10-products { grid-column: span 1; --cols: 1; }
-.theme-zurassic .work-v9a .wv10-body--t1w .wv10-hl ul {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px 32px;
-}
-.theme-zurassic .work-v9a .wv10-body--t1w .wv10-hl li { margin-bottom: 0; }
 @media (max-width: 860px) {
   .theme-zurassic .work-v9a .wv10-body--t1w .wv10-text,
   .theme-zurassic .work-v9a .wv10-body--t1w .wv10-products { grid-column: span 1; }
-  .theme-zurassic .work-v9a .wv10-body--t1w .wv10-hl ul { grid-template-columns: minmax(0, 1fr); }
 }
 </style>
 {{ end }}

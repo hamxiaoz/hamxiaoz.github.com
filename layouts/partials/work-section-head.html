@@ -20,12 +20,12 @@
 {{- /* No company name: the brand chip identifies the section. Sections without
        a logo (the closing one) fall back to their title. */ -}}
 <header class="wv-head wv-head--brand">
+  <span class="wv-head-rule"></span>
   {{ if and $page $page.Params.logo }}
     {{ partial "work-logo.html" (dict "page" $page "class" "wv-head-logo") }}
   {{ else }}
     <h2 class="wv-head-title">{{ $title }}</h2>
   {{ end }}
-  <span class="wv-head-rule"></span>
 </header>
 {{- else if eq $style "label" -}}
 {{- /* Red dot + mono company label + hairline, with the logo holding the right
