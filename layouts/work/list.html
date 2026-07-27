@@ -1,12 +1,12 @@
 {{ define "main" }}
-<section class="portfolio-section section-page">
+{{ $work := (where site.RegularPages "Section" "work").ByWeight }}
+<section class="portfolio-section section-page wv10 wv9x work-v9b">
   <div class="section-inner">
-    <div class="items-grid">
-      {{ range $i, $p := .Pages.ByWeight }}
-        {{ partial "project-card.html" (dict "page" $p "index" (add $i 1) "style" "dark") }}
-      {{ end }}
-    </div>
+    {{ partial "work-v10-sections.html" (dict "work" $work "headStyle" "brandline" "noperiod" true "roleInBody" true) }}
   </div>
 </section>
 
+{{ partial "work-shared-css.html" . }}
+{{ partial "work-v10-css.html" . }}
+{{ partial "work-v9x-css.html" . }}
 {{ end }}

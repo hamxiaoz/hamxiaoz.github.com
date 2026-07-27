@@ -25,6 +25,6 @@
 <div class="wv-switch" role="navigation" aria-label="Mockup variants">
   <span class="wv-switch-label">Mockups</span>
   {{ range $variants }}
-  <a href="/{{ .slug }}/" {{ if eq .slug $current }}class="active"{{ end }}>{{ .label }}</a>
+  <a href="/_dev/{{ .slug }}/" {{ if eq .slug $current }}class="active"{{ end }}>{{ .label }}</a>
   {{ end }}
 </div>
