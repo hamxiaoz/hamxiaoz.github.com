@@ -278,43 +278,31 @@
   background: var(--t-border-strong);
 }
 
-/* D — Label: the section-label device (dot + mono caps + rule) as the header.
-   The company reads as an eyebrow; the role carries the heading weight in the
-   text column below. */
-.theme-zurassic .wv-head--label {
+/* 9A — Brand: the logo chip stands in for the company name, with a rule
+   carrying the eye across to the products. */
+.theme-zurassic .wv-head--brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
   padding-bottom: 0;
   border-bottom: none;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
-.theme-zurassic .wv-head--label .wv-head-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--t-accent);
-  flex-shrink: 0;
-}
-/* Same title treatment as 10A; the dot, rule and right-hand logo are what make
-   this variant distinct, not the type. */
-.theme-zurassic .wv-head--label .wv-head-title {
-  white-space: nowrap;
-  margin: 0;
-}
-.theme-zurassic .wv-head--label .wv-head-logo { margin-bottom: 0; flex-shrink: 0; }
-/* Brand chips are all 260x91, so a fixed height gives every logo the same box */
-.theme-zurassic .wv-head--label .wv-head-logo img {
-  height: 26px;
+.theme-zurassic .wv-head--brand .wv-head-logo { margin-bottom: 0; flex-shrink: 0; }
+.theme-zurassic .wv-head--brand .wv-head-logo img {
+  height: 30px;
   max-width: none;
   border-radius: 3px;
 }
+.theme-zurassic .wv-head--brand .wv-head-title {
+  font-size: clamp(21px, 2.3vw, 28px);
+  margin: 0;
+  white-space: nowrap;
+}
 @media (max-width: 700px) {
-  /* Long names (ADP) would overflow a nowrap label at this width */
-  .theme-zurassic .wv-head--label { flex-wrap: wrap; }
-  .theme-zurassic .wv-head--label .wv-head-title { white-space: normal; }
-  .theme-zurassic .wv-head--label .wv-head-rule { display: none; }
-  .theme-zurassic .wv-head--label .wv-head-logo { margin-left: auto; }
+  .theme-zurassic .wv-head--brand { flex-wrap: wrap; }
+  .theme-zurassic .wv-head--brand .wv-head-title { white-space: normal; }
+  .theme-zurassic .wv-head--brand .wv-head-rule { display: none; }
 }
 
 /* D — Label: the section-label device (dot + mono caps + rule) as the header.
