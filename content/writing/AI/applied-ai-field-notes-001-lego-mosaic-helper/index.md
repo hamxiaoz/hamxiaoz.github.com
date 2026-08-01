@@ -6,21 +6,21 @@ date: 2026-02-17
 {{< app-link url="https://projects.zurassic.com/lego-mosaic-helper/" label="Lego Mosaic Helper App" >}}
 
 <figure>
-  <img src="cover.png" alt="Lego Mosaic Helper distance overlay tool">
+  <img src="cover.webp" alt="Lego Mosaic Helper distance overlay tool">
   <figcaption>The Lego Mosaic Helper, showing distances to the nearest reference dots.</figcaption>
 </figure>
 
 Building Lego is one of the ways I decompress on weekends. This weekend, we finally opened the LEGO Mosaic Maker — a birthday gift for my son.
 
 <figure>
-  <img src="lego-mosaic-maker-box.png" alt="LEGO Mosaic Maker box, a 4,702-piece personalised mosaic portrait set">
+  <img src="lego-mosaic-maker-box.webp" alt="LEGO Mosaic Maker box, a 4,702-piece personalised mosaic portrait set">
   <figcaption>LEGO Mosaic Maker</figcaption>
 </figure>
 
 We picked a photo of my kids and started converting it into a 48×48 mosaic. This is what it would look like once it's done.
 
 <figure>
-  <img src="mosaic-finished-preview.png" alt="Finished Lego mosaic preview of two faces in black, white, and yellow bricks">
+  <img src="mosaic-finished-preview.webp" alt="Finished Lego mosaic preview of two faces in black, white, and yellow bricks">
   <figcaption>What it would look like once it's done.</figcaption>
 </figure>
 
@@ -33,7 +33,7 @@ And unlike structured Lego builds, there are no obvious reference points.
 It's easy to drift off by one square — and suddenly your entire row is wrong. This is what it looked like in progress.
 
 <figure>
-  <img src="mosaic-in-progress.png" alt="Lego mosaic build in progress on a baseplate, partially filled in">
+  <img src="mosaic-in-progress.webp" alt="Lego mosaic build in progress on a baseplate, partially filled in">
   <figcaption>What it looked like in progress.</figcaption>
 </figure>
 
@@ -63,7 +63,7 @@ After a few prompts with Claude, I had a simple overlay tool that could:
 - Help anchor reference points
 
 <figure>
-  <img src="lego-mosaic-helper-tool.png" alt="Lego Mosaic Helper web app showing an image import screen and a grid overlay with distance labels">
+  <img src="lego-mosaic-helper-tool.webp" alt="Lego Mosaic Helper web app showing an image import screen and a grid overlay with distance labels">
   <figcaption>Version 1: detect grid positions, show distances, anchor reference points.</figcaption>
 </figure>
 
@@ -74,12 +74,12 @@ It worked — but not perfectly. When I hover on a special dot that it won't sho
 So I went ahead and iterated couple of times. Version 2 improved it. Version 3 felt right.
 
 <figure>
-  <img src="claude-code-session-diff.png" alt="Claude Code terminal session showing a code diff that fixes the distance label logic">
+  <img src="claude-code-session-diff.webp" alt="Claude Code terminal session showing a code diff that fixes the distance label logic">
   <figcaption>Version 2: fixing the distance label logic with Claude Code.</figcaption>
 </figure>
 
 <figure>
-  <img src="claude-code-session-proposal.png" alt="Claude Code terminal session proposing new distance logic, with the reply 'this is awesome, go build it!'">
+  <img src="claude-code-session-proposal.webp" alt="Claude Code terminal session proposing new distance logic, with the reply 'this is awesome, go build it!'">
   <figcaption>Version 3: the logic that finally felt right.</figcaption>
 </figure>
 

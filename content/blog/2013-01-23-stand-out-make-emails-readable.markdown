@@ -7,7 +7,7 @@ tags: [dev, project]
 ---
 You must have received emails like this, can you quickly find out what's the latest reply here?
 
-<img src="/assets/images/blog/StandOut-before.png" alt="email text before stand out">
+<img src="/assets/images/blog/StandOut-before.webp" alt="email text before stand out">
 
 I cannot read it. So I build a little tool to help me. 
 
@@ -15,7 +15,7 @@ Enter <a href="http://hamxiaoz.github.io/StandOut/" target="_blank">"Stand Out"<
 
 It's really easy to use: just paste the email content into the "input" box and you get a nice result on the right.  
 
-<img src="/assets/images/blog/StandOut-after.png" alt="email text before stand out">
+<img src="/assets/images/blog/StandOut-after.webp" alt="email text before stand out">
 
 
 Why building such an "useless" thing?

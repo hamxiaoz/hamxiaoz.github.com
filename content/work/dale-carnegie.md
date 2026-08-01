@@ -2,7 +2,7 @@
 title: "8 Weeks Dale Carnegie Leadership Training"
 company: "Education & Awards"
 description: "Earned the Highest Achievement Award and the Breakthrough Award out of a 30-person cohort"
-image: "/assets/images/work-shot-dale-carnegie.png"
+image: "/assets/images/work-shot-dale-carnegie.webp"
 tags: ["Leadership", "Public Speaking"]
 live_url: "https://www.dalecarnegie.com/en/courses/190?delivery_language=en"
 # article_url: "https://medium.com/@hamxiaoz/what-i-v-learned-from-a-ux-design-bootcamp-9bbac8755a4a#.uvjivldfz"

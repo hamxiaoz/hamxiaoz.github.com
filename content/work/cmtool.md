@@ -2,7 +2,7 @@
 title: "CMTool"
 description: "A desktop program built with web technologies"
 company: "AEM Performance Electronics"
-image: "/assets/images/portfolio-cmtool.png"
+image: "/assets/images/portfolio-cmtool.webp"
 tags: ["web"]
 article_url: "https://medium.com/p/d7f81175571a"
 weight: 17

@@ -14,7 +14,7 @@ His name is **HamHam**. He lives on my daughter's Mac Mini — she barely uses i
 
 By 7:00 a.m., Discord lights up with Hacker News and AI updates from the previous day. HamHam pulls news based on my interests and summarizes it in a format I prefer. It runs _without me thinking about it_. That was my first glimpse of agentic behavior.
 
-![](hamham-daily-news-discord.png)
+![](hamham-daily-news-discord.webp)
 
 ---
 
@@ -34,7 +34,7 @@ He did it. He paused on a few uncertain dates and flagged them for me to confirm
 
 I drop my daughter Bella off at orchestra practice, and every session requires a Google Form check-in. I always forget. So I showed HamHam once and built the "check-in" skill. The second time, he did it for me — even when I had a typo.
 
-![](hamham-orchestra-checkin.png)
+![](hamham-orchestra-checkin.webp)
 
 What surprised me was what happened when things went wrong. He hit an error mid-task, caught it, corrected it, and updated how he remembered the task — all without me telling him anything:
 
@@ -52,13 +52,13 @@ He migrated all our photos from Google Photos to iCloud — 300 GB. 173,348 file
 
 He helped us narrow down termite companies using Yelp and Google reviews — all on iMessage, patiently answering our questions.
 
-![](hamham-termite-vendor-filter.png)
+![](hamham-termite-vendor-filter.webp)
 
 **School pictures download**
 
 He downloaded school pictures for us. I didn't know if he could navigate the flow, but I asked anyway. He pulled it off.
 
-![](hamham-school-pictures-download.png)
+![](hamham-school-pictures-download.webp)
 
 **No more to-do list**
 

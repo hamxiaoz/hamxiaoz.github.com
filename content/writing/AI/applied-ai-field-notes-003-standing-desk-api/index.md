@@ -33,8 +33,8 @@ The plan was clean. Reality was not.
 
 I assumed Jiecang-based desks (Jarvis, Uplift, Desky all share the same OEM) used standard UART serial. I wired it up, flashed firmware, hit "Up" — desk went down. Hit "Stop" — desk went down. Unplugged the ESP32 entirely — the desk kept going down for 2 seconds!
 
-![](jarvis-esphome.png)
-![](jarvis-compiler.png)
+![](jarvis-esphome.webp)
+![](jarvis-compiler.webp)
 
 The multimeter solved it. I held down the Up button on the physical handset and probed each terminal one by one. Terminal 7 dropped to 0V. Released, it went back to 5V. Did the same for Down — terminal 8. That's how the handset talks to the controller: not serial data, just "pull this wire to ground." Two completely different protocols on the same cable — UART for reading height out, bare wire-to-ground for sending button presses in.
 
@@ -79,7 +79,7 @@ Moved the desk. Dashboard tracked the tape measure perfectly.
 
 A web dashboard at `jarvis-desk.local`. Live height readout. Sit/stand presets.
 
-![](jarvis-web.png)
+![](jarvis-web.webp)
 
 An HTTP API.
 

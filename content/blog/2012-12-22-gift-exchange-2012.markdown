@@ -10,7 +10,7 @@ tags: [happy life]
         <table class="gift">
             <tr>
                 <td>
-                    <img class="gift" src="/assets/images/blog/gift.png" alt="gift picture">
+                    <img class="gift" src="/assets/images/blog/gift.webp" alt="gift picture">
                 </td>
                 <td>
                     <p class="gift">

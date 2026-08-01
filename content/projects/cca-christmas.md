@@ -2,7 +2,7 @@
 title: "CCA Christmas Card"
 description: "华人事业互助会2014圣诞贺卡 — An interactive holiday card for the Chinese-American community."
 tags: ["design", "code"]
-image: "/assets/images/hu-thumbnail.png"
+image: "/assets/images/hu-thumbnail.webp"
 live_url: "http://hamxiaoz.github.io/hu-2014/"
 date: 2014-12-22
 status: "live"

@@ -16,7 +16,7 @@ It sounds simple and the fix is simple. But I started to wondering why there is 
 
 This is the interface of the window:
 
-![](lock_ignition_timing_1-1454796287704.png)
+![](lock_ignition_timing_1-1454796287704.webp)
 
 People use this window as a setup tool to perform a task. And that task requires the user to first ask the software to enter a mode first. Here is the usual action flow:
 

@@ -2,7 +2,7 @@
 title: "ATT.com Redesign"
 description: "How can we simplify the process of shopping for a wireless plan? A UX case study."
 tags: ["design"]
-image: "/assets/images/portfolio-att.png"
+image: "/assets/images/portfolio-att.webp"
 article_url: "https://goo.gl/OX2Z8X"
 date: 2016-02-01
 status: "live"

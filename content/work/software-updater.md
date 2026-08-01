@@ -1,7 +1,7 @@
 ---
 title: "Software Updater"
 description: "The best interface is no interface"
-image: "/assets/images/portfolio-software-update.png"
+image: "/assets/images/portfolio-software-update.webp"
 company: "AEM Performance Electronics"
 tags: ["web"]
 article_url: "https://medium.com/@hamxiaoz/portfolio-software-updater-c535ce9998c6#.ovkfijwi3"

@@ -51,7 +51,7 @@ This little project handed that loop back to me. My customer is my 9-year-old so
 The things a young musician needs are normally scattered — a metronome app here, a timer there, a mirror, a notebook. I pulled them into one cheerful place, then shaped each one to him.
 
 <figure>
-  <img src="app-overview.png" alt="Music Practice Stage app overview">
+  <img src="app-overview.webp" alt="Music Practice Stage app overview">
   <figcaption>Everything in one cheerful place: metronome, timer, mirror, and notes.</figcaption>
 </figure>
 

@@ -2,7 +2,7 @@
 title: "10x Developer"
 description: "A gitbook with collection of resources, tools, and workflows for developers who want to level up their craft."
 tags: ["code"]
-image: "/assets/images/project-wordcloud.png"
+image: "/assets/images/project-wordcloud.webp"
 live_url: "https://zurassic.gitbook.io/10x-developer"
 date: 2015-07-31
 status: "live"
