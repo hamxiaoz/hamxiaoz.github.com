@@ -20,8 +20,36 @@
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
   {{ $syntax := resources.Get "syntax.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $syntax.RelPermalink }}">
-  {{ $theme := resources.Get "css/zurassic.css" | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $theme.RelPermalink }}">
+  {{ $shared := resources.Get "css/shared.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $shared.RelPermalink }}">
+  {{/* zurassic.css was split by page section to cut unused CSS per page
+       (see git history for the original monolith). Sections without a
+       verified mapping fall through to "else" and get every chunk, same
+       as before the split — no regression, just no savings for them. */}}
+  {{ $section := .Section }}
+  {{ $chunks := slice }}
+  {{ if .IsHome }}
+    {{ $chunks = $chunks | append "home" }}
+  {{ else if eq $section "work" }}
+    {{/* /work ships most of its own scoped CSS via work-*-css.html partials,
+         but still reuses .card-tag from cards.css directly in markup */}}
+    {{ $chunks = $chunks | append "cards" }}
+  {{ else if or (eq $section "writing") (eq $section "blog") (eq $section "posts") }}
+    {{ $chunks = $chunks | append "lists" }}
+  {{ else if eq $section "projects" }}
+    {{/* /projects reuses .writing-section/.writing-group-* from lists.css
+         for its year-grouping headers */}}
+    {{ $chunks = $chunks | append "projects" | append "lists" }}
+  {{ else if or (eq $section "making") (eq $section "ann") (eq $section "lists") }}
+    {{/* /making reuses .tag-filter/.tag-filter-btn from projects.css */}}
+    {{ $chunks = $chunks | append "cards" | append "projects" }}
+  {{ else }}
+    {{ $chunks = slice "home" "cards" "lists" "projects" }}
+  {{ end }}
+  {{ range $chunks }}
+    {{ $c := resources.Get (printf "css/%s.css" .) | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $c.RelPermalink }}">
+  {{ end }}
 
   <link rel="canonical" href="{{ .Permalink }}">
   {{ with .OutputFormats.Get "RSS" }}

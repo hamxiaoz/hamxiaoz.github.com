@@ -1,0 +1,251 @@
+/* split from zurassic.css — see git history for the monolithic original */
+
+/* ── Projects intro ─────────────────────────────────────────────────────── */
+.theme-zurassic .proj-intro {
+  margin: 0 0 28px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--t-text-dim);
+}
+.theme-zurassic .proj-intro p { margin: 0; }
+.theme-zurassic .proj-intro a {
+  color: var(--t-accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: color 0.15s;
+}
+.theme-zurassic .proj-intro a:hover { color: var(--t-accent-hover); }
+
+/* ── Tag filter (Projects page) ─────────────────────────────────────────── */
+.theme-zurassic .tag-filter {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.theme-zurassic .tag-filter-btn {
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--t-text-dim);
+  background: none;
+  border: 1px solid var(--t-border);
+  border-radius: 100px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.theme-zurassic .tag-filter-btn:hover {
+  color: var(--t-text);
+  border-color: var(--t-text);
+}
+
+.theme-zurassic .tag-filter-btn.active {
+  color: var(--t-bg);
+  background: var(--t-text);
+  border-color: var(--t-text);
+}
+
+/* ── Projects row list ─────────────────────────────────────────────────── */
+.theme-zurassic .proj-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.theme-zurassic .proj-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 140px 1fr 40px;
+  gap: 0 22px;
+  padding: 22px 14px 22px 0;
+  border-bottom: 1px solid var(--t-border);
+  align-items: start;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.theme-zurassic .proj-row:hover { background: rgba(255,255,255,0.7); }
+
+/* Invisible full-row hit area — the row is the link */
+.theme-zurassic .proj-hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.theme-zurassic .proj-thumb {
+  grid-column: 1;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+  background: rgba(147,34,16,0.02);
+  border: 1px solid var(--t-border);
+}
+
+.theme-zurassic .proj-body {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  min-height: 140px;
+}
+
+.theme-zurassic .proj-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.theme-zurassic .proj-title {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #000;
+  transition: color 0.15s;
+}
+.theme-zurassic .proj-row:hover .proj-title { color: var(--t-accent-hover); }
+
+.theme-zurassic .proj-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--t-text-mid);
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* Curated highlight — ==34k+ downloads== in a project description.
+   A highlighter wash, not coloured text: the accent red is also the link colour,
+   so colouring the words made long spans read as clickable.
+   Deliberately inherits colour and weight from .proj-desc. A real highlighter
+   changes neither; stacking all three signals made the marked phrases outshout
+   the project titles.
+   Vertical padding expands the paint area of an inline box without touching line
+   height, so the wash clears the letters instead of sitting behind them. Keep it
+   small: at 0.18em the stroke fills the whole 22.4px line box and wrapped
+   fragments collide. Negative horizontal margin cancels the side padding so
+   following punctuation stays tight. */
+.theme-zurassic .proj-num {
+  /* required: .proj-num is a <strong>, so without this the UA default bold applies */
+  font-weight: inherit;
+  padding: 0.04em 3px;
+  margin: 0 -3px;
+  border-radius: 2px;
+  background-image: linear-gradient(180deg,
+    rgba(147,34,16,0.13) 0%,
+    rgba(147,34,16,0.21) 45%,
+    rgba(147,34,16,0.17) 100%);
+}
+
+.theme-zurassic .proj-status {
+  font-family: var(--t-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 100px;
+  border: 1px solid var(--t-border);
+  color: var(--t-text-dim);
+  line-height: 1.7;
+  flex-shrink: 0;
+}
+.theme-zurassic .proj-status--live { color: #34C759; border-color: rgba(52,199,89,0.3); }
+.theme-zurassic .proj-status--wip  { color: #FF9500; border-color: rgba(255,149,0,0.35); }
+
+/* Work-in-progress placeholder thumbnail */
+.theme-zurassic .proj-thumb--wip {
+  position: relative;
+  background-color: rgba(255,149,0,0.04);
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255,149,0,0.10) 0, rgba(255,149,0,0.10) 8px,
+    transparent 8px, transparent 16px);
+  border-color: rgba(255,149,0,0.25);
+}
+.theme-zurassic .proj-thumb--wip::after {
+  content: "IN THE MAKING";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  text-align: center;
+  font-family: var(--t-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: #B26A00;
+}
+
+/* Story link — own line, tucked under the description */
+.theme-zurassic .proj-story-line { margin-top: 9px; }
+.theme-zurassic .proj-story {
+  position: relative;
+  z-index: 2;
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--t-accent);
+  border-bottom: 1px solid rgba(147,34,16,0.25);
+  padding-bottom: 1px;
+  white-space: nowrap;
+}
+.theme-zurassic .proj-story:hover {
+  color: var(--t-accent-hover);
+  border-bottom-color: var(--t-accent-hover);
+}
+
+/* Tags bottom-align with the thumbnail regardless of description length */
+.theme-zurassic .proj-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.theme-zurassic .proj-tag {
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  color: var(--t-text-dim);
+  border: 1px solid var(--t-border);
+  padding: 1px 9px;
+  border-radius: 100px;
+}
+
+.theme-zurassic .proj-go {
+  grid-column: 3;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--t-text-dim);
+  transition: color 0.2s, transform 0.2s;
+}
+.theme-zurassic .proj-row:hover .proj-go {
+  color: var(--t-accent);
+  transform: translateX(4px);
+}
+
+/* Projects with nowhere to go */
+.theme-zurassic .proj-row--dead .proj-go { opacity: 0.25; }
+.theme-zurassic .proj-row--dead:hover .proj-go {
+  transform: none;
+  color: var(--t-text-dim);
+}
+
+@media (max-width: 700px) {
+  .theme-zurassic .proj-row {
+    grid-template-columns: 88px 1fr 24px;
+    gap: 0 14px;
+  }
+  .theme-zurassic .proj-thumb { width: 88px; height: 88px; }
+  .theme-zurassic .proj-body  { min-height: 88px; }
+  .theme-zurassic .proj-desc  { font-size: 13px; }
+}

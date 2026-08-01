@@ -1,0 +1,278 @@
+/* split from zurassic.css — see git history for the monolithic original */
+
+/* Hero elements from other themes — hide in Zurassic */
+.theme-zurassic .hero-meta-table { display: none; }
+/* In Zurassic, the standalone .hero-avatar inside .hero-text is hidden
+   (shown only inside .hero-avatar-card) */
+.theme-zurassic .hero-text .hero-avatar { display: none; }
+/* ── Hero ──────────────────────────────────────────────────────────────── */
+.page-home.theme-zurassic .hero {
+  min-height: calc(100vh - 110px);
+}
+
+.theme-zurassic .hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 32px 80px;
+}
+
+/* Dot grid decorations */
+.theme-zurassic .hero::before,
+.theme-zurassic .hero::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.theme-zurassic .hero::before {
+  top: 60px; right: 60px;
+  width: 180px; height: 180px;
+  opacity: 0.5;
+}
+
+.theme-zurassic .hero::after {
+  bottom: 80px; left: 40px;
+  width: 120px; height: 120px;
+  opacity: 0.35;
+}
+
+.theme-zurassic .hero-inner {
+  max-width: var(--t-max);
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .theme-zurassic .hero-inner { grid-template-columns: 1fr; }
+  .theme-zurassic .hero-right { flex-direction: column; }
+  .theme-zurassic .hero-stamps { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+}
+
+/* Right column: image + vertical stamps — framed painting */
+.theme-zurassic .hero-right {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 20px;
+  padding: 28px 12px 28px 28px;
+  border-radius: var(--t-radius);
+  background: #F5F4F0;
+  border: 1px solid rgba(147,34,16,0.12);
+  box-shadow:
+    0 2px 6px rgba(147,34,16,0.08),
+    0 12px 32px rgba(0,0,0,0.10),
+    0 32px 80px rgba(0,0,0,0.07);
+}
+.theme-zurassic .hero-right img,
+.theme-zurassic .hero-right video {
+  max-width: 100%;
+  max-height: 280px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Stamp column — vertical stack of square icon tiles */
+.theme-zurassic .hero-stamps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: center;
+}
+
+.theme-zurassic .hero-stamps .social-link {
+  width: 44px;
+  height: 32px;
+  padding: 0;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--t-accent);
+  font-size: 22px;
+  position: relative;
+}
+.theme-zurassic .hero-stamps .social-link::after {
+  display: none;
+}
+/* Tooltip appears to the LEFT of the stamp */
+.theme-zurassic .hero-stamps .social-link::before {
+  content: attr(data-label);
+  position: absolute;
+  right: calc(100% + 8px);
+  left: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  background: var(--t-text);
+  color: #fff;
+  font-family: var(--t-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.theme-zurassic .hero-stamps .social-link:hover::before {
+  opacity: 1;
+}
+.theme-zurassic .hero-stamps .social-link:hover {
+  border: none;
+  background: none;
+  color: var(--t-accent);
+}
+
+/* Left column */
+.theme-zurassic .hero-text { display: flex; flex-direction: column; }
+
+.theme-zurassic .hero-label {
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  color: var(--t-text-dim);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+}
+
+.theme-zurassic .hero-name {
+  font-family: var(--t-font-sans);
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 700;
+  color: var(--t-text);
+  margin: 0 0 8px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.theme-zurassic .hero-name-dot { color: var(--t-accent); }
+
+.theme-zurassic .hero-tagline {
+  font-family: var(--t-font-mono);
+  font-size: 14px;
+  color: var(--t-text-mid);
+  margin: 0 0 28px;
+  letter-spacing: 0.04em;
+}
+
+.theme-zurassic .hero-bio {
+  font-family: var(--t-font-sans);
+  font-size: 16px;
+  color: var(--t-text-mid);
+  line-height: 1.7;
+  margin: 0 0 36px;
+  max-width: 440px;
+}
+
+.theme-zurassic .hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.theme-zurassic .social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: 100px;
+  border: 1px solid var(--t-border);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--t-text-mid);
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.theme-zurassic .social-link::after {
+  content: '↗';
+  font-size: 10px;
+  display: inline-block;
+}
+
+
+.theme-zurassic .social-link:hover {
+  border-color: var(--t-text);
+  color: var(--t-text);
+  background: rgba(255,255,255,0.95);
+}
+
+/* Right column — glass avatar card */
+.theme-zurassic .hero-avatar {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-zurassic .hero-avatar-card {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 340px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dot grid inside avatar card */
+.theme-zurassic .hero-avatar-card::before {
+  content: '';
+  position: absolute;
+  top: 16px; left: 16px;
+  width: 80px; height: 80px;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
+  background-size: 10px 10px;
+  pointer-events: none;
+}
+
+.theme-zurassic .hero-avatar img,
+.theme-zurassic .hero-avatar-initials {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid var(--t-border);
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.theme-zurassic .hero-avatar-initials {
+  font-family: var(--t-font-sans);
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--t-text-mid);
+  background: rgba(0,0,0,0.02);
+}
+
+.theme-zurassic .hero-avatar-sub {
+  font-family: var(--t-font-mono);
+  font-size: 11px;
+  color: var(--t-text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0;
+}
