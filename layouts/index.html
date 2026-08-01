@@ -7,7 +7,11 @@
     <div class="hero-text">
       <div class="hero-avatar">
         {{ if .Site.Params.avatar }}
-          <img src="{{ .Site.Params.avatar }}" alt="{{ .Site.Params.name }}">
+          <video autoplay loop muted playsinline
+                 poster="{{ .Site.Params.avatarPoster }}"
+                 aria-label="{{ .Site.Params.name }}">
+            <source src="{{ .Site.Params.avatar }}" type="video/mp4">
+          </video>
         {{ else }}
           <span class="hero-avatar-initials">{{ substr (.Site.Params.name | default "A") 0 1 }}</span>
         {{ end }}
@@ -20,7 +24,11 @@
     {{/* Right column: image + vertical stamp column */}}
     <div class="hero-right">
       {{ if .Site.Params.avatar }}
-        <img src="{{ .Site.Params.avatar }}" alt="{{ .Site.Params.name }}">
+        <video autoplay loop muted playsinline
+               poster="{{ .Site.Params.avatarPoster }}"
+               aria-label="{{ .Site.Params.name }}">
+          <source src="{{ .Site.Params.avatar }}" type="video/mp4">
+        </video>
       {{ end }}
       <div class="hero-stamps">
         {{ partial "social-links.html" (dict "Site" .Site "icon_only" true) }}

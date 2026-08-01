@@ -273,6 +273,17 @@
     });
   }
 
+  /* ── Reduced motion ─────────────────────────────────────────────────────
+     Pause the autoplaying hero video for users who've asked for reduced
+     motion. A paused video keeps rendering its current frame, so this
+     doesn't leave a blank space (unlike hiding it via CSS). */
+  function initReducedMotion() {
+    if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    document.querySelectorAll('.hero-right video, .hero-avatar video').forEach(function (v) {
+      v.pause();
+    });
+  }
+
   /* ── Init ───────────────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     initTabs();
@@ -281,6 +292,7 @@
     initNavScroll();
     initParkEasterEgg();
     initDownloadButton();
+    initReducedMotion();
   });
 
 }());
