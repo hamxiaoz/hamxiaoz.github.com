@@ -10,7 +10,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  {{/* Lato + Space Mono are self-hosted (same @font-face rules/files Google
+       serves, just same-origin) — see assets/css/fonts.css. Noto Sans SC
+       (Chinese) stays on Google Fonts: its automatic unicode-range
+       splitting means only glyphs actually rendered get fetched, which
+       beats what we could maintain by hand without a subsetting toolchain. */}}
+  {{ $fonts := resources.Get "css/fonts.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $fonts.RelPermalink }}">
+
+  {{ $notoUrl := "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" | safeURL }}
+  <link rel="preload" as="style" href="{{ $notoUrl }}">
+  <link rel="stylesheet" href="{{ $notoUrl }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ $notoUrl }}"></noscript>
 
   {{ $icons := resources.Get "icons.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $icons.RelPermalink }}">
